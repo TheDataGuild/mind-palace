@@ -12,10 +12,11 @@ Deliver multiple "Aha" moments to our audience (i.e. drug hunters)
 
 ## Information architecture
 
+```
        /  User                    \
       / visualization              \
      / T-SNE dimensional reduction  \
     /  relation graph representation \
    /   attribute extraction           \
   /    literary dataset                \
-
+```
