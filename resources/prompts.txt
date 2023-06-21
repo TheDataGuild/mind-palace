@@ -1,0 +1,5 @@
+summarize this text into major points, each point should be self-contained ELI5 style:
+
+"""
+[paragraph]
+"""
