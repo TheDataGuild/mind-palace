@@ -1,0 +1,16 @@
+1.
+
+summarize this text into major points, each point should be self-contained ELI5 style:
+
+"""
+[paragraph]
+"""
+
+
+2.
+
+Parse entity nodes and relations from the following text, return as openCypher language:
+
+"""
+[text]
+"""
