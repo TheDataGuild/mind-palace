@@ -1,4 +1,4 @@
-A 3-pass process to define a property graph model from text
+A 2-pass process to identify node types for a property graph model from text
 
 ## First Pass
 
@@ -124,11 +124,7 @@ Eyeballing the instances and their types, our list of 5 types from Pass 1 appear
 
 
 
-
-
-
-
 ## Reference
 
-Text are at `./murders_in_rue_morgue_summary.txt`
+Text = paste the full text from `./murders_in_rue_morgue_summary.txt`
 
