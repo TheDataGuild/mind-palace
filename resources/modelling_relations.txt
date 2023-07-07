@@ -6,7 +6,8 @@ Given the following text, define a property graph model. Follow these rules:
 
 - create nodes for instances which fit one of the given types
 - parse relations from the text between the created nodes
-- output in Cypher language
+- do not use pronouns, name each noun explicitly
+- do not assume any relations which are not explicitly mentioned in the text
 
 Node Types: Character, Location, Object, Testimony, Evidence
 
@@ -18,40 +19,168 @@ Text:
 
 model: `gpt-3.5-turbo`
 
-```cypher
-CREATE (narrator:Character {name: "narrator"})
-CREATE (dupin:Character {name: "Auguste Dupin"})
-CREATE (paris:Location {name: "Paris"})
-CREATE (library:Location {name: "library"})
-CREATE (house:Location {name: "grotesque house"})
-
-CREATE (books:Object {name: "books"})
-CREATE (volume:Object {name: "special volume"})
-
-CREATE (narrator)-[:KNOWS]->(dupin)
-CREATE (narrator)-[:IS_IN]->(paris)
-CREATE (dupin)-[:IS_IN]->(paris)
-CREATE (dupin)-[:LIKES]->(books)
-CREATE (narrator)-[:LIKES]->(books)
-CREATE (narrator)-[:MET]->(library)
-CREATE (dupin)-[:MET]->(library)
-CREATE (dupin)-[:BONDED_OVER]->(volume)
-CREATE (narrator)-[:BONDED_OVER]->(volume)
-CREATE (narrator)-[:STAYS_IN]->(house)
-CREATE (dupin)-[:STAYS_IN]->(house)
 ```
+Based on the given text, the property graph model can be represented as follows:
 
-;; needs to refactor those relations so the nodes don't get duplicated. i.e. use MATCH ... CREATE
+Nodes:
+- Character:
+  - Auguste Dupin
+  - The narrator
+
+- Location:
+  - Paris
+  - A library
+  - The house
+
+- Object:
+  - Books
+  - Special volume
+
+- Testimony:
+  - None mentioned in the text
+
+- Evidence:
+  - None mentioned in the text
+
+Relations:
+1. The narrator narrates "Rue-Morgue".
+2. The narrator introduces Auguste Dupin.
+3. Auguste Dupin is a friend of the narrator.
+4. Auguste Dupin is spending time in Paris.
+5. Auguste Dupin is a man of high class and family.
+6. Auguste Dupin has lost a lot of his fortune.
+7. Auguste Dupin has lost his fortune in a series of events.
+8. Books are the highest luxury for Auguste Dupin.
+9. The narrator shares the love for books with Auguste Dupin.
+10. The first meeting of the narrator and Auguste Dupin took place at a library.
+11. The narrator and Auguste Dupin bonded over a special volume at the library.
+12. The narrator is surprised at how well read Auguste Dupin is.
+13. The narrator judges that the company of Auguste Dupin during their stay in Paris will be valuable.
+14. The narrator and Auguste Dupin live together.
+15. The house they can afford with their combined fortunes is romantic but "grotesque".
+16. The romantic but "grotesque" house suits their mood.
+
+Please note that some relations are inferred based on the given text, while others are explicitly mentioned.
+```
 
 ## Pass 2
 
 ### Prompt
 
-Fix this Cypher  ...
+```
+Parse this text into Cypher language. Re-use the nodes and relations as much as possible to limit number of nodes and relations.
+
+Text 1: """
+Nodes:
+- Character:
+  - Foo
+  - Bar
+- Object:
+  - cheese
+
+Relations:
+1. Foo likes cheese.
+2. Bar likes cheese.
+3. Foo and Bar eats cheese together sometimes.
+"""
+Cypher 1:
+// Create nodes
+CREATE (f:Character {name: "Foo"}), (b:Character {name: "Bar"}), CREATE (c:Object {name: "cheese"});
+
+// Relation 1
+MATCH (a:Character {name: "Foo"}), (c:Object {name: "cheese"})
+CREATE (a)-[r:LIKES]->(cheese);
+
+// Relation 2
+MATCH (a:Character {name: "Bar"}), (c:Object {name: "cheese"})
+CREATE (a)-[r:LIKES]->(cheese);
+
+// Relation 3
+MATCH (a:Character {name: "Foo"}), (b:Character {name: "Bar"})
+MERGE (a)-[r:EATS_WITH]->(b)
+SET r.interval = "sometimes";
+
+##
+Text: """
+"""
+Cypher 2:
+```
+
+## Output
 
 
+```cypher
+// Create nodes
+CREATE (a:Character {name: "Auguste Dupin"}), (n:Character {name: "The narrator"}),
+       (l:Location {name: "Paris"}), (lib:Location {name: "A library"}), (h:Location {name: "The house"}),
+       (b:Object {name: "Books"}), (sv:Object {name: "Special volume"}),
+       (t:Testimony), (e:Evidence);
 
+// Relation 1
+MATCH (n:Character {name: "The narrator"})
+SET n.narrates = "Rue-Morgue";
 
+// Relation 2
+MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"})
+CREATE (n)-[r:INTRODUCES]->(a);
+
+// Relation 3
+MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"})
+CREATE (n)-[r:FRIEND_OF]->(a);
+
+// Relation 4
+MATCH (a:Character {name: "Auguste Dupin"}), (l:Location {name: "Paris"})
+CREATE (a)-[r:SPENDING_TIME_IN]->(l);
+
+// Relation 5
+MATCH (a:Character {name: "Auguste Dupin"})
+SET a.class = "high class", a.family = "family";
+
+// Relation 6
+MATCH (a:Character {name: "Auguste Dupin"})
+SET a.fortune_lost = true;
+
+// Relation 7
+MATCH (a:Character {name: "Auguste Dupin"})
+SET a.fortune_lost_in = "a series of events";
+
+// Relation 8
+MATCH (a:Character {name: "Auguste Dupin"}), (b:Object {name: "Books"})
+CREATE (a)-[r:HIGHEST_LUXURY]->(b);
+
+// Relation 9
+MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"})
+CREATE (n)-[r:SHARES_LOVE_FOR]->(b);
+
+// Relation 10
+MATCH (n:Character {name: "The narrator"}), (lib:Location {name: "A library"})
+CREATE (n)-[r:FIRST_MEETING_AT]->(lib);
+
+// Relation 11
+MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"}), (sv:Object {name: "Special volume"})
+CREATE (n)-[r:BONDED_OVER]->(sv), (a)-[r2:BONDED_OVER]->(sv);
+
+// Relation 12
+MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"})
+SET n.surprised = true, n.well_read = a.name;
+
+// Relation 13
+MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"})
+SET n.company_during_stay = a.name;
+
+// Relation 14
+MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"})
+CREATE (n)-[r:LIVE_TOGETHER]->(a);
+
+// Relation 15
+MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"}), (h:Location {name: "The house"})
+CREATE (n)-[r:AFFORD_WITH_COMBINED_FORTUNES]->(h), (a)-[r2:AFFORD_WITH_COMBINED_FORTUNES]->(h),
+       (h)-[r3:SUIT_MOOD]->(n);
+
+// Relation 16
+MATCH (h:Location {name: "The house"})
+SET h.mood = "romantic", h.description = "grotesque";
+```
 
 ## Reference
 
