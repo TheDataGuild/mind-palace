@@ -1,80 +1,57 @@
+## Pass 1
+
 ### Prompt
 
-```
 Given the following text, define a property graph model. Follow these rules:
 
 - create nodes for instances which fit one of the given types
 - parse relations from the text between the created nodes
 - output in Cypher language
-- create the nodes first in one block, and then use  `MATCH` to create the relations
 
 Node Types: Character, Location, Object, Testimony, Evidence
 
-
-Text 1: foo loves bar.
-Cypher 1:
-CREATE (a:Foo{name:"foo"}), (b:Bar{name:"bar"})
-
-MATCH (f:Foo{name:"foo"}), (h:Bar{name:"bar"})
-with f,h
-CREATE (f)-[:LOVES]->(h)
-##
-Text 2: """
+Text:
 """
-
-Cypher 2:
-```
+"""
 
 ### Output
 
-model: Bard 2023.06.07
+model: `gpt-3.5-turbo`
 
+```cypher
+CREATE (narrator:Character {name: "narrator"})
+CREATE (dupin:Character {name: "Auguste Dupin"})
+CREATE (paris:Location {name: "Paris"})
+CREATE (library:Location {name: "library"})
+CREATE (house:Location {name: "grotesque house"})
+
+CREATE (books:Object {name: "books"})
+CREATE (volume:Object {name: "special volume"})
+
+CREATE (narrator)-[:KNOWS]->(dupin)
+CREATE (narrator)-[:IS_IN]->(paris)
+CREATE (dupin)-[:IS_IN]->(paris)
+CREATE (dupin)-[:LIKES]->(books)
+CREATE (narrator)-[:LIKES]->(books)
+CREATE (narrator)-[:MET]->(library)
+CREATE (dupin)-[:MET]->(library)
+CREATE (dupin)-[:BONDED_OVER]->(volume)
+CREATE (narrator)-[:BONDED_OVER]->(volume)
+CREATE (narrator)-[:STAYS_IN]->(house)
+CREATE (dupin)-[:STAYS_IN]->(house)
 ```
-// Create the nodes
-CREATE (narrator:Character {name: "Narrator"}),
-(dupin:Character {name: "Dupin"}),
-(library:Location {name: "Library"}),
-(house:Location {name: "House"}),
-(book:Object {name: "Book"}),
-(fortune:Object {name: "Fortune"}),
-(meeting:Testimony {name: "Meeting"}),
-(bond:Testimony {name: "Bond"}),
-(fortuneLoss:Evidence {name: "Fortune Loss"}),
-(loveOfBooks:Evidence {name: "Love of Books"});
 
-// Create the relations
-MATCH (n:Character)
-WHERE n.name = "Narrator"
-CREATE (n)-[:LIVES_WITH]->(dupin);
+;; needs to refactor those relations so the nodes don't get duplicated. i.e. use MATCH ... CREATE
 
-MATCH (n:Character)
-WHERE n.name = "Dupin"
-CREATE (n)-[:HAS_INTEREST_IN]->(book);
+## Pass 2
 
-MATCH (n:Character)
-WHERE n.name = "Dupin"
-CREATE (n)-[:HAS_INTEREST_IN]->(library);
+### Prompt
 
-MATCH (n:Character)
-WHERE n.name = "Dupin"
-CREATE (n)-[:HAS_INTEREST_IN]->(house);
+Fix this Cypher  ...
 
-MATCH (e:Evidence)
-WHERE e.name = "Fortune Loss"
-CREATE (e)-[:RELATES_TO]->(fortune);
 
-MATCH (e:Evidence)
-WHERE e.name = "Love of Books"
-CREATE (e)-[:RELATES_TO]->(book);
 
-MATCH (t:Testimony)
-WHERE t.name = "Meeting"
-CREATE (t)-[:RELATES_TO]->(library);
 
-MATCH (t:Testimony)
-WHERE t.name = "Bond"
-CREATE (t)-[:RELATES_TO]->(book);
-```
 
 ## Reference
 
