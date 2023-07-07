@@ -1,0 +1,88 @@
+### Prompt
+
+```
+Given the following text, define a property graph model. Follow these rules:
+
+- create nodes for instances which fit one of the given types
+- parse relations from the text between the created nodes
+- output in Cypher language
+- create the nodes first in one block, and then use  `MATCH` to create the relations
+
+Node Types: Character, Location, Object, Testimony, Evidence
+
+
+Text 1: foo loves bar.
+Cypher 1:
+CREATE (a:Foo{name:"foo"}), (b:Bar{name:"bar"})
+
+MATCH (f:Foo{name:"foo"}), (h:Bar{name:"bar"})
+with f,h
+CREATE (f)-[:LOVES]->(h)
+##
+Text 2: """
+"""
+
+Cypher 2:
+```
+
+### Output
+
+model: Bard 2023.06.07
+
+```
+// Create the nodes
+CREATE (narrator:Character {name: "Narrator"}),
+(dupin:Character {name: "Dupin"}),
+(library:Location {name: "Library"}),
+(house:Location {name: "House"}),
+(book:Object {name: "Book"}),
+(fortune:Object {name: "Fortune"}),
+(meeting:Testimony {name: "Meeting"}),
+(bond:Testimony {name: "Bond"}),
+(fortuneLoss:Evidence {name: "Fortune Loss"}),
+(loveOfBooks:Evidence {name: "Love of Books"});
+
+// Create the relations
+MATCH (n:Character)
+WHERE n.name = "Narrator"
+CREATE (n)-[:LIVES_WITH]->(dupin);
+
+MATCH (n:Character)
+WHERE n.name = "Dupin"
+CREATE (n)-[:HAS_INTEREST_IN]->(book);
+
+MATCH (n:Character)
+WHERE n.name = "Dupin"
+CREATE (n)-[:HAS_INTEREST_IN]->(library);
+
+MATCH (n:Character)
+WHERE n.name = "Dupin"
+CREATE (n)-[:HAS_INTEREST_IN]->(house);
+
+MATCH (e:Evidence)
+WHERE e.name = "Fortune Loss"
+CREATE (e)-[:RELATES_TO]->(fortune);
+
+MATCH (e:Evidence)
+WHERE e.name = "Love of Books"
+CREATE (e)-[:RELATES_TO]->(book);
+
+MATCH (t:Testimony)
+WHERE t.name = "Meeting"
+CREATE (t)-[:RELATES_TO]->(library);
+
+MATCH (t:Testimony)
+WHERE t.name = "Bond"
+CREATE (t)-[:RELATES_TO]->(book);
+```
+
+## Reference
+
+Text = paste the text from `./murders_in_rue_morgue_summary.txt`, one paragraph at a time
+
+Drop database,
+
+```cypher
+MATCH (n)
+DETACH DELETE n;
+```
