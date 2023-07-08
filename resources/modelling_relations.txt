@@ -92,19 +92,21 @@ Relations:
 """
 Cypher 1:
 // Create nodes
-CREATE (f:Character {name: "Foo"}), (b:Character {name: "Bar"}), CREATE (c:Object {name: "cheese"});
+MERGE (f:Character {name: "Foo"});
+MERGE (b:Character {name: "Bar"});
+MERGE (c:Object {name: "cheese"});
 
 // Relation 1
 MATCH (a:Character {name: "Foo"}), (c:Object {name: "cheese"})
-CREATE (a)-[r:LIKES]->(cheese);
+CREATE (a)-[r1:LIKES]->(cheese);
 
 // Relation 2
 MATCH (a:Character {name: "Bar"}), (c:Object {name: "cheese"})
-CREATE (a)-[r:LIKES]->(cheese);
+CREATE (a)-[r1:LIKES]->(cheese);
 
 // Relation 3
 MATCH (a:Character {name: "Foo"}), (b:Character {name: "Bar"})
-MERGE (a)-[r:EATS_WITH]->(b)
+MERGE (a)-[r1:EATS_WITH]->(b)
 SET r.interval = "sometimes";
 
 ##
@@ -119,63 +121,77 @@ model: `gpt-3.5-turbo`
 
 ```
 // Create nodes
-CREATE (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"}), (l:Location {name: "Paris"}), (b1:Object {name: "Books"}), (b2:Object {name: "special volume"}), (h:Object {name: "house"});
+MERGE (narrator:Character {name: "narrator"});
+MERGE (dupin:Character {name: "Auguste Dupin"});
+MERGE (paris:Location {name: "Paris"});
+MERGE (books:Object {name: "Books"});
+MERGE (volume:Object {name: "special volume"});
+MERGE (house:Object {name: "house"});
 
 // Relation 1
-MATCH (n:Narrator {name: "narrator"})
-SET n.discussion_relevant = true;
+MATCH (n:narrator)
+SET n.relevance = "relevant to the story";
 
 // Relation 2
-MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"})
-CREATE (n)-[r:INTRODUCES]->(a);
+MATCH (n:narrator), (d:dupin)
+CREATE (n)-[r1:INTRODUCES]->(d);
 
 // Relation 3
-MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"}), (l:Location {name: "Paris"})
-CREATE (n)-[r:SPENDS_TIME_IN]->(l), (a)-[r2:SPENDS_TIME_IN]->(l);
+MATCH (n:narrator), (d:dupin), (p:paris)
+CREATE (n)-[r2:SPENDS_TIME_WITH]->(d)
+SET r2.location = p.name;
 
 // Relation 4
-MATCH (a:Character {name: "Auguste Dupin"})
-SET a.class = "high class", a.family = "high class";
+MATCH (d:dupin)
+SET d.class = "high class",
+    d.family = "high class";
 
 // Relation 5
-MATCH (a:Character {name: "Auguste Dupin"})
-SET a.lost_fortune = true;
+MATCH (d:dupin)
+SET d.fortune = "lost a lot";
 
 // Relation 6
-MATCH (a:Character {name: "Auguste Dupin"}), (b1:Object {name: "Books"})
-CREATE (a)-[r:HAS_LUXURY]->(b1);
+MATCH (d:dupin), (b:books)
+CREATE (d)-[r3:HAS_LUXURY]->(b)
+SET r3.level = "highest";
 
 // Relation 7
-MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"}), (b1:Object {name: "Books"})
-CREATE (n)-[r:SHARES_LOVE_WITH]->(b1), (a)-[r2:SHARES_LOVE_WITH]->(b1);
+MATCH (n:narrator), (d:dupin), (b:books)
+CREATE (n)-[r4:SHARES_LOVE_WITH]->(d)
+SET r4.item = b.name;
 
 // Relation 8
-MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"}), (l:Location {name: "library"})
-CREATE (n)-[r:MEETING_AT]->(l), (a)-[r2:MEETING_AT]->(l);
+MATCH (n:narrator), (d:dupin), (l:Location {name: "library"})
+CREATE (n)-[r5:FIRST_MEETING_AT]->(l)
+CREATE (d)-[r5]->(l);
 
 // Relation 9
-MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"}), (b2:Object {name: "special volume"})
-CREATE (n)-[r:BONDED_OVER]->(b2), (a)-[r2:BONDED_OVER]->(b2);
+MATCH (n:narrator), (d:dupin), (v:volume)
+CREATE (n)-[r6:BONDED_OVER]->(v)
+CREATE (d)-[r6]->(v);
 
 // Relation 10
-MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"})
-SET n.surprised = true, n.surprised_by = a, a.well_read = true;
+MATCH (n:narrator), (d:dupin)
+SET n.read = "surprised",
+    d.read = "well";
 
 // Relation 11
-MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"})
-SET n.valuable_company = a;
+MATCH (n:narrator), (d:dupin)
+SET n.judgment = "valuable";
 
 // Relation 12
-MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"})
-CREATE (n)-[r:LIVE_TOGETHER]->(a);
+MATCH (n:narrator), (d:dupin)
+CREATE (n)-[r7:LIVE_TOGETHER]->(d);
 
 // Relation 13
-MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"}), (h:Object {name: "house"})
-CREATE (n)-[r:AFFORDS]->(h), (a)-[r2:AFFORDS]->(h), (n)-[r3:SUIT_MOOD]->(h), (a)-[r4:SUIT_MOOD]->(h), (r3)-[r5:GROTESQUE]->(r4);
+MATCH (n:narrator), (d:dupin), (h:house)
+CREATE (n)-[r8:AFFORD]->(h)
+CREATE (d)-[r8]->(h)
+SET r8.mood = "grotesque";
 
 // Relation 14
-MATCH (h:Object {name: "house"})
-SET h.suits_mood = true;
+MATCH (h:house)
+SET h.suit = "their mood";
 ```
 
 ## Reference
