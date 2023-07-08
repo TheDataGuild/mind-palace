@@ -153,9 +153,109 @@ MATCH (narrator:Character {name: "narrator"}), (narrator)-[r6:USES]->(example)
 SET r6.description = "The narrator is using an example from their recent strolling to illustrate Dupin's astuteness.";
 
 //// Paragraph 4 ///////////////////////////////////////////////////////////////
-//
-// marked as unsafe by GPT
-//
+// Create nodes
+MERGE (d:Dupin {name: "Dupin"});
+MERGE (p:police {name: "police"});
+MERGE (n:neighbors {name: "neighbors"});
+MERGE (m:mother {name: "mother"});
+MERGE (dau:daughter {name: "daughter"});
+MERGE (ex:Object {name: "example"});
+MERGE (sk:Object {name: "skill"});
+MERGE (pa:Object {name: "paper"});
+MERGE (mu:Object {name: "murders"});
+MERGE (h:Object {name: "house"});
+MERGE (rm:Object {name: "Rue Morgue"});
+MERGE (s:Object {name: "shrieking"});
+MERGE (pr:Object {name: "property"});
+MERGE (st:Object {name: "stairs"});
+MERGE (fl:Object {name: "floor"});
+MERGE (hh:Object {name: "human hair"});
+MERGE (bm:Object {name: "bags of money"});
+MERGE (j:Object {name: "jewels"});
+MERGE (c:Object {name: "chimney"});
+MERGE (ef:Object {name: "extreme force"});
+MERGE (ow:Object {name: "old woman's body"});
+MERGE (th:Object {name: "throat"});
+MERGE (he:Object {name: "head"});
+MERGE (ap:Location {name: "apartment"});
+
+// Relation 1
+MATCH (d:Dupin), (ex:Object {name: "example"})
+CREATE (d)-[r1:DEMONSTRATES {target: "his skill"}]->(ex);
+
+// Relation 2
+MATCH (d:Dupin), (pa:Object {name: "paper"})
+CREATE (d)-[r2:ABSORBED_BY {target: "a report"}]->(pa);
+
+// Relation 3
+MATCH (pa:Object {name: "paper"}), (mu:Object {name: "murders"})
+CREATE (pa)-[r3:DESCRIBES {target: "two 'extraordinary' murders"}]->(mu);
+
+// Relation 4
+MATCH (mu:Object {name: "murders"}), (h:Object {name: "house"}), (rm:Object {name: "Rue Morgue"})
+CREATE (mu)-[r4:OCCURS_AT]->(h)
+CREATE (h)-[r4:ON_THE]->(rm);
+
+// Relation 5
+MATCH (pr:Object {name: "property"}), (s:Object {name: "shrieking"})
+CREATE (pr)-[r5:HEARS]->(s);
+
+// Relation 6
+MATCH (p:police), (n:neighbors), (pr:Object {name: "property"})
+CREATE (p)-[r6:BREAKS_INTO]->(pr)
+CREATE (n)-[r6:BREAKS_INTO]->(pr);
+
+// Relation 7
+MATCH (pr:Object {name: "property"}), (st:Object {name: "stairs"}), (fl:Object {name: "floor"})
+CREATE (pr)-[r7:ASCENDS_TO]->(st)
+CREATE (st)-[r7:TO_THE]->(fl)
+SET r7.level = "fourth";
+
+// Relation 8
+MATCH (fl:Object {name: "floor"}), (ph:Object {name: "phrases"})
+CREATE (fl)-[r8:HEARS]->(ph)
+SET r8.description = "roughly spoken";
+
+// Relation 9
+MATCH (ap:Location {name: "apartment"}), (fl:Object {name: "floor"})
+CREATE (ap)-[r9:CONTAINS]->(fl)
+SET r9.description = "complete disorder";
+
+// Relation 10
+MATCH (fl:Object {name: "floor"}), (hh:Object {name: "human hair"})
+CREATE (fl)-[r10:CONTAINS]->(hh)
+SET r10.state = "bloody";
+
+// Relation 11
+MATCH (fl:Object {name: "floor"}), (bm:Object {name: "bags of money"}), (j:Object {name: "jewels"})
+CREATE (fl)-[r11:CONTAINS]->(bm)
+CREATE (fl)-[r11:CONTAINS]->(j);
+
+// Relation 12
+MATCH (m:mother), (ap:Location {name: "apartment"})
+CREATE (ap)-[r12:MISSING]->(m);
+
+// Relation 13
+MATCH (dau:daughter), (c:Object {name: "chimney"})
+CREATE (dau)-[r13:LODGED_IN]->(c);
+
+// Relation 14
+MATCH (c:Object {name: "chimney"}), (ef:Object {name: "extreme force"})
+CREATE (c)-[r14:USED_TO_LODGE]->(dau)
+SET r14.description = "lodge the daughter";
+
+// Relation 15
+MATCH (ow:Object {name: "old woman's body"}), (ap:Location {name: "apartment"})
+CREATE (ow)-[r15:FOUND_OUTSIDE]->(ap);
+
+// Relation 16
+MATCH (ow:Object {name: "old woman's body"}), (th:Object {name: "throat"})
+CREATE (ow)-[r16:VIOLENTLY_CUT]->(th);
+
+// Relation 17
+MATCH (ow:Object {name: "old woman's body"}), (he:Object {name: "head"})
+CREATE (ow)-[r17:DETACHED]->(he);
+
 //// Paragraph 5 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (t:Testimony {name: "testimonies of various witnesses"});
