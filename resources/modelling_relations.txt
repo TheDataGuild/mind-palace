@@ -2,6 +2,7 @@
 
 ### Prompt
 
+```
 Given the following text, define a property graph model. Follow these rules:
 
 - create nodes for instances which fit one of the given types
@@ -11,56 +12,62 @@ Given the following text, define a property graph model. Follow these rules:
 
 Node Types: Character, Location, Object, Testimony, Evidence
 
-Text:
+Text 1: """
+Foo and Bar are friends. They like to eat cheese together.
+"""
+Model 1:
+"""
+Nodes:
+- Character:
+  - Foo
+  - Bar
+- Object:
+  - cheese
+
+Relations:
+1. Foo and Bar are friends.
+2. Foo eats cheese.
+3. Bar eats cheese.
+4. Foo and Bar eats cheese together.
+"""
+
+Text 2:
 """
 """
+Model 2:
+```
 
 ### Output
 
 model: `gpt-3.5-turbo`
 
 ```
-Based on the given text, the property graph model can be represented as follows:
-
 Nodes:
 - Character:
+  - narrator
   - Auguste Dupin
-  - The narrator
-
 - Location:
   - Paris
-  - A library
-  - The house
-
 - Object:
   - Books
-  - Special volume
-
-- Testimony:
-  - None mentioned in the text
-
-- Evidence:
-  - None mentioned in the text
+  - special volume
+  - house
 
 Relations:
-1. The narrator narrates "Rue-Morgue".
-2. The narrator introduces Auguste Dupin.
-3. Auguste Dupin is a friend of the narrator.
-4. Auguste Dupin is spending time in Paris.
-5. Auguste Dupin is a man of high class and family.
-6. Auguste Dupin has lost a lot of his fortune.
-7. Auguste Dupin has lost his fortune in a series of events.
-8. Books are the highest luxury for Auguste Dupin.
-9. The narrator shares the love for books with Auguste Dupin.
-10. The first meeting of the narrator and Auguste Dupin took place at a library.
-11. The narrator and Auguste Dupin bonded over a special volume at the library.
-12. The narrator is surprised at how well read Auguste Dupin is.
-13. The narrator judges that the company of Auguste Dupin during their stay in Paris will be valuable.
-14. The narrator and Auguste Dupin live together.
-15. The house they can afford with their combined fortunes is romantic but "grotesque".
-16. The romantic but "grotesque" house suits their mood.
-
-Please note that some relations are inferred based on the given text, while others are explicitly mentioned.
+1. The narrator tells us that this discussion will be relevant to the story.
+2. The narrator introduces us to Auguste Dupin.
+3. The narrator is spending time in Paris with Auguste Dupin.
+4. Auguste Dupin is a man of high class and family.
+5. Auguste Dupin has lost a lot of his fortune in a series of events.
+6. Books are now Auguste Dupin's highest luxury.
+7. The narrator shares a love for books with Auguste Dupin.
+8. The narrator and Auguste Dupin had their first meeting at a library.
+9. They bonded over a special volume.
+10. The narrator is surprised at how well read Auguste Dupin is.
+11. The narrator judges that Auguste Dupin's company during their stay in Paris will be very valuable.
+12. The pair live together.
+13. They can afford a romantic but "grotesque" house with their combined fortunes.
+14. The house seems to suit their mood.
 ```
 
 ## Pass 2
@@ -108,78 +115,67 @@ Cypher 2:
 
 ## Output
 
+model: `gpt-3.5-turbo`
 
-```cypher
+```
 // Create nodes
-CREATE (a:Character {name: "Auguste Dupin"}), (n:Character {name: "The narrator"}),
-       (l:Location {name: "Paris"}), (lib:Location {name: "A library"}), (h:Location {name: "The house"}),
-       (b:Object {name: "Books"}), (sv:Object {name: "Special volume"}),
-       (t:Testimony), (e:Evidence);
+CREATE (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"}), (l:Location {name: "Paris"}), (b1:Object {name: "Books"}), (b2:Object {name: "special volume"}), (h:Object {name: "house"});
 
 // Relation 1
-MATCH (n:Character {name: "The narrator"})
-SET n.narrates = "Rue-Morgue";
+MATCH (n:Narrator {name: "narrator"})
+SET n.discussion_relevant = true;
 
 // Relation 2
-MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"})
+MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"})
 CREATE (n)-[r:INTRODUCES]->(a);
 
 // Relation 3
-MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"})
-CREATE (n)-[r:FRIEND_OF]->(a);
+MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"}), (l:Location {name: "Paris"})
+CREATE (n)-[r:SPENDS_TIME_IN]->(l), (a)-[r2:SPENDS_TIME_IN]->(l);
 
 // Relation 4
-MATCH (a:Character {name: "Auguste Dupin"}), (l:Location {name: "Paris"})
-CREATE (a)-[r:SPENDING_TIME_IN]->(l);
+MATCH (a:Character {name: "Auguste Dupin"})
+SET a.class = "high class", a.family = "high class";
 
 // Relation 5
 MATCH (a:Character {name: "Auguste Dupin"})
-SET a.class = "high class", a.family = "family";
+SET a.lost_fortune = true;
 
 // Relation 6
-MATCH (a:Character {name: "Auguste Dupin"})
-SET a.fortune_lost = true;
+MATCH (a:Character {name: "Auguste Dupin"}), (b1:Object {name: "Books"})
+CREATE (a)-[r:HAS_LUXURY]->(b1);
 
 // Relation 7
-MATCH (a:Character {name: "Auguste Dupin"})
-SET a.fortune_lost_in = "a series of events";
+MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"}), (b1:Object {name: "Books"})
+CREATE (n)-[r:SHARES_LOVE_WITH]->(b1), (a)-[r2:SHARES_LOVE_WITH]->(b1);
 
 // Relation 8
-MATCH (a:Character {name: "Auguste Dupin"}), (b:Object {name: "Books"})
-CREATE (a)-[r:HIGHEST_LUXURY]->(b);
+MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"}), (l:Location {name: "library"})
+CREATE (n)-[r:MEETING_AT]->(l), (a)-[r2:MEETING_AT]->(l);
 
 // Relation 9
-MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"})
-CREATE (n)-[r:SHARES_LOVE_FOR]->(b);
+MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"}), (b2:Object {name: "special volume"})
+CREATE (n)-[r:BONDED_OVER]->(b2), (a)-[r2:BONDED_OVER]->(b2);
 
 // Relation 10
-MATCH (n:Character {name: "The narrator"}), (lib:Location {name: "A library"})
-CREATE (n)-[r:FIRST_MEETING_AT]->(lib);
+MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"})
+SET n.surprised = true, n.surprised_by = a, a.well_read = true;
 
 // Relation 11
-MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"}), (sv:Object {name: "Special volume"})
-CREATE (n)-[r:BONDED_OVER]->(sv), (a)-[r2:BONDED_OVER]->(sv);
+MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"})
+SET n.valuable_company = a;
 
 // Relation 12
-MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"})
-SET n.surprised = true, n.well_read = a.name;
-
-// Relation 13
-MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"})
-SET n.company_during_stay = a.name;
-
-// Relation 14
-MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"})
+MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"})
 CREATE (n)-[r:LIVE_TOGETHER]->(a);
 
-// Relation 15
-MATCH (n:Character {name: "The narrator"}), (a:Character {name: "Auguste Dupin"}), (h:Location {name: "The house"})
-CREATE (n)-[r:AFFORD_WITH_COMBINED_FORTUNES]->(h), (a)-[r2:AFFORD_WITH_COMBINED_FORTUNES]->(h),
-       (h)-[r3:SUIT_MOOD]->(n);
+// Relation 13
+MATCH (n:Narrator {name: "narrator"}), (a:Character {name: "Auguste Dupin"}), (h:Object {name: "house"})
+CREATE (n)-[r:AFFORDS]->(h), (a)-[r2:AFFORDS]->(h), (n)-[r3:SUIT_MOOD]->(h), (a)-[r4:SUIT_MOOD]->(h), (r3)-[r5:GROTESQUE]->(r4);
 
-// Relation 16
-MATCH (h:Location {name: "The house"})
-SET h.mood = "romantic", h.description = "grotesque";
+// Relation 14
+MATCH (h:Object {name: "house"})
+SET h.suits_mood = true;
 ```
 
 ## Reference
