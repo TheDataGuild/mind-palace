@@ -80,6 +80,7 @@ SET r8.mood = "grotesque";
 MATCH (h:Location {name: "house"})
 SET h.suit = "their mood";
 
+// 7 nodes 11 relationships
 
 //// Paragraph 2 //////////////////////////////////////////////////////////////
 // Create nodes
@@ -87,9 +88,11 @@ MERGE (narrator:Character {name: "narrator"});
 MERGE (dupin:Character {name: "Dupin"});
 MERGE (rueMorgue:Location {name: "Rue-Morgue"});
 MERGE (parisien:Location {name: "Parisien"});
-MERGE (darkness:Object {name: "darkness"});
+MERGE (night:Location {name: "night"});
+MERGE (falseNight:Location {name: "false night"});
 MERGE (atmosphere:Object {name: "atmosphere"});
 MERGE (shutters:Object {name: "shutters"});
+MERGE (town:Location {name: "town"});
 
 // Relation 1
 MATCH (n:Character {name: "narrator"}), (dupin:Character {name: "Dupin"})
@@ -97,28 +100,36 @@ CREATE (n)-[r1:TELLS]->(dupin)
 SET r1.description = "If you could observe their daily routines, you'd think the pair suffered from madness.";
 
 // Relation 2
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r2:KEPT_TO_THEMSELVES]->(dupin)
+MATCH (dupin:Character {name: "Dupin"})
+CREATE (dupin)-[r2:KEPT_TO_THEMSELVES]->(dupin)
 SET r2.description = "The pair kept completely to themselves.";
 
 // Relation 3
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r3:OBSESSED_WITH]->(night:Location {name: "night"})
+MATCH (dupin:Character {name: "Dupin"}), (night:Location {name: "night"})
+CREATE (dupin)-[r3:OBSESSED_WITH]->(night)
 SET r3.description = "Dupin especially was obsessed with night time.";
 
 // Relation 4
-MATCH (narrator:Character {name: "narrator"}), (narrator)-[r4:FEELS]->(night)
+MATCH (narrator:Character {name: "narrator"}), (night:Location {name: "night"})
+CREATE (narrator)-[r4:FEELS]->(night)
 SET r4.description = "The narrator feels the same way.";
 
 // Relation 5
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r5:RECREATES]->(parisien)
+MATCH (dupin:Character {name: "Dupin"}), (parisien:Location {name: "Parisien"})
+CREATE (dupin)-[r5:RECREATES]->(parisien)
 SET r5.description = "Even in the day, they recreate the darkness and atmosphere of the Parisien night.";
 
 // Relation 6
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r6:WRITES_READS]->(falseNight:Object {name: "false night"})
+MATCH (dupin:Character {name: "Dupin"}), (falseNight:Location {name: "false night"})
+CREATE (dupin)-[r6:WRITES_READS]->(falseNight)
 SET r6.description = "In this false night, they write and read.";
 
 // Relation 7
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r7:JAUNTS_AROUND]->(town:Location {name: "town"})
+MATCH (dupin:Character {name: "Dupin"}), (town:Location {name: "town"})
+CREATE (dupin)-[r7:JAUNTS_AROUND]->(town)
 SET r7.description = "When real night came, they jaunt around town.";
+
+// 14 nodes 18 relationships
 
 
 //// Paragraph 3 ///////////////////////////////////////////////////////////////
