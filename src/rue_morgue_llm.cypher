@@ -1,3 +1,10 @@
+Drop database,
+
+```cypher
+MATCH (n)
+DETACH DELETE n;
+```
+
 //// Paragraph 1 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (narrator:Character {name: "narrator"});
