@@ -8,69 +8,69 @@ DETACH DELETE n;
 //// Paragraph 1 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (narrator:Character {name: "narrator"});
-MERGE (dupin:Character {name: "Auguste Dupin"});
+MERGE (dupin:Character {name: "Dupin"});
 MERGE (paris:Location {name: "Paris"});
 MERGE (books:Object {name: "Books"});
 MERGE (volume:Object {name: "special volume"});
 MERGE (house:Object {name: "house"});
 
 // Relation 1
-MATCH (n:narrator)
+MATCH (n:Character {name: "narrator"})
 SET n.relevance = "relevant to the story";
 
 // Relation 2
-MATCH (n:narrator), (d:dupin)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"})
 CREATE (n)-[r1:INTRODUCES]->(d);
 
 // Relation 3
-MATCH (n:narrator), (d:dupin), (p:paris)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (p:paris)
 CREATE (n)-[r2:SPENDS_TIME_WITH]->(d)
 SET r2.location = p.name;
 
 // Relation 4
-MATCH (d:dupin)
+MATCH (d:Character {name: "Dupin"})
 SET d.class = "high class",
     d.family = "high class";
 
 // Relation 5
-MATCH (d:dupin)
+MATCH (d:Character {name: "Dupin"})
 SET d.fortune = "lost a lot";
 
 // Relation 6
-MATCH (d:dupin), (b:books)
+MATCH (d:Character {name: "Dupin"}), (b:books)
 CREATE (d)-[r3:HAS_LUXURY]->(b)
 SET r3.level = "highest";
 
 // Relation 7
-MATCH (n:narrator), (d:dupin), (b:books)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (b:books)
 CREATE (n)-[r4:SHARES_LOVE_WITH]->(d)
 SET r4.item = b.name;
 
 // Relation 8
-MATCH (n:narrator), (d:dupin), (l:Location {name: "library"})
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (l:Location {name: "library"})
 CREATE (n)-[r5:FIRST_MEETING_AT]->(l)
 CREATE (d)-[r6:FIRST_MEETING_AT]->(l);
 
 // Relation 9
-MATCH (n:narrator), (d:dupin), (v:volume)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (v:volume)
 CREATE (n)-[r6:BONDED_OVER]->(v)
 CREATE (d)-[r7:BONDED_OVER]->(v);
 
 // Relation 10
-MATCH (n:narrator), (d:dupin)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"})
 SET n.read = "surprised",
     d.read = "well";
 
 // Relation 11
-MATCH (n:narrator), (d:dupin)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"})
 SET n.judgment = "valuable";
 
 // Relation 12
-MATCH (n:narrator), (d:dupin)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"})
 CREATE (n)-[r7:LIVE_TOGETHER]->(d);
 
 // Relation 13
-MATCH (n:narrator), (d:dupin), (h:house)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (h:house)
 CREATE (n)-[r8:AFFORD]->(h)
 CREATE (d)-[r9:AFFORD]->(h)
 SET r8.mood = "grotesque";
@@ -161,7 +161,7 @@ SET r6.description = "The narrator is using an example from their recent strolli
 
 //// Paragraph 4 ///////////////////////////////////////////////////////////////
 // Create nodes
-MERGE (d:Dupin {name: "Dupin"});
+MERGE (d:Character {name: "Dupin"});
 MERGE (p:police {name: "police"});
 MERGE (n:neighbors {name: "neighbors"});
 MERGE (m:mother {name: "mother"});
@@ -187,11 +187,11 @@ MERGE (he:Object {name: "head"});
 MERGE (ap:Location {name: "apartment"});
 
 // Relation 1
-MATCH (d:Dupin), (ex:Object {name: "example"})
+MATCH (d:Character {name: "Dupin"}), (ex:Object {name: "example"})
 CREATE (d)-[r1:DEMONSTRATES {target: "his skill"}]->(ex);
 
 // Relation 2
-MATCH (d:Dupin), (pa:Object {name: "paper"})
+MATCH (d:Character {name: "Dupin"}), (pa:Object {name: "paper"})
 CREATE (d)-[r2:ABSORBED_BY {target: "a report"}]->(pa);
 
 // Relation 3
@@ -1102,21 +1102,21 @@ MERGE (ad:Object {name: "ad"});
 MERGE (innocence:Object {name: "innocence"});
 
 // Relation 1
-MATCH (n:narrator), (d:dupin), (s:sailor), (mv:malteseVessel)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (s:sailor), (mv:malteseVessel)
 CREATE (n)-[:WONDERS]->(d),
 (d)-[:KNOWS]->(s),
 (s)-[:FROM]->(mv);
 
 // Relation 2
-MATCH (d:dupin)
+MATCH (d:Character {name: "Dupin"})
 SET d.guesses = true;
 
 // Relation 3
-MATCH (d:dupin), (lr:lightningRod)
+MATCH (d:Character {name: "Dupin"}), (lr:lightningRod)
 CREATE (d)-[:FOUND]->(lr);
 
 // Relation 4
-MATCH (d:dupin), (r:ribbon), (ms:sailor)
+MATCH (d:Character {name: "Dupin"}), (r:ribbon), (ms:sailor)
 CREATE (d)-[:RECOGNIZES]->(r),
 (r)-[:USED_BY]->(ms),
 (r)-[:KNOTTED_IN]->(ms);
@@ -1429,13 +1429,13 @@ CREATE (bo)-[r26:CONCEALED_OUT_OF]->(win);
 
 //// Paragraph 23 ///////////////////////////////////////////////////////////////
 // Create nodes
-MERGE (n:narrator {name: "narrator"});
+MERGE (n:Character {name: "narrator"} {name: "narrator"});
 MERGE (rm:Rue_Morgue {name: "Rue-Morgue"});
 MERGE (s:sailor {name: "sailor"});
 MERGE (oo:Ourang_Outang {name: "Ourang-Outang"});
 MERGE (lb:Le_Bon {name: "Le Bon"});
 MERGE (p:Prefect {name: "Prefect"});
-MERGE (d:Dupin {name: "Dupin"});
+MERGE (d:Character {name: "Dupin"} {name: "Dupin"});
 MERGE (c:police {name: "police"});
 MERGE (cr:Object {name: "closing remarks"});
 MERGE (pr:Object {name: "price"});
@@ -1444,7 +1444,7 @@ MERGE (sk:Object {name: "skill"});
 MERGE (q:Object {name: "quote"});
 
 // Relation 1
-MATCH (n:narrator), (cr:Object {name: "closing remarks"})
+MATCH (n:Character {name: "narrator"}), (cr:Object {name: "closing remarks"})
 CREATE (n)-[r1:ADDS]->(cr);
 
 // Relation 2
@@ -1466,22 +1466,22 @@ CREATE (p)-[r5:KNOWS_HE_IS_BEATEN]
 CREATE (sk)-[r5:BEATEN_BY]->(p);
 
 // Relation 6
-MATCH (p:Prefect), (d:Dupin), (sk:Object {name: "skill"})
+MATCH (p:Prefect), (d:Character {name: "Dupin"}), (sk:Object {name: "skill"})
 CREATE (p)-[r6:ANNOYED_AT {target: "Dupin's skill"}]->(d)
 CREATE (sk)-[r6:SKILL_OF]->(p);
 
 // Relation 7
-MATCH (d:Dupin), (p:Prefect), (sk:Object {name: "skill"})
+MATCH (d:Character {name: "Dupin"}), (p:Prefect), (sk:Object {name: "skill"})
 CREATE (d)-[r7:KNOWS_WISDOM_IS_SHALLOW]->(p)
 CREATE (sk)-[r7:SHALLOW_WISDOM_OF]->(p);
 
 // Relation 8
-MATCH (d:Dupin), (p:Prefect)
+MATCH (d:Character {name: "Dupin"}), (p:Prefect)
 CREATE (d)-[r8:CONSIDERS {target: "Prefect"}]->(p)
 SET r8.description = "good creature";
 
 // Relation 9
-MATCH (d:Dupin), (q:Object {name: "quote"})
+MATCH (d:Character {name: "Dupin"}), (q:Object {name: "quote"})
 CREATE (d)-[r9:ENDS_WITH]->(q)
 SET r9.tone = "condescending";
 
