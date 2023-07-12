@@ -12,7 +12,8 @@ MERGE (dupin:Character {name: "Dupin"});
 MERGE (paris:Location {name: "Paris"});
 MERGE (books:Object {name: "Books"});
 MERGE (volume:Object {name: "special volume"});
-MERGE (house:Object {name: "house"});
+MERGE (house:Location {name: "house"});
+MERGE (l:Location {name: "library"});
 
 // Relation 1
 MATCH (n:Character {name: "narrator"})
@@ -20,10 +21,10 @@ SET n.relevance = "relevant to the story";
 
 // Relation 2
 MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"})
-CREATE (n)-[r1:INTRODUCES]->(d);
+MERGE (n)-[r1:INTRODUCES]->(d);
 
 // Relation 3
-MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (p:paris)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (p:Location {name: "Paris"})
 CREATE (n)-[r2:SPENDS_TIME_WITH]->(d)
 SET r2.location = p.name;
 
@@ -37,12 +38,12 @@ MATCH (d:Character {name: "Dupin"})
 SET d.fortune = "lost a lot";
 
 // Relation 6
-MATCH (d:Character {name: "Dupin"}), (b:books)
+MATCH (d:Character {name: "Dupin"}), (b:Object {name: "Books"})
 CREATE (d)-[r3:HAS_LUXURY]->(b)
 SET r3.level = "highest";
 
 // Relation 7
-MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (b:books)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (b:Object {name: "Books"})
 CREATE (n)-[r4:SHARES_LOVE_WITH]->(d)
 SET r4.item = b.name;
 
@@ -52,7 +53,7 @@ CREATE (n)-[r5:FIRST_MEETING_AT]->(l)
 CREATE (d)-[r6:FIRST_MEETING_AT]->(l);
 
 // Relation 9
-MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (v:volume)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (v:Object {name: "special volume"})
 CREATE (n)-[r6:BONDED_OVER]->(v)
 CREATE (d)-[r7:BONDED_OVER]->(v);
 
@@ -70,13 +71,13 @@ MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"})
 CREATE (n)-[r7:LIVE_TOGETHER]->(d);
 
 // Relation 13
-MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (h:house)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (h:Location {name: "house"})
 CREATE (n)-[r8:AFFORD]->(h)
 CREATE (d)-[r9:AFFORD]->(h)
 SET r8.mood = "grotesque";
 
 // Relation 14
-MATCH (h:house)
+MATCH (h:Location {name: "house"})
 SET h.suit = "their mood";
 
 
