@@ -136,13 +136,14 @@ SET r7.description = "When real night came, they jaunt around town.";
 // Create nodes
 MERGE (narrator:Character {name: "narrator"});
 MERGE (dupin:Character {name: "Dupin"});
-MERGE (rueMorgue:Location {name: "Rue-Morgue"});
 MERGE (analyticAbility:Object {name: "analytic ability"});
 MERGE (humanSpecimens:Object {name: "human specimens"});
 MERGE (soul:Object {name: "soul"});
 MERGE (mysteryStory:Object {name: "mystery story"});
-MERGE (character:Object {name: "character"});
 MERGE (example:Object {name: "example"});
+
+MERGE (rueMorgue:Location {name: "Rue-Morgue"});
+MERGE (character:Object {name: "character"});
 MERGE (strolling:Object {name: "strolling"});
 MERGE (astuteness:Object {name: "astuteness"});
 
@@ -152,23 +153,28 @@ CREATE (narrator)-[r1:COMMENTS]->(dupin)
 SET r1.description = "The narrator of 'Rue-Morgue' comments that Dupin has a particular analytic ability.";
 
 // Relation 2
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r2:ENJOYS_USING]->(analyticAbility)
+MATCH (dupin:Character {name: "Dupin"}), (analyticAbility {name: "analytic ability"})
+CREATE (dupin)-[r2:ENJOYS_USING]->(analyticAbility)
 SET r2.description = "Dupin enjoys using his analytic ability while they are out.";
 
 // Relation 3
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r3:OBSERVES]->(humanSpecimens)
+MATCH (dupin:Character {name: "Dupin"}), (humanSpecimens:Object {name: "human specimens"})
+CREATE (dupin)-[r3:OBSERVES]->(humanSpecimens)
 SET r3.description = "They are observing the human specimens around them.";
 
 // Relation 4
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r4:BELIEVES]->(soul)
+MATCH (dupin:Character {name: "Dupin"}), (soul:Object {name: "soul"})
+CREATE (dupin)-[r4:BELIEVES]->(soul)
 SET r4.description = "Dupin believes he can see right into a man's soul.";
 
 // Relation 5
-MATCH (narrator:Character {name: "narrator"}), (narrator)-[r5:CLARIFIES]->(mysteryStory)
+MATCH (narrator:Character {name: "narrator"}), (mysteryStory:Object {name: "mystery story"})
+CREATE (narrator)-[r5:CLARIFIES]->(mysteryStory)
 SET r5.description = "The narrator clarifies that this isn't a mystery story about Dupin's character.";
 
 // Relation 6
-MATCH (narrator:Character {name: "narrator"}), (narrator)-[r6:USES]->(example)
+MATCH (narrator:Character {name: "narrator"}), (example:Object {name: "example"})
+CREATE (narrator)-[r6:USES]->(example)
 SET r6.description = "The narrator is using an example from their recent strolling to illustrate Dupin's astuteness.";
 
 //// Paragraph 4 ///////////////////////////////////////////////////////////////
