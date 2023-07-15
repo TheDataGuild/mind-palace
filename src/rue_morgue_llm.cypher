@@ -291,11 +291,11 @@ CREATE (ow)-[r17:DETACHED]->(he);
 // Create nodes
 MERGE (ow:Character {name: "mother"});
 MERGE (f:Object {name: "fortunes"});
-
-MERGE (t:Testimony {name: "testimonies of various witnesses"});
+MERGE (pair:Character {name: "pair"});
 MERGE (m:Object {name: "money"});
-MERGE (s:Location {name: "scene"});
+MERGE (t:Testimony {name: "testimonies of various witnesses"});
 MERGE (p:Character {name: "policeman"});
+MERGE (s:Location {name: "scene"});
 
 // Relation 1
 MATCH (ow:Character {name: "mother"}), (f:Object {name: "fortunes"})
@@ -303,13 +303,12 @@ CREATE (ow)-[r1:GAVE_FOR_LIVING]->(f)
 SET r1.interval = "sometimes";
 
 // Relation 2
-MATCH (pair:Character), (m:Object {name: "money"})
+MATCH (pair:Character {name: "pair"}), (m:Object {name: "money"})
 CREATE (pair)-[r2:SAVED_MONEY]->(m)
 SET r2.interval = "quite a bit";
 
 // Relation 3
-MATCH (pair:Character)
-WHERE pair <> (ow:Character {name: "mother"})
+MATCH (pair:Character {name: "pair"})
 CREATE (pair)-[r3:KEPT_TO_THEMSELVES]->(pair)
 SET r3.interval = "hardly seen out";
 
@@ -340,6 +339,8 @@ CREATE (t)-[r8:ASSUMES_FOREIGN_TONGUE]->(s);
 // Relation 9
 MATCH (t:Testimony {name: "testimonies of various witnesses"})
 CREATE (t)-[r9:UNABLE_TO_TRANSLATE]->(s);
+
+// 56  nodes, 54 relations
 
 //// Paragraph 6 ///////////////////////////////////////////////////////////////
 // Create nodes
