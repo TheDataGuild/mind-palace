@@ -410,26 +410,27 @@ SET n.can_add = "nothing";
 //// Paragraph 7 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
-MERGE (p:Character {name: "police"});
-MERGE (v:Character {name: "Vidocq"});
+MERGE (p:Character {name: "policeman"});
 MERGE (c: Object {name: "crime"});
-MERGE (i: Object {name: "investigation"});
 MERGE (pt: Object {name: "point"});
+MERGE (v:Character {name: "Vidocq"});
 MERGE (pic: Object {name: "picture"});
 MERGE (s: Object {name: "star"});
 
+MERGE (i: Object {name: "investigation"});
+
 // Relation 1
-MATCH (d:Character {name: "Dupin"}), (c:Object {name: "crime"}), (p:Character {name: "police"})
+MATCH (d:Character {name: "Dupin"}), (c:Object {name: "crime"}), (p:Character {name: "policeman"})
 CREATE (d)-[r1:SAYS]->(c)
 SET r1.description = "cannot be judged on the inept way that the investigation has been carried out by the police";
 
 // Relation 2
-MATCH (d:Character {name: "Dupin"}), (p:Character {name: "police"})
+MATCH (d:Character {name: "Dupin"}), (p:Character {name: "policeman"})
 CREATE (d)-[r2:SAYS]->(p)
 SET r2.description = "operate with diligence and thoroughness";
 
 // Relation 3
-MATCH (p:Character {name: "police"}), (pt: Object {name: "point"})
+MATCH (p:Character {name: "policeman"}), (pt: Object {name: "point"})
 CREATE (p)-[r3:MISS]->(pt)
 SET r3.description = "miss the point entirely";
 
@@ -448,25 +449,28 @@ MATCH (d:Character {name: "Dupin"}), (s: Object {name: "star"})
 CREATE (d)-[r6:SAYS]->(s)
 SET r6.description = "by viewing a star in one's peripheral vision, thereby letting its radiance affect you, a far truer picture of the star is gained";
 
+// 67 nodes, 69 relations
+
 //// Paragraph 8 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
-MERGE (lb:Character {name: "Le Bon"});
-MERGE (p:Character {name: "Prefect"});
-MERGE (rm:Location {name: "Rue Morgue"});
-MERGE (nh:Location {name: "newspaper headquarters"});
 MERGE (i:Object {name: "investigation"});
-MERGE (f:Object {name: "favor"});
-MERGE (h:Object {name: "house"});
+MERGE (p:Character {name: "Prefect"});
 MERGE (ch:Object {name: "chamber"});
+MERGE (rm:Location {name: "Rue Morgue"});
 MERGE (cs:Object {name: "crime scene"});
-MERGE (b:Object {name: "bodies"});
 MERGE (te1:Testimony {name: "They enter and go up to the chamber."});
 MERGE (te2:Testimony {name: "Everything original to the crime scene is still in place."});
 MERGE (te3:Testimony {name: "Dupin looks over everything, including the gruesome bodies."});
 MERGE (te4:Testimony {name: "They examine the scene until nighttime."});
 MERGE (te5:Testimony {name: "Dupin visited a newspaper headquarters."});
 MERGE (te6:Testimony {name: "Dupin is silent until the next afternoon."});
+MERGE (b:Object {name: "bodies"});
+MERGE (nh:Location {name: "newspaper headquarters"});
+
+MERGE (lb:Character {name: "Le Bon"});
+MERGE (f:Object {name: "favor"});
+MERGE (h:Object {name: "house"});
 
 // Relation 1
 MATCH (d:Character {name: "Dupin"}), (i:Object {name: "investigation"})
@@ -527,6 +531,8 @@ CREATE (d)-[r13:VISITS]->(nh);
 // Relation 14
 MATCH (d:Character {name: "Dupin"}), (te6:Testimony {name: "Dupin is silent until the next afternoon."})
 CREATE (d)-[r14:IS_SILENT]->(te6);
+
+// 81 nodes, 83 relations
 
 //// Paragraph 9 ///////////////////////////////////////////////////////////////
 // Create nodes
