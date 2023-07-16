@@ -538,7 +538,6 @@ CREATE (d)-[r14:IS_SILENT]->(te6);
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
 MERGE (n:Character {name: "narrator"});
-MERGE (l:Location {name: "Rue-Morgue"});
 MERGE (nr:Object {name: "newspaper report"});
 MERGE (m:Object {name: "murders"});
 MERGE (t1:Testimony {name: "the paper has not presented the extremity, the unusualness of the murders"});
@@ -546,12 +545,12 @@ MERGE (t2:Testimony {name: "the murders seem impossible to solve to the police, 
 MERGE (t3:Testimony {name: "these very factors could be used to the advantage of a detective"});
 MERGE (t4:Testimony {name: "it is where the situation deviates from the ordinary, that gives reason a way to solve it"});
 MERGE (t5:Testimony {name: "he advises looking at the unique aspects of the crime, rather than what appears before them"});
+MERGE (l:Location {name: "Rue Morgue"});
 
 // Relation 1
 MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (nr:Object {name: "newspaper report"})
 CREATE (d)-[r1:ASKS]->(n)
 SET r1.question = "Did you notice anything peculiar in the newspaper report?";
-CREATE (nr)-[r2:MENTIONED_IN]->(r1);
 
 // Relation 2
 MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"})
@@ -579,24 +578,26 @@ SET r7.claim = "The situation deviates from the ordinary, which gives reason a w
 MATCH (d:Character {name: "Dupin"}), (t5:Testimony {name: "he advises looking at the unique aspects of the crime, rather than what appears before them"})
 CREATE (d)-[r8:ADVISORY]->(t5);
 
+// 87 nodes, 91 relations
+
 //// Paragraph 10 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
 MERGE (n:Character {name: "narrator"});
-MERGE (l:Location {name: "Rue-Morgue"});
 MERGE (c:Object {name: "crime"});
 MERGE (m:Object {name: "man"});
 MERGE (p:Object {name: "pistol"});
+
+MERGE (l:Location {name: "Rue Morgue"});
 MERGE (t1:Testimony {name: "Dupin expects to be met by someone who is in part responsible for the crime"});
 MERGE (t2:Testimony {name: "Dupin says the man is probably largely innocent but he hopes the man will prove to be the key to the riddle"});
 MERGE (t3:Testimony {name: "Dupin gives the narrator a pistol to use should the meeting demand it"});
 MERGE (e:Evidence {name: "Dupin explains his reasoning"});
 
 // Relation 1
-MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (l:Location {name: "Rue-Morgue"})
+MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (l:Location {name: "Rue Morgue"})
 CREATE (d)-[r1:TELLS]->(n)
 SET r1.details = "Dupin tells the narrator of Rue-Morgue about his expectations.";
-CREATE (l)-[r2:MENTIONED_IN]->(r1);
 
 // Relation 2
 MATCH (d:Character {name: "Dupin"}), (m:Object {name: "man"}), (c:Object {name: "crime"})
@@ -624,6 +625,8 @@ SET r7.details = "The pistol is for the narrator to use should the meeting deman
 // Relation 7
 MATCH (d:Character {name: "Dupin"}), (e:Evidence {name: "Dupin explains his reasoning"})
 CREATE (d)-[r8:EXPLAINS]->(e);
+
+// 93 nodes, 99 relations
 
 //// Paragraph 11 ///////////////////////////////////////////////////////////////
 // Create nodes
