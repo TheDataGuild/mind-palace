@@ -344,19 +344,20 @@ CREATE (t)-[r9:UNABLE_TO_TRANSLATE]->(s);
 
 //// Paragraph 6 ///////////////////////////////////////////////////////////////
 // Create nodes
-MERGE (t:Testimony {name: "The testimonies"});
+MERGE (t:Testimony {name: "testimonies of various witnesses"});
 MERGE (l:Location {name: "house"});
 MERGE (c:Location {name: "young woman's chamber"});
-MERGE (o1:Object {name: "evidence"});
-MERGE (o2:Object {name: "murderer"});
 MERGE (o3:Object {name: "windows"});
-MERGE (ch:Character {name: "police"});
+MERGE (ch:Character {name: "policeman"});
+MERGE (o2:Object {name: "murderer"});
+MERGE (o1:Object {name: "evidence"});
 MERGE (lb:Character {name: "Le Bon"});
+
 MERGE (d:Character {name: "Dupin"});
 MERGE (n:Character {name: "narrator"});
 
 // Relation 1
-MATCH (t:Testimony {name: "The testimonies"}), (l:Location {name: "house"})
+MATCH (t:Testimony {name: "testimonies of various witnesses"}), (l:Location {name: "house"})
 CREATE (t)-[r1:DESCRIBES]->(l)
 SET r1.description = "paint a picture of the house as being very difficult to get access to";
 
@@ -369,7 +370,7 @@ MATCH (o3:Object {name: "windows"})
 CREATE (o3)-[r3:LOCKED]->(o3);
 
 // Relation 4
-MATCH (ch:Character {name: "police"})
+MATCH (ch:Character {name: "policeman"})
 CREATE (ch)-[r4:CONFUSED]->(ch);
 
 // Relation 5
@@ -377,17 +378,17 @@ MATCH (o1:Object {name: "evidence"}), (o2:Object {name: "murderer"})
 CREATE (o1)-[r5:MISSING_FOR]->(o2);
 
 // Relation 6
-MATCH (t:Testimony {name: "The testimonies"}), (o1:Object {name: "evidence"})
+MATCH (t:Testimony {name: "testimonies of various witnesses"}), (o1:Object {name: "evidence"})
 CREATE (t)-[r6:MENTIONS]->(o1)
 SET r6.description = "follow-up article reports another search";
 
 // Relation 7
-MATCH (t:Testimony {name: "The testimonies"}), (o1:Object {name: "evidence"})
+MATCH (t:Testimony {name: "testimonies of various witnesses"}), (o1:Object {name: "evidence"})
 CREATE (t)-[r7:MENTIONS]->(o1)
 SET r7.description = "no further evidence found";
 
 // Relation 8
-MATCH (ch:Character {name: "police"}), (lb:Character {name: "Le Bon"})
+MATCH (ch:Character {name: "policeman"}), (lb:Character {name: "Le Bon"})
 CREATE (ch)-[r8:ARRESTS]->(lb)
 SET r8.reason = "without much reason";
 
@@ -403,6 +404,8 @@ CREATE (d)-[r10:ASKS_FOR_THOUGHTS]->(n);
 // Relation 11
 MATCH (n:Character {name: "narrator"})
 SET n.can_add = "nothing";
+
+// 62 nodes 63 relations
 
 //// Paragraph 7 ///////////////////////////////////////////////////////////////
 // Create nodes
