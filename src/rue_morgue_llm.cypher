@@ -638,7 +638,9 @@ MERGE (ow:Object {name: "old woman"});
 MERGE (db:Object {name: "daughter's body"});
 MERGE (c:Object {name: "chimney"});
 MERGE (wtn:Object {name: "witnesses"});
+
 MERGE (sv:Object {name: "shrill voice"});
+
 MERGE (t1:Testimony {name: "the voices couldn't have been the women"});
 MERGE (t2:Testimony {name: "the murders couldn't have been self-suicide"});
 MERGE (t3:Testimony {name: "the old woman would never be strong enough to jam her daughter's body up the chimney"});
@@ -655,11 +657,11 @@ SET r1.question = "What about the voices heard?";
 
 // Relation 2
 MATCH (v:Object {name: "voices"}), (w:Object {name: "women"})
-CREATE (v)-[r2:COULDN'T_HAVE_BEEN]->(w);
+CREATE (v)-[r2:COULD_NOT_HAVE_BEEN]->(w);
 
 // Relation 3
 MATCH (m:Object {name: "murders"}), (t2:Testimony {name: "the murders couldn't have been self-suicide"})
-CREATE (m)-[r3:COULDN'T_HAVE_BEEN]->(t2);
+CREATE (m)-[r3:COULD_NOT_HAVE_BEEN]->(t2);
 
 // Relation 4
 MATCH (ow:Object {name: "old woman"}), (db:Object {name: "daughter's body"}), (c:Object {name: "chimney"}), (t3:Testimony {name: "the old woman would never be strong enough to jam her daughter's body up the chimney"})
@@ -686,6 +688,8 @@ CREATE (wtn)-[r8:PROVIDE]->(t7);
 MATCH (e:Evidence {name: "statements from diverse nationalities"}), (t7:Testimony {name: "the language of the 'shrill' suspect is something beyond even the far reaches of the world in terms of its foreignness"})
 CREATE (e)-[r9:INCLUDES]->(t7);
 
+// 106 nodes, 108 relations
+
 //// Paragraph 12 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
@@ -694,12 +698,14 @@ MERGE (v:Object {name: "voices"});
 MERGE (s:Object {name: "suspicion"});
 MERGE (e:Object {name: "exits"});
 MERGE (a:Object {name: "apartment"});
-MERGE (b:Object {name: "boundaries"});
-MERGE (r:Object {name: "room"});
 MERGE (doo:Object {name: "doors"});
 MERGE (ch:Object {name: "chimneys"});
 MERGE (cat:Object {name: "cat"});
+
+MERGE (b:Object {name: "boundaries"});
+MERGE (r:Object {name: "room"});
 MERGE (win:Object {name: "windows"});
+
 MERGE (t1:Testimony {name: "this discovery about the voices leads singularly to the suspicion he is now entertaining"});
 MERGE (t2:Testimony {name: "he won't let on what that suspicion is just yet"});
 MERGE (t3:Testimony {name: "neither of them believe in the supernatural, so the material boundaries of the room must have been crossed in a material way"});
@@ -711,7 +717,7 @@ MERGE (ev:Evidence {name: "means of entry and escape"});
 // Relation 1
 MATCH (d:Character {name: "Dupin"}), (ds:Object {name: "discovery"}), (v:Object {name: "voices"}), (s:Object {name: "suspicion"})
 CREATE (d)-[r1:DESCRIBES]->(ds)
-SET r1.details = "This discovery about the voices leads singularly to the suspicion he is now entertaining.";
+SET r1.details = "This discovery about the voices leads singularly to the suspicion he is now entertaining."
 CREATE (ds)-[r2:LEADS_TO]->(s)
 SET r2.claim = "The suspicion he is entertaining.";
 
@@ -722,7 +728,7 @@ CREATE (d)-[r3:WITHHOLDS]->(t2);
 // Relation 3
 MATCH (d:Character {name: "Dupin"}), (e:Object {name: "exits"}), (a:Object {name: "apartment"})
 CREATE (d)-[r4:ANALYZES]->(e)
-SET r4.details = "The exits of the apartment.";
+SET r4.details = "The exits of the apartment."
 CREATE (a)-[r5:LOCATED_IN]->(e);
 
 // Relation 4
@@ -747,6 +753,8 @@ SET r9.details = "Each means of entry and escape";
 // Relation 8
 MATCH (ev:Evidence {name: "means of entry and escape"}), (win:Object {name: "windows"}), (t6:Testimony {name: "the only available option left are the windows"})
 CREATE (ev)-[r10:LEFT_OPTION]->(win);
+
+// 112 nodes, 118 relations
 
 //// Paragraph 13 ///////////////////////////////////////////////////////////////
 // Create nodes
