@@ -763,7 +763,7 @@ MERGE (o:Object {name: "option"});
 MERGE (w:Object {name: "windows"});
 MERGE (n:Object {name: "nail"});
 MERGE (det:Object {name: "details"});
-MERGE (p:Object {name: "police"});
+MERGE (p:Character {name: "policeman"});
 MERGE (al:Object {name: "auto-locking device"});
 MERGE (c:Object {name: "criminal"});
 MERGE (sm:Object {name: "spring mechanism"});
@@ -794,7 +794,7 @@ MATCH (w:Object {name: "windows"}), (t3:Testimony {name: "it seemed impossible t
 CREATE (w)-[r3:SEEMED_IMPOSSIBLE]->(t3);
 
 // Relation 4
-MATCH (p:Object {name: "police"}), (w:Object {name: "windows"}), (t4:Testimony {name: "the police had abandoned the windows"})
+MATCH (p:Character {name: "policeman"}), (w:Object {name: "windows"}), (t4:Testimony {name: "the police had abandoned the windows"})
 CREATE (p)-[r4:ABANDONED]->(w);
 
 // Relation 5
@@ -814,7 +814,7 @@ SET r8.details = "From the inside";
 // Relation 8
 MATCH (d:Character {name: "Dupin"}), (e:Evidence {name: "search"}), (t8:Testimony {name: "he finds a spring mechanism that explains everything"})
 CREATE (d)-[r9:CONDUCTS]->(e)
-SET r9.details = "Search";
+SET r9.details = "Search"
 CREATE (e)-[r10:INCLUDES]->(t8);
 
 // Relation 9
@@ -829,8 +829,10 @@ SET r12.details = "Through the other window";
 // Relation 11
 MATCH (d:Character {name: "Dupin"}), (w:Object {name: "windows"}), (sm:Object {name: "spring mechanism"}), (t11:Testimony {name: "he finds a broken spring in the other window"})
 CREATE (d)-[r13:FINDS]->(sm)
-SET r13.details = "Broken spring";
+SET r13.details = "Broken spring"
 CREATE (sm)-[r14:EXPLAINS]->(w);
+
+// 143 nodes, 133 relations
 
 //// Paragraph 14 ///////////////////////////////////////////////////////////////
 // Create nodes
