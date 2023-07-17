@@ -1072,7 +1072,7 @@ MERGE (h:Object {name: "horror"});
 MERGE (mc:Object {name: "missing creature"});
 MERGE (ad:Object {name: "ad"});
 MERGE (p:Object {name: "paper"});
-MERGE (ms:Object {name: "Maltese sailor"});
+MERGE (ms:Character {name: "Maltese sailor"});
 
 // Relation 1
 MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (r:Location {name: "Rue Morgue"}), (e:Object {name: "excerpt"}), (ct:Object {name: "Cuvier text"}), (oo:Character {name: "Ourang-Outang"})
@@ -1112,60 +1112,64 @@ CREATE (d)-[r15:CORRECT_PREDICTION]->(f),
 (d)-[r16:LOOKING_FOR]->(mc);
 
 // Relation 8
-MATCH (d:Character {name: "Dupin"}), (ad:Object {name: "ad"}), (p:Object {name: "paper"}), (ms:Object {name: "Maltese sailor"})
+MATCH (d:Character {name: "Dupin"}), (ad:Object {name: "ad"}), (p:Object {name: "paper"}), (ms:Character {name: "Maltese sailor"})
 CREATE (d)-[r17:PUTS]->(ad),
 (d)-[r18:PUTS]->(p),
 (d)-[r19:BELONGS_TO]->(ms),
 (ad)-[r20:RETURN_UPON_IDENTIFICATION]->(oo);
 
+// 213 nodes, 198 relations
+
 //// Paragraph 19 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (narrator:Character {name: "narrator"});
-MERGE (dupin:Character {name: "Dupin"});
-MERGE (rueMorgue:Location {name: "Rue Morgue"});
-MERGE (sailor:Object {name: "sailor"});
-MERGE (malteseVessel:Object {name: "Maltese vessel"});
-MERGE (ribbon:Object {name: "ribbon"});
-MERGE (lightningRod:Object {name: "lightning rod"});
+MERGE (d:Character {name: "Dupin"});
+MERGE (rm:Location {name: "Rue Morgue"});
+MERGE (ms:Character {name: "Maltese sailor"});
+MERGE (mv:Object {name: "Maltese vessel"});
+MERGE (ri:Object {name: "ribbon"});
+MERGE (lr:Object {name: "lightning rod"});
 MERGE (ad:Object {name: "ad"});
-MERGE (innocence:Object {name: "innocence"});
+MERGE (in:Object {name: "innocence"});
 
 // Relation 1
-MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (s:sailor), (mv:malteseVessel)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (ms:Character {name: "Maltese sailor"}), (mv:Object {name: "Maltese vessel"})
 CREATE (n)-[:WONDERS]->(d),
-(d)-[:KNOWS]->(s),
-(s)-[:FROM]->(mv);
+(d)-[:KNOWS]->(ms),
+(ms)-[:FROM]->(mv);
 
 // Relation 2
 MATCH (d:Character {name: "Dupin"})
 SET d.guesses = true;
 
 // Relation 3
-MATCH (d:Character {name: "Dupin"}), (lr:lightningRod)
+MATCH (d:Character {name: "Dupin"}), (lr:Object {name: "lightning rod"})
 CREATE (d)-[:FOUND]->(lr);
 
 // Relation 4
-MATCH (d:Character {name: "Dupin"}), (r:ribbon), (ms:sailor)
-CREATE (d)-[:RECOGNIZES]->(r),
-(r)-[:USED_BY]->(ms),
-(r)-[:KNOTTED_IN]->(ms);
+MATCH (d:Character {name: "Dupin"}), (ri:Object {name: "ribbon"}), (ms:Character {name: "Maltese sailor"})
+CREATE (d)-[:RECOGNIZES]->(ri),
+(ri)-[:USED_BY]->(ms),
+(ri)-[:KNOTTED_IN]->(ms);
 
 // Relation 5
-MATCH (ad:ad)
+MATCH (ad:Object {name: "ad"})
 SET ad.harmless = true;
 
 // Relation 6
-MATCH (s:sailor), (ad:ad)
-CREATE (ad)-[:ASSUME_ERROR]->(s),
-(ad)-[:DESCRIBE_PERFECTLY]->(s);
+MATCH (ms:Character {name: "Maltese sailor"}), (ad:Object {name: "ad"})
+CREATE (ad)-[:ASSUME_ERROR]->(ms),
+(ad)-[:DESCRIBE_PERFECTLY]->(ms);
 
 // Relation 7
-MATCH (ad:ad), (s:sailor)
-CREATE (ad)-[:EXPECTED_RESPONSE]->(s);
+MATCH (ad:Object {name: "ad"}), (ms:Character {name: "Maltese sailor"})
+CREATE (ad)-[:EXPECTED_RESPONSE]->(ms);
 
 // Relation 8
-MATCH (s:sailor), (i:innocence)
-CREATE (s)-[:PROTECTS]->(i);
+MATCH (ms:Character {name: "Maltese sailor"}), (in:Object {name: "innocence"})
+CREATE (ms)-[:PROTECTS]->(in);
+
+// 216 nodes, 209 relations
 
 //// Paragraph 20 ///////////////////////////////////////////////////////////////
 // Create nodes
