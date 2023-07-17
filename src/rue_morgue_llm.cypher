@@ -1022,59 +1022,34 @@ CREATE (o1)-[r9:INCLUDES]->(e);
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
 MERGE (n:Character {name: "narrator"});
-MERGE (r:Location {name: "Rue Morgue"});
-MERGE (o1:Object {name: "details"});
-MERGE (o2:Object {name: "deed"});
-MERGE (o3:Object {name: "escaped madman"});
-MERGE (o4:Object {name: "tones"});
-MERGE (o5:Object {name: "phrases"});
-MERGE (o6:Object {name: "language"});
-MERGE (o7:Object {name: "tuft of hair"});
-MERGE (o8:Object {name: "Madame Esplanaye's clutches"});
-MERGE (o9:Object {name: "sketch"});
-MERGE (o10:Object {name: "hand mark"});
-MERGE (o11:Object {name: "old woman's neck"});
-MERGE (o12:Object {name: "human-sized hand"});
-MERGE (t1:Testimony {description: "the narrator can only imagine that the deed was committed by some kind of escaped madman"});
-MERGE (t2:Testimony {description: "even madmen have recognizable tones and phrases in their language"});
-MERGE (t3:Testimony {description: "the tuft of hair found in Madame Esplanaye's clutches is not human hair"});
-MERGE (t4:Testimony {description: "the hand mark around the old woman's neck is the print of no human-sized hand"});
-MERGE (e:Evidence {description: "none"});
+MERGE (me:Character {name: "Madame Esplanaye"});
+MERGE (rm:Location {name: "Rue Morgue"});
+MERGE (dt:Object {name: "details"});
+MERGE (dd:Object {name: "deed"});
+MERGE (mm:Object {name: "madman"});
+MERGE (rtp:Object {name: "recognizable tones and phrases"});
+MERGE (th:Object {name: "tuft of hair"});
+MERGE (hm:Object {name: "hand mark"});
+MERGE (own:Object {name: "old woman's neck"});
+MERGE (ph:Object {name: "print of no human-sized hand"});
+MERGE (lang:Object {name: "language"});
 
-// Relation 1
-MERGE (d)-[:SUMS_UP]->(n);
+// Relations
+MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (rm:Location {name: "Rue Morgue"})
+CREATE (d)-[r1:SUMS_UP]->(n)
+CREATE (d)-[r2:ASKS]->(n)
+CREATE (n)-[r3:IMAGINES]->(dd)
+CREATE (d)-[r4:ADMITS]->(rtp)
+CREATE (mm)-[r5:HAS]->(rtp)
+CREATE (d)-[r6:REVEALS]->(th)
+CREATE (me)-[r7:HAS]->(th)
+CREATE (n)-[r8:TELLS]->(ph)
+CREATE (hm)-[r9:IS_PRINT_OF]->(ph)
+CREATE (d)-[r10:SHOWS]->(n)
+CREATE (hm)-[r11:IS_AROUND]->(own)
+CREATE (own)-[r12:IS_OF]->(me);
 
-// Relation 2
-MERGE (d)-[:ASKS]->(n);
-
-// Relation 3
-MERGE (n)-[:IMAGINES]->(o3);
-
-// Relation 4
-MERGE (d)-[:ADMITS]->(o3);
-
-// Relation 5
-MERGE (o3)-[:HAVE]->(o4);
-MERGE (o3)-[:HAVE]->(o5);
-MERGE (o6)-[:HAVE]->(o4);
-MERGE (o6)-[:HAVE]->(o5);
-
-// Relation 6
-MERGE (d)-[:REVEALS]->(o7);
-
-// Relation 7
-MERGE (o7)-[:FOUND_IN]->(o8);
-
-// Relation 8
-MERGE (d)-[:SHOWS]->(o9);
-
-// Relation 9
-MERGE (o9)-[:AROUND]->(o11);
-MERGE (o9)-[:PRINT_OF]->(o12);
-
-// Relation 10
-MERGE (o10)-[:AROUND]->(o11);
-MERGE (o10)-[:PRINT_OF]->(o12);
+// 198 nodes, 178 relations
 
 //// Paragraph 18 ///////////////////////////////////////////////////////////////
 // Create nodes
