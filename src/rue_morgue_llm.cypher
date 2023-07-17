@@ -1058,7 +1058,7 @@ MERGE (n:Character {name: "narrator"});
 MERGE (r:Location {name: "Rue Morgue"});
 MERGE (e:Object {name: "excerpt"});
 MERGE (ct:Object {name: "Cuvier text"});
-MERGE (oo:Object {name: "Ourang-Outang"});
+MERGE (oo:Character {name: "Ourang-Outang"});
 MERGE (a:Object {name: "anatomy"});
 MERGE (s:Object {name: "strength"});
 MERGE (cr:Object {name: "crime"});
@@ -1075,7 +1075,7 @@ MERGE (p:Object {name: "paper"});
 MERGE (ms:Object {name: "Maltese sailor"});
 
 // Relation 1
-MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (r:Location {name: "Rue Morgue"}), (e:Object {name: "excerpt"}), (ct:Object {name: "Cuvier text"}), (oo:Object {name: "Ourang-Outang"})
+MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (r:Location {name: "Rue Morgue"}), (e:Object {name: "excerpt"}), (ct:Object {name: "Cuvier text"}), (oo:Character {name: "Ourang-Outang"})
 CREATE (d)-[r1:SHOWS]->(n),
 (d)-[r2:SHOWS]->(r),
 (d)-[r3:SHOWS]->(e),
@@ -1083,13 +1083,13 @@ CREATE (d)-[r1:SHOWS]->(n),
 (d)-[r5:SHOWS]->(oo);
 
 // Relation 2
-MATCH (oo:Object {name: "Ourang-Outang"}), (a:Object {name: "anatomy"}), (s:Object {name: "strength"}), (cr:Object {name: "crime"})
+MATCH (oo:Character {name: "Ourang-Outang"}), (a:Object {name: "anatomy"}), (s:Object {name: "strength"}), (cr:Object {name: "crime"})
 CREATE (oo)-[r6:MATCHES]->(a),
 (oo)-[r7:MATCHES]->(s),
 (oo)-[r8:MATCHES]->(cr);
 
 // Relation 3
-MATCH (oo:Object {name: "Ourang-Outang"}), (sv:Object {name: "shrill voice"}), (uv:Object {name: "unintelligible voice"})
+MATCH (oo:Character {name: "Ourang-Outang"}), (sv:Object {name: "shrill voice"}), (uv:Object {name: "unintelligible voice"})
 CREATE (oo)-[r9:HAS_DESCRIPTION]->(sv),
 (oo)-[r10:HAS_DESCRIPTION]->(uv);
 
@@ -1102,7 +1102,7 @@ MATCH (d:Character {name: "Dupin"}), (f:Object {name: "Frenchman"})
 CREATE (d)-[r12:SUGGESTS]->(f);
 
 // Relation 6
-MATCH (f:Object {name: "Frenchman"}), (oo:Object {name: "Ourang-Outang"}), (h:Object {name: "horror"})
+MATCH (f:Object {name: "Frenchman"}), (oo:Character {name: "Ourang-Outang"}), (h:Object {name: "horror"})
 CREATE (f)-[r13:TRIED_TO_FOLLOW]->(oo),
 (f)-[r14:ESCAPED]->(h);
 
