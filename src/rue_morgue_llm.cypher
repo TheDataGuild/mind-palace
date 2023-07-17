@@ -894,6 +894,8 @@ CREATE (s)-[r10:HAS]->(pa);
 MATCH (n:Character {name: "narrator"}), (t7:Testimony {name: "the narrator almost understanding what Dupin is getting at"})
 CREATE (n)-[r11:ALMOST_UNDERSTANDS]->(t7);
 
+// 160 nodes, 144 relations
+
 //// Paragraph 15 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
@@ -945,12 +947,14 @@ MATCH (t4:Testimony {name: "the police have looked to this withdrawal as a possi
 CREATE (t4)-[r11:LOOKED_TO_AS_POSSIBLE_MOTIVE]->(t3);
 
 // Relation 8
-MATCH (t5:Testimony {name: "the withdrawal is a complete red herring"})
+MATCH (t5:Testimony {name: "the withdrawal is a complete red herring"}), (t3:Testimony {name: "the money recently withdrawn by the old woman has been left in the room"})
 CREATE (t5)-[r12:IS]->(t3);
 
 // Relation 9
-MATCH (t6:Testimony {name: "there is no motive in this case"})
+MATCH (t6:Testimony {name: "there is no motive in this case"}), (t5:Testimony {name: "the withdrawal is a complete red herring"})
 CREATE (t6)-[r13:IS_IN]->(t5);
+
+// 173 nodes, 157 relations
 
 //// Paragraph 16 ///////////////////////////////////////////////////////////////
 // Create nodes
