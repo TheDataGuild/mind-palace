@@ -1,87 +1,98 @@
+Drop database,
+
+```cypher
+MATCH (n)
+DETACH DELETE n;
+```
+
 //// Paragraph 1 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (narrator:Character {name: "narrator"});
-MERGE (dupin:Character {name: "Auguste Dupin"});
+MERGE (dupin:Character {name: "Dupin"});
 MERGE (paris:Location {name: "Paris"});
 MERGE (books:Object {name: "Books"});
 MERGE (volume:Object {name: "special volume"});
-MERGE (house:Object {name: "house"});
+MERGE (house:Location {name: "house"});
+MERGE (l:Location {name: "library"});
 
 // Relation 1
-MATCH (n:narrator)
+MATCH (n:Character {name: "narrator"})
 SET n.relevance = "relevant to the story";
 
 // Relation 2
-MATCH (n:narrator), (d:dupin)
-CREATE (n)-[r1:INTRODUCES]->(d);
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"})
+MERGE (n)-[r1:INTRODUCES]->(d);
 
 // Relation 3
-MATCH (n:narrator), (d:dupin), (p:paris)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (p:Location {name: "Paris"})
 CREATE (n)-[r2:SPENDS_TIME_WITH]->(d)
 SET r2.location = p.name;
 
 // Relation 4
-MATCH (d:dupin)
+MATCH (d:Character {name: "Dupin"})
 SET d.class = "high class",
     d.family = "high class";
 
 // Relation 5
-MATCH (d:dupin)
+MATCH (d:Character {name: "Dupin"})
 SET d.fortune = "lost a lot";
 
 // Relation 6
-MATCH (d:dupin), (b:books)
+MATCH (d:Character {name: "Dupin"}), (b:Object {name: "Books"})
 CREATE (d)-[r3:HAS_LUXURY]->(b)
 SET r3.level = "highest";
 
 // Relation 7
-MATCH (n:narrator), (d:dupin), (b:books)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (b:Object {name: "Books"})
 CREATE (n)-[r4:SHARES_LOVE_WITH]->(d)
 SET r4.item = b.name;
 
 // Relation 8
-MATCH (n:narrator), (d:dupin), (l:Location {name: "library"})
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (l:Location {name: "library"})
 CREATE (n)-[r5:FIRST_MEETING_AT]->(l)
 CREATE (d)-[r6:FIRST_MEETING_AT]->(l);
 
 // Relation 9
-MATCH (n:narrator), (d:dupin), (v:volume)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (v:Object {name: "special volume"})
 CREATE (n)-[r6:BONDED_OVER]->(v)
 CREATE (d)-[r7:BONDED_OVER]->(v);
 
 // Relation 10
-MATCH (n:narrator), (d:dupin)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"})
 SET n.read = "surprised",
     d.read = "well";
 
 // Relation 11
-MATCH (n:narrator), (d:dupin)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"})
 SET n.judgment = "valuable";
 
 // Relation 12
-MATCH (n:narrator), (d:dupin)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"})
 CREATE (n)-[r7:LIVE_TOGETHER]->(d);
 
 // Relation 13
-MATCH (n:narrator), (d:dupin), (h:house)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (h:Location {name: "house"})
 CREATE (n)-[r8:AFFORD]->(h)
 CREATE (d)-[r9:AFFORD]->(h)
 SET r8.mood = "grotesque";
 
 // Relation 14
-MATCH (h:house)
+MATCH (h:Location {name: "house"})
 SET h.suit = "their mood";
 
+// 7 nodes 11 relationships
 
 //// Paragraph 2 //////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (narrator:Character {name: "narrator"});
 MERGE (dupin:Character {name: "Dupin"});
-MERGE (rueMorgue:Location {name: "Rue-Morgue"});
+MERGE (rueMorgue:Location {name: "Rue Morgue"});
 MERGE (parisien:Location {name: "Parisien"});
-MERGE (darkness:Object {name: "darkness"});
+MERGE (night:Location {name: "night"});
+MERGE (falseNight:Location {name: "false night"});
 MERGE (atmosphere:Object {name: "atmosphere"});
 MERGE (shutters:Object {name: "shutters"});
+MERGE (town:Location {name: "town"});
 
 // Relation 1
 MATCH (n:Character {name: "narrator"}), (dupin:Character {name: "Dupin"})
@@ -89,102 +100,120 @@ CREATE (n)-[r1:TELLS]->(dupin)
 SET r1.description = "If you could observe their daily routines, you'd think the pair suffered from madness.";
 
 // Relation 2
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r2:KEPT_TO_THEMSELVES]->(dupin)
+MATCH (dupin:Character {name: "Dupin"})
+CREATE (dupin)-[r2:KEPT_TO_THEMSELVES]->(dupin)
 SET r2.description = "The pair kept completely to themselves.";
 
 // Relation 3
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r3:OBSESSED_WITH]->(night:Location {name: "night"})
+MATCH (dupin:Character {name: "Dupin"}), (night:Location {name: "night"})
+CREATE (dupin)-[r3:OBSESSED_WITH]->(night)
 SET r3.description = "Dupin especially was obsessed with night time.";
 
 // Relation 4
-MATCH (narrator:Character {name: "narrator"}), (narrator)-[r4:FEELS]->(night)
+MATCH (narrator:Character {name: "narrator"}), (night:Location {name: "night"})
+CREATE (narrator)-[r4:FEELS]->(night)
 SET r4.description = "The narrator feels the same way.";
 
 // Relation 5
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r5:RECREATES]->(parisien)
+MATCH (dupin:Character {name: "Dupin"}), (parisien:Location {name: "Parisien"})
+CREATE (dupin)-[r5:RECREATES]->(parisien)
 SET r5.description = "Even in the day, they recreate the darkness and atmosphere of the Parisien night.";
 
 // Relation 6
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r6:WRITES_READS]->(falseNight:Object {name: "false night"})
+MATCH (dupin:Character {name: "Dupin"}), (falseNight:Location {name: "false night"})
+CREATE (dupin)-[r6:WRITES_READS]->(falseNight)
 SET r6.description = "In this false night, they write and read.";
 
 // Relation 7
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r7:JAUNTS_AROUND]->(town:Location {name: "town"})
+MATCH (dupin:Character {name: "Dupin"}), (town:Location {name: "town"})
+CREATE (dupin)-[r7:JAUNTS_AROUND]->(town)
 SET r7.description = "When real night came, they jaunt around town.";
+
+// 14 nodes 18 relationships
 
 
 //// Paragraph 3 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (narrator:Character {name: "narrator"});
 MERGE (dupin:Character {name: "Dupin"});
-MERGE (rueMorgue:Location {name: "Rue-Morgue"});
 MERGE (analyticAbility:Object {name: "analytic ability"});
 MERGE (humanSpecimens:Object {name: "human specimens"});
 MERGE (soul:Object {name: "soul"});
 MERGE (mysteryStory:Object {name: "mystery story"});
-MERGE (character:Object {name: "character"});
 MERGE (example:Object {name: "example"});
+
+MERGE (rueMorgue:Location {name: "Rue Morgue"});
+MERGE (character:Object {name: "character"});
 MERGE (strolling:Object {name: "strolling"});
 MERGE (astuteness:Object {name: "astuteness"});
 
 // Relation 1
 MATCH (narrator:Character {name: "narrator"}), (dupin:Character {name: "Dupin"})
 CREATE (narrator)-[r1:COMMENTS]->(dupin)
-SET r1.description = "The narrator of 'Rue-Morgue' comments that Dupin has a particular analytic ability.";
+SET r1.description = "The narrator of 'Rue Morgue' comments that Dupin has a particular analytic ability.";
 
 // Relation 2
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r2:ENJOYS_USING]->(analyticAbility)
+MATCH (dupin:Character {name: "Dupin"}), (analyticAbility {name: "analytic ability"})
+CREATE (dupin)-[r2:ENJOYS_USING]->(analyticAbility)
 SET r2.description = "Dupin enjoys using his analytic ability while they are out.";
 
 // Relation 3
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r3:OBSERVES]->(humanSpecimens)
+MATCH (dupin:Character {name: "Dupin"}), (humanSpecimens:Object {name: "human specimens"})
+CREATE (dupin)-[r3:OBSERVES]->(humanSpecimens)
 SET r3.description = "They are observing the human specimens around them.";
 
 // Relation 4
-MATCH (dupin:Character {name: "Dupin"}), (dupin)-[r4:BELIEVES]->(soul)
+MATCH (dupin:Character {name: "Dupin"}), (soul:Object {name: "soul"})
+CREATE (dupin)-[r4:BELIEVES]->(soul)
 SET r4.description = "Dupin believes he can see right into a man's soul.";
 
 // Relation 5
-MATCH (narrator:Character {name: "narrator"}), (narrator)-[r5:CLARIFIES]->(mysteryStory)
+MATCH (narrator:Character {name: "narrator"}), (mysteryStory:Object {name: "mystery story"})
+CREATE (narrator)-[r5:CLARIFIES]->(mysteryStory)
 SET r5.description = "The narrator clarifies that this isn't a mystery story about Dupin's character.";
 
 // Relation 6
-MATCH (narrator:Character {name: "narrator"}), (narrator)-[r6:USES]->(example)
+MATCH (narrator:Character {name: "narrator"}), (example:Object {name: "example"})
+CREATE (narrator)-[r6:USES]->(example)
 SET r6.description = "The narrator is using an example from their recent strolling to illustrate Dupin's astuteness.";
+
+// 22 nodes, 24 relations
 
 //// Paragraph 4 ///////////////////////////////////////////////////////////////
 // Create nodes
-MERGE (d:Dupin {name: "Dupin"});
-MERGE (p:police {name: "police"});
-MERGE (n:neighbors {name: "neighbors"});
-MERGE (m:mother {name: "mother"});
-MERGE (dau:daughter {name: "daughter"});
+MERGE (d:Character {name: "Dupin"});
 MERGE (ex:Object {name: "example"});
-MERGE (sk:Object {name: "skill"});
 MERGE (pa:Object {name: "paper"});
 MERGE (mu:Object {name: "murders"});
 MERGE (h:Object {name: "house"});
 MERGE (rm:Object {name: "Rue Morgue"});
 MERGE (s:Object {name: "shrieking"});
 MERGE (pr:Object {name: "property"});
+MERGE (n:neighbors {name: "neighbors"});
+MERGE (p:police {name: "police"});
 MERGE (st:Object {name: "stairs"});
 MERGE (fl:Object {name: "floor"});
+MERGE (ph:Object {name: "phrases"});
+MERGE (ap:Location {name: "apartment"});
 MERGE (hh:Object {name: "human hair"});
 MERGE (bm:Object {name: "bags of money"});
 MERGE (j:Object {name: "jewels"});
+MERGE (m:Character {name: "mother"});
+MERGE (dau:Character {name: "daughter"});
 MERGE (c:Object {name: "chimney"});
 MERGE (ef:Object {name: "extreme force"});
 MERGE (ow:Object {name: "old woman's body"});
 MERGE (th:Object {name: "throat"});
 MERGE (he:Object {name: "head"});
-MERGE (ap:Location {name: "apartment"});
+
+MERGE (sk:Object {name: "skill"});
 
 // Relation 1
-MATCH (d:Dupin), (ex:Object {name: "example"})
+MATCH (d:Character {name: "Dupin"}), (ex:Object {name: "example"})
 CREATE (d)-[r1:DEMONSTRATES {target: "his skill"}]->(ex);
 
 // Relation 2
-MATCH (d:Dupin), (pa:Object {name: "paper"})
+MATCH (d:Character {name: "Dupin"}), (pa:Object {name: "paper"})
 CREATE (d)-[r2:ABSORBED_BY {target: "a report"}]->(pa);
 
 // Relation 3
@@ -194,22 +223,22 @@ CREATE (pa)-[r3:DESCRIBES {target: "two 'extraordinary' murders"}]->(mu);
 // Relation 4
 MATCH (mu:Object {name: "murders"}), (h:Object {name: "house"}), (rm:Object {name: "Rue Morgue"})
 CREATE (mu)-[r4:OCCURS_AT]->(h)
-CREATE (h)-[r4:ON_THE]->(rm);
+CREATE (h)-[r5:ON_THE]->(rm);
 
 // Relation 5
 MATCH (pr:Object {name: "property"}), (s:Object {name: "shrieking"})
 CREATE (pr)-[r5:HEARS]->(s);
 
 // Relation 6
-MATCH (p:police), (n:neighbors), (pr:Object {name: "property"})
+MATCH (p:police {name: "police"}), (n:neighbors {name: "neighbors"}), (pr:Object {name: "property"})
 CREATE (p)-[r6:BREAKS_INTO]->(pr)
-CREATE (n)-[r6:BREAKS_INTO]->(pr);
+CREATE (n)-[r7:BREAKS_INTO]->(pr);
 
 // Relation 7
 MATCH (pr:Object {name: "property"}), (st:Object {name: "stairs"}), (fl:Object {name: "floor"})
 CREATE (pr)-[r7:ASCENDS_TO]->(st)
-CREATE (st)-[r7:TO_THE]->(fl)
-SET r7.level = "fourth";
+CREATE (st)-[r8:TO_THE]->(fl)
+SET r8.level = "fourth";
 
 // Relation 8
 MATCH (fl:Object {name: "floor"}), (ph:Object {name: "phrases"})
@@ -229,18 +258,18 @@ SET r10.state = "bloody";
 // Relation 11
 MATCH (fl:Object {name: "floor"}), (bm:Object {name: "bags of money"}), (j:Object {name: "jewels"})
 CREATE (fl)-[r11:CONTAINS]->(bm)
-CREATE (fl)-[r11:CONTAINS]->(j);
+CREATE (fl)-[r12:CONTAINS]->(j);
 
 // Relation 12
-MATCH (m:mother), (ap:Location {name: "apartment"})
+MATCH (m:Character {name: "mother"}), (ap:Location {name: "apartment"})
 CREATE (ap)-[r12:MISSING]->(m);
 
 // Relation 13
-MATCH (dau:daughter), (c:Object {name: "chimney"})
+MATCH (dau:Character {name: "daughter"}), (c:Object {name: "chimney"})
 CREATE (dau)-[r13:LODGED_IN]->(c);
 
 // Relation 14
-MATCH (c:Object {name: "chimney"}), (ef:Object {name: "extreme force"})
+MATCH (dau:Character {name: "daughter"}), (c:Object {name: "chimney"})
 CREATE (c)-[r14:USED_TO_LODGE]->(dau)
 SET r14.description = "lodge the daughter";
 
@@ -256,28 +285,30 @@ CREATE (ow)-[r16:VIOLENTLY_CUT]->(th);
 MATCH (ow:Object {name: "old woman's body"}), (he:Object {name: "head"})
 CREATE (ow)-[r17:DETACHED]->(he);
 
+// 44 nodes, 45 relations
+
 //// Paragraph 5 ///////////////////////////////////////////////////////////////
 // Create nodes
-MERGE (t:Testimony {name: "testimonies of various witnesses"});
-MERGE (ow:Character {name: "old woman"});
+MERGE (ow:Character {name: "mother"});
 MERGE (f:Object {name: "fortunes"});
+MERGE (pair:Character {name: "pair"});
 MERGE (m:Object {name: "money"});
-MERGE (s:Location {name: "scene"});
+MERGE (t:Testimony {name: "testimonies of various witnesses"});
 MERGE (p:Character {name: "policeman"});
+MERGE (s:Location {name: "scene"});
 
 // Relation 1
-MATCH (ow:Character {name: "old woman"}), (f:Object {name: "fortunes"})
+MATCH (ow:Character {name: "mother"}), (f:Object {name: "fortunes"})
 CREATE (ow)-[r1:GAVE_FOR_LIVING]->(f)
 SET r1.interval = "sometimes";
 
 // Relation 2
-MATCH (pair:Character), (m:Object {name: "money"})
+MATCH (pair:Character {name: "pair"}), (m:Object {name: "money"})
 CREATE (pair)-[r2:SAVED_MONEY]->(m)
 SET r2.interval = "quite a bit";
 
 // Relation 3
-MATCH (pair:Character)
-WHERE pair <> (ow:Character {name: "old woman"})
+MATCH (pair:Character {name: "pair"})
 CREATE (pair)-[r3:KEPT_TO_THEMSELVES]->(pair)
 SET r3.interval = "hardly seen out";
 
@@ -309,21 +340,24 @@ CREATE (t)-[r8:ASSUMES_FOREIGN_TONGUE]->(s);
 MATCH (t:Testimony {name: "testimonies of various witnesses"})
 CREATE (t)-[r9:UNABLE_TO_TRANSLATE]->(s);
 
+// 56  nodes, 54 relations
+
 //// Paragraph 6 ///////////////////////////////////////////////////////////////
 // Create nodes
-MERGE (t:Testimony {name: "The testimonies"});
+MERGE (t:Testimony {name: "testimonies of various witnesses"});
 MERGE (l:Location {name: "house"});
 MERGE (c:Location {name: "young woman's chamber"});
-MERGE (o1:Object {name: "evidence"});
-MERGE (o2:Object {name: "murderer"});
 MERGE (o3:Object {name: "windows"});
-MERGE (ch:Character {name: "police"});
+MERGE (ch:Character {name: "policeman"});
+MERGE (o2:Object {name: "murderer"});
+MERGE (o1:Object {name: "evidence"});
 MERGE (lb:Character {name: "Le Bon"});
+
 MERGE (d:Character {name: "Dupin"});
 MERGE (n:Character {name: "narrator"});
 
 // Relation 1
-MATCH (t:Testimony {name: "The testimonies"}), (l:Location {name: "house"})
+MATCH (t:Testimony {name: "testimonies of various witnesses"}), (l:Location {name: "house"})
 CREATE (t)-[r1:DESCRIBES]->(l)
 SET r1.description = "paint a picture of the house as being very difficult to get access to";
 
@@ -336,7 +370,7 @@ MATCH (o3:Object {name: "windows"})
 CREATE (o3)-[r3:LOCKED]->(o3);
 
 // Relation 4
-MATCH (ch:Character {name: "police"})
+MATCH (ch:Character {name: "policeman"})
 CREATE (ch)-[r4:CONFUSED]->(ch);
 
 // Relation 5
@@ -344,17 +378,17 @@ MATCH (o1:Object {name: "evidence"}), (o2:Object {name: "murderer"})
 CREATE (o1)-[r5:MISSING_FOR]->(o2);
 
 // Relation 6
-MATCH (t:Testimony {name: "The testimonies"}), (o1:Object {name: "evidence"})
+MATCH (t:Testimony {name: "testimonies of various witnesses"}), (o1:Object {name: "evidence"})
 CREATE (t)-[r6:MENTIONS]->(o1)
 SET r6.description = "follow-up article reports another search";
 
 // Relation 7
-MATCH (t:Testimony {name: "The testimonies"}), (o1:Object {name: "evidence"})
+MATCH (t:Testimony {name: "testimonies of various witnesses"}), (o1:Object {name: "evidence"})
 CREATE (t)-[r7:MENTIONS]->(o1)
 SET r7.description = "no further evidence found";
 
 // Relation 8
-MATCH (ch:Character {name: "police"}), (lb:Character {name: "Le Bon"})
+MATCH (ch:Character {name: "policeman"}), (lb:Character {name: "Le Bon"})
 CREATE (ch)-[r8:ARRESTS]->(lb)
 SET r8.reason = "without much reason";
 
@@ -371,29 +405,32 @@ CREATE (d)-[r10:ASKS_FOR_THOUGHTS]->(n);
 MATCH (n:Character {name: "narrator"})
 SET n.can_add = "nothing";
 
+// 62 nodes 63 relations
+
 //// Paragraph 7 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
-MERGE (p:Character {name: "police"});
-MERGE (v:Character {name: "Vidocq"});
+MERGE (p:Character {name: "policeman"});
 MERGE (c: Object {name: "crime"});
-MERGE (i: Object {name: "investigation"});
 MERGE (pt: Object {name: "point"});
+MERGE (v:Character {name: "Vidocq"});
 MERGE (pic: Object {name: "picture"});
 MERGE (s: Object {name: "star"});
 
+MERGE (i: Object {name: "investigation"});
+
 // Relation 1
-MATCH (d:Character {name: "Dupin"}), (c:Object {name: "crime"}), (p:Character {name: "police"})
+MATCH (d:Character {name: "Dupin"}), (c:Object {name: "crime"}), (p:Character {name: "policeman"})
 CREATE (d)-[r1:SAYS]->(c)
 SET r1.description = "cannot be judged on the inept way that the investigation has been carried out by the police";
 
 // Relation 2
-MATCH (d:Character {name: "Dupin"}), (p:Character {name: "police"})
+MATCH (d:Character {name: "Dupin"}), (p:Character {name: "policeman"})
 CREATE (d)-[r2:SAYS]->(p)
 SET r2.description = "operate with diligence and thoroughness";
 
 // Relation 3
-MATCH (p:Character {name: "police"}), (pt: Object {name: "point"})
+MATCH (p:Character {name: "policeman"}), (pt: Object {name: "point"})
 CREATE (p)-[r3:MISS]->(pt)
 SET r3.description = "miss the point entirely";
 
@@ -412,25 +449,28 @@ MATCH (d:Character {name: "Dupin"}), (s: Object {name: "star"})
 CREATE (d)-[r6:SAYS]->(s)
 SET r6.description = "by viewing a star in one's peripheral vision, thereby letting its radiance affect you, a far truer picture of the star is gained";
 
+// 67 nodes, 69 relations
+
 //// Paragraph 8 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
-MERGE (lb:Character {name: "Le Bon"});
-MERGE (p:Character {name: "Prefect"});
-MERGE (rm:Location {name: "Rue Morgue"});
-MERGE (nh:Location {name: "newspaper headquarters"});
 MERGE (i:Object {name: "investigation"});
-MERGE (f:Object {name: "favor"});
-MERGE (h:Object {name: "house"});
+MERGE (p:Character {name: "Prefect"});
 MERGE (ch:Object {name: "chamber"});
+MERGE (rm:Location {name: "Rue Morgue"});
 MERGE (cs:Object {name: "crime scene"});
-MERGE (b:Object {name: "bodies"});
 MERGE (te1:Testimony {name: "They enter and go up to the chamber."});
 MERGE (te2:Testimony {name: "Everything original to the crime scene is still in place."});
 MERGE (te3:Testimony {name: "Dupin looks over everything, including the gruesome bodies."});
 MERGE (te4:Testimony {name: "They examine the scene until nighttime."});
 MERGE (te5:Testimony {name: "Dupin visited a newspaper headquarters."});
 MERGE (te6:Testimony {name: "Dupin is silent until the next afternoon."});
+MERGE (b:Object {name: "bodies"});
+MERGE (nh:Location {name: "newspaper headquarters"});
+
+MERGE (lb:Character {name: "Le Bon"});
+MERGE (f:Object {name: "favor"});
+MERGE (h:Object {name: "house"});
 
 // Relation 1
 MATCH (d:Character {name: "Dupin"}), (i:Object {name: "investigation"})
@@ -492,11 +532,12 @@ CREATE (d)-[r13:VISITS]->(nh);
 MATCH (d:Character {name: "Dupin"}), (te6:Testimony {name: "Dupin is silent until the next afternoon."})
 CREATE (d)-[r14:IS_SILENT]->(te6);
 
+// 81 nodes, 83 relations
+
 //// Paragraph 9 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
 MERGE (n:Character {name: "narrator"});
-MERGE (l:Location {name: "Rue-Morgue"});
 MERGE (nr:Object {name: "newspaper report"});
 MERGE (m:Object {name: "murders"});
 MERGE (t1:Testimony {name: "the paper has not presented the extremity, the unusualness of the murders"});
@@ -504,12 +545,12 @@ MERGE (t2:Testimony {name: "the murders seem impossible to solve to the police, 
 MERGE (t3:Testimony {name: "these very factors could be used to the advantage of a detective"});
 MERGE (t4:Testimony {name: "it is where the situation deviates from the ordinary, that gives reason a way to solve it"});
 MERGE (t5:Testimony {name: "he advises looking at the unique aspects of the crime, rather than what appears before them"});
+MERGE (l:Location {name: "Rue Morgue"});
 
 // Relation 1
 MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (nr:Object {name: "newspaper report"})
 CREATE (d)-[r1:ASKS]->(n)
 SET r1.question = "Did you notice anything peculiar in the newspaper report?";
-CREATE (nr)-[r2:MENTIONED_IN]->(r1);
 
 // Relation 2
 MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"})
@@ -537,24 +578,26 @@ SET r7.claim = "The situation deviates from the ordinary, which gives reason a w
 MATCH (d:Character {name: "Dupin"}), (t5:Testimony {name: "he advises looking at the unique aspects of the crime, rather than what appears before them"})
 CREATE (d)-[r8:ADVISORY]->(t5);
 
+// 87 nodes, 91 relations
+
 //// Paragraph 10 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
 MERGE (n:Character {name: "narrator"});
-MERGE (l:Location {name: "Rue-Morgue"});
 MERGE (c:Object {name: "crime"});
 MERGE (m:Object {name: "man"});
 MERGE (p:Object {name: "pistol"});
+
+MERGE (l:Location {name: "Rue Morgue"});
 MERGE (t1:Testimony {name: "Dupin expects to be met by someone who is in part responsible for the crime"});
 MERGE (t2:Testimony {name: "Dupin says the man is probably largely innocent but he hopes the man will prove to be the key to the riddle"});
 MERGE (t3:Testimony {name: "Dupin gives the narrator a pistol to use should the meeting demand it"});
 MERGE (e:Evidence {name: "Dupin explains his reasoning"});
 
 // Relation 1
-MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (l:Location {name: "Rue-Morgue"})
+MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (l:Location {name: "Rue Morgue"})
 CREATE (d)-[r1:TELLS]->(n)
-SET r1.details = "Dupin tells the narrator of Rue-Morgue about his expectations.";
-CREATE (l)-[r2:MENTIONED_IN]->(r1);
+SET r1.details = "Dupin tells the narrator of Rue Morgue about his expectations.";
 
 // Relation 2
 MATCH (d:Character {name: "Dupin"}), (m:Object {name: "man"}), (c:Object {name: "crime"})
@@ -583,6 +626,8 @@ SET r7.details = "The pistol is for the narrator to use should the meeting deman
 MATCH (d:Character {name: "Dupin"}), (e:Evidence {name: "Dupin explains his reasoning"})
 CREATE (d)-[r8:EXPLAINS]->(e);
 
+// 93 nodes, 99 relations
+
 //// Paragraph 11 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
@@ -593,7 +638,9 @@ MERGE (ow:Object {name: "old woman"});
 MERGE (db:Object {name: "daughter's body"});
 MERGE (c:Object {name: "chimney"});
 MERGE (wtn:Object {name: "witnesses"});
+
 MERGE (sv:Object {name: "shrill voice"});
+
 MERGE (t1:Testimony {name: "the voices couldn't have been the women"});
 MERGE (t2:Testimony {name: "the murders couldn't have been self-suicide"});
 MERGE (t3:Testimony {name: "the old woman would never be strong enough to jam her daughter's body up the chimney"});
@@ -610,11 +657,11 @@ SET r1.question = "What about the voices heard?";
 
 // Relation 2
 MATCH (v:Object {name: "voices"}), (w:Object {name: "women"})
-CREATE (v)-[r2:COULDN'T_HAVE_BEEN]->(w);
+CREATE (v)-[r2:COULD_NOT_HAVE_BEEN]->(w);
 
 // Relation 3
 MATCH (m:Object {name: "murders"}), (t2:Testimony {name: "the murders couldn't have been self-suicide"})
-CREATE (m)-[r3:COULDN'T_HAVE_BEEN]->(t2);
+CREATE (m)-[r3:COULD_NOT_HAVE_BEEN]->(t2);
 
 // Relation 4
 MATCH (ow:Object {name: "old woman"}), (db:Object {name: "daughter's body"}), (c:Object {name: "chimney"}), (t3:Testimony {name: "the old woman would never be strong enough to jam her daughter's body up the chimney"})
@@ -641,6 +688,8 @@ CREATE (wtn)-[r8:PROVIDE]->(t7);
 MATCH (e:Evidence {name: "statements from diverse nationalities"}), (t7:Testimony {name: "the language of the 'shrill' suspect is something beyond even the far reaches of the world in terms of its foreignness"})
 CREATE (e)-[r9:INCLUDES]->(t7);
 
+// 106 nodes, 108 relations
+
 //// Paragraph 12 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
@@ -649,12 +698,14 @@ MERGE (v:Object {name: "voices"});
 MERGE (s:Object {name: "suspicion"});
 MERGE (e:Object {name: "exits"});
 MERGE (a:Object {name: "apartment"});
-MERGE (b:Object {name: "boundaries"});
-MERGE (r:Object {name: "room"});
 MERGE (doo:Object {name: "doors"});
 MERGE (ch:Object {name: "chimneys"});
 MERGE (cat:Object {name: "cat"});
+
+MERGE (b:Object {name: "boundaries"});
+MERGE (r:Object {name: "room"});
 MERGE (win:Object {name: "windows"});
+
 MERGE (t1:Testimony {name: "this discovery about the voices leads singularly to the suspicion he is now entertaining"});
 MERGE (t2:Testimony {name: "he won't let on what that suspicion is just yet"});
 MERGE (t3:Testimony {name: "neither of them believe in the supernatural, so the material boundaries of the room must have been crossed in a material way"});
@@ -666,7 +717,7 @@ MERGE (ev:Evidence {name: "means of entry and escape"});
 // Relation 1
 MATCH (d:Character {name: "Dupin"}), (ds:Object {name: "discovery"}), (v:Object {name: "voices"}), (s:Object {name: "suspicion"})
 CREATE (d)-[r1:DESCRIBES]->(ds)
-SET r1.details = "This discovery about the voices leads singularly to the suspicion he is now entertaining.";
+SET r1.details = "This discovery about the voices leads singularly to the suspicion he is now entertaining."
 CREATE (ds)-[r2:LEADS_TO]->(s)
 SET r2.claim = "The suspicion he is entertaining.";
 
@@ -677,7 +728,7 @@ CREATE (d)-[r3:WITHHOLDS]->(t2);
 // Relation 3
 MATCH (d:Character {name: "Dupin"}), (e:Object {name: "exits"}), (a:Object {name: "apartment"})
 CREATE (d)-[r4:ANALYZES]->(e)
-SET r4.details = "The exits of the apartment.";
+SET r4.details = "The exits of the apartment."
 CREATE (a)-[r5:LOCATED_IN]->(e);
 
 // Relation 4
@@ -703,6 +754,8 @@ SET r9.details = "Each means of entry and escape";
 MATCH (ev:Evidence {name: "means of entry and escape"}), (win:Object {name: "windows"}), (t6:Testimony {name: "the only available option left are the windows"})
 CREATE (ev)-[r10:LEFT_OPTION]->(win);
 
+// 112 nodes, 118 relations
+
 //// Paragraph 13 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
@@ -710,7 +763,7 @@ MERGE (o:Object {name: "option"});
 MERGE (w:Object {name: "windows"});
 MERGE (n:Object {name: "nail"});
 MERGE (det:Object {name: "details"});
-MERGE (p:Object {name: "police"});
+MERGE (p:Character {name: "policeman"});
 MERGE (al:Object {name: "auto-locking device"});
 MERGE (c:Object {name: "criminal"});
 MERGE (sm:Object {name: "spring mechanism"});
@@ -741,7 +794,7 @@ MATCH (w:Object {name: "windows"}), (t3:Testimony {name: "it seemed impossible t
 CREATE (w)-[r3:SEEMED_IMPOSSIBLE]->(t3);
 
 // Relation 4
-MATCH (p:Object {name: "police"}), (w:Object {name: "windows"}), (t4:Testimony {name: "the police had abandoned the windows"})
+MATCH (p:Character {name: "policeman"}), (w:Object {name: "windows"}), (t4:Testimony {name: "the police had abandoned the windows"})
 CREATE (p)-[r4:ABANDONED]->(w);
 
 // Relation 5
@@ -761,7 +814,7 @@ SET r8.details = "From the inside";
 // Relation 8
 MATCH (d:Character {name: "Dupin"}), (e:Evidence {name: "search"}), (t8:Testimony {name: "he finds a spring mechanism that explains everything"})
 CREATE (d)-[r9:CONDUCTS]->(e)
-SET r9.details = "Search";
+SET r9.details = "Search"
 CREATE (e)-[r10:INCLUDES]->(t8);
 
 // Relation 9
@@ -776,8 +829,10 @@ SET r12.details = "Through the other window";
 // Relation 11
 MATCH (d:Character {name: "Dupin"}), (w:Object {name: "windows"}), (sm:Object {name: "spring mechanism"}), (t11:Testimony {name: "he finds a broken spring in the other window"})
 CREATE (d)-[r13:FINDS]->(sm)
-SET r13.details = "Broken spring";
+SET r13.details = "Broken spring"
 CREATE (sm)-[r14:EXPLAINS]->(w);
+
+// 143 nodes, 133 relations
 
 //// Paragraph 14 ///////////////////////////////////////////////////////////////
 // Create nodes
@@ -839,6 +894,8 @@ CREATE (s)-[r10:HAS]->(pa);
 MATCH (n:Character {name: "narrator"}), (t7:Testimony {name: "the narrator almost understanding what Dupin is getting at"})
 CREATE (n)-[r11:ALMOST_UNDERSTANDS]->(t7);
 
+// 160 nodes, 144 relations
+
 //// Paragraph 15 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
@@ -890,18 +947,20 @@ MATCH (t4:Testimony {name: "the police have looked to this withdrawal as a possi
 CREATE (t4)-[r11:LOOKED_TO_AS_POSSIBLE_MOTIVE]->(t3);
 
 // Relation 8
-MATCH (t5:Testimony {name: "the withdrawal is a complete red herring"})
+MATCH (t5:Testimony {name: "the withdrawal is a complete red herring"}), (t3:Testimony {name: "the money recently withdrawn by the old woman has been left in the room"})
 CREATE (t5)-[r12:IS]->(t3);
 
 // Relation 9
-MATCH (t6:Testimony {name: "there is no motive in this case"})
+MATCH (t6:Testimony {name: "there is no motive in this case"}), (t5:Testimony {name: "the withdrawal is a complete red herring"})
 CREATE (t6)-[r13:IS_IN]->(t5);
+
+// 173 nodes, 157 relations
 
 //// Paragraph 16 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
 MERGE (n:Character {name: "narrator"});
-MERGE (l:Location {name: "Rue-Morgue"});
+MERGE (l:Location {name: "Rue Morgue"});
 MERGE (o1:Object {name: "crime"});
 MERGE (o2:Object {name: "extreme force"});
 MERGE (o3:Object {name: "murders"});
@@ -957,72 +1016,49 @@ SET r8.explanation = "was in fact sustained from her fall";
 MATCH (o1:Object {name: "crime"}), (e:Evidence {name: "method of the crime"})
 CREATE (o1)-[r9:INCLUDES]->(e);
 
+// 182 nodes, 166 relations
+
 //// Paragraph 17 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
 MERGE (n:Character {name: "narrator"});
-MERGE (r:Location {name: "Rue-Morgue"});
-MERGE (o1:Object {name: "details"});
-MERGE (o2:Object {name: "deed"});
-MERGE (o3:Object {name: "escaped madman"});
-MERGE (o4:Object {name: "tones"});
-MERGE (o5:Object {name: "phrases"});
-MERGE (o6:Object {name: "language"});
-MERGE (o7:Object {name: "tuft of hair"});
-MERGE (o8:Object {name: "Madame Esplanaye's clutches"});
-MERGE (o9:Object {name: "sketch"});
-MERGE (o10:Object {name: "hand mark"});
-MERGE (o11:Object {name: "old woman's neck"});
-MERGE (o12:Object {name: "human-sized hand"});
-MERGE (t1:Testimony {description: "the narrator can only imagine that the deed was committed by some kind of escaped madman"});
-MERGE (t2:Testimony {description: "even madmen have recognizable tones and phrases in their language"});
-MERGE (t3:Testimony {description: "the tuft of hair found in Madame Esplanaye's clutches is not human hair"});
-MERGE (t4:Testimony {description: "the hand mark around the old woman's neck is the print of no human-sized hand"});
-MERGE (e:Evidence {description: "none"});
+MERGE (me:Character {name: "Madame Esplanaye"});
+MERGE (rm:Location {name: "Rue Morgue"});
+MERGE (dt:Object {name: "details"});
+MERGE (dd:Object {name: "deed"});
+MERGE (mm:Object {name: "madman"});
+MERGE (rtp:Object {name: "recognizable tones and phrases"});
+MERGE (th:Object {name: "tuft of hair"});
+MERGE (hm:Object {name: "hand mark"});
+MERGE (own:Object {name: "old woman's neck"});
+MERGE (ph:Object {name: "print of no human-sized hand"});
+MERGE (lang:Object {name: "language"});
 
-// Relation 1
-MERGE (d)-[:SUMS_UP]->(n);
+// Relations
+MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (rm:Location {name: "Rue Morgue"})
+CREATE (d)-[r1:SUMS_UP]->(n)
+CREATE (d)-[r2:ASKS]->(n)
+CREATE (n)-[r3:IMAGINES]->(dd)
+CREATE (d)-[r4:ADMITS]->(rtp)
+CREATE (mm)-[r5:HAS]->(rtp)
+CREATE (d)-[r6:REVEALS]->(th)
+CREATE (me)-[r7:HAS]->(th)
+CREATE (n)-[r8:TELLS]->(ph)
+CREATE (hm)-[r9:IS_PRINT_OF]->(ph)
+CREATE (d)-[r10:SHOWS]->(n)
+CREATE (hm)-[r11:IS_AROUND]->(own)
+CREATE (own)-[r12:IS_OF]->(me);
 
-// Relation 2
-MERGE (d)-[:ASKS]->(n);
-
-// Relation 3
-MERGE (n)-[:IMAGINES]->(o3);
-
-// Relation 4
-MERGE (d)-[:ADMITS]->(o3);
-
-// Relation 5
-MERGE (o3)-[:HAVE]->(o4);
-MERGE (o3)-[:HAVE]->(o5);
-MERGE (o6)-[:HAVE]->(o4);
-MERGE (o6)-[:HAVE]->(o5);
-
-// Relation 6
-MERGE (d)-[:REVEALS]->(o7);
-
-// Relation 7
-MERGE (o7)-[:FOUND_IN]->(o8);
-
-// Relation 8
-MERGE (d)-[:SHOWS]->(o9);
-
-// Relation 9
-MERGE (o9)-[:AROUND]->(o11);
-MERGE (o9)-[:PRINT_OF]->(o12);
-
-// Relation 10
-MERGE (o10)-[:AROUND]->(o11);
-MERGE (o10)-[:PRINT_OF]->(o12);
+// 198 nodes, 178 relations
 
 //// Paragraph 18 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
 MERGE (n:Character {name: "narrator"});
-MERGE (r:Location {name: "Rue-Morgue"});
+MERGE (r:Location {name: "Rue Morgue"});
 MERGE (e:Object {name: "excerpt"});
 MERGE (ct:Object {name: "Cuvier text"});
-MERGE (oo:Object {name: "Ourang-Outang"});
+MERGE (oo:Character {name: "Ourang-Outang"});
 MERGE (a:Object {name: "anatomy"});
 MERGE (s:Object {name: "strength"});
 MERGE (cr:Object {name: "crime"});
@@ -1036,10 +1072,10 @@ MERGE (h:Object {name: "horror"});
 MERGE (mc:Object {name: "missing creature"});
 MERGE (ad:Object {name: "ad"});
 MERGE (p:Object {name: "paper"});
-MERGE (ms:Object {name: "Maltese sailor"});
+MERGE (ms:Character {name: "Maltese sailor"});
 
 // Relation 1
-MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (r:Location {name: "Rue-Morgue"}), (e:Object {name: "excerpt"}), (ct:Object {name: "Cuvier text"}), (oo:Object {name: "Ourang-Outang"})
+MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (r:Location {name: "Rue Morgue"}), (e:Object {name: "excerpt"}), (ct:Object {name: "Cuvier text"}), (oo:Character {name: "Ourang-Outang"})
 CREATE (d)-[r1:SHOWS]->(n),
 (d)-[r2:SHOWS]->(r),
 (d)-[r3:SHOWS]->(e),
@@ -1047,13 +1083,13 @@ CREATE (d)-[r1:SHOWS]->(n),
 (d)-[r5:SHOWS]->(oo);
 
 // Relation 2
-MATCH (oo:Object {name: "Ourang-Outang"}), (a:Object {name: "anatomy"}), (s:Object {name: "strength"}), (cr:Object {name: "crime"})
+MATCH (oo:Character {name: "Ourang-Outang"}), (a:Object {name: "anatomy"}), (s:Object {name: "strength"}), (cr:Object {name: "crime"})
 CREATE (oo)-[r6:MATCHES]->(a),
 (oo)-[r7:MATCHES]->(s),
 (oo)-[r8:MATCHES]->(cr);
 
 // Relation 3
-MATCH (oo:Object {name: "Ourang-Outang"}), (sv:Object {name: "shrill voice"}), (uv:Object {name: "unintelligible voice"})
+MATCH (oo:Character {name: "Ourang-Outang"}), (sv:Object {name: "shrill voice"}), (uv:Object {name: "unintelligible voice"})
 CREATE (oo)-[r9:HAS_DESCRIPTION]->(sv),
 (oo)-[r10:HAS_DESCRIPTION]->(uv);
 
@@ -1066,7 +1102,7 @@ MATCH (d:Character {name: "Dupin"}), (f:Object {name: "Frenchman"})
 CREATE (d)-[r12:SUGGESTS]->(f);
 
 // Relation 6
-MATCH (f:Object {name: "Frenchman"}), (oo:Object {name: "Ourang-Outang"}), (h:Object {name: "horror"})
+MATCH (f:Object {name: "Frenchman"}), (oo:Character {name: "Ourang-Outang"}), (h:Object {name: "horror"})
 CREATE (f)-[r13:TRIED_TO_FOLLOW]->(oo),
 (f)-[r14:ESCAPED]->(h);
 
@@ -1076,60 +1112,64 @@ CREATE (d)-[r15:CORRECT_PREDICTION]->(f),
 (d)-[r16:LOOKING_FOR]->(mc);
 
 // Relation 8
-MATCH (d:Character {name: "Dupin"}), (ad:Object {name: "ad"}), (p:Object {name: "paper"}), (ms:Object {name: "Maltese sailor"})
+MATCH (d:Character {name: "Dupin"}), (ad:Object {name: "ad"}), (p:Object {name: "paper"}), (ms:Character {name: "Maltese sailor"})
 CREATE (d)-[r17:PUTS]->(ad),
 (d)-[r18:PUTS]->(p),
 (d)-[r19:BELONGS_TO]->(ms),
 (ad)-[r20:RETURN_UPON_IDENTIFICATION]->(oo);
 
+// 213 nodes, 198 relations
+
 //// Paragraph 19 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (narrator:Character {name: "narrator"});
-MERGE (dupin:Character {name: "Dupin"});
-MERGE (rueMorgue:Location {name: "Rue-Morgue"});
-MERGE (sailor:Object {name: "sailor"});
-MERGE (malteseVessel:Object {name: "Maltese vessel"});
-MERGE (ribbon:Object {name: "ribbon"});
-MERGE (lightningRod:Object {name: "lightning rod"});
+MERGE (d:Character {name: "Dupin"});
+MERGE (rm:Location {name: "Rue Morgue"});
+MERGE (ms:Character {name: "Maltese sailor"});
+MERGE (mv:Object {name: "Maltese vessel"});
+MERGE (ri:Object {name: "ribbon"});
+MERGE (lr:Object {name: "lightning rod"});
 MERGE (ad:Object {name: "ad"});
-MERGE (innocence:Object {name: "innocence"});
+MERGE (in:Object {name: "innocence"});
 
 // Relation 1
-MATCH (n:narrator), (d:dupin), (s:sailor), (mv:malteseVessel)
+MATCH (n:Character {name: "narrator"}), (d:Character {name: "Dupin"}), (ms:Character {name: "Maltese sailor"}), (mv:Object {name: "Maltese vessel"})
 CREATE (n)-[:WONDERS]->(d),
-(d)-[:KNOWS]->(s),
-(s)-[:FROM]->(mv);
+(d)-[:KNOWS]->(ms),
+(ms)-[:FROM]->(mv);
 
 // Relation 2
-MATCH (d:dupin)
+MATCH (d:Character {name: "Dupin"})
 SET d.guesses = true;
 
 // Relation 3
-MATCH (d:dupin), (lr:lightningRod)
+MATCH (d:Character {name: "Dupin"}), (lr:Object {name: "lightning rod"})
 CREATE (d)-[:FOUND]->(lr);
 
 // Relation 4
-MATCH (d:dupin), (r:ribbon), (ms:sailor)
-CREATE (d)-[:RECOGNIZES]->(r),
-(r)-[:USED_BY]->(ms),
-(r)-[:KNOTTED_IN]->(ms);
+MATCH (d:Character {name: "Dupin"}), (ri:Object {name: "ribbon"}), (ms:Character {name: "Maltese sailor"})
+CREATE (d)-[:RECOGNIZES]->(ri),
+(ri)-[:USED_BY]->(ms),
+(ri)-[:KNOTTED_IN]->(ms);
 
 // Relation 5
-MATCH (ad:ad)
+MATCH (ad:Object {name: "ad"})
 SET ad.harmless = true;
 
 // Relation 6
-MATCH (s:sailor), (ad:ad)
-CREATE (ad)-[:ASSUME_ERROR]->(s),
-(ad)-[:DESCRIBE_PERFECTLY]->(s);
+MATCH (ms:Character {name: "Maltese sailor"}), (ad:Object {name: "ad"})
+CREATE (ad)-[:ASSUME_ERROR]->(ms),
+(ad)-[:DESCRIBE_PERFECTLY]->(ms);
 
 // Relation 7
-MATCH (ad:ad), (s:sailor)
-CREATE (ad)-[:EXPECTED_RESPONSE]->(s);
+MATCH (ad:Object {name: "ad"}), (ms:Character {name: "Maltese sailor"})
+CREATE (ad)-[:EXPECTED_RESPONSE]->(ms);
 
 // Relation 8
-MATCH (s:sailor), (i:innocence)
-CREATE (s)-[:PROTECTS]->(i);
+MATCH (ms:Character {name: "Maltese sailor"}), (in:Object {name: "innocence"})
+CREATE (ms)-[:PROTECTS]->(in);
+
+// 216 nodes, 209 relations
 
 //// Paragraph 20 ///////////////////////////////////////////////////////////////
 // Create nodes
@@ -1139,7 +1179,7 @@ MERGE (p:Object {name: "pistols"});
 MERGE (s:Location {name: "stairs"});
 MERGE (do:Location {name: "door"});
 MERGE (c:Location {name: "chamber"});
-MERGE (sa:Testimony {name: "sailor"});
+MERGE (ms:Character {name: "Maltese sailor"});
 
 // Relation 1
 MATCH (a:Character {name: "They"})
@@ -1150,36 +1190,38 @@ MATCH (a:Character {name: "They"}), (p:Object {name: "pistols"})
 CREATE (a)-[r2:READY]->(p);
 
 // Relation 3
-MATCH (a:Character {name: "They"}), (sa:Testimony {name: "sailor"}), (s:Location {name: "stairs"})
-CREATE (a)-[r3:HEARS]->(sa)
-CREATE (sa)-[r4:COMES_UP]->(s);
+MATCH (a:Character {name: "They"}), (ms:Character {name: "Maltese sailor"}), (s:Location {name: "stairs"})
+CREATE (a)-[r3:HEARS]->(ms)
+CREATE (ms)-[r4:COMES_UP]->(s);
 
 // Relation 4
-MATCH (sa:Testimony {name: "sailor"}), (do:Location {name: "door"}), (c:Location {name: "chamber"})
-CREATE (sa)-[r5:KNOCKS_ON]->(do)
+MATCH (ms:Character {name: "Maltese sailor"}), (do:Location {name: "door"}), (c:Location {name: "chamber"})
+CREATE (ms)-[r5:KNOCKS_ON]->(do)
 CREATE (do)-[r6:LEADS_TO]->(c);
 
 // Relation 5
-MATCH (a:Testimony {name: "sailor"})
-SET a.appearance = "sailor's";
+MATCH (ms:Character {name: "Maltese sailor"})
+SET ms.appearance = "sailor's";
 
 // Relation 6
-MATCH (a:Testimony {name: "sailor"})
-SET a.physical_condition = "muscular and hardy";
+MATCH (ms:Character {name: "Maltese sailor"})
+SET ms.physical_condition = "muscular and hardy";
 
 // Relation 7
-MATCH (a:Testimony {name: "sailor"}), (d:Character {name: "Dupin"})
-CREATE (a)-[r7:GREETS_WITH {accent: "French"}]->(d);
+MATCH (ms:Character {name: "Maltese sailor"}), (d:Character {name: "Dupin"})
+CREATE (ms)-[r7:GREETS_WITH {accent: "French"}]->(d);
 
 // Relation 8
-MATCH (a:Character {name: "Dupin"}), (sa:Testimony {name: "sailor"})
-CREATE (a)-[r8:INVITES_IN]->(sa)
+MATCH (a:Character {name: "Dupin"}), (ms:Character {name: "Maltese sailor"})
+CREATE (a)-[r8:INVITES_IN]->(ms)
 SET r8.sentiment = "pleasantly";
 
 // Relation 9
-MATCH (a:Character {name: "Dupin"}), (sa:Testimony {name: "sailor"})
-CREATE (a)-[r9:COMPLIMENTS]->(sa)
+MATCH (a:Character {name: "Dupin"}), (ms:Character {name: "Maltese sailor"})
+CREATE (a)-[r9:COMPLIMENTS]->(ms)
 SET r9.topic = "the species that has brought him here";
+
+// 222 nodes, 218 relations
 
 //// Paragraph 21 ///////////////////////////////////////////////////////////////
 // Create nodes
@@ -1275,13 +1317,15 @@ MATCH (c:Testimony {name: "concealment"}), (h:Testimony {name: "honesty"})
 CREATE (c)-[r18:SENSE_IN]->(h)
 SET r18.comparison = "more";
 
+// 230 nodes, 232 relations
+
 //// Paragraph 22 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (s:Character {name: "sailor"});
-MERGE (b:Character {name: "Borneo"});
+MERGE (b:Location {name: "Borneo"});
 MERGE (sm:Character {name: "shipmate"});
 MERGE (oo:Character {name: "Ourang-Outang"});
-MERGE (p:Character {name: "Paris"});
+MERGE (p:Location {name: "Paris"});
 MERGE (a:Character {name: "ape"});
 MERGE (d:Character {name: "Dupin"});
 MERGE (m:Character {name: "Madames"});
@@ -1308,13 +1352,13 @@ CREATE (s)-[r1:TELLS]->(st)
 SET r1.scope = "his";
 
 // Relation 2
-MATCH (s:Character {name: "sailor"}), (b:Character {name: "Borneo"})
+MATCH (s:Character {name: "sailor"}), (b:Location {name: "Borneo"})
 CREATE (s)-[r2:VOYAGED_TO]->(b);
 
 // Relation 3
 MATCH (s:Character {name: "sailor"}), (oo:Character {name: "Ourang-Outang"}), (sm:Character {name: "shipmate"})
 CREATE (s)-[r3:CAPTURED_WITH]->(oo)
-CREATE (sm)-[r3:CAPTURED_WITH]->(oo);
+CREATE (sm)-[r4:CAPTURED_WITH]->(oo);
 
 // Relation 4
 MATCH (sm:Character {name: "shipmate"}), (s:Character {name: "sailor"})
@@ -1325,9 +1369,9 @@ MATCH (s:Character {name: "sailor"}), (a:Character {name: "ape"})
 CREATE (s)-[r5:LEFT_ALONE_WITH]->(a);
 
 // Relation 6
-MATCH (s:Character {name: "sailor"}), (a:Character {name: "ape"}), (p:Character {name: "Paris"})
+MATCH (s:Character {name: "sailor"}), (a:Character {name: "ape"}), (p:Location {name: "Paris"})
 CREATE (s)-[r6:LODGED_WITH]->(a)
-CREATE (a)-[r6:LODGED_WITH]->(p);
+CREATE (a)-[r7:LODGED_WITH]->(p);
 
 // Relation 7
 MATCH (s:Character {name: "sailor"})
@@ -1340,12 +1384,12 @@ CREATE (a)-[r8:OUT_OF]->(c);
 // Relation 9
 MATCH (a:Character {name: "ape"}), (s:Character {name: "sailor"}), (r:Object {name: "routine"})
 CREATE (a)-[r9:IMITATES {action: "shaving routine"}]->(r)
-CREATE (s)-[r9:IMITATES {action: "shaving routine"}]->(r);
+CREATE (s)-[r10:IMITATES {action: "shaving routine"}]->(r);
 
 // Relation 10
 MATCH (s:Character {name: "sailor"}), (oo:Character {name: "Ourang-Outang"}), (w:Object {name: "whip"})
 CREATE (s)-[r10:TRIES_TO_WHIP]->(oo)
-CREATE (w)-[r10:USED_ON {target: "Ourang-Outang"}]->(oo);
+CREATE (w)-[r11:USED_ON {target: "Ourang-Outang"}]->(oo);
 
 // Relation 11
 MATCH (w:Object {name: "whip"}), (oo:Character {name: "Ourang-Outang"})
@@ -1398,19 +1442,17 @@ CREATE (s)-[r21:WITNESSES]->(:Event {name: "whole event"});
 // Relation 22
 MATCH (mo:Character {name: "mother"}), (dau:Character {name: "daughter"}), (oo:Character {name: "Ourang-Outang"}), (scre:Evidence {name: "screams"})
 CREATE (mo)-[r22:FRIGHTENS]->(oo)
-CREATE (dau)-[r22:FRIGHTENS]->(oo)
-CREATE (scre)-[r22:PRODUCED_DURING {event: "screams"}]->(oo);
+CREATE (dau)-[r23:FRIGHTENS]->(oo)
+CREATE (scre)-[r24:PRODUCED_DURING {event: "screams"}]->(oo);
 
 // Relation 23
-MATCH (oo:
-
-Ourang-Outang"), (gu:Evidence {name: "guilt"})
+MATCH (oo:Character {name: "Ourang-Outang"}), (gu:Evidence {name: "guilt"})
 SET oo.emotion = "enraged";
 
 // Relation 24
 MATCH (oo:Character {name: "Ourang-Outang"}), (s:Character {name: "sailor"}), (bo:Object {name: "bodies"})
 CREATE (oo)-[r24:CONCEALS]->(bo)
-CREATE (s)-[r24:CONCEALS]->(bo);
+CREATE (s)-[r25:CONCEALS]->(bo);
 
 // Relation 25
 MATCH (bo:Object {name: "bodies"}), (fp:Location {name: "fireplace"})
@@ -1420,61 +1462,62 @@ CREATE (bo)-[r25:CONCEALED_IN]->(fp);
 MATCH (bo:Object {name: "bodies"}), (win:Location {name: "window"})
 CREATE (bo)-[r26:CONCEALED_OUT_OF]->(win);
 
+// 250 nodes, 263 relations
+
 //// Paragraph 23 ///////////////////////////////////////////////////////////////
 // Create nodes
-MERGE (n:narrator {name: "narrator"});
-MERGE (rm:Rue_Morgue {name: "Rue-Morgue"});
-MERGE (s:sailor {name: "sailor"});
-MERGE (oo:Ourang_Outang {name: "Ourang-Outang"});
-MERGE (lb:Le_Bon {name: "Le Bon"});
-MERGE (p:Prefect {name: "Prefect"});
-MERGE (d:Dupin {name: "Dupin"});
-MERGE (c:police {name: "police"});
+MERGE (n:Character {name: "narrator"});
+MERGE (rm:Location {name: "Rue Morgue"});
+MERGE (s:Character {name: "sailor"});
+MERGE (oo:Character {name: "Ourang-Outang"});
+MERGE (lb:Character {name: "Le Bon"});
+MERGE (p:Character {name: "Prefect"});
+MERGE (d:Character {name: "Dupin"});
+MERGE (c:Character {name: "police"});
 MERGE (cr:Object {name: "closing remarks"});
 MERGE (pr:Object {name: "price"});
-MERGE (pris:Object {name: "prison"});
+MERGE (pris:Location {name: "prison"});
 MERGE (sk:Object {name: "skill"});
 MERGE (q:Object {name: "quote"});
 
 // Relation 1
-MATCH (n:narrator), (cr:Object {name: "closing remarks"})
+MATCH (n:Character {name: "narrator"}), (cr:Object {name: "closing remarks"})
 CREATE (n)-[r1:ADDS]->(cr);
 
 // Relation 2
-MATCH (s:sailor), (oo:Ourang_Outang)
+MATCH (s:Character {name: "sailor"}), (oo:Character {name: "Ourang-Outang"})
 CREATE (s)-[r2:RECAPTURES]->(oo);
 
 // Relation 3
-MATCH (s:sailor), (oo:Ourang_Outang), (pr:Object {name: "price"})
+MATCH (s:Character {name: "sailor"}), (oo:Character {name: "Ourang-Outang"}), (pr:Object {name: "price"})
 CREATE (s)-[r3:SELLS]->(oo)
-CREATE (oo)-[r3:IS_SOLD_FOR]->(pr);
+CREATE (oo)-[r4:IS_SOLD_FOR]->(pr);
 
 // Relation 4
-MATCH (lb:Le_Bon), (pris:Object {name: "prison"})
+MATCH (lb:Character {name: "Le Bon"}), (pris:Location {name: "prison"})
 CREATE (lb)-[r4:IS_RELEASED_FROM]->(pris);
 
 // Relation 5
-MATCH (p:Prefect), (sk:Object {name: "skill"})
-CREATE (p)-[r5:KNOWS_HE_IS_BEATEN]
-CREATE (sk)-[r5:BEATEN_BY]->(p);
+MATCH (p:Character {name: "Prefect"}), (d:Character {name: "Dupin"})
+CREATE (p)-[r5:KNOWS_HE_IS_BEATEN_BY]->(d);
 
 // Relation 6
-MATCH (p:Prefect), (d:Dupin), (sk:Object {name: "skill"})
+MATCH (p:Character {name: "Prefect"}), (d:Character {name: "Dupin"}), (sk:Object {name: "skill"})
 CREATE (p)-[r6:ANNOYED_AT {target: "Dupin's skill"}]->(d)
-CREATE (sk)-[r6:SKILL_OF]->(p);
+CREATE (sk)-[r7:SKILL_OF]->(p);
 
 // Relation 7
-MATCH (d:Dupin), (p:Prefect), (sk:Object {name: "skill"})
+MATCH (d:Character {name: "Dupin"}), (p:Character {name: "Prefect"}), (sk:Object {name: "skill"})
 CREATE (d)-[r7:KNOWS_WISDOM_IS_SHALLOW]->(p)
-CREATE (sk)-[r7:SHALLOW_WISDOM_OF]->(p);
+CREATE (sk)-[r8:SHALLOW_WISDOM_OF]->(p);
 
 // Relation 8
-MATCH (d:Dupin), (p:Prefect)
+MATCH (d:Character {name: "Dupin"}), (p:Character {name: "Prefect"})
 CREATE (d)-[r8:CONSIDERS {target: "Prefect"}]->(p)
 SET r8.description = "good creature";
 
 // Relation 9
-MATCH (d:Dupin), (q:Object {name: "quote"})
+MATCH (d:Character {name: "Dupin"}), (q:Object {name: "quote"})
 CREATE (d)-[r9:ENDS_WITH]->(q)
 SET r9.tone = "condescending";
 
@@ -1482,3 +1525,5 @@ SET r9.tone = "condescending";
 MATCH (q:Object {name: "quote"}), (sk:Object {name: "skill"})
 CREATE (q)-[r10:DESCRIBES]->(sk)
 SET r10.target = "Prefect's main skill";
+
+// 255 nodes, 276 relations
