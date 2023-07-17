@@ -86,7 +86,7 @@ SET h.suit = "their mood";
 // Create nodes
 MERGE (narrator:Character {name: "narrator"});
 MERGE (dupin:Character {name: "Dupin"});
-MERGE (rueMorgue:Location {name: "Rue-Morgue"});
+MERGE (rueMorgue:Location {name: "Rue Morgue"});
 MERGE (parisien:Location {name: "Parisien"});
 MERGE (night:Location {name: "night"});
 MERGE (falseNight:Location {name: "false night"});
@@ -142,7 +142,7 @@ MERGE (soul:Object {name: "soul"});
 MERGE (mysteryStory:Object {name: "mystery story"});
 MERGE (example:Object {name: "example"});
 
-MERGE (rueMorgue:Location {name: "Rue-Morgue"});
+MERGE (rueMorgue:Location {name: "Rue Morgue"});
 MERGE (character:Object {name: "character"});
 MERGE (strolling:Object {name: "strolling"});
 MERGE (astuteness:Object {name: "astuteness"});
@@ -150,7 +150,7 @@ MERGE (astuteness:Object {name: "astuteness"});
 // Relation 1
 MATCH (narrator:Character {name: "narrator"}), (dupin:Character {name: "Dupin"})
 CREATE (narrator)-[r1:COMMENTS]->(dupin)
-SET r1.description = "The narrator of 'Rue-Morgue' comments that Dupin has a particular analytic ability.";
+SET r1.description = "The narrator of 'Rue Morgue' comments that Dupin has a particular analytic ability.";
 
 // Relation 2
 MATCH (dupin:Character {name: "Dupin"}), (analyticAbility {name: "analytic ability"})
@@ -597,7 +597,7 @@ MERGE (e:Evidence {name: "Dupin explains his reasoning"});
 // Relation 1
 MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (l:Location {name: "Rue Morgue"})
 CREATE (d)-[r1:TELLS]->(n)
-SET r1.details = "Dupin tells the narrator of Rue-Morgue about his expectations.";
+SET r1.details = "Dupin tells the narrator of Rue Morgue about his expectations.";
 
 // Relation 2
 MATCH (d:Character {name: "Dupin"}), (m:Object {name: "man"}), (c:Object {name: "crime"})
@@ -960,7 +960,7 @@ CREATE (t6)-[r13:IS_IN]->(t5);
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
 MERGE (n:Character {name: "narrator"});
-MERGE (l:Location {name: "Rue-Morgue"});
+MERGE (l:Location {name: "Rue Morgue"});
 MERGE (o1:Object {name: "crime"});
 MERGE (o2:Object {name: "extreme force"});
 MERGE (o3:Object {name: "murders"});
@@ -1020,7 +1020,7 @@ CREATE (o1)-[r9:INCLUDES]->(e);
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
 MERGE (n:Character {name: "narrator"});
-MERGE (r:Location {name: "Rue-Morgue"});
+MERGE (r:Location {name: "Rue Morgue"});
 MERGE (o1:Object {name: "details"});
 MERGE (o2:Object {name: "deed"});
 MERGE (o3:Object {name: "escaped madman"});
@@ -1078,7 +1078,7 @@ MERGE (o10)-[:PRINT_OF]->(o12);
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
 MERGE (n:Character {name: "narrator"});
-MERGE (r:Location {name: "Rue-Morgue"});
+MERGE (r:Location {name: "Rue Morgue"});
 MERGE (e:Object {name: "excerpt"});
 MERGE (ct:Object {name: "Cuvier text"});
 MERGE (oo:Object {name: "Ourang-Outang"});
@@ -1098,7 +1098,7 @@ MERGE (p:Object {name: "paper"});
 MERGE (ms:Object {name: "Maltese sailor"});
 
 // Relation 1
-MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (r:Location {name: "Rue-Morgue"}), (e:Object {name: "excerpt"}), (ct:Object {name: "Cuvier text"}), (oo:Object {name: "Ourang-Outang"})
+MATCH (d:Character {name: "Dupin"}), (n:Character {name: "narrator"}), (r:Location {name: "Rue Morgue"}), (e:Object {name: "excerpt"}), (ct:Object {name: "Cuvier text"}), (oo:Object {name: "Ourang-Outang"})
 CREATE (d)-[r1:SHOWS]->(n),
 (d)-[r2:SHOWS]->(r),
 (d)-[r3:SHOWS]->(e),
@@ -1145,7 +1145,7 @@ CREATE (d)-[r17:PUTS]->(ad),
 // Create nodes
 MERGE (narrator:Character {name: "narrator"});
 MERGE (dupin:Character {name: "Dupin"});
-MERGE (rueMorgue:Location {name: "Rue-Morgue"});
+MERGE (rueMorgue:Location {name: "Rue Morgue"});
 MERGE (sailor:Object {name: "sailor"});
 MERGE (malteseVessel:Object {name: "Maltese vessel"});
 MERGE (ribbon:Object {name: "ribbon"});
@@ -1482,7 +1482,7 @@ CREATE (bo)-[r26:CONCEALED_OUT_OF]->(win);
 //// Paragraph 23 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (n:Character {name: "narrator"} {name: "narrator"});
-MERGE (rm:Rue_Morgue {name: "Rue-Morgue"});
+MERGE (rm:Rue_Morgue {name: "Rue Morgue"});
 MERGE (s:sailor {name: "sailor"});
 MERGE (oo:Ourang_Outang {name: "Ourang-Outang"});
 MERGE (lb:Le_Bon {name: "Le Bon"});
