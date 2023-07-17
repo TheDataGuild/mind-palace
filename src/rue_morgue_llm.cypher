@@ -1466,17 +1466,17 @@ CREATE (bo)-[r26:CONCEALED_OUT_OF]->(win);
 
 //// Paragraph 23 ///////////////////////////////////////////////////////////////
 // Create nodes
-MERGE (n:Character {name: "narrator"} {name: "narrator"});
-MERGE (rm:Rue_Morgue {name: "Rue Morgue"});
-MERGE (s:sailor {name: "sailor"});
-MERGE (oo:Ourang_Outang {name: "Ourang-Outang"});
-MERGE (lb:Le_Bon {name: "Le Bon"});
-MERGE (p:Prefect {name: "Prefect"});
-MERGE (d:Character {name: "Dupin"} {name: "Dupin"});
-MERGE (c:police {name: "police"});
+MERGE (n:Character {name: "narrator"});
+MERGE (rm:Location {name: "Rue Morgue"});
+MERGE (s:Character {name: "sailor"});
+MERGE (oo:Character {name: "Ourang-Outang"});
+MERGE (lb:Character {name: "Le Bon"});
+MERGE (p:Character {name: "Prefect"});
+MERGE (d:Character {name: "Dupin"});
+MERGE (c:Character {name: "police"});
 MERGE (cr:Object {name: "closing remarks"});
 MERGE (pr:Object {name: "price"});
-MERGE (pris:Object {name: "prison"});
+MERGE (pris:Location {name: "prison"});
 MERGE (sk:Object {name: "skill"});
 MERGE (q:Object {name: "quote"});
 
@@ -1485,35 +1485,34 @@ MATCH (n:Character {name: "narrator"}), (cr:Object {name: "closing remarks"})
 CREATE (n)-[r1:ADDS]->(cr);
 
 // Relation 2
-MATCH (s:sailor), (oo:Ourang_Outang)
+MATCH (s:Character {name: "sailor"}), (oo:Character {name: "Ourang-Outang"})
 CREATE (s)-[r2:RECAPTURES]->(oo);
 
 // Relation 3
-MATCH (s:sailor), (oo:Ourang_Outang), (pr:Object {name: "price"})
+MATCH (s:Character {name: "sailor"}), (oo:Character {name: "Ourang-Outang"}), (pr:Object {name: "price"})
 CREATE (s)-[r3:SELLS]->(oo)
-CREATE (oo)-[r3:IS_SOLD_FOR]->(pr);
+CREATE (oo)-[r4:IS_SOLD_FOR]->(pr);
 
 // Relation 4
-MATCH (lb:Le_Bon), (pris:Object {name: "prison"})
+MATCH (lb:Character {name: "Le Bon"}), (pris:Location {name: "prison"})
 CREATE (lb)-[r4:IS_RELEASED_FROM]->(pris);
 
 // Relation 5
-MATCH (p:Prefect), (sk:Object {name: "skill"})
-CREATE (p)-[r5:KNOWS_HE_IS_BEATEN]
-CREATE (sk)-[r5:BEATEN_BY]->(p);
+MATCH (p:Character {name: "Prefect"}), (d:Character {name: "Dupin"})
+CREATE (p)-[r5:KNOWS_HE_IS_BEATEN_BY]->(d);
 
 // Relation 6
-MATCH (p:Prefect), (d:Character {name: "Dupin"}), (sk:Object {name: "skill"})
+MATCH (p:Character {name: "Prefect"}), (d:Character {name: "Dupin"}), (sk:Object {name: "skill"})
 CREATE (p)-[r6:ANNOYED_AT {target: "Dupin's skill"}]->(d)
-CREATE (sk)-[r6:SKILL_OF]->(p);
+CREATE (sk)-[r7:SKILL_OF]->(p);
 
 // Relation 7
-MATCH (d:Character {name: "Dupin"}), (p:Prefect), (sk:Object {name: "skill"})
+MATCH (d:Character {name: "Dupin"}), (p:Character {name: "Prefect"}), (sk:Object {name: "skill"})
 CREATE (d)-[r7:KNOWS_WISDOM_IS_SHALLOW]->(p)
-CREATE (sk)-[r7:SHALLOW_WISDOM_OF]->(p);
+CREATE (sk)-[r8:SHALLOW_WISDOM_OF]->(p);
 
 // Relation 8
-MATCH (d:Character {name: "Dupin"}), (p:Prefect)
+MATCH (d:Character {name: "Dupin"}), (p:Character {name: "Prefect"})
 CREATE (d)-[r8:CONSIDERS {target: "Prefect"}]->(p)
 SET r8.description = "good creature";
 
@@ -1526,3 +1525,5 @@ SET r9.tone = "condescending";
 MATCH (q:Object {name: "quote"}), (sk:Object {name: "skill"})
 CREATE (q)-[r10:DESCRIBES]->(sk)
 SET r10.target = "Prefect's main skill";
+
+// 255 nodes, 276 relations
