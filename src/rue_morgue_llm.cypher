@@ -1179,7 +1179,7 @@ MERGE (p:Object {name: "pistols"});
 MERGE (s:Location {name: "stairs"});
 MERGE (do:Location {name: "door"});
 MERGE (c:Location {name: "chamber"});
-MERGE (sa:Testimony {name: "sailor"});
+MERGE (ms:Character {name: "Maltese sailor"});
 
 // Relation 1
 MATCH (a:Character {name: "They"})
@@ -1190,36 +1190,38 @@ MATCH (a:Character {name: "They"}), (p:Object {name: "pistols"})
 CREATE (a)-[r2:READY]->(p);
 
 // Relation 3
-MATCH (a:Character {name: "They"}), (sa:Testimony {name: "sailor"}), (s:Location {name: "stairs"})
-CREATE (a)-[r3:HEARS]->(sa)
-CREATE (sa)-[r4:COMES_UP]->(s);
+MATCH (a:Character {name: "They"}), (ms:Character {name: "Maltese sailor"}), (s:Location {name: "stairs"})
+CREATE (a)-[r3:HEARS]->(ms)
+CREATE (ms)-[r4:COMES_UP]->(s);
 
 // Relation 4
-MATCH (sa:Testimony {name: "sailor"}), (do:Location {name: "door"}), (c:Location {name: "chamber"})
-CREATE (sa)-[r5:KNOCKS_ON]->(do)
+MATCH (ms:Character {name: "Maltese sailor"}), (do:Location {name: "door"}), (c:Location {name: "chamber"})
+CREATE (ms)-[r5:KNOCKS_ON]->(do)
 CREATE (do)-[r6:LEADS_TO]->(c);
 
 // Relation 5
-MATCH (a:Testimony {name: "sailor"})
-SET a.appearance = "sailor's";
+MATCH (ms:Character {name: "Maltese sailor"})
+SET ms.appearance = "sailor's";
 
 // Relation 6
-MATCH (a:Testimony {name: "sailor"})
-SET a.physical_condition = "muscular and hardy";
+MATCH (ms:Character {name: "Maltese sailor"})
+SET ms.physical_condition = "muscular and hardy";
 
 // Relation 7
-MATCH (a:Testimony {name: "sailor"}), (d:Character {name: "Dupin"})
-CREATE (a)-[r7:GREETS_WITH {accent: "French"}]->(d);
+MATCH (ms:Character {name: "Maltese sailor"}), (d:Character {name: "Dupin"})
+CREATE (ms)-[r7:GREETS_WITH {accent: "French"}]->(d);
 
 // Relation 8
-MATCH (a:Character {name: "Dupin"}), (sa:Testimony {name: "sailor"})
-CREATE (a)-[r8:INVITES_IN]->(sa)
+MATCH (a:Character {name: "Dupin"}), (ms:Character {name: "Maltese sailor"})
+CREATE (a)-[r8:INVITES_IN]->(ms)
 SET r8.sentiment = "pleasantly";
 
 // Relation 9
-MATCH (a:Character {name: "Dupin"}), (sa:Testimony {name: "sailor"})
-CREATE (a)-[r9:COMPLIMENTS]->(sa)
+MATCH (a:Character {name: "Dupin"}), (ms:Character {name: "Maltese sailor"})
+CREATE (a)-[r9:COMPLIMENTS]->(ms)
 SET r9.topic = "the species that has brought him here";
+
+// 222 nodes, 218 relations
 
 //// Paragraph 21 ///////////////////////////////////////////////////////////////
 // Create nodes
@@ -1315,13 +1317,15 @@ MATCH (c:Testimony {name: "concealment"}), (h:Testimony {name: "honesty"})
 CREATE (c)-[r18:SENSE_IN]->(h)
 SET r18.comparison = "more";
 
+// 230 nodes, 232 relations
+
 //// Paragraph 22 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (s:Character {name: "sailor"});
-MERGE (b:Character {name: "Borneo"});
+MERGE (b:Location {name: "Borneo"});
 MERGE (sm:Character {name: "shipmate"});
 MERGE (oo:Character {name: "Ourang-Outang"});
-MERGE (p:Character {name: "Paris"});
+MERGE (p:Location {name: "Paris"});
 MERGE (a:Character {name: "ape"});
 MERGE (d:Character {name: "Dupin"});
 MERGE (m:Character {name: "Madames"});
@@ -1348,13 +1352,13 @@ CREATE (s)-[r1:TELLS]->(st)
 SET r1.scope = "his";
 
 // Relation 2
-MATCH (s:Character {name: "sailor"}), (b:Character {name: "Borneo"})
+MATCH (s:Character {name: "sailor"}), (b:Location {name: "Borneo"})
 CREATE (s)-[r2:VOYAGED_TO]->(b);
 
 // Relation 3
 MATCH (s:Character {name: "sailor"}), (oo:Character {name: "Ourang-Outang"}), (sm:Character {name: "shipmate"})
 CREATE (s)-[r3:CAPTURED_WITH]->(oo)
-CREATE (sm)-[r3:CAPTURED_WITH]->(oo);
+CREATE (sm)-[r4:CAPTURED_WITH]->(oo);
 
 // Relation 4
 MATCH (sm:Character {name: "shipmate"}), (s:Character {name: "sailor"})
@@ -1365,9 +1369,9 @@ MATCH (s:Character {name: "sailor"}), (a:Character {name: "ape"})
 CREATE (s)-[r5:LEFT_ALONE_WITH]->(a);
 
 // Relation 6
-MATCH (s:Character {name: "sailor"}), (a:Character {name: "ape"}), (p:Character {name: "Paris"})
+MATCH (s:Character {name: "sailor"}), (a:Character {name: "ape"}), (p:Location {name: "Paris"})
 CREATE (s)-[r6:LODGED_WITH]->(a)
-CREATE (a)-[r6:LODGED_WITH]->(p);
+CREATE (a)-[r7:LODGED_WITH]->(p);
 
 // Relation 7
 MATCH (s:Character {name: "sailor"})
@@ -1380,12 +1384,12 @@ CREATE (a)-[r8:OUT_OF]->(c);
 // Relation 9
 MATCH (a:Character {name: "ape"}), (s:Character {name: "sailor"}), (r:Object {name: "routine"})
 CREATE (a)-[r9:IMITATES {action: "shaving routine"}]->(r)
-CREATE (s)-[r9:IMITATES {action: "shaving routine"}]->(r);
+CREATE (s)-[r10:IMITATES {action: "shaving routine"}]->(r);
 
 // Relation 10
 MATCH (s:Character {name: "sailor"}), (oo:Character {name: "Ourang-Outang"}), (w:Object {name: "whip"})
 CREATE (s)-[r10:TRIES_TO_WHIP]->(oo)
-CREATE (w)-[r10:USED_ON {target: "Ourang-Outang"}]->(oo);
+CREATE (w)-[r11:USED_ON {target: "Ourang-Outang"}]->(oo);
 
 // Relation 11
 MATCH (w:Object {name: "whip"}), (oo:Character {name: "Ourang-Outang"})
@@ -1438,19 +1442,17 @@ CREATE (s)-[r21:WITNESSES]->(:Event {name: "whole event"});
 // Relation 22
 MATCH (mo:Character {name: "mother"}), (dau:Character {name: "daughter"}), (oo:Character {name: "Ourang-Outang"}), (scre:Evidence {name: "screams"})
 CREATE (mo)-[r22:FRIGHTENS]->(oo)
-CREATE (dau)-[r22:FRIGHTENS]->(oo)
-CREATE (scre)-[r22:PRODUCED_DURING {event: "screams"}]->(oo);
+CREATE (dau)-[r23:FRIGHTENS]->(oo)
+CREATE (scre)-[r24:PRODUCED_DURING {event: "screams"}]->(oo);
 
 // Relation 23
-MATCH (oo:
-
-Ourang-Outang"), (gu:Evidence {name: "guilt"})
+MATCH (oo:Character {name: "Ourang-Outang"}), (gu:Evidence {name: "guilt"})
 SET oo.emotion = "enraged";
 
 // Relation 24
 MATCH (oo:Character {name: "Ourang-Outang"}), (s:Character {name: "sailor"}), (bo:Object {name: "bodies"})
 CREATE (oo)-[r24:CONCEALS]->(bo)
-CREATE (s)-[r24:CONCEALS]->(bo);
+CREATE (s)-[r25:CONCEALS]->(bo);
 
 // Relation 25
 MATCH (bo:Object {name: "bodies"}), (fp:Location {name: "fireplace"})
@@ -1459,6 +1461,8 @@ CREATE (bo)-[r25:CONCEALED_IN]->(fp);
 // Relation 26
 MATCH (bo:Object {name: "bodies"}), (win:Location {name: "window"})
 CREATE (bo)-[r26:CONCEALED_OUT_OF]->(win);
+
+// 250 nodes, 263 relations
 
 //// Paragraph 23 ///////////////////////////////////////////////////////////////
 // Create nodes
