@@ -1016,6 +1016,8 @@ SET r8.explanation = "was in fact sustained from her fall";
 MATCH (o1:Object {name: "crime"}), (e:Evidence {name: "method of the crime"})
 CREATE (o1)-[r9:INCLUDES]->(e);
 
+// 182 nodes, 166 relations
+
 //// Paragraph 17 ///////////////////////////////////////////////////////////////
 // Create nodes
 MERGE (d:Character {name: "Dupin"});
