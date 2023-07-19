@@ -8,9 +8,47 @@ A v1 property graph model of the murders in Edgar Allen Poe's short story "The M
 
 This model is persisted on our Neo4J database at `neo4j+s://96bb6c6e.databases.neo4j.io`.
 
-## Methodology
+## Solving the crime
 
-Going from text directly to Cypher ends up with a disconnected graph that's all over the place. Thus, we need to provide some modelling constraint. Here's an approach taken for this v1 model,
+Can we solve this crime using only the property graph and no prior knowledge?
+
+First, let's see what node labels we have.
+
+```
+$ match (n) return distinct labels(n);
+
+["Object"]
+["Location"]
+["Character"]
+["neighbors"]
+["police"]
+["Testimony"]
+[]
+["Evidence"]
+["Event"]
+```
+
+We see that there are two node labels that are relevant to our investigation: Evidence and Character. Let's use the Neo4J Bloom Explorer to see which characters are connected to evidences.
+
+![(Evidence) - (Character)](evidence-chracter.png)
+
+Character `Ourang-Outang` seems suspicious with its connection to `screams`. Let's see what other relations Ourang-Outang has by expanding all its neighbours.
+
+![(Ourang-Outang)](ourang-outang.png)
+
+The relation `CONCEALS` between `Ourang-Outang` and `bodies` seems important. Let's expand the `bodies` node to see what other relations it has.
+
+![(bodies)](bodies.png)
+
+At this point, we hit a roadblock. The relations between `bodies` and the `mother` and `daughter` (victims) are missing. These relations were mentioned in the text, but they were not extracted from the text.
+
+The relation between `screams` and a `Testimony` by a `Witness` is also missing. This is another critical piece of information that is not in the data.
+
+Without these missing relations, we cannot solve the crime. The data extraction process failed to extract these important relations. If these relations had been extracted, we would have been able to identify `Ourang-Outang` as the murderer.
+
+## Data Extraction Process
+
+Going from text directly to Cypher ends up with a disconnected graph that's all over the place (it's a quality spectrum, because it still is, just less so). Thus, we need to provide some modelling constraint. Here's an approach taken for this v1 model,
 
 Applying a 2 stage approach.
 
