@@ -21,3 +21,11 @@ Stage 2 `modelling_relations.md`, using the node types from Stage 1, apply a ser
 Reference: https://github.com/TheDataGuild/mind-palace/pull/1
 
 Note that we're using a third-party summary instead of the original text so that it's easier to go back and forth manually while figuring out this process. One of the next steps is to do-away with this extra summary requirement.
+
+## Known shortcomings
+
+- dirty nodes, e.g. police and policeman should be the same Character node
+- erroneous relations (false positives), e.g. `(dupin)-[:BELONGS_TO]->(sailor)` doesn't make sense at all
+- missing relations (false negatives), e.g.
+- large quantity of errors
+- lack of source reference, see [ticket](https://github.com/TheDataGuild/mind-palace/issues/2)
