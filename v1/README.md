@@ -71,3 +71,18 @@ Without these missing relations, we cannot solve the crime. The data extraction 
 - missing relations (false negatives), e.g. `(bodies)-[:BELONGS_TO]->(mother)` is missing
 - large quantity of errors
 - lack of source reference, see [ticket](https://github.com/TheDataGuild/mind-palace/issues/2)
+
+## Next Step Ideas
+
+### Divide and conquer
+
+break down into smaller steps and optimize the pipeline piece by piece
+
+### Step back into more simplistic, more deterministic models
+
+e.g. NER + co-occurrence only graph
+
+### Fine-tune/LoRA a *-property-graph LLM
+
+akin to `gpt-instruction` tuning, can we do something similar here?
+
