@@ -66,23 +66,20 @@ Without these missing relations, we cannot solve the crime. The data extraction 
 
 ## Known shortcomings
 
-- dirty data, e.g. police and policeman should be the same Character node
-- erroneous relations (false positives), e.g. `(dupin)-[:BELONGS_TO]->(sailor)` doesn't make sense at all
-- missing relations (false negatives), e.g. `(bodies)-[:BELONGS_TO]->(mother)` is missing
-- large quantity of errors
-- lack of source reference, see [ticket](https://github.com/TheDataGuild/mind-palace/issues/2)
+The current text-to-graph pipeline has the following shortcomings:
+
+- Dirty data: There are some inconsistencies in the data, such as the entity "police" and "policeman" being treated as two different nodes.
+- Erroneous relations: Some of the relations in the graph are incorrect, such as the relation `(dupin)-[:BELONGS_TO]->(sailor)`, which does not make sense.
+- Missing relations: Some of the necessary relations are missing, such as the relation `(bodies)-[:BELONGS_TO]->(mother)`.
+- Large quantity of errors: There are a large number of errors in the graph.
+- Lack of source reference: See [ticket](https://github.com/TheDataGuild/mind-palace/issues/2)
 
 ## Next Step Ideas
 
-### Divide and conquer
+Here are some ideas for how to improve the quality of the text-to-graph pipeline:
 
-break down into smaller steps and optimize the pipeline piece by piece
-
-### Step back into more simplistic, more deterministic models
-
-e.g. NER + co-occurrence only graph
-
-### Fine-tune/LoRA a *-property-graph LLM
-
-akin to `gpt-instruction` tuning, can we do something similar here?
+- Measure quality: We need to develop a way to measure the quality of a text-to-graph pipeline. This will allow us to compare different approaches and identify the best one.
+- Divide and conquer: We can break down the pipeline into smaller steps and optimize each step individually. This will make it easier to identify and correct errors.
+- Step back: We can step back to more simplistic, more deterministic models. For example, we could use NER (named entity recognition) and co-occurrence only graph.
+- Fine-tune/LoRA a text-to-property-graph LLM: Similar to how a foundational model is fine-tuned for instructions, or chat, or domain specific tasks.
 
