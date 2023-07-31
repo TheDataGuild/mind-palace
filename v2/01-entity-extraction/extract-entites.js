@@ -14,11 +14,19 @@ const fs = require('fs');
 const openai = require('openai');
 
 
+fs.access('./v2/01-entity-extraction/output/extracted-entities.json', fs.constants.F_OK, (err) => {
+    if (err) {
+        console.error("Error: extracted-entities.json is not present");
+        throw err;
+    }
+});
+
 fs.readFile('./resources/Tales_(Poe)_The_Murders_in_the_Rue_Morgue.txt', 'utf8', async function (err, data) {
     if (err) {
         console.error(err);
         return;
     }
+
 
     const { Configuration, OpenAIApi } = require("openai");
 
@@ -27,29 +35,40 @@ fs.readFile('./resources/Tales_(Poe)_The_Murders_in_the_Rue_Morgue.txt', 'utf8',
     });
     const openai = new OpenAIApi(configuration);
 
+    const SECTION_SIZE = 6000
+
     // Split the data into sections of maximum 6k words
     const sections = data.split(' ').reduce((acc, word, i) => {
-        if (i % 6000 === 0) acc.push('');
+        if (i % SECTION_SIZE === 0) {
+            acc.push('');
+            console.log(`Initializing section ${acc.length}. Batch size: ${SECTION_SIZE} characters`);
+        }
         acc[acc.length - 1] += ` ${word}`;
         return acc;
     }, []);
 
     // Call the API in a loop for each section
     let results = [];
-    for (const section of sections) {
+    for (const [index, section] of sections.entries()) {
+        console.log(`Processing section ${index + 1} of ${sections.length}`);
         const completion = await openai.createChatCompletion({
             model: "gpt-4",
-            messages: [{ "role": "system", "content": "You are a entity extractor. List all the entitites in the text." }, {
+            messages: [{ "role": "system", "content": "You are a entity extractor. List all the entitites in the text as json, don't include linebreaks" }, {
                 role: "user", content: `
                 ${section} 
             ` }],
         });
-        results.push(completion.data.choices[0].message);
+        // Save results and remove newline chars
+        // const result = completion.data.choices[0].message?.replace(/\n/g, ' ');
+        const result = completion.data.choices[0].message;
+        console.log(`Section ${index + 1} processed. Length ${result}. Result seems well-formed: ${result !== undefined}`);
+        results.push(result);
     }
 
     // Write the results to extracted-entities.json
-    fs.writeFile('./extracted-entities.json', JSON.stringify(results), (err) => {
+    fs.writeFile('./v2/01-entity-extraction/output/extracted-entities.json', JSON.stringify(results), (err) => {
         if (err) {
+            console.log(results);
             console.error(err);
             return;
         }

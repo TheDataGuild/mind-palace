@@ -13,3 +13,8 @@ Understand capabilities of GPT-4
 - Does it invent entities?
 - How does it help model relationships (assuming this part can not be fully automated)
 - Does a vector store really help? Are the same entities revealed in clusters? Can it help characterize relationships?
+
+### Setup / Installation
+
+- Add GPT-4 enabled account API key to a .env file, using .env-example template.
+- Execute the entity extractor potentially like this: `node ./01-entity-extraction/extract-entities.js`
