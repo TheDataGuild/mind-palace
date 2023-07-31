@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "tiktoken": "^1.0.10"
+  }
+}
