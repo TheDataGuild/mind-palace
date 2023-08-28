@@ -1,0 +1,13 @@
+#!/bin/bash
+
+for file in $(git diff --staged --diff-filter=d --name-only | grep -E '\.(py)$')
+do
+  black "$file"
+  git add "$file"
+
+  if [ $? -ne 0 ]
+  then
+    echo "black was unable to format '$file'."
+    exit 1
+  fi
+done

@@ -1,0 +1,5 @@
+-r build.txt
+
+pytest
+black
+
