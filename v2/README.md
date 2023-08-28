@@ -25,6 +25,6 @@ deactivate
 Run the following command once to setup the local git hooks to black formatting:
 
 ```
-$ git config core.hooksPath ./git-hooks
+$ git config core.hooksPath ./git_hooks
 ```
 
