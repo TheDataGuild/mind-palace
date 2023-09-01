@@ -20,8 +20,7 @@ from llama_index import VectorStoreIndex
 
 service_context = ServiceContext.from_defaults(
     llm=OpenAI(model="gpt-3.5-turbo"),
-    # increased batch size from default of 10 to 50 to mitigate OpenAI rate limit error
-    embed_model=OpenAIEmbedding(embed_batch_size=50)
+    embed_model="local"
 )
 
 # index = VectorStoreIndex.from_documents(docs, service_context=service_context, show_progress=True)

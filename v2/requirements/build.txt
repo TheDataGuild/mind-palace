@@ -1,3 +1,4 @@
 pypdf
 nltk
+sentence_transformers
 llama-index
