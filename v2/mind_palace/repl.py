@@ -1,3 +1,5 @@
+# Load in documents
+
 from llama_index import SimpleDirectoryReader
 
 required_exts = [".pdf"]
@@ -9,7 +11,17 @@ docs = SimpleDirectoryReader(
 print(f"Loaded {len(docs)} docs")
 # each page of a PDF becomes a separate doc object
 
-from llama_index.schema import MetadataMode
-print("The LLM sees this: \n", docs[0].get_content(metadata_mode=MetadataMode.LLM))
-print("The Embedding model sees this: \n", docs[0].get_content(metadata_mode=MetadataMode.EMBED))
+# Index Construction
+from llama_index.llms import OpenAI
+from llama_index.embeddings import OpenAIEmbedding
 
+from llama_index import ServiceContext
+from llama_index import VectorStoreIndex
+
+service_context = ServiceContext.from_defaults(
+    llm=OpenAI(model="gpt-3.5-turbo"),
+    # increased batch size from default of 10 to 50 to mitigate OpenAI rate limit error
+    embed_model=OpenAIEmbedding(embed_batch_size=50)
+)
+
+# index = VectorStoreIndex.from_documents(docs, service_context=service_context, show_progress=True)
