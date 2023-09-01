@@ -7,6 +7,7 @@ required_exts = [".pdf"]
 docs = SimpleDirectoryReader(
     input_dir="./resources/pdfs", required_exts=required_exts
 ).load_data()
+# Q: we could use a better text extractor supporting section-aware extraction
 
 print(f"Loaded {len(docs)} docs")
 # each page of a PDF becomes a separate doc object
@@ -21,6 +22,12 @@ from llama_index import VectorStoreIndex
 service_context = ServiceContext.from_defaults(
     llm=OpenAI(model="gpt-3.5-turbo"),
     embed_model="local"
+    # Q: how much does a better embedding model help?
 )
 
-# index = VectorStoreIndex.from_documents(docs, service_context=service_context, show_progress=True)
+# add docs to a VectorStoreIndex one at a time to avoid OpenAI rate limits
+index = VectorStoreIndex.from_documents(docs[:1], service_context=service_context)
+
+for doc in docs[1:]:
+    print(f"Adding {doc.metadata}")
+    index.insert(doc)
