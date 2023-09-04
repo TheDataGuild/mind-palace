@@ -52,3 +52,18 @@ def index_documents(documents):
 index, elapsed_time = time_function(lambda: index_documents(docs))
 print(f"Elapsed time {elapsed_time:.1f} seconds: Indexed {len(docs)} total pages (aka Documents) from {len(set([doc.metadata['file_name'] for doc in docs]))} PDFs")
 
+# Querying
+
+query_engine = index.as_query_engine()
+# This query calls out to OppenAI
+# response = query_engine.query("What are the potential applications of sonoporation in drug/gene delivery and cancer therapy?")
+
+# >>> print(response)
+# Sonoporation has potential applications in drug/gene delivery and cancer
+# therapy. It can be used for in vitro and in vivo gene/drug delivery studies,
+# as well as for cancer treatment. Sonoporation can also be utilized for
+# bio-marker extraction and has the potential to enhance the efficacy of
+# sonoporation-mediated drug/gene delivery through the development of proper
+# cytoprotection strategies. Furthermore, further innovations in
+# sonoporation-based treatment applications may be formulated.
+
