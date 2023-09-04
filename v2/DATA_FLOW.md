@@ -17,8 +17,19 @@
 
 
 
-## ...
 
 
 
-## Query
+## Conversational search
+
+## Retrieval-Augmented Generation
+
+## Citations
+
+## Quality control
+
+## Prompt design
+
+## LLM selection and fine-tuning
+
+## Query types and task analysis
