@@ -1,9 +1,9 @@
-import timer
+import measure
 import extract
 
 
 
-docs, elapsed_time = timer.time_function(extract.load_documents)
+docs, elapsed_time = measure.time_function(extract.load_documents)
 print(f"Elapsed time {elapsed_time:.1f} seconds: Loaded {len(docs)} total pages (aka Documents) from {len(set([doc.metadata['file_name'] for doc in docs]))} PDFs")
 
 # Index Construction
@@ -31,7 +31,7 @@ def index_documents(documents):
 
     return index
 
-index, elapsed_time = timer.time_function(lambda: index_documents(docs))
+index, elapsed_time = measure.time_function(lambda: index_documents(docs))
 print(f"Elapsed time {elapsed_time:.1f} seconds: Indexed {len(docs)} total pages (aka Documents) from {len(set([doc.metadata['file_name'] for doc in docs]))} PDFs")
 
 # Querying
