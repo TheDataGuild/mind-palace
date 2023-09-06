@@ -1,19 +1,9 @@
 import timer
+import extract
 
 
-def load_documents():
-    # TODO: refactor this step out (so I'm keeping it self-contained with imports for now)
-    from llama_index import SimpleDirectoryReader
 
-    required_exts = [".pdf"]
-
-    # Q: we could use a better text extractor supporting section-aware extraction
-    return SimpleDirectoryReader(
-        input_dir="./resources/pdfs/12-pdfs-from-steve-aug-22", required_exts=required_exts
-    ).load_data()
-
-
-docs, elapsed_time = timer.time_function(load_documents)
+docs, elapsed_time = timer.time_function(extract.load_documents)
 print(f"Elapsed time {elapsed_time:.1f} seconds: Loaded {len(docs)} total pages (aka Documents) from {len(set([doc.metadata['file_name'] for doc in docs]))} PDFs")
 
 # Index Construction
