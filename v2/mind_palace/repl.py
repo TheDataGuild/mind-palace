@@ -10,7 +10,7 @@ print(
 
 
 # Index Construction
-index, elapsed_time = measure.time_function(lambda: index.index_documents(docs))
+index, elapsed_time = measure.time_function(lambda: index.index_nodes(nodes))
 print(
     f"Elapsed time {elapsed_time:.1f} seconds: Indexed {len(docs)} total pages (aka Documents) from {len(set([doc.metadata['file_name'] for doc in docs]))} PDFs"
 )
