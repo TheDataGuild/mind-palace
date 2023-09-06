@@ -2,11 +2,15 @@ import measure
 import extract
 import index
 
+import llama_index as li
 
+
+# PDF Extraction
 docs, elapsed_time = measure.time_function(extract.load_documents)
 print(
     f"Elapsed time {elapsed_time:.1f} seconds: Loaded {len(docs)} total pages (aka Documents) from {len(set([doc.metadata['file_name'] for doc in docs]))} PDFs"
 )
+nodes = extract.nodes(docs)
 
 
 # Index Construction
