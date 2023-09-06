@@ -2,9 +2,11 @@ import measure
 import extract
 
 
-
 docs, elapsed_time = measure.time_function(extract.load_documents)
-print(f"Elapsed time {elapsed_time:.1f} seconds: Loaded {len(docs)} total pages (aka Documents) from {len(set([doc.metadata['file_name'] for doc in docs]))} PDFs")
+print(
+    f"Elapsed time {elapsed_time:.1f} seconds: Loaded {len(docs)} total pages (aka Documents) from {len(set([doc.metadata['file_name'] for doc in docs]))} PDFs"
+)
+
 
 # Index Construction
 def index_documents(documents):
@@ -23,7 +25,9 @@ def index_documents(documents):
     # add docs to a VectorStoreIndex one at a time to avoid OpenAI rate limits
     # note that we reverted to not using OpenAI for embedding for now because it's slow
     print(f"Adding {docs[0].metadata}")
-    index = VectorStoreIndex.from_documents(documents[:1], service_context=service_context)
+    index = VectorStoreIndex.from_documents(
+        documents[:1], service_context=service_context
+    )
 
     for doc in documents[1:]:
         print(f"Adding {doc.metadata}")
@@ -31,8 +35,11 @@ def index_documents(documents):
 
     return index
 
+
 index, elapsed_time = measure.time_function(lambda: index_documents(docs))
-print(f"Elapsed time {elapsed_time:.1f} seconds: Indexed {len(docs)} total pages (aka Documents) from {len(set([doc.metadata['file_name'] for doc in docs]))} PDFs")
+print(
+    f"Elapsed time {elapsed_time:.1f} seconds: Indexed {len(docs)} total pages (aka Documents) from {len(set([doc.metadata['file_name'] for doc in docs]))} PDFs"
+)
 
 # Querying
 
