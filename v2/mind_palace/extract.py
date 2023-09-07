@@ -1,5 +1,6 @@
 import llama_index as li
 from llama_index.schema import TextNode, NodeRelationship, RelatedNodeInfo
+import grobid_tei_xml
 
 
 def load_pdfs():
@@ -27,13 +28,16 @@ def nodes(documents, service_context=li.ServiceContext.from_defaults()):
 # 'metadata_seperator'])
 
 
-def seed_nodes():
+def load_tei_xml(path):
+    with open(path, "r") as xml_file:
+        doc = grobid_tei_xml.parse_document_xml(xml_file.read())
+
     node_title = TextNode(
-        text="Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration",
+        text=doc.header.title,
         id_="Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration-title",
     )
     node_abstract = TextNode(
-        text="The interaction of laser-generated tandem microbubble (maximum diameter of about 50 m) with single (rat mammary carcinoma) cells is investigated in a 25-m liquid layer. Antiphase and coupled oscillation of the tandem microbubble leads to the formation of alternating, directional microjets (with max microstreaming velocity of 10 m=s) and vortices (max vorticity of 350 000 s À1 ) in opposite directions. Localized and directional membrane poration (200 nm to 2 m in pore size) can be produced by the tandem microbubble in an orientation and proximity-dependent manner, which is absent from a single oscillating microbubble of comparable size and at the same stand-off distance.",
+        text=doc.abstract,
         id_="Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration-abstract",
     )
     # set relationships
@@ -41,3 +45,9 @@ def seed_nodes():
         node_id=node_title.node_id
     )
     return [node_title, node_abstract]
+
+
+def seed_nodes():
+    xml_path = "./resources/pdfs/12-pdfs-from-steve-aug-22/xml/2010_PhysRevLett_Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration.pdf.tei.xml"
+    return load_tei_xml(xml_path)
+
