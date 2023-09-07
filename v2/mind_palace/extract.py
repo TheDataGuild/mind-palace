@@ -1,5 +1,7 @@
+import os
 import llama_index as li
 from llama_index.schema import TextNode, NodeRelationship, RelatedNodeInfo
+import grobid_tei_xml
 
 
 def load_pdfs():
@@ -27,17 +29,49 @@ def nodes(documents, service_context=li.ServiceContext.from_defaults()):
 # 'metadata_seperator'])
 
 
-def seed_nodes():
-    node_title = TextNode(
-        text="Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration",
-        id_="Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration-title",
-    )
-    node_abstract = TextNode(
-        text="The interaction of laser-generated tandem microbubble (maximum diameter of about 50 m) with single (rat mammary carcinoma) cells is investigated in a 25-m liquid layer. Antiphase and coupled oscillation of the tandem microbubble leads to the formation of alternating, directional microjets (with max microstreaming velocity of 10 m=s) and vortices (max vorticity of 350 000 s À1 ) in opposite directions. Localized and directional membrane poration (200 nm to 2 m in pore size) can be produced by the tandem microbubble in an orientation and proximity-dependent manner, which is absent from a single oscillating microbubble of comparable size and at the same stand-off distance.",
-        id_="Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration-abstract",
-    )
-    # set relationships
-    node_abstract.relationships[NodeRelationship.PARENT] = RelatedNodeInfo(
-        node_id=node_title.node_id
-    )
-    return [node_title, node_abstract]
+def _load_tei_xml(path):
+    with open(path, "r") as xml_file:
+        doc = grobid_tei_xml.parse_document_xml(xml_file.read())
+
+    filename = os.path.basename(path)
+
+    try:
+        node_title = TextNode(
+            text=doc.header.title,
+            id_=f"{filename}-title",
+        )
+        node_abstract = TextNode(
+            text=doc.abstract,
+            id_=f"{filename}-abstract",
+        )
+        # TODO: load more sections
+
+        node_abstract.relationships[NodeRelationship.PARENT] = RelatedNodeInfo(
+            node_id=node_title.node_id
+        )
+        return [node_title, node_abstract]
+    except Exception as e:
+        print(f"failed to load {path} because {e}")
+        return None
+
+
+def _get_file_paths(directory_path):
+    file_paths = []
+    for filename in os.listdir(directory_path):
+        file_path = os.path.join(directory_path, filename)
+        if os.path.isfile(file_path):
+            file_paths.append(file_path)
+    return file_paths
+
+
+def seed_nodes(input_dir):
+    nodes = []
+    file_paths = _get_file_paths(input_dir)
+
+    for file_path in file_paths:
+        print(f"loading {file_path}")
+        node = _load_tei_xml(file_path)
+        if node:
+            nodes.extend(node)
+
+    return nodes

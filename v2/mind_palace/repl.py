@@ -6,7 +6,8 @@ import llama_index as li
 
 
 # PDF Extraction
-nodes = extract.seed_nodes()
+input_dir="./resources/pdfs/12-pdfs-from-steve-aug-22/xml"
+nodes = extract.seed_nodes(input_dir)
 
 
 # Index Construction
