@@ -1,3 +1,4 @@
+import os
 import llama_index as li
 from llama_index.schema import TextNode, NodeRelationship, RelatedNodeInfo
 import grobid_tei_xml
@@ -32,13 +33,15 @@ def load_tei_xml(path):
     with open(path, "r") as xml_file:
         doc = grobid_tei_xml.parse_document_xml(xml_file.read())
 
+    filename = os.path.basename(path)
+
     node_title = TextNode(
         text=doc.header.title,
-        id_="Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration-title",
+        id_=f"{filename}-title",
     )
     node_abstract = TextNode(
         text=doc.abstract,
-        id_="Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration-abstract",
+        id_=f"{filename}-abstract",
     )
     # set relationships
     node_abstract.relationships[NodeRelationship.PARENT] = RelatedNodeInfo(
