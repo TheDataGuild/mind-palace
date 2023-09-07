@@ -11,9 +11,7 @@ nodes = extract.seed_nodes()
 
 # Index Construction
 vector_index, elapsed_time = measure.time_function(lambda: index.index_nodes(nodes))
-print(
-    f"Elapsed time {elapsed_time:.1f} seconds: Indexed {len(nodes)} nodes"
-)
+print(f"Elapsed time {elapsed_time:.1f} seconds: Indexed {len(nodes)} nodes")
 
 # Querying
 
