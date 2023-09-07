@@ -2,3 +2,4 @@ pypdf
 nltk
 sentence_transformers
 llama-index
+grobid_tei_xml
