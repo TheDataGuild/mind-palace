@@ -29,28 +29,49 @@ def nodes(documents, service_context=li.ServiceContext.from_defaults()):
 # 'metadata_seperator'])
 
 
-def load_tei_xml(path):
+def _load_tei_xml(path):
     with open(path, "r") as xml_file:
         doc = grobid_tei_xml.parse_document_xml(xml_file.read())
 
     filename = os.path.basename(path)
 
-    node_title = TextNode(
-        text=doc.header.title,
-        id_=f"{filename}-title",
-    )
-    node_abstract = TextNode(
-        text=doc.abstract,
-        id_=f"{filename}-abstract",
-    )
-    # set relationships
-    node_abstract.relationships[NodeRelationship.PARENT] = RelatedNodeInfo(
-        node_id=node_title.node_id
-    )
-    return [node_title, node_abstract]
+    try:
+        node_title = TextNode(
+            text=doc.header.title,
+            id_=f"{filename}-title",
+        )
+        node_abstract = TextNode(
+            text=doc.abstract,
+            id_=f"{filename}-abstract",
+        )
+        # TODO: load more sections
+
+        node_abstract.relationships[NodeRelationship.PARENT] = RelatedNodeInfo(
+            node_id=node_title.node_id
+        )
+        return [node_title, node_abstract]
+    except Exception as e:
+        print(f"failed to load {path} because {e}")
+        return None
 
 
-def seed_nodes():
-    xml_path = "./resources/pdfs/12-pdfs-from-steve-aug-22/xml/2010_PhysRevLett_Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration.pdf.tei.xml"
-    return load_tei_xml(xml_path)
+def _get_file_paths(directory_path):
+    file_paths = []
+    for filename in os.listdir(directory_path):
+        file_path = os.path.join(directory_path, filename)
+        if os.path.isfile(file_path):
+            file_paths.append(file_path)
+    return file_paths
 
+
+def seed_nodes(input_dir):
+    nodes = []
+    file_paths = _get_file_paths(input_dir)
+
+    for file_path in file_paths:
+        print(f"loading {file_path}")
+        node = _load_tei_xml(file_path)
+        if node:
+            nodes.extend(node)
+
+    return nodes
