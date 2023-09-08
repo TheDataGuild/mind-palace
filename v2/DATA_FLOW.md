@@ -4,7 +4,7 @@ Load scientific paper PDFs into structured data
 
 - [x] metadata extraction
 - [x] text extraction
-- [ ] section association
+- [ ] section association, Unstructured.io does it https://thedataguild.slack.com/archives/C05B9QZ9DRV/p1693951596478659?thread_ts=1693947861.704849&cid=C05B9QZ9DRV
 - [ ] data cleaning
 
 ### Status
