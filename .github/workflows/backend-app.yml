@@ -28,6 +28,10 @@ jobs:
         run: |
           pip install -r requirements/dev.txt
 
+      - name: Lint with ruff
+        run: |
+          ruff --format=github --ignore=E501 --exclude=tests/context.py .
+
       - name: Test with pytest
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
