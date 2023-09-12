@@ -2,8 +2,6 @@ import measure
 import extract
 import index
 
-import llama_index as li
-
 
 # PDF Extraction
 input_dir = "./resources/pdfs/12-pdfs-from-steve-aug-22/xml"

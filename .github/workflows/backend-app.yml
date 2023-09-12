@@ -1,0 +1,43 @@
+name: Backend Python application
+
+on: [push]
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: '**/requirements/dev.txt'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements/dev.txt
+
+      - name: Lint with ruff
+        run: |
+          ruff --format=github --ignore=E501 --exclude=tests/context.py .
+
+      - name: Format check with black
+        run: |
+          black --check .
+
+      - name: Test with pytest
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          pytest

@@ -1,5 +1,6 @@
 -r build.txt
 
 pytest
+ruff
 black
 
