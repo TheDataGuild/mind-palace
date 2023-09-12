@@ -1,14 +1,23 @@
 from .context import extract
+import grobid_tei_xml.types as grobid_types
 
 XML_PATH = "./resources/pdfs/12-pdfs-from-steve-aug-22/xml/"
 
 
 def test_load_tei_xml():
-    nodes_dict = extract._load_tei_xml(
+    xml = extract._load_tei_xml(
         XML_PATH
         + "2010_PhysRevLett_Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration.pdf.tei.xml"
     )
-    assert isinstance(nodes_dict, dict)
+    assert isinstance(xml, grobid_types.GrobidDocument)
+
+
+def test_gen_document_dict():
+    xml = extract._load_tei_xml(
+        XML_PATH
+        + "2010_PhysRevLett_Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration.pdf.tei.xml"
+    )
+    nodes_dict = extract._gen_document_dict(xml)
     for node in nodes_dict.values():
         assert isinstance(node, extract.TextNode)
 

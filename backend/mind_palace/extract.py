@@ -29,20 +29,23 @@ def nodes(documents, service_context=li.ServiceContext.from_defaults()):
 # 'metadata_seperator'])
 
 
-def _load_tei_xml(path) -> dict[str, TextNode]:
-    with open(path, "r") as xml_file:
-        doc = grobid_tei_xml.parse_document_xml(xml_file.read())
+def _load_tei_xml(filepath):
+    with open(filepath, "r") as xml_file:
+        return grobid_tei_xml.parse_document_xml(xml_file.read())
 
-    filename = os.path.basename(path)
+
+def _gen_document_dict(xml) -> dict[str, TextNode]:
+    doi = xml.header.doi
+    assert doi is not None
 
     try:
         node_title = TextNode(
-            text=doc.header.title,
-            id_=f"{filename}-title",
+            text=xml.header.title,
+            id_=f"{doi}-title",
         )
         node_abstract = TextNode(
-            text=doc.abstract,
-            id_=f"{filename}-abstract",
+            text=xml.abstract,
+            id_=f"{doi}-abstract",
         )
         # TODO: load more sections
 
@@ -51,8 +54,8 @@ def _load_tei_xml(path) -> dict[str, TextNode]:
         )
         return {"title": node_title, "abstract": node_abstract}
     except Exception as e:
-        print(f"failed to load {path} because {e}")
-        return None
+        print(f"failed to load DOI {doi} because {e}")
+        return {}
 
 
 def _get_file_paths(directory_path):
@@ -70,7 +73,8 @@ def seed_nodes(input_dir) -> list[TextNode]:
 
     for file_path in file_paths:
         print(f"loading {file_path}")
-        nodes_dict = _load_tei_xml(file_path)
+        xml_data = _load_tei_xml(file_path)
+        nodes_dict = _gen_document_dict(xml_data)
         if nodes_dict:
             for node in nodes_dict.values():
                 nodes.append(node)
