@@ -20,11 +20,3 @@ When done, remember to run
 deactivate
 ```
 
-### Requirement
-
-Run the following command once to setup the local git hooks to black formatting:
-
-```
-$ git config core.hooksPath ./git_hooks
-```
-
