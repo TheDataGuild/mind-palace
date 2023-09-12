@@ -27,5 +27,7 @@ jobs:
           python -m pip install --upgrade -r requirements/dev.txt
 
       - name: Test with pytest
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           pytest
