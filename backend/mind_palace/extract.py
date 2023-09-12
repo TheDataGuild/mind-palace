@@ -29,7 +29,7 @@ def nodes(documents, service_context=li.ServiceContext.from_defaults()):
 # 'metadata_seperator'])
 
 
-def _load_tei_xml(path):
+def _load_tei_xml(path) -> dict[str, TextNode]:
     with open(path, "r") as xml_file:
         doc = grobid_tei_xml.parse_document_xml(xml_file.read())
 
@@ -49,7 +49,7 @@ def _load_tei_xml(path):
         node_abstract.relationships[NodeRelationship.PARENT] = RelatedNodeInfo(
             node_id=node_title.node_id
         )
-        return [node_title, node_abstract]
+        return {"title": node_title, "abstract": node_abstract}
     except Exception as e:
         print(f"failed to load {path} because {e}")
         return None
@@ -64,14 +64,15 @@ def _get_file_paths(directory_path):
     return file_paths
 
 
-def seed_nodes(input_dir):
+def seed_nodes(input_dir) -> list[TextNode]:
     nodes = []
     file_paths = _get_file_paths(input_dir)
 
     for file_path in file_paths:
         print(f"loading {file_path}")
-        node = _load_tei_xml(file_path)
-        if node:
-            nodes.extend(node)
+        nodes_dict = _load_tei_xml(file_path)
+        if nodes_dict:
+            for node in nodes_dict.values():
+                nodes.append(node)
 
     return nodes
