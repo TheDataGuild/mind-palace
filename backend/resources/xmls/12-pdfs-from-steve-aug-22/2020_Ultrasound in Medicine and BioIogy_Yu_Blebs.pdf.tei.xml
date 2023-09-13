@@ -1,0 +1,2126 @@
+<?xml version="1.0" encoding="UTF-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Plasma Membrane Blebbing Dynamics Involved in the Reversibly Perforated Cell by Ultrasound-Driven Microbubbles</title>
+				<funder ref="#_8VTzg4p #_ysF5VGy">
+					<orgName type="full">National Natural Science Foundation of China</orgName>
+					<orgName type="abbreviated">NSFC</orgName>
+					<idno type="DOI" subtype="crossref">10.13039/501100001809</idno>
+				</funder>
+				<funder ref="#_VvH7nFU #_bvtSrjR">
+					<orgName type="full">Program of Medicine and Engineering Cross Fund of Shanghai Jiao Tong University</orgName>
+				</funder>
+				<funder ref="#_sqBKJDP">
+					<orgName type="full">SMC Rising Star Fund of Shanghai Jiao Tong University</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Elsevier BV</publisher>
+				<availability status="unknown"><p>Copyright Elsevier BV</p>
+				</availability>
+				<date type="published" when="2021-03">2021-03</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Caixia</forename><surname>Jia</surname></persName>
+						</author>
+						<author>
+							<persName coords="1,156.25,202.36,53.14,10.48"><forename type="first">Jianmin</forename><surname>Shi</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Instrument Science and Engineering</orgName>
+								<orgName type="institution">Shanghai Jiao Tong University</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><surname>Yao Yao</surname></persName>
+						</author>
+						<author>
+							<persName coords="1,275.87,202.36,40.02,10.48"><forename type="first">Tao</forename><surname>Han</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Instrument Science and Engineering</orgName>
+								<orgName type="institution">Shanghai Jiao Tong University</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,330.58,202.36,75.13,10.48"><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+							<affiliation key="aff2">
+								<orgName type="department">Schlegel Research Institute for Aging</orgName>
+								<orgName type="institution">University of Waterloo</orgName>
+								<address>
+									<settlement>Waterloo</settlement>
+									<region>ON</region>
+									<country key="CA">Canada</country>
+								</address>
+							</affiliation>
+						</author>
+						<author role="corresp">
+							<persName coords="1,438.52,202.36,40.66,10.48"><forename type="first">Peng</forename><surname>Qin</surname></persName>
+							<email>pqin@sjtu.edu.cn</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Instrument Science and Engineering</orgName>
+								<orgName type="institution">Shanghai Jiao Tong University</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="department">Department of Instrument Science and Engineering</orgName>
+								<orgName type="institution">Shanghai Jiao Tong University</orgName>
+								<address>
+									<addrLine>No. 800, Dongchuan Road</addrLine>
+									<postCode>200240</postCode>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Plasma Membrane Blebbing Dynamics Involved in the Reversibly Perforated Cell by Ultrasound-Driven Microbubbles</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">Ultrasound in Medicine &amp; Biology</title>
+						<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+						<idno type="ISSN">0301-5629</idno>
+						<imprint>
+							<publisher>Elsevier BV</publisher>
+							<biblScope unit="volume">47</biblScope>
+							<biblScope unit="issue">3</biblScope>
+							<biblScope unit="page" from="733" to="750"/>
+							<date type="published" when="2021-03"/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">C45A8F3C2569FB34FC16DBDCD713B911</idno>
+					<idno type="DOI">10.1016/j.ultrasmedbio.2020.11.029</idno>
+					<note type="submission">Received 16 April 2020; revised 13 November 2020; in final from 24 November 2020</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.0-SNAPSHOT" ident="GROBID" when="2023-09-06T05:58+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Ultrasound</term>
+					<term>Microbubble</term>
+					<term>Sonoporation</term>
+					<term>Blebbing dynamics</term>
+					<term>Drug delivery</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The perforation of plasma membrane by ultrasound-driven microbubbles (i.e., sonoporation) provides a temporary window for transporting macromolecules into the cytoplasm that is promising with respect to drug delivery and gene therapy. To improve the efficacy of delivery while ensuring biosafety, membrane resealing and cell recovery are required to help sonoporated cells defy membrane injury and regain their normal function. Blebs are found to accompany the recovery of sonoporated cells. However, the spatiotemporal characteristics of blebs and the underlying mechanisms remain unclear. With a customized platform for ultrasound exposure and 2-D/3-D live single-cell imaging, localized membrane perforation was induced with ultrasound-driven microbubbles, and the cellular responses were monitored using multiple fluorescent probes. The results indicated that localized blebs undergoing four phases (nucleation, expansion, pausing and retraction) on a time scale of tens of seconds to minutes were specifically involved in the reversibly sonoporated cells. The blebs spatially correlated with the membrane perforation site and temporally lagged (about tens of seconds to minutes) the resealing of perforated membrane. Their diameter (about several microns) and lifetime (about tens of seconds to minutes) positively correlated with the degree of sonoporation. Further studies revealed that intracellular calcium transients might be an upstream signal for triggering blebbing nucleation; exocytotic lysosomes not only contributed to resealing of the perforated membrane, but also to the increasing bleb volume during expansion; and actin components accumulation facilitated bleb retraction. These results provide new insight into the shortterm strategies that the sonoporated cell employs to recover on membrane perforation and to remodel membrane structure and a biophysical foundation for sonoporation-based therapy.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="14" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="15" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="16" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="17" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+		<surface n="18" ulx="0.0" uly="0.0" lrx="585.071" lry="782.929"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="1,127.05,506.02,79.42,8.74">INTRODUCTION</head><p>The plasma membrane can be transiently perforated by microbubbles, which oscillate and collapse (i.e., sonoporation), providing a temporary window for transport of membrane-impermeant macromolecules into the cytoplasm <ref type="bibr" coords="1,85.66,571.73,98.33,8.74" target="#b18">(Ferrara et al. 2007;</ref><ref type="bibr" coords="1,192.81,571.73,87.78,8.74" target="#b54">Yuan et al. 2015;</ref><ref type="bibr" coords="1,53.01,583.69,84.00,8.74" target="#b21">Helfield et al. 2016)</ref>. This is a promising strategy for drug delivery and gene therapy <ref type="bibr" coords="1,217.02,595.65,63.57,8.74" target="#b45">(Sboros 2008;</ref><ref type="bibr" coords="1,53.01,607.61,93.90,8.74" target="#b30">Lentacker et al. 2014;</ref><ref type="bibr" coords="1,151.65,607.61,80.89,8.74" target="#b46">Silvani et al. 2019)</ref>. However, sonoporated cells can recover from membrane injury, by quickly resealing to prevent loss of the intracellular content (i.e., reversible sonoporation) on a time scale of seconds to minutes, and further restore their normal physiologic state by additional self-remodeling to regain functionality on a longer time scale of minutes to hours <ref type="bibr" coords="1,304.50,529.89,87.44,8.74" target="#b50">(Tzu-Yin et al. 2013;</ref><ref type="bibr" coords="1,395.49,529.89,63.99,8.74" target="#b42">Qin et al. 2018)</ref>. The capabilities of resealing and recovery dictate the short-and longterm fate of the sonoporated cells, thereby influencing delivery efficacy and biosafety. To promote the clinical application of this non-invasive and spatiotemporally controlled method, it is important to understand the biological mechanisms by which the cell reseals and recovers after sonoporation <ref type="bibr" coords="1,393.73,613.57,86.11,8.74" target="#b29">(Kooiman et al. 2014)</ref>.</p><p>Early studies determined the resealing time to range from several to hundreds of seconds, depending on the degree of sonoporation, which is related to the acoustic cavitation dose <ref type="bibr" coords="1,386.02,661.41,141.56,8.74" target="#b35">(Mehier-Humbert et al. 2005</ref><ref type="bibr" coords="1,527.58,661.41,4.48,8.74;1,304.50,673.38,72.76,8.74" target="#b43">, Qiu et al. 2010;</ref><ref type="bibr" coords="1,383.30,673.38,72.76,8.74" target="#b17">Fan et al. 2012;</ref><ref type="bibr" coords="1,462.10,673.38,69.92,8.74" target="#b22">Hu et al. 2013;</ref><ref type="bibr" coords="1,304.50,685.34,65.33,8.74" target="#b41">Qin et al. 2016;</ref><ref type="bibr" coords="1,373.38,685.34,89.34,8.74" target="#b51">van Rooij et al. 2016)</ref>. According to a previous report, the degree of membrane injury may be dependent on resealing mechanism <ref type="bibr" coords="2,200.86,65.74,75.72,8.74;2,53.01,77.71,46.30,8.74" target="#b34">(McNeil and Steinhardt 2003)</ref>. On this basis, small pores (tens of nanometers) might passively reseal owing to the inherent flowing qualities of lipid bilayers or endocytosis, whereas large pores (from hundreds of nanometers to micrometers) reseal by patch formation from exocytic compartments <ref type="bibr" coords="2,124.38,137.46,156.21,8.74" target="#b34">(McNeil and Steinhardt 2003;</ref><ref type="bibr" coords="2,53.01,149.42,83.33,8.74" target="#b0">Andrews et al. 2015)</ref>. Further, an extensively perforated membrane cannot be rapidly resealed, resulting in instant necrosis (i.e., irreversible sonoporation) <ref type="bibr" coords="2,214.81,173.35,61.45,8.74" target="#b22">(Hu et al. 2013)</ref>. Importantly, chelation of extracellular calcium was found to terminate the resealing process, leading to cytosol loss and cell death, suggesting the essential role of calcium in the resealing of sonoporated cells <ref type="bibr" coords="2,53.01,233.10,74.68,8.74" target="#b14">(Deng et al. 2004;</ref><ref type="bibr" coords="2,131.02,233.10,64.71,8.74" target="#b16">Fan et al. 2010;</ref><ref type="bibr" coords="2,199.05,233.10,77.21,8.74" target="#b20">Hassan et al. 2010)</ref>. By use of the immunostaining method, previous studies indirectly found that the luminal domain Lamp-1 of the lysosome inserted into the surface of the perforated membrane <ref type="bibr" coords="2,97.97,280.95,72.93,8.74" target="#b53">(Yang et al. 2008;</ref><ref type="bibr" coords="2,173.65,280.95,82.14,8.74" target="#b13">De Cock et al. 2015)</ref>. This suggests that lysosomes may be the main vesicles capable of rapid exocytosis and homotypic fusion to patch perforation in response to an elevated calcium level <ref type="bibr" coords="2,53.01,328.74,65.27,8.74" target="#b48">(Tam et al. 2010</ref>). However, although sonoporated cells retain viability in the short term after the completion of membrane resealing, concomitant bio-effects-such as plasma membrane potential depolarization <ref type="bibr" coords="2,53.01,376.59,66.03,8.74" target="#b40">(Qin et al. 2014)</ref>, intracellular calcium waves and oscillations <ref type="bibr" coords="2,83.62,388.55,69.75,8.74" target="#b16">(Fan et al. 2010;</ref><ref type="bibr" coords="2,157.32,388.55,56.27,8.74" target="#b32">Li et al. 2018</ref>) and change in intracellular reactive oxygen species homeostasis change <ref type="bibr" coords="2,53.01,412.42,62.37,8.74">(Jia et al. 2018</ref>)-are elicited as the initial signals triggering the related physiochemical pathways, resulting in secondary necrosis or apoptosis in the long term <ref type="bibr" coords="2,53.01,448.30,79.24,8.74" target="#b20">(Hassan et al. 2010)</ref>. Some molecular pathways, such as the mitochondrial inherent pathway, have been identified to be involved in sonoporation-induced apoptosis <ref type="bibr" coords="2,53.01,484.19,81.37,8.74" target="#b12">(Danno et al. 2008;</ref><ref type="bibr" coords="2,138.28,484.19,65.69,8.74" target="#b47">Sun et al. 2015)</ref>. It is conceivable that by leveraging these biophysical mechanisms, we can promote resealing of the sonoporated membrane and regulate cell fate, thereby improving the efficiency of macromolecule delivery <ref type="bibr" coords="2,170.02,531.98,110.57,8.74" target="#b50">(Tzu-Yin et al. 2013;</ref><ref type="bibr" coords="2,53.01,543.94,82.81,8.74" target="#b29">Kooiman et al. 2014)</ref>.</p><p>In recent reports on cell recovery after sonoporation, membrane protrusions (blebs) and patches were observed at sites where the perforation had been resealed, with the bleb volume positively correlate with the diameter of the cavitating microbubbles <ref type="bibr" coords="2,153.92,603.70,76.99,8.74" target="#b31">(Leow et al. 2015)</ref>. Moreover, blebs disappeared in dead cells when membrane resealing was inhibited via extracellular Ca 2+ chelation, indicating that intracellular vesicle trafficking and blebs are related to the resealing and recovery of sonoporated cells <ref type="bibr" coords="2,53.01,663.51,76.39,8.74" target="#b31">(Leow et al. 2015;</ref><ref type="bibr" coords="2,133.29,663.51,81.40,8.74">Jia et al. 2018a and</ref><ref type="bibr" coords="2,218.55,663.51,25.92,8.74">2018b)</ref>. To our knowledge, blebs manifest mainly during physiologic cellular activities, such as cytokinesis, cell spreading and migration, or when cells are wounded by laser ablation <ref type="bibr" coords="2,304.50,65.75,71.06,8.74" target="#b27">(Kelly et al. 2009;</ref><ref type="bibr" coords="2,377.92,65.75,102.90,8.74" target="#b49">Taneja and Burnette 2019)</ref>, mechanical stimulation (e.g., micropipette aspiration) <ref type="bibr" coords="2,304.50,89.67,92.67,8.74" target="#b26">(Jimenez et al. 2014)</ref> or pore-forming toxins (PFTs) <ref type="bibr" coords="2,304.50,101.63,84.34,8.74" target="#b36">(Mesquita et al. 2017</ref>). However, very few studies have investigated the characteristics and functions of blebs in cells perforated by ultrasound-driven microbubbles.</p><p>Blebs of cells are driven by hydrostatic pressure generated by a contraction of the cortical actomyosin, which originates from the detachment of plasma membrane from the actin cortex. In general, two types of blebs (small dynamic and larger stable blebs) are found to be related to the fate of wounded cells <ref type="bibr" coords="2,472.19,197.27,59.83,8.74" target="#b6">(Charras 2008;</ref><ref type="bibr" coords="2,304.50,209.18,69.50,8.74" target="#b1">Aoki et al. 2016)</ref>. Dynamic blebbing, which comprises nucleation, growth, pausing and retraction phases, is closely linked to "healthy" cells and represents a cell's attempt to escape death <ref type="bibr" coords="2,415.10,245.06,116.92,8.74" target="#b7">(Charras and Paluch 2008;</ref><ref type="bibr" coords="2,304.50,257.03,75.82,8.74" target="#b23">Idone et al. 2008;</ref><ref type="bibr" coords="2,384.83,257.03,84.63,8.74" target="#b26">Jimenez et al. 2014)</ref>. On the other hand, larger, stable blebs appear during cell necrosis <ref type="bibr" coords="2,304.50,280.95,85.65,8.74" target="#b3">(Barros et al. 2003)</ref>. Mechanical-sensitive organelles were found to be involved in the blebbing behavior. For example, blebs originate from the delamination of the cell membrane from the cortex actin or fracture of the cortex actin, and then retract, driven by myosin II, after the actin cytoskeleton reassembled with the cell membrane <ref type="bibr" coords="2,329.95,352.67,79.03,8.74" target="#b8">(Charras et al. 2005</ref><ref type="bibr" coords="2,416.75,352.67,17.91,8.74" target="#b9">(Charras et al. , 2006</ref><ref type="bibr" coords="2,442.37,352.67,22.76,8.74">(Charras et al. , 2008;;</ref><ref type="bibr" coords="2,468.40,352.67,63.62,8.74;2,304.50,364.63,21.42,8.74" target="#b39">Paluch and Raz 2013)</ref>. The cavitating microbubbles affect not only plasma membrane, but also submembrane structures. Our group also found that the actin cytoskeleton was disrupted on sonoporation by collapsing microbubbles <ref type="bibr" coords="2,517.60,400.46,14.43,8.74;2,304.50,412.42,22.39,8.74">(Jia 2018a</ref><ref type="bibr" coords="2,333.69,412.42,26.31,8.74">(Jia , 2018b))</ref>, further suggesting that the disrupted actin cytoskeleton at the perforation site may nucleate localized blebs. Moreover, a previous study found that dynamic blebs represent the mechanically wounded cells' attempt to escape death <ref type="bibr" coords="2,431.37,460.27,92.09,8.74" target="#b2">(Babiychuk et al. 2011</ref>). However, the specific role of blebbing in the sonoporated cells still remains unclear. On the basis of these observations, we hypothesize that dynamic blebbing may be involved in the recovery of the sonoporated cells. To test this hypothesis, the aim of the present study was to determine the spatiotemporal dynamics of and mechanism underlying blebs in sonoporated cells and its relationship with reversible sonoporation by ultrasound-driven microbubbles.</p><p>We established an experimental platform for ultrasound exposure and real-time microscopic imaging at the single-cell level. Localized membrane perforation was induced by a single cavitating microbubble and different fluorescence probes were used to visualize membrane perforation, activities of the lipid components and spatiotemporal changes of lysosomes and the actin cytoskeleton. We then statistically determined the spatiotemporal relationship between blebs and the sonoporated cell and the underlying mechanism responsible for the spatiotemporal dynamics of bleb.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="3,141.34,65.74,50.92,8.74">METHODS</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="3,53.01,83.66,167.57,8.74">Cell culture and microbubble preparation</head><p>HeLa cervical cancer cells (CCL-2; ATCC, Manassas, VA, USA) were selected as a model to perform experiments. There have previously been used to investigate ultrasound-mediated bio-effects by our group and others <ref type="bibr" coords="3,80.45,143.47,67.15,8.74" target="#b16">(Fan et al. 2010;</ref><ref type="bibr" coords="3,150.69,143.47,63.80,8.74" target="#b41">Qin et al. 2016;</ref><ref type="bibr" coords="3,217.53,143.47,54.46,8.74">Jia et al. 2018</ref>). Dulbecco's Modified Eagle's Medium (Hyclone, Thermo Scientific Waltham, MA, USA) supplemented with 10% fetal bovine serum (Gibco 10099; Invitrogen, Carlsbad, CA, USA) was used to culture HeLa cells at 37˚C and 5% CO 2 . One day before the experiment, the cells were harvested via trypsin (Gibco 25200, Invitrogen, USA) and re-seeded with 2 mL of culture medium in a customized polystyrene chamber (35-mm diameter, 0.2-mm-thick bottom) and then used after reaching about 70% confluence. Noted that the 0.2-mm bottom of the customized chamber is thinner than the working distance (0.31 mm) of the used objective lens and the wavelength (»1.0 mm) of the 1.5-MHz acoustic wave in water, thereby being suitable for laser scanning confocal microscopy imaging and ultrasound exposure.</p><p>The self-fabricated microbubbles (»1 £ 10 9 /mL) ranging from 1À6 mm in diameter were composed of a shell of 1,2-distearoyl-sn-glycero-3-phosphocholine (DSPC) and 1,2-distearoyl-sn-glycero-3-phosphoethanolamine-N-[amino(po-lyethylene glycol)-2000] (DSPE-PEG2000) (556500 and 588200, respectively, Lipoid GmbH, Ludwigshafen, Germany) and the gas of octafluoropropane (C 3 F 8 ) by a previous method <ref type="bibr" coords="3,53.01,430.39,75.57,8.74" target="#b19">(Geers et al. 2011)</ref>. The diluted 0.6% microbubble suspension was softly added into the chamber, and then a coverslip was temporarily placed on the top to enclose the microbubbles between it and the bottom of the chamber. Subsequently, to let the microbubbles contact the cells through buoyancy, the chamber was inverted for 10 min, with the cells on top and the coverslip underneath, and then was turned back around. Though some microbubbles floated up during this course, some still remained in contact with the cells (details in <ref type="bibr" coords="3,166.51,537.94,56.35,8.74">Jia et al. 2018)</ref>. Note that the lipophilicity of the lipid-shelled microbubbles is responsible for microbubbleÀcell contact. Finally, based on microscopic observation and selection, the field of view with a greater than 1:3 cell-to-bubble ratio was always used to induce reversible sonoporation while a less than 1:3 cell-to-bubble ratio was used to cause irreversible sonoporation <ref type="bibr" coords="3,106.30,621.67,62.58,8.74" target="#b41">(Qin et al. 2016)</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="3,53.01,651.55,93.89,8.74">Experimental flowchart</head><p>The timelines of the main experimental procedures are schematically illustrated in Figure <ref type="figure" coords="3,212.94,675.47,7.92,8.74" target="#fig_0">1a</ref>. For different experimental objectives, (1)À(7), different fluorescent probes or cell transfection reagents were added into the cell chamber at the given time points before ultrasound exposure. Inhibitors related to calcium and actin components were added at other time points to determine their roles in blebbing dynamics. After these preparations, the cell chamber was gently placed on the workstation of the laser scanning confocal microscope (C2, Nikon, Japan) to receive a single ultrasound pulse. The cell morphology and the blebs in the bright field and various cellular responses tracked using the fluorescent probes were automatically recorded at 15 s pre-exposure and given time points post-exposure over a 10-min period. The viability of the sonoporated cells 15 min post-exposure was evaluated with 1 mM calcein blue AM (C1429, Invitrogen), which emits maximal fluorescence at 435 nm under 360-nm excitation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="3,304.50,268.99,147.83,8.74">Ultrasound calibration and exposure</head><p>A 20-cycle, 1.5-MHz frequency sinusoidal signal was generated with a signal generator (33120 A, Agilent, USA), and amplified with a 50-dB radiofrequency amplifier (2100 L, Electronics &amp; Innovation, Rochester, NY, USA) to drive a single-element plane transducer (6P-1, Advanced Devices, Wakefield, MA, USA) of 5.5-mm diameter (D), as illustrated in Figure <ref type="figure" coords="3,457.51,352.66,8.31,8.74" target="#fig_0">1b</ref>. The amplitude of the sinusoidal signal was calibrated to obtain the freefield peak negative pressure (PNP) at an 8-mm distance from the surface of the transducer, which was above the near-field distance (&lt;7.6 mm % D 2 /4λ, where λ [»1.0 mm] is the wavelength) of this transducer. This position was selected to obtain a uniform acoustic field, which can cover the cells in the field of view. Further details of the calibration method are provided in our previous studies <ref type="bibr" coords="3,319.41,460.27,64.68,8.74" target="#b40">(Qin et al. 2014</ref><ref type="bibr" coords="3,392.37,460.27,22.72,8.74" target="#b41">(Qin et al. , 2016;;</ref><ref type="bibr" coords="3,418.96,460.27,61.96,8.74">Jia et al. 2018a</ref><ref type="bibr" coords="3,489.20,460.27,26.36,8.74">Jia et al. , 2018b))</ref>. In Figure <ref type="figure" coords="3,334.32,472.23,9.44,8.74" target="#fig_0">1c</ref> is the 2-D profile of the acoustic pressure at this location, in which a PNP of »0.70 MPa (corresponding to an 800-mV peak-to-peak voltage) was produced. This PNP was proved to be capable of triggering the collapse of the microbubbles (inertial cavitation) <ref type="bibr" coords="3,304.50,531.99,67.74,8.74" target="#b33">(Lin et al. 2017)</ref>. Details of the transducer positioning and ultrasound exposure are also provided in our previous reports <ref type="bibr" coords="3,350.76,555.91,65.22,8.74" target="#b41">(Qin et al. 2016;</ref><ref type="bibr" coords="3,418.34,555.91,57.71,8.74">Jia et al. 2018a</ref><ref type="bibr" coords="3,482.91,555.91,26.36,8.74">Jia et al. , 2018b))</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="3,304.50,579.83,146.28,8.74">Evaluation of membrane perforation</head><p>About 5 min before ultrasound exposure, 60 mM propidium iodide (PI; P3566, Invitrogen) was added to the cell chamber. Once the membrane is perforated by the cavitating microbubbles, PI diffuses into the cytosol and binds with intracellular DNA and RNA. The PIÀDNA/RNA complexes have an emission fluorescence maximum at 615 nm under excitation of 561 nm. The degree of sonoporation can be evaluated by the fluorescence intensity of these complexes <ref type="bibr" coords="3,456.94,687.38,63.94,8.74" target="#b17">(Fan et al. 2012)</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="4,53.01,496.10,195.57,8.74;4,53.01,508.06,71.25,8.74">Intracellular calcium detection and extracellular calcium chelation</head><p>The Fluo-4 AM (F14201, Life Technology) was used to detect the temporal dynamics of intracellular calcium after sonoporation. After cells were cultured for 24 h, the old medium was replaced with 1 mL 0.4 mM Fluo-4 AM working solution, which was selected empirically to yield a 494-nm fluorescence signal under excitation of 488 nm with a high signal-tonoise ratio. After incubation for 20 min at 37˚C in the dark, the cells were washed in Hanks' Balanced Salts Solution (HBSS; 14025, Gibco) to remove dye that was non-specifically associated with the cell surface. To determine the role of calcium in blebbing, egtazic acid (EGTA; No. 30085316, Sinopharm Chemical Reagent, China) was dissolved in the HBSS solution without calcium and magnesium ions to chelate the extracellular calcium. After the microbubbles had been placed in contact with the cells and 5 min pre-exposure, 5 mL of the 2 mM EGTA solution and 60 mM PI were gently added to the chamber.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="4,304.50,543.95,184.52,8.74">Staining of lipid bilayers of plasma membrane</head><p>To determine the composition of the bleb membrane and track the dynamics of the plasma membrane, CellMask Green (C37608, Invitrogen) was used to label the lipid bilayer. This amphipathic molecule easily anchors in the plasma membrane specifically, with emission at 522 nm under excitation at 488 nm. The cultured cells were first washed with HBSS, and stained with 1 mL of CellMask Green solution (0.1% v/v in HBSS solution) for 20 min at 37˚C in the dark environment. The cells were then washed two more times with HBSS. Finally, 1 mL of microbubbles and 5 mL 60 of mM PI solution are sequentially added for the subsequent cavitation treatment. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="5,53.01,65.74,117.02,8.74">Tracing the lysosome activity</head><p>To observe the spatiotemporal dynamics of lysosomes, lysosomal associated membrane protein 1 (Lamp1) was fused with green fluorescent protein (GFP) (C10596, CellLight, Invitrogen), and the fusion construct was packaged in the insect virus baculovirus to transfect the cells, providing accurate and specific targeting to cellular lysosomeÀGFP. After the cells reached 70% confluency, the old medium was replaced with 1 mL of homogeneous reagent solution (2 mL of original reagent in 998 mL of complete culture medium), and then the cells were cultured overnight at 37˚C in the dark preexposure. The expressed Lamp1ÀGFP activities were observed at 510-nm emission under 488-nm excitation. Finally, 1 mL of microbubbles and 5 mL of 60 mM PI solution were sequentially added for the subsequent cavitation treatment.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="5,53.01,280.95,204.72,8.74">Labeling and perturbation of the actin cytoskeleton</head><p>A fusion construct of actin and EmGFP (Actin-GFP; C10582, CellLight, Invitrogen), which can accurately and specifically target cellular actin, was transfected into the cells, providing an easy way to analyze the role of actin cytoskeleton in the spatiotemporal dynamics of blebbing. The transfection method was similar to that described above for Lamp1-GFP. To further analyze the role of actin in the bleb's dynamics, cytochalasin D (CD) (C8273, Sigma) with different concentrations (300, 1000 and 2500 nM) was used to destabilize the attachment between the cell membrane and actin cortex <ref type="bibr" coords="5,68.83,424.38,83.55,8.74">(Charras et al. 2008)</ref>. One milliliter of CD solution was first gently added into the cell chamber and incubated for 20 min, then the cells were washed two times with HBSS. Next, the microbubbles were incubated for 10 min. Another 5 mL of 60 mM PI solution was subsequently added before exposure.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="5,53.01,508.06,195.94,8.74">2-D and 3-D microscopic imaging and recording</head><p>A 60 £ water immersion objective lens (a drop of water is placed between the top of the lens and the bottom of the chamber, forming a water medium to achieve a refractive index higher than that of the air and increase the numerical aperture) (numerical aperture:1.20; working distance: 0.31 mm ) (Plane APO, Nikon, Japan) was used to observe the cellular responses. Three individual lasers with 405-, 488-and 561-nm wavelengths were used to excite the different fluorescent probes. Before exposure, the bright-field and initial intracellular fluorescence were recorded as basal images. For detecting the different fluorescent probes, the laser power, pinhole size, frame rate and gain, which are given in the figure legends, were adjusted to reduce phototoxicity and eliminate the interference of different fluorescent channels while preserving a high signal-to-noise ratio. Time-lapse recording was set to automatically track each set of bright-field and fluorescent images in the fixed xÀy plane (focal plane) at different time points (means the starting time for capturing every image) over a 10-min observation period post-exposure. Calcein blue images were generally recorded at 15 min postexposure with a 30-mm pinhole. A perfect focusing system was used to automatically maintain a fixed z-displacement of the field of view in an xÀy focal plane because the focal plane unavoidably fluctuated along z axis with slight changes in ambient environment and cell morphology.</p><p>To observe a detailed contour of the bleb and the spatial dynamics of intracellular lysosomes, 3-D volumetric scanning was conducted. Specifically, to cover the entire bleb volume, once the occurrence of the bleb was observed postexposure according to bright-field and PI images, a 3-D sweep was acquired by performing a series of xÀy plane scanning with 0.8-mm z-axis step size. By use of a similar scanning method, the dynamics of lysosomes were tracked with 0.2-mm z-axis step size. The pinhole size and frame rate for these 3-D sweeps are given in the figure legends.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="5,304.50,343.70,55.00,8.74">Data analysis</head><p>The numbers of sonoporated cells studied in different experimental procedures are given in the corresponding sections with results. To eliminate random error, the same bleb at different time points was manually delineated three times to obtain the averaged diameter via a built-in function in NIS Elements software (Nikon, Japan). After the contour of the target cell was manually delineated by NIS Elements software, the mean intensity F n (n = time points) of PI, Fluo-4 and Actin-GFP fluorescent images at various time points during the observation period, and of Calcein Blue at 15 min post-exposure were quantified using the same software. Then, the relative change (DF n ) of these fluorescence signals was calculated from the pre-exposure baseline (F 0 ) and presented as DF n = (F n À F 0 )/F 0 . Finally, linear correlation analysis was used to determine the relationships between two parameters of the blebs (diameter and lifetime) and the degree of \sonoporation (intracellular PI uptake), and Student t test was used to analyze the statistical significance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="5,395.66,609.71,45.21,8.74">RESULTS</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="5,304.50,627.63,226.19,8.74;5,304.50,639.59,70.55,8.74">Spatiotemporal dynamics of localized blebs in reversibly sonoporated cells</head><p>Thirty-eight reversibly perforated cells induced by cavitating microbubbles were observed to determine the cellular responses. As a representative example, Figure <ref type="figure" coords="5,522.71,675.48,9.33,8.74" target="#fig_1">2a</ref> illustrates the spatiotemporal dynamics of blebbing in sonoporated cells. At 0 s (Fig. <ref type="figure" coords="5,429.79,699.34,7.48,8.74" target="#fig_1">2a</ref>), a single microbubble was adjacent to cell 1, and no microbubble was around cell 2. After the microbubble rapidly collapsed with the 13.33-ms ultrasonic pulse, notable red fluorescence was observed at the site of the microbubble (Fig. <ref type="figure" coords="7,228.13,101.63,8.44,8.74" target="#fig_1">2b</ref>; 6 s), indicating that the membrane was perforated and that extracellular PI diffused into cytoplasm. In the next »120 s, the intracellular red fluorescence gradually increased, as illustrated in Figure <ref type="figure" coords="7,132.89,149.42,9.86,8.74" target="#fig_1">2b</ref> (6À120 s), suggesting that PI continued permeating into the cell across the perforated membrane. However, after »120 s, the intracellular red fluorescence remained at a stable level, suggesting that extracellular PI stopped entering the cytoplasm and that the perforated membrane had completely resealed. The time profile of the relative intracellular PI intensity in Figure <ref type="figure" coords="7,81.24,233.10,9.33,8.74" target="#fig_1">2e</ref> exhibited the same temporal trend. By contrast, the PI fluorescence in cell 2 remained at the baseline level, indicating that no membrane perforation occurred (Fig. <ref type="figure" coords="7,76.25,268.99,7.48,8.74" target="#fig_1">2e</ref>). Moreover, the PI fluorescence in cell 1 was highly stronger than that in cell 2 (Fig. <ref type="figure" coords="7,210.33,280.95,7.48,8.74" target="#fig_1">2c</ref>), whereas both cells exhibited high calcein blue fluorescence (»2341 a.u.</p><p>for cell 1 and »2258 a.u. for cell 2) (Fig. <ref type="figure" coords="7,220.48,304.82,7.74,8.74" target="#fig_1">2d</ref>), suggesting that cell 1 underwent reversible perforation.</p><p>Corresponding to the changes in intracellular PI fluorescence, the localized cellular morphology was enlarged, as illustrated in Figure <ref type="figure" coords="7,187.88,352.66,7.92,8.74" target="#fig_1">2a</ref>. A small area at the initial site of the microbubble rapidly protruded upon membrane perforation, indicative of bleb nucleation, as illustrated in Figure <ref type="figure" coords="7,133.96,388.55,9.39,8.74" target="#fig_1">2a</ref> (6 s). The surface area of this protrusion gradually increased in the next 12À42 s, eventually forming a quasi-hemispherical protrusion (i.e., a bleb) approximately 4.62 mm in diameter. Figure <ref type="figure" coords="7,272.29,424.38,8.25,8.74" target="#fig_1">2f</ref> reveals that the diameter of the bleb rapidly increased at the rate of »0.13 mm/s during this period; thus, we refer to this as the expansion phase (Fig. <ref type="figure" coords="7,206.19,460.27,7.03,8.74" target="#fig_1">2f</ref>). The bleb was preserved through the subsequent 20 s, as illustrated in Figure <ref type="figure" coords="7,83.11,484.19,9.44,8.74" target="#fig_1">2a</ref> (48À60 s), without any change in diameter; we refer to this as the pausing phase (Fig. <ref type="figure" coords="7,220.59,496.10,7.06,8.74" target="#fig_1">2f</ref>). Afterward, the bleb started to retract over a relatively longer time, as indicated in Figure <ref type="figure" coords="7,137.71,520.02,9.44,8.74" target="#fig_1">2a</ref> (72À156 s), and finally disappeared after about 300 s post-exposure. The rate of retraction in this phase was approximately 0.019 mm/s (Fig. <ref type="figure" coords="7,75.80,555.91,7.06,8.74" target="#fig_1">2f</ref>), which was far slower than the rate of expansion. The morphology of cell 1 at 15 min postexposure resembled that before exposure, suggesting the cell started to restore to its initial state (Fig. <ref type="figure" coords="7,214.18,591.74,7.63,8.74" target="#fig_1">2c</ref>). By contrast, no change was observed in the morphology of cell 2 through this 15-min period.</p><p>The relationships between diameter and lifetime (i.e., the time from appearance to disappearance of blebs) of the blebs and between diameter and degree of sonoporation were statistically analyzed based on 38 reversibly sonoporated cells. As illustrated in Figure <ref type="figure" coords="7,270.48,675.47,10.09,8.74" target="#fig_1">2g</ref> and 2h, with increasing intracellular PI fluorescence, the diameter and lifetime of the bleb gradually increased, suggesting that the diameter and lifetime of the bleb are positively correlated with the degree of sonoporation (linear correlation coefficients are 0.51 [p &lt; 0.05] and 0.61 [p &lt; 0.005], respectively). In addition, as illustrated in Figure <ref type="figure" coords="7,420.13,113.54,8.10,8.74" target="#fig_1">2e</ref>, 2f, after »120 s postexposure, the intracellular PI fluorescence plateaued, suggesting that the perforated membrane completely resealed before this time. However, the bleb life cycle exceeded 120 s, as outlined above, indicating that the sonoporated cells needed more time to remodel their membrane structure for returning to normal physiologic status after membrane resealing.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="7,304.50,221.14,200.38,8.74">Large, stable blebs in irreversibly perforated cells</head><p>Different spatiotemporal dynamics of bleb formation were observed by 16 irreversibly sonoporated cells, a typical example of which is illustrated in Figure <ref type="figure" coords="7,524.58,257.02,3.74,8.74" target="#fig_2">3</ref>. There were three microbubbles around cell 1 pre-exposure (0s in Fig. <ref type="figure" coords="7,373.32,280.95,7.62,8.74" target="#fig_2">3a</ref>). After a single acoustic pulse was emitted, intense red fluorescence in two intracellular regions (corresponding to the initial sites of microbubbles) was observed (18 s in Fig. <ref type="figure" coords="7,451.16,316.78,7.89,8.74" target="#fig_2">3b</ref>), indicating that extracellular PI diffused into the cytoplasm from two perforation sites induced by two cavitating microbubbles. In the following period (18À822 s), the steady increase of intracellular red fluorescence indicated that PI continuously permeated into the cell (Fig. <ref type="figure" coords="7,495.27,376.59,7.89,8.74" target="#fig_2">3d</ref>), suggesting that the perforated membrane in cell 1 had not resealed. Almost no calcein blue fluorescence (»21.03 a. u., absolute intensity) was observed at 15 min postexposure (Fig. <ref type="figure" coords="7,346.17,424.38,7.86,8.74" target="#fig_2">3b</ref>), indicating that cell 1 lost its viability and underwent irreversible sonoporation.</p><p>With membrane perforation, blebs in cell 1 rapidly nucleated at the sites of the initial microbubbles (18 s, Fig. <ref type="figure" coords="7,323.38,472.23,7.63,8.74" target="#fig_2">3a</ref>). In the following period (from 144 s to 15 min, Fig. <ref type="figure" coords="7,324.06,484.19,7.63,8.74" target="#fig_2">3a</ref>), these nucleated blebs continued to grow until reaching a maximum volume. The diameter of blebs 1 and 2 continuously increased during this period (Fig. <ref type="figure" coords="7,326.38,520.02,7.60,8.74" target="#fig_2">3c</ref>). However, no retraction was observed for these blebs. In particular, at 15 min postexposure, more secondary blebs emerged in the periphery of cells, as the red arrow positions at 15 min in Figure <ref type="figure" coords="7,470.33,555.91,7.96,8.74" target="#fig_2">3a</ref>. The diameters of the localized blebs in 16 irreversibly sonoporated cells was given in Figure <ref type="figure" coords="7,416.18,579.83,9.44,8.74" target="#fig_2">3e</ref> (Note that two localized blebs [caused by two cavitating microbubbles] occurred in each of seven cells, and the single localized bleb appeared in each of the other nine cells. So, a total of 23 bleb diameters corresponded to PI relative intensities of 16 irreversibly sonoporated cells in Figure <ref type="figure" coords="7,475.88,639.58,7.63,8.74" target="#fig_2">3e</ref>). The average diameter of these blebs reached »10.3 mm, which was larger than that (»3.9 mm) of the blebs in the above 38 reversibly sonoporated cells. Moreover, all these blebs maintained their shapes and did not undergo retraction at 15 min post-exposure. These results suggest that larger, stable blebs were involved in the irreversibly sonoporated cells. Noted that there were other microbubbles (4À7) adjacent to cell 1. After ultrasound exposure, PI diffused into the cytoplasm from the initial sites of these microbubbles, as illustrated in Figure <ref type="figure" coords="9,181.98,125.50,9.97,8.74" target="#fig_2">3b</ref> (18 s), indicating that microbubbles 4À7 also induced localized membrane perforation. However, no localized blebs were observed at these perforation sites.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="9,53.01,187.29,204.75,8.74">Essential role of extracellular calcium for blebbing</head><p>We further determined the role of extracellular calcium in blebbing dynamics. A typical sample in 26 individual reversibly sonoporated cells is illustrated in Figure <ref type="figure" coords="9,269.01,223.12,7.71,8.74" target="#fig_3">4a</ref>, 4b. Similar to the spatiotemporal dynamics of the bleb in Figure <ref type="figure" coords="9,80.62,247.05,7.68,8.74" target="#fig_1">2a</ref>, the bleb in cell 1, which was spatially located at the site of the microbubble, underwent nucleation (10 s), expansion (20À100 s), a pausing phase (100À140 s), retraction (140À260 s), and finally disappearance (450 s post-exposure), as illustrated in Figure <ref type="figure" coords="9,202.11,294.90,7.67,8.74" target="#fig_3">4a</ref>. From the temporal change of the diameter of the bleb in Figure <ref type="figure" coords="9,248.88,306.86,12.20,8.74" target="#fig_3">4c1</ref>, the expansion and retraction rate of the bleb diameter were 0.045 mm/s and 0.015 mm/s, respectively.</p><p>Corresponding to the bleb dynamics, Fluo-4 fluorescence intensity quickly rose to a peak level after exposure, as shown in Figures <ref type="figure" coords="9,136.46,366.61,9.86,8.74" target="#fig_3">4b</ref> and<ref type="figure" coords="9,166.90,366.61,14.22,8.74" target="#fig_3">4c2</ref> (5 and 10 s), suggesting that extracellular calcium diffused into the cytoplasm through the perforated membrane and bonded with Fluo-4, thereby increasing Fluo-4 fluorescence. In the subsequent period of 15À135 s, Fluo-4 fluorescence gradually decreased to a stable level that was slightly higher than the initial one (Fig. <ref type="figure" coords="9,135.04,438.33,7.74,8.74" target="#fig_3">4b</ref>), suggesting that the intracellular calcium concentration slowly returned to its initial level during this period. Moreover, it can be observed from Figure <ref type="figure" coords="9,82.94,474.21,12.46,8.74" target="#fig_3">4c1</ref>, 4c2 that the bleb nucleated simultaneously with the increase in intracellular calcium concentration. However, the intracellular calcium concentration peaked at »25 s, well before formation of the bleb (»75 s from nucleation to the end of expansion). In addition, as illustrated in Figure <ref type="figure" coords="9,118.71,533.97,12.84,8.74" target="#fig_3">4d1</ref>, 4d2, the weak intracellular PI fluorescence (161% intensity relative to baseline) and bright calcein blue fluorescence (no significant difference compared with the ambient control cells) indicated that cell 1 underwent reversible sonoporation. Figure <ref type="figure" coords="9,244.12,581.82,12.58,8.74" target="#fig_3">4i1</ref> also depicts that obvious Fluo-4 peak fluorescence (different degrees) arose with the occurrence of the blebs in 26 individual reversibly sonoporated cells. In addition, another interesting phenomenon was observed in cell 2, which did not undergo sonoporation; as illustrated in Figure <ref type="figure" coords="9,249.22,641.57,12.35,8.74" target="#fig_3">4b,</ref><ref type="figure" coords="9,263.96,641.57,12.46,8.74" target="#fig_3">4c2</ref>, intracellular calcium had a slight increase postexposure, then rapidly decreased to the initial level. This may be owing to a ''calcium wave'' propagating from cell 1 to adjacent cell 2 <ref type="bibr" coords="9,111.80,689.42,79.41,8.74" target="#b4">(Beekers et al. 2020)</ref>.</p><p>After the chelation of extracellular calcium, however, different results were revealed by the observation of 30 sonoporated cells. A representative is provided in Figure <ref type="figure" coords="9,333.75,101.63,7.96,8.74" target="#fig_3">4e</ref>, 4f. First, after microbubbles adjacent to cells 1 and 2 were exposed to 0.7 MPa PNP, Fluo-4 fluorescence in cells 1 and 2 sharply dropped to a low level in the first 20 s (»À60% decrease relative to the baseline), and then slightly increased in the subsequent period up to 15 min (»40% decrease relative to the baseline at 15 min), as illustrated in Figure <ref type="figure" coords="9,420.66,173.35,8.31,8.74" target="#fig_3">4g</ref>. Figure <ref type="figure" coords="9,464.20,173.35,12.80,8.74" target="#fig_3">4i2</ref> also revealed that different degrees of Fluo-4 fluorescence decrease occurred in the 30 irreversibly sonoporated cells. This suggests that the intracellular calcium concentration decreased and no intracellular calcium transient occurred. In the bright-field images in Figure <ref type="figure" coords="9,505.08,233.10,7.96,8.74" target="#fig_3">4e</ref>, no blebbing was observed around cells 1 and 2 over this 15min observation period. Moreover, within cells 1 and 2, the presence of intense PI fluorescence (above 2500% intensity relative to the baseline) and the absence of calcein blue fluorescence (absolute intensity were 20.07 and 13.80 a.u., respectively) 15 min postexposure indicated that these cells lost viability and underwent irreversible sonoporation, as illustrated in Figure <ref type="figure" coords="9,487.27,328.74,17.40,8.74" target="#fig_3">4h1,</ref><ref type="figure" coords="9,507.12,328.74,13.05,8.74" target="#fig_3">4h2</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="9,304.50,354.65,218.96,8.74;9,304.50,366.61,76.23,8.74">Lipids from lysosome exocytosis are the components of the bleb membrane</head><p>Three individual reversibly sonoporated cells were performed to analyze the components of the bleb membrane. Figure <ref type="figure" coords="9,359.89,402.50,9.39,8.74" target="#fig_4">5a</ref> illustrates a single microbubble adjacent to cell 1. The 3-D membrane contour of cell 1 pre-exposure can be seen from the green volumetric image (Fig. <ref type="figure" coords="9,328.65,438.33,12.47,8.74" target="#fig_4">5b1</ref>). After ultrasound exposure, a bright green fluorescent sphere at the initial site of the microbubble can be observed to protrude from the membrane contour in the 3-D volumetric image (Fig. <ref type="figure" coords="9,460.35,474.21,12.43,8.74" target="#fig_4">5b2</ref>), which was obtained by performing z-axis volumetric scanning from 100À180 s postexposure. As illustrated in Figure <ref type="figure" coords="9,505.14,498.14,7.96,8.74" target="#fig_4">5c</ref>, the enlarged sections at intervals of 0.8 mm along the z-axis exhibited the spatial distribution of the bleb profiles in the region of the red box in Figure <ref type="figure" coords="9,451.28,533.97,13.09,8.74" target="#fig_4">5b2</ref>. A bright green fluorescent circular contour was observed at different positions along the z-axis. With increasing distance from the zero position on the z-axis (from 0 to §6.4 mm), the diameter of the green fluorescent ring in the xÀy section gradually decreased until the ring disappeared; this corresponded to the shape change of the bleb along the zaxis. Further, at 15 min postexposure, intracellular weak PI and calcein blue fluorescence (Fig. <ref type="figure" coords="9,462.05,629.61,9.97,8.74" target="#fig_4">5d</ref> and<ref type="figure" coords="9,493.00,629.61,3.47,8.74">e</ref>, respectively) indicated that this cell underwent reversible sonoporation. Therefore, the CellMask dye clearly illustrated the contour of the bleb in the reversibly sonoporated cells, suggesting that lipid was the main component of the bleb membrane. To better understand the expansion phase, we investigated the source of the membrane components through three repeated experiments. In Figure <ref type="figure" coords="11,209.20,520.02,7.96,8.74" target="#fig_5">6a</ref>, 6b are typical time-lapse images of blebbing and Lamp1-GFP fluorescence at various time points postexposure. The localized bleb formed and expanded after microbubbles next to each other were exposed to 0.7 MPa PNP (Fig. <ref type="figure" coords="11,268.61,567.87,11.93,8.74" target="#fig_5">6a,</ref><ref type="figure" coords="11,53.01,579.78,39.33,8.74" target="#fig_5">20À160 s</ref>). During the expansion phase, some granular Lamp1-GFP fluorescence was observed at the position of the bleb (Fig. <ref type="figure" coords="11,122.17,603.70,12.46,8.74" target="#fig_5">6b,</ref><ref type="figure" coords="11,137.71,603.70,38.93,8.74" target="#fig_5">40À160 s</ref>). To explore this further, intracellular Lamp1-GFP sections along the z-axis at intervals of 0.2 mm were obtained via z-axis scanning from 270 to 425 s postexposure <ref type="bibr" coords="11,185.67,639.59,38.01,8.74">(Figs. 6c,</ref><ref type="bibr" coords="11,226.89,639.59,11.83,8.74">6d)</ref>. As illustrated in Figure <ref type="figure" coords="11,120.25,651.55,7.96,8.74" target="#fig_5">6c</ref>, Lamp1-GFP spatially distributed in the interior of the bleb along the xÀz and yÀz planes. Moreover, from the enlarged representative Lamp1-GFP sections along the z-axis in Figure <ref type="figure" coords="11,196.67,687.38,8.31,8.74" target="#fig_5">6d</ref>, granular Lamp1-GFP fluorescence could also be observed within the contour of the bleb. These results indicate that lysosomes were delivered to the bleb membrane by exocytosis and then fused with the membrane to provide lipid ingredients to increase the surface area of the bleb. Moreover, because the expansion phase was faster than membrane resealing, these results also suggest that lysosome exocytosis was involved in the resealing of the perforated membrane, and provide new insight into the resealing mechanism of cavitation-perforated membranes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="11,304.50,615.66,198.01,8.74;11,304.50,627.63,113.28,8.74">Accumulation of actin components under the bleb membrane during retraction</head><p>The bleb volume was found to gradually decrease until it disappeared during the retraction phase in Figure <ref type="figure" coords="11,334.09,663.51,7.96,8.74" target="#fig_1">2a</ref>. This active cellular behavior is indicative of the remodeling of the injured membrane. We next analyzed the mechanism of bleb retraction from 10 independent reversibly sonoporated cells. Figure <ref type="figure" coords="11,501.33,699.34,7.96,8.74" target="#fig_6">7a</ref>, 7b illustrates the typical spatiotemporal change of cortex actin accompanying blebbing dynamics. At 0À90 s (Fig. <ref type="figure" coords="12,76.82,484.14,11.93,8.74" target="#fig_6">7a,</ref><ref type="figure" coords="12,93.49,484.14,7.60,8.74" target="#fig_6">7c</ref>), the localized bleb underwent expansion and pausing phases. There was a slow enhancement of the actin-GFP fluorescence (which reached »78% of its initial level) during this period (Fig. <ref type="figure" coords="12,199.62,520.02,7.86,8.74" target="#fig_6">7d</ref>). During the subsequent 90À210 s, the bleb retracted and disappeared (Fig. <ref type="figure" coords="12,76.93,543.95,7.62,8.74" target="#fig_6">7c</ref>), while actin-GFP fluorescence intensity rose rapidly to a peak value (»140% relative to the initial level) over 90À135 s, followed by the gradual decrease in the next period (Fig. <ref type="figure" coords="12,156.19,579.78,7.89,8.74" target="#fig_6">7d</ref>). This suggests that cortex actin elements were recruited and then accumulated under the bleb membrane in the early stage of the retraction. After »240 s, the bleb completely disappeared. Actin-GFP fluorescence gradually returned to its initial level, indicative of the recovery of actin skeleton. Moreover, the weak intracellular PI and bright calcein blue fluorescence (Fig. <ref type="figure" coords="12,127.39,663.51,7.96,8.74" target="#fig_6">7e</ref>, 7f) indicated that cell 1 underwent reversible sonoporation. Moreover, as illustrated in Figure <ref type="figure" coords="12,82.09,687.38,8.31,8.74" target="#fig_6">7g</ref>, in the other nine reversibly sonoporated cells with different diameters of blebs, actin-GFP fluorescence also underwent a relative maximum change during the lifetime of the blebs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="12,304.50,496.10,173.09,8.74">Role of actin components in bleb retraction</head><p>To determine the role of actin in bleb retraction, CD was used to inhibit the function of actin by destabilizing the displacement of the barbed ends of the actin filaments from membrane binding sites <ref type="bibr" coords="12,424.85,543.95,80.85,8.74">(Charras et al. 2008)</ref>. Note that because of the change in cellular mechanical properties, CD can induce bleb formation without membrane injury in a concentration-dependent manner. Generally, CD-induced blebs occurred at many sites of the cell membrane. They rapidly retracted under low-concentration CD while most of them maintained a relatively stable volume under high-concentration CD (data not shown). As illustrated in Figure <ref type="figure" coords="12,368.62,639.59,9.91,8.74" target="#fig_7">8b</ref> (0 s), CD induced blebs located at the bottom of the overlap between cells 2 and 3 and on the body of cell 2 (some protrusions). The different types of localized blebs dynamics after ultrasound exposure are illustrated in Figure <ref type="figure" coords="12,387.21,687.38,7.88,8.74" target="#fig_7">8a</ref>, 8b. Localized blebs 1À4 (corresponding to the original sites of the adjacent microbubbles) rapidly formed (within 35 s, Figs. <ref type="figure" coords="13,250.36,591.57,11.82,8.74" target="#fig_7">8a,</ref><ref type="figure" coords="13,265.10,591.57,7.74,8.74" target="#fig_7">8b</ref>). Similar to the spatiotemporal characteristics of the blebs without CD treatment, these blebs underwent expansion and a pausing phase, as illustrated in Figure <ref type="figure" coords="13,271.22,627.46,9.33,8.74" target="#fig_7">8a</ref> (35À105 s) and 8b (35À133 s). In the subsequent period, blebs 1 and 2 gradually retracted until they disappeared. However, bleb 3 gradually split into several smaller blebs, and no notable retraction activity was observed in bleb 4 (189À630 s in Fig. <ref type="figure" coords="13,136.86,687.21,7.76,8.74" target="#fig_7">8b</ref>). Therefore, only blebs 1 and 2 went through four complete phases (from nucleation to retraction), while blebs 3 and 4 did not experience a retraction phase and then disappeared. Weak PI fluorescence and intense calcein blue fluorescence, as illustrated in Figure <ref type="figure" coords="13,344.07,627.46,7.88,8.74" target="#fig_7">8c</ref>, indicated that these cells underwent reversible sonoporation.</p><p>According to the aforementioned analysis, we categorized localized blebs as localized blebs experiencing four dynamic phases (type A) or as localized blebs that did not undergo retraction (type B). The probability of each type of behavior is given in Figure <ref type="figure" coords="13,467.60,699.17,8.31,8.74" target="#fig_7">8d</ref>. Without CD treatment, in the 177 reversibly sonoporated cells, the occurrence of observable localized blebs with four phases (type A) was »55%, and less than 1% (type B) did not retract to disappear. In the presence of CD at 300 and 1000 nM, the probability of the localized blebs with four phases (type A) was reduced to »45% (in 68 reversibly sonoporated cells) and »6% (in 96 reversibly sonoporated cells), respectively. However, the occurrence of the localized blebs without retraction (type B) increased to »5% and »20% at CD concentrations of 300 and 1000 nM, respectively. In particular, when the concentration of CD used was 2500 nM, the probability of localized blebs significantly decreased to »7% (p &lt; 0.05). Moreover, almost all of these blebs did not retract (type B). These results suggest that the actin components play a crucial role in bleb retraction.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="14,387.95,585.79,60.56,8.74">DISCUSSION</head><p>Localized blebs specifically involved in the reversibly sonoporated cells</p><p>In the reversibly sonoporated cells, we found that quasi-hemispherical protrusions emerged at the sites of membrane perforation and then quickly expanded, forming localized blebs. After the blebs maintained their morphology for a relatively short time (tens of seconds to minutes), they slowly retracted and completely disappeared. Although the site of the blebs spatially coincided with those of the membrane perforation, the four successive dynamic phases (nucleation, expansion, pausing and retraction) differed temporally from membrane perforation and resealing. Specifically, bleb nucleation and expansion occurred synchronously with membrane perforation and initially resealing, respectively (the duration of expansion was shorter than the time of extracellular PI uptake). However, the retraction phases lagged far behind membrane resealing. Thus, the lifetime of dynamic blebs (from nucleation to disappearance) was far longer than the time required for membrane resealing, meaning that blebbing and membrane resealing may be two parallel biological processes. In contrast, in the irreversibly sonoporated cells, even though larger, stable localized blebs occur at the initial sites of cavitating microbubbles, more secondary blebs randomly distribute around the membrane. These blebs can serve as an indicator of cell death <ref type="bibr" coords="15,127.10,268.99,58.21,8.74" target="#b6">(Charras 2008)</ref>.</p><p>There are similarities and differences between the blebs in the sonoporated cells and those in other wounded cells (e.g., those wounded by PFTs or mechanical stimulation) and cells undergoing cytokinesis and migration. The blebs induced by low-concentration PFT stimulation also undergo four successive phases. Under treatment with high concentrations of PFTs, the blebs, which are generally considerably small on the whole cell and lack intracellular structures, rapidly bud from the cell surface into the extracellular environment almost from the moment of their formation by exocytosis <ref type="bibr" coords="15,53.01,412.42,81.79,8.74" target="#b28">(Keyel et al. 2011)</ref>. For the blebs induced by other mechanical stimulation or in other physiologic functions, the life cycle also includes four phases on a time scale of minutes, suggesting that they may originate by similar biological mechanisms <ref type="bibr" coords="15,196.50,460.27,34.28,8.74;15,257.84,460.27,22.76,8.74" target="#b6">(Charras 2008;</ref><ref type="bibr" coords="15,53.01,472.23,85.17,8.74" target="#b26">Jimenez et al. 2014;</ref><ref type="bibr" coords="15,142.36,472.23,71.03,8.74" target="#b1">Aoki et al. 2016)</ref>. Particularly in reversibly sonoporated cells, blebs occurred at sites of membrane perforation, with their volume and lifetime positively correlated with the degree of sonoporation, suggesting that membrane perforation caused blebbing. However, during cytokinesis and cell migration, blebs appeared not in a single site, but in many sites around the membrane <ref type="bibr" coords="15,119.05,555.91,62.89,8.74" target="#b6">(Charras 2008;</ref><ref type="bibr" coords="15,187.77,555.91,88.49,8.74" target="#b38">Norman et al. 2010)</ref>. Moreover, in some migrating cells, retraction did not always occur, but instead, the cell body moved forward as a result of retraction <ref type="bibr" coords="15,146.61,591.74,89.16,8.74" target="#b39">(Paluch and Raz 2013)</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="15,53.01,615.66,208.36,8.74;15,53.01,627.62,18.34,8.74">Mechanism of blebbing behavior in the sonoporated cells</head><p>We summarize the mechanism of blebbing in the reversibly sonoporated cells as follows. Chelation of extracellular calcium inhibits blebbing and results in a loss of cell viability <ref type="bibr" coords="15,138.90,675.47,63.12,8.74" target="#b5">(Bi et al. 1995;</ref><ref type="bibr" coords="15,205.57,675.47,70.69,8.74" target="#b14">Deng et al. 2004)</ref>. Previous studies also reported that elevated intracellular calcium promoted membrane resealing and caused myosin contractions that gave rise to blebs <ref type="bibr" coords="15,304.50,77.70,96.85,8.74" target="#b2">(Babiychuk et al. 2011;</ref><ref type="bibr" coords="15,404.90,77.70,81.18,8.74" target="#b15">Draeger et al. 2014)</ref>. Thus, the increase in intracellular calcium concentration through the perforated membrane may not only promote local recruitment of proteins (such as endosomal sorting complex required for transport <ref type="bibr" coords="15,420.60,125.49,49.71,8.74">[ESCRT-III]</ref>) to reseal the perforation region, but may also nucleate blebbing <ref type="bibr" coords="15,304.50,149.42,84.47,8.74" target="#b26">(Jimenez et al. 2014)</ref>. However, the downstream events related to calcium transients and bleb nucleation remained unclear. Further, early studies, which used laser ablation, micropipette aspiration and streptolysin O, determined that blebs generally occur at the cell surface where the plasma membrane detaches from the underlying cytoskeleton or in regions where the cytoskeleton exhibits local weaknesses (the bleb membrane is not supported by a cortex actin) <ref type="bibr" coords="15,448.21,245.06,83.81,8.74">(Charras et al. 2008;</ref><ref type="bibr" coords="15,304.50,257.02,73.72,8.74" target="#b28">Keyel et al. 2011;</ref><ref type="bibr" coords="15,381.66,257.02,88.76,8.74" target="#b39">Paluch and Raz 2013)</ref>. It is conceivable that myosin-driven contraction of the cortical cytoskeleton instigates a localized increase in hydrostatic pressure within the surrounding cytoplasm, resulting in membrane protrusions <ref type="bibr" coords="15,418.11,304.81,113.97,8.74" target="#b8">(Charras et al. 2005;</ref><ref type="bibr" coords="15,304.50,316.77,83.56,8.74" target="#b52">Woolley et al. 2014)</ref>. Microjets from collapsing microbubbles are known to affect not only the plasma membrane, but also the cytoskeleton elements and intracellular organelles beneath the membrane <ref type="bibr" coords="15,304.50,364.62,59.63,8.74" target="#b32">(Li et al. 2018)</ref>. Previously, we also found that the actin cytoskeleton was synchronously disrupted with membrane perforation after microbubble collapse <ref type="bibr" coords="15,304.50,400.45,61.44,8.74">(Jia et al. 2018b</ref>). Thus, local disruption of the actin cortex may induce bleb nucleation and expansion in the sonoporated cells. The local disruption of the actin cortex is also observed in blebbing caused by laser ablation and mechanical stimuli, but not for other cellular protrusions, such as lamellipodia and filopodia, which grow under pressure rather than by polymerization of actin filaments pushing against the membrane <ref type="bibr" coords="15,304.50,496.09,81.26,8.74" target="#b8">(Charras et al. 2005;</ref><ref type="bibr" coords="15,388.18,496.09,85.77,8.74" target="#b39">Paluch and Raz 2013)</ref>.</p><p>We found that the duration of bleb expansion is shorter than the time of extracellular PI uptake in the reversibly sonoporated cells, Thus, bleb expansion and membrane resealing may be two related biological processes. We also found that lysosome exocytosis occurred during these two processes, indicating that they may be involved in these events. First, lysosome vesicles are rapidly delivered to the perforation site via exocytosis and then undergo homotypic fusion to patch and reseal the perforated membrane. This process is consistent with previous reports on lysosome accumulation in the perforation region and its role in resealing the membrane <ref type="bibr" coords="15,304.50,651.54,110.23,8.74" target="#b44">(Reddy et al. 2001;</ref><ref type="bibr" coords="15,428.43,651.54,103.60,8.74" target="#b23">Idone et al. 2008;</ref><ref type="bibr" coords="15,304.50,663.50,89.22,8.74" target="#b37">Nakamura et al. 2018)</ref>. Second, as the cell membrane is a 2-D fluid structure, previous reports concluded that the increase in bleb volume during the expansion phase may be owing to cytoplasmic fluid being propelled through the disrupted cortex into the bleb under hydrostatic pressure in the cytoplasm, and by the flow of lipids into the bleb through the bleb neck <ref type="bibr" coords="16,185.16,89.67,95.44,8.74">(Charras et al. 2008;</ref><ref type="bibr" coords="16,53.01,101.63,82.98,8.74" target="#b52">Woolley et al. 2014)</ref>. Similarly, we not only found that the lipid components of plasma membrane constitute the contour of expanded blebs, but also that the exocytotic lysosome membrane contributes to the increase and expansion of the plasma membrane to form blebs.</p><p>Because cortex actin is locally depolymerized on membrane injury, it is essential for cells to reassemble and remodel their cytoskeleton and restore their original physiologic state <ref type="bibr" coords="16,121.32,197.27,57.09,8.74" target="#b6">(Charras 2008)</ref>. It is conceivable that the closure of the plasmalemmal gap by lysosomal exocytosis and cytoskeleton reassembly commence simultaneously. Yet, repair of the lipid bilayer proceeds more rapidly than that of the cortical cytoskeleton <ref type="bibr" coords="16,180.91,245.06,58.85,8.74" target="#b5">(Bi et al. 1995)</ref>. Our previous results also revealed that membrane resealing is far faster than cytoskeleton repolymerization <ref type="bibr" coords="16,53.01,280.95,65.52,8.74">(Jia et al. 2018a)</ref>. Early studies reported that actin cortex repolymerization probably begins as bleb expansion slows owing to two actin nucleators, actin-related protein 2/3 (ARP2/3) complex and the mammalian formin diaphanous (mDia1), which were detected under the bleb membrane <ref type="bibr" coords="16,79.03,340.70,108.22,8.74" target="#b7">(Charras and Paluch 2008)</ref>. Our results indicated that cortex actin accumulated beneath blebs during the pausing phase and the early stage of retraction. According to a recent report, the accumulated actin components should be nucleated, forming actin filaments and actin bundles <ref type="bibr" coords="16,86.12,400.46,80.22,8.74" target="#b11">(Chikina et al. 2019)</ref>. Subsequently, based on the previous studies, we think myosin-driven contraction mediated bleb retraction, which was slower than expansion. Moreover, when the function of actin was inhibited by CD, the probability of localized blebs in the reversibly sonoporated cells decreases with increasing concentration of CD. Furthermore, the blebs have defects in retraction with increase in CD concentration, indicating the role of the actin components in bleb retraction. Although these results provide preliminary insight into blebbing behavior in perforated cells, a more detailed mechanism needs to be elucidated in future research.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="16,53.01,555.91,135.13,8.74">Role of blebs in sonoporated cells</head><p>Some protrusions in membrane surface projections are considered to be passive traps for pathogens and a non-immune defense strategy or to contribute to cellular functions, such as division or cell spreading and locomotion. However, it is unknown why blebs occur after the cell membrane is perforated by ultrasound-driven microbubbles. On the one hand, cells may need blebs to compensate for the drop in intracellular tension on perforation. On the other hand, blebs are often a harbinger of cell death, because they always appear in the membrane periphery of apoptotic cells <ref type="bibr" coords="16,53.01,699.34,93.24,8.74" target="#b2">(Babiychuk et al. 2011)</ref>. In mechanically wounded cells, blebbing has been identified as an injury-control mechanism when cells need to create subcellular compartments in which repair can take place <ref type="bibr" coords="16,432.39,89.67,95.35,8.74" target="#b2">(Babiychuk et al. 2011)</ref>. The surge of intracellular calcium transients leads to localized annexin A1 translocation to the bleb membrane and the formation of a plug, which creates a subcellular compartment in which resealing takes place <ref type="bibr" coords="16,304.50,149.42,97.04,8.74" target="#b2">(Babiychuk et al. 2011)</ref>. Thus, blebs represent a cell's attempt to escape death rather than a mechanism for promoting it. Consistent with this, our observations of localized blebs during resealing suggest that the sonoporated cell needs not only to reseal the perforated membrane to avoid intracellular contents lost, but also to initiate the nucleation and expansion of blebs for membrane remodeling. Moreover, the retraction of blebs is slower than membrane resealing. Therefore, we propose that cells are first repaired, followed by rearrangement of the cytoskeleton and remodeling of the membrane morphology to restore physiologic function. Our results also illustrated that sonoporated cells with localized reversible blebs can maintain their viability, whereas larger, stable blebs generally appear with irreversibly sonoporated cells. Therefore, dynamic (i.e., not stable) blebbing with four phases should be required for remodeling the plasma membrane and restoring physiologic function.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="16,304.50,376.59,93.68,8.74">Limitations of the study</head><p>First, the HeLa cell line, as a tumor model, could provide the basic mechanism and kinetics of the blebs, which appear remarkably similar in many cell types and conditions. Moreover, to remain consistent with other studies in our group, HeLa cells were used in this investigation. However, endothelial cells are more physiologically relevant when the microbubbles flow through the blood vessels, and they are also another candidate for sonoporation in vivo. Future studies should select them as a model to further confirm the bleb dynamics and the related mechanisms. Second, although we assumed all reversibly sonoporated cells should undergo bleb formation, in our statistics, the blebs with four phases appeared in »55% of the reversibly sonoporated cells. We think there are some possible reasons for this. On the one hand, the observable blebs were always related to the initial position of the microbubbles. When microbubbles were located at the lateral contour of the cell, the localized blebs with four phases were likely to be observed. Additionally, some localized blebs that may occur at the position of the cell body (because the initial microbubbles are located at the cell body) expand and retract along z-axis direction, resulting in their being difficult to be observed when imaging along the xÀy plane. On the other hand, it was difficult to image some smaller blebs with fast expansion and retraction using a system with limited scanning speed. Third, there was no flow in the experimental setup, so microbubbles were attached to cells, which is not the case in vivo. In designing an experimental setup with flowing microbubbles it is important to reveal the cellular bio-effects on the ultrasound-driven microbubbles in vivo. Finally, the responses of the sonoporated cells in this study are for only one set of ultrasound parameters and a type of cavitation. Future studies should design multiple types of cavitation to determine the correlation between the acoustic emissions and blebbing characterization. These results would provide solid foundation for future sonoporation-based therapy.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="17,130.39,226.35,72.80,8.74">CONCLUSIONS</head><p>Dynamic blebs were found to be specifically associated with the reversibly sonoporated cells. These blebs occurred at the site of perforation, and their maximal diameter (about several microns) and lifetime (about tens of seconds to minutes) positively correlated with the degree of membrane perforation; these blebs persisted beyond the time required to reseal the membrane (about tens of seconds to minutes). By contrast, larger, stable blebs appeared in the irreversibly sonoporated cells. Our preliminary investigation also revealed that intracellular calcium transients, lysosome exocytosis,\ and the accumulation of actin components mediate the nucleation, expansion, pausing and retraction phases of the dynamic blebs. We believe that these dynamic blebs may be necessary to restore the membrane structure and function of cells after sonoporation. These will provide the theoretical basis for clinical application of sonoporation-based macromolecule delivery.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="4,75.69,406.17,433.66,7.86;4,75.69,416.14,433.60,7.86;4,75.69,426.12,433.66,7.86;4,75.69,436.04,433.69,7.86;4,75.69,446.02,433.66,7.86;4,135.38,456.00,314.32,7.86;4,60.66,63.38,463.92,330.90"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. (a) Experimental procedure used to investigate the spatiotemporal dynamics of the blebs in a single cell exposed to a single ultrasound pulse and microbubbles. The relative time points are shown for the cell culture and probe labeling, microbubble introduction, ultrasound exposure and recording of cellular responses. (b) Schematic of the experimental apparatus for ultrasound exposure and the recording of cellular responses at the single-cell level. The enlarged region depicts the relative spatial position of the transducer and the cells. (c) Two-dimensional profile of the free-field peak negative pressure at a distance of 8 mm from the transducer surface. PI = propidium iodide.</figDesc><graphic coords="4,60.66,63.38,463.92,330.90" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="6,75.69,651.31,433.69,7.86;6,75.69,660.44,433.66,8.97;6,75.69,670.42,433.66,8.97;6,75.69,680.39,433.63,8.97;6,75.69,691.16,433.69,7.86;6,80.28,701.08,424.49,7.86;6,89.80,63.38,405.60,576.00"><head>Fig. 2 .</head><label>2</label><figDesc>Fig. 2. (a, b) Time-lapse images of the morphology and intracellular PI uptake, respectively, of cells 1 and 2 before (0 s) and at different time points after ultrasound exposure (microscope recording parameters: pinhole, 40 mm; frame rate, »6 s; high-voltage gain, 120). Bars = 10 mm. (c, d) Brightfield images of cell morphology, intracellular PI fluorescence and calcein blue fluorescence, respectively. Bars = 10 mm. (e, f) Time profiles of intracellular PI relative intensity and diameter of the bleb in cells 1 and 2 during the observation period (0À300 s), respectively. (g,h) Relationship between the degree of membrane perforation and the diameter and lifetime of the bleb in 38 reversibly sonoporated cells, respectively. MBs = microbubbles; PI = propidium iodide.</figDesc><graphic coords="6,89.80,63.38,405.60,576.00" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="8,75.69,651.31,433.68,7.86;8,75.69,660.44,433.66,8.97;8,75.68,670.42,433.68,8.97;8,75.68,681.18,433.67,7.86;8,75.68,691.16,433.66,7.86;8,266.34,701.08,52.40,7.86;8,74.84,63.38,435.60,576.00"><head>Fig 3 .</head><label>3</label><figDesc>Fig 3. (a, b) Time-lapse images of cell morphology and intracellular PI fluorescence, respectively, before (0 s) and at different time points after ultrasound exposure (microscope recording parameters: pinhole, 40 mm; frame rate, »6 s; highvoltage gain, 120). Bars = 10 mm. The red arrow (15 min) shows the secondary blebs emerged in the periphery of cell. (c) Time profile of the diameter of Blebs 1 and 2 during 0À822 s. (d) Time profile of the intracellular PI relative intensity during 0À822 s. (e) The diameter distribution of blebs in 16 irreversibly sonoporated cells. MB = microbubbles; PI = propidium iodide.</figDesc><graphic coords="8,74.84,63.38,435.60,576.00" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="10,75.69,593.71,433.69,7.86;10,75.68,602.84,433.68,8.97;10,75.68,612.82,433.69,8.97;10,75.68,623.58,433.73,7.86;10,75.68,633.56,433.67,7.86;10,75.68,643.48,433.69,7.86;10,75.68,652.67,433.74,8.97;10,75.68,663.44,433.67,7.86;10,75.68,673.41,433.71,7.86;10,75.68,683.33,433.71,7.86;10,75.68,693.31,433.67,7.86;10,136.52,703.29,312.01,7.86;10,86.74,63.38,411.60,518.40"><head>Fig 4 .</head><label>4</label><figDesc>Fig 4. (a,b) Time-lapse brightfield images of the morphology and intracellular Fluo-4 fluorescence, respectively, of cells 1 and 2 before (0 s) and after (10 s to 15 min) ultrasound exposure (microscope recording parameters: pinhole, 150 mm; frame rate, »5 s; high-voltage gain, 120). Bars = 10 mm. (c1,c2) Time-lapse sequences of the bleb's diameter and intracellular Fluo-4 relative intensity, respectively, during the observation period (0À300 s). (d1) Intracellular PI images taken at 0 s and 15 min postexposure. (d2) Calcein blue fluorescence image taken at 15 min post-exposure. (e, f) Under the condition of extracellular calcium chelation by EGTA, time-lapse brightfield images of the morphology and intracellular Fluo-4 fluorescence, respectively, of cells 1 and 2 before (0 s) and after (10 s to 15 min) ultrasound exposure. Bars = 10 mm. (g) Time-lapse sequences of intracellular Fluo-4 fluorescence during the observation period (0À300 s). (h1) Intracellular PI images taken at 0 s and 15 min postexposure, and PI fluorescence intensity (at 15 min) relative to baseline. (h2) Calcein blue fluorescence image taken at 15 min post-exposure and calcein blue fluorescence (at 15 min) relative to that within the ambient cells. (i1) Relationship between the diameter of the blebs and the intracellular Fluo-4 relative peak intensity in 26 reversibly sonoporated cells. (i2) Relative intensity of Fluo-4 maximal decrease in 30 irreversibly sonoporated cells. PI = propidium iodide.</figDesc><graphic coords="10,86.74,63.38,411.60,518.40" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="11,75.69,385.47,433.66,7.86;11,75.69,394.66,433.64,8.97;11,75.68,405.43,433.63,7.86;11,75.68,415.35,433.63,7.86;11,75.68,424.54,433.69,8.97;11,75.68,434.52,433.64,8.97;11,75.68,445.28,433.70,7.86;11,75.68,455.20,433.64,7.86;11,195.65,465.18,193.79,7.86;11,88.55,63.38,408.00,310.20"><head>Fig 5 .</head><label>5</label><figDesc>Fig 5. (a) Brightfield cell morphology recorded before ultrasound (0 s) and 15 min post-exposure (microscope recording parameters for 2-D imaging: pinhole, 90 mm; frame rate, »6.5 s; high-voltage gain, 120). Bars = 10 mm. (b) Threedimensional images of a cell labeled with CellMask Green from the superpositions of 17 2-D sections (in xÀy plane) along z-axis direction, which were taken pre-exposure (b1) and from 100 to 180 s post-exposure (b2), respectively (microscope recording parameters for 3-D imaging: pinhole, 90 mm; frame rate, 4.7 s; high-voltage gain, 120). (c) The enlarged sections at intervals of 0.8 mm along the z-axis (corresponding to the region in the red box at [b2]). The scanning time for every section in the xÀy plane taken was 4.7 s (the total scanning time was 80 s). (d) Intracellular PI fluorescence images captured at 0 s and 15 min post-exposure. (e) Calcein blue fluorescence image taken at 15 min postexposure. MB = microbubbles; PI = propidium iodide.</figDesc><graphic coords="11,88.55,63.38,408.00,310.20" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="12,75.69,370.05,433.69,7.86;12,75.69,379.18,433.69,8.97;12,75.69,389.16,433.70,8.97;12,75.69,399.14,433.66,8.97;12,75.69,409.12,433.66,8.97;12,230.57,419.04,123.89,8.97;12,76.54,63.38,432.00,294.75"><head>Fig. 6 .</head><label>6</label><figDesc>Fig. 6. (a, b) Time-lapse images of cell morphology and Lamp1-GFP fluorescence, respectively, in the enlarged region before and after ultrasound exposure (microscope recording parameters: pinhole, 110 mm; frame rate, 10 s; high-voltage gain,150). Bars = 10 mm. (c) Three-dimensional spatial distribution of Lamp1-GFP along the yÀx and xÀz planes from 270 to 425 s post-exposure. Bar = 10 mm. (d) Enlarged representative Lamp1-GFP sections along the z-axis at intervals of 0.2 mm, taking the xÀy plane location as the initial point of the z-axis. The scanning time for every section was 5 s. Bar = 10 mm. MB = microbubbles.</figDesc><graphic coords="12,76.54,63.38,432.00,294.75" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="13,75.69,498.57,433.63,7.86;13,75.69,507.76,433.65,8.97;13,75.69,517.74,433.65,8.97;13,75.69,528.45,433.65,7.86;13,75.69,537.64,433.70,8.97;13,75.69,547.62,433.69,8.97;13,75.69,558.38,433.65,7.86;13,169.23,568.31,246.57,7.86;13,76.54,63.38,432.00,423.30"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. (a, b)Time-lapse brightfield images of cell morphology and Actin-GFP, respectively, in the enlarged region before (0 s) and after (10À310 s) ultrasound exposure (microscope recording parameters: pinhole, 150 mm; frame rate, 10 s; high-voltage gain, 120). Bars = 10 mm. (c) Time-lapse sequences of the diameter of the bleb during the observation period (0À240 s). (d) Temporal profile of intracellular Actin-GFP fluorescence intensity relative to the baseline level over the 450-s observation period. (e) Intracellular PI images taken at 0 s and 15 min post-exposure. Bars = 10 mm. (f) Calcein blue fluorescence image taken at 15 min post-exposure. Bar = 10 mm. (g) In the other nine reversibly sonoporated cells, bleb diameter (light gray column) and relative maximum change in Actin-GFP (dark gray column) during the lifetime of the blebs. MB = microbubbles; PI = propidium iodide.</figDesc><graphic coords="13,76.54,63.38,432.00,423.30" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="14,75.69,460.19,433.64,7.86;14,75.69,469.33,433.66,8.97;14,75.69,479.30,433.67,8.97;14,75.69,489.28,433.69,8.97;14,75.69,500.05,433.66,7.86;14,75.69,509.97,433.69,7.86;14,82.32,519.95,420.39,7.86;14,64.57,63.38,456.00,384.90"><head>Fig. 8 .</head><label>8</label><figDesc>Fig. 8. (aÀd) Time-lapse brightfield images of cell morphology before and after ultrasound exposure (cell 1 in 300 nM cytochalasin D; cells 2 and 3 in 1000 nM cytochalasin D) (microscope recording parameters: pinhole, 40 mm; frame rate, »5.8 s; high-voltage gain, 120). Bars = 10 mm. (c) PI images of cells 1À3 at 0 s and 15 min post-exposure and calcein blue fluorescence of cells 1À3 at 15 min postexposure. Bars = 10 mm. (d) Under different cytochalasin D concentrations (0, 300, 1000 and 2500 nM), percentage of different types of blebbing behavior (type A: localized blebs with four phases; type B: localized blebs without retraction and without blebs) in the reversibly sonoporated cell. Total numbers (n) of reversibly sonoporated cells were 177, 68, 96 and 87, respectively. MB = microbubbles; PI = propidium iodide.</figDesc><graphic coords="14,64.57,63.38,456.00,384.90" type="bitmap"/></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0" coords="2,169.00,42.12,111.50,6.99;2,304.44,42.12,95.37,6.99;2,118.54,768.29,348.00,6.15;2,139.78,775.29,305.52,6.15"><p>Ultrasound in Medicine &amp; Biology Volume 00, Number 00, 2020 Downloaded for Anonymous User (n/a) at RUSH UNIVERSITY from ClinicalKey.com by Elsevier on December 30, 2020. For personal use only. No other uses without permission. Copyright ©2020. Elsevier Inc. All rights reserved.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_1" coords="3,209.99,42.12,165.09,6.99"><p>Plasma membrane blebbing dynamics C. JIA et al.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_2" coords="3,118.54,768.29,348.00,6.15;3,139.78,775.29,305.52,6.15"><p>Downloaded for Anonymous User (n/a) at RUSH UNIVERSITY from ClinicalKey.com by Elsevier on December 30, 2020.For personal use only. No other uses without permission. Copyright ©2020. Elsevier Inc. All rights reserved.</p></note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><p>Acknowledgments-This research is funded by the <rs type="funder">National Natural Science Foundation of China</rs> (Nos. <rs type="grantNumber">12074255</rs> and <rs type="grantNumber">31630007</rs>), <rs type="funder">Program of Medicine and Engineering Cross Fund of Shanghai Jiao Tong University</rs> (Nos. <rs type="grantNumber">YG2019ZDA27</rs>, <rs type="grantNumber">ZH2018QNA21</rs>) and <rs type="funder">SMC Rising Star Fund of Shanghai Jiao Tong University</rs> (No. <rs type="grantNumber">16X100080028</rs>).</p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funding" xml:id="_8VTzg4p">
+					<idno type="grant-number">12074255</idno>
+				</org>
+				<org type="funding" xml:id="_ysF5VGy">
+					<idno type="grant-number">31630007</idno>
+				</org>
+				<org type="funding" xml:id="_VvH7nFU">
+					<idno type="grant-number">YG2019ZDA27</idno>
+				</org>
+				<org type="funding" xml:id="_bvtSrjR">
+					<idno type="grant-number">ZH2018QNA21</idno>
+				</org>
+				<org type="funding" xml:id="_sqBKJDP">
+					<idno type="grant-number">16X100080028</idno>
+				</org>
+			</listOrg>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Conflict of interest disclosure-The authors have no conflicts of interest to declare.</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="17,53.01,566.19,227.58,6.99;17,64.97,575.15,215.63,6.99;17,64.97,584.10,198.67,6.99" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Above the fray: Surface remodeling by secreted lysosomal enzymes leads to endocytosis-mediated plasma membrane repair</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">W</forename><surname>Andrews</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Corrotte</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Castro-Gomes</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.semcdb.2015.09.022</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Seminars in Cell &amp; Developmental Biology</title>
+		<title level="j" type="abbrev">Seminars in Cell &amp; Developmental Biology</title>
+		<idno type="ISSN">1084-9521</idno>
+		<imprint>
+			<biblScope unit="volume">45</biblScope>
+			<biblScope unit="page" from="10" to="17"/>
+			<date type="published" when="2015-09">2015</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,53.01,593.06,227.55,6.99;17,64.97,602.08,215.57,6.99;17,64.97,611.03,192.78,6.99" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">A RhoA and Rnd3 cycle regulates actin reassembly during membrane blebbing</title>
+		<author>
+			<persName><forename type="first">Kana</forename><surname>Aoki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fumiyo</forename><surname>Maeda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tomoya</forename><surname>Nagasako</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuki</forename><surname>Mochizuki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Seiichi</forename><surname>Uchida</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Junichi</forename><surname>Ikenouchi</surname></persName>
+		</author>
+		<idno type="DOI">10.1073/pnas.1600968113</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the National Academy of Sciences</title>
+		<title level="j" type="abbrev">Proc. Natl. Acad. Sci. U.S.A.</title>
+		<idno type="ISSN">0027-8424</idno>
+		<idno type="ISSNe">1091-6490</idno>
+		<imprint>
+			<biblScope unit="volume">113</biblScope>
+			<biblScope unit="issue">13</biblScope>
+			<biblScope unit="page" from="1863" to="E1871"/>
+			<date type="published" when="2016-03-14">2016</date>
+			<publisher>Proceedings of the National Academy of Sciences</publisher>
+			<pubPlace>USA</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,53.01,619.99,227.57,6.99;17,64.97,628.95,211.99,6.99" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Blebbing confers resistance against cell lysis</title>
+		<author>
+			<persName coords=""><forename type="first">E</forename><forename type="middle">B</forename><surname>Babiychuk</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Monastyrskaya</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Potez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Draeger</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/cdd.2010.81</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Cell Death &amp; Differentiation</title>
+		<title level="j" type="abbrev">Cell Death Differ</title>
+		<idno type="ISSN">1350-9047</idno>
+		<idno type="ISSNe">1476-5403</idno>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="80" to="89"/>
+			<date type="published" when="2011">2011</date>
+			<publisher>Springer Science and Business Media LLC</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,53.01,637.91,227.54,6.99;17,64.97,646.86,215.54,6.99;17,64.97,655.88,215.58,6.99;17,64.97,664.84,180.39,6.99" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Apoptotic and necrotic blebs in epithelial cells display similar neck diameters but different kinase dependency</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><forename type="middle">F</forename><surname>Barros</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Kanaseki</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Sabirov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Morishima</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Castro</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">X</forename><surname>Bittner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Maeno</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Ando-Akatsuka</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Okada</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/sj.cdd.4401236</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Cell Death &amp; Differentiation</title>
+		<title level="j" type="abbrev">Cell Death Differ</title>
+		<idno type="ISSN">1350-9047</idno>
+		<idno type="ISSNe">1476-5403</idno>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="687" to="697"/>
+			<date type="published" when="2003-05-22">2003</date>
+			<publisher>Springer Science and Business Media LLC</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,53.01,673.79,227.56,6.99;17,64.97,682.75,215.61,6.99;17,64.97,691.71,215.55,6.99;17,64.97,700.67,183.26,6.99" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">High-Resolution Imaging of Intracellular Calcium Fluctuations Caused by Oscillating Microbubbles</title>
+		<author>
+			<persName><forename type="first">Inés</forename><surname>Beekers</surname></persName>
+			<idno type="ORCID">0000-0003-0905-5422</idno>
+		</author>
+		<author>
+			<persName><forename type="first">Frits</forename><surname>Mastik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Robert</forename><surname>Beurskens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Phoei</forename><forename type="middle">Ying</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Merel</forename><surname>Vegter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Antonius</forename><forename type="middle">F W</forename><surname>Van Der Steen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nico</forename><surname>De Jong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Martin</forename><forename type="middle">D</forename><surname>Verweij</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Klazina</forename><surname>Kooiman</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2020.03.029</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">46</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<biblScope unit="page" from="2017" to="2029"/>
+			<date type="published" when="2020-08">2020</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,67.06,227.54,6.99;17,316.46,76.02,215.60,6.99;17,316.46,84.98,37.86,6.99" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Calcium-regulated exocytosis is required for cell membrane resealing.</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">Q</forename><surname>Bi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">M</forename><surname>Alderton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">A</forename><surname>Steinhardt</surname></persName>
+		</author>
+		<idno type="DOI">10.1083/jcb.131.6.1747</idno>
+	</analytic>
+	<monogr>
+		<title level="j">The Journal of cell biology</title>
+		<idno type="ISSN">0021-9525</idno>
+		<idno type="ISSNe">1540-8140</idno>
+		<imprint>
+			<biblScope unit="volume">131</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="1747" to="1758"/>
+			<date type="published" when="1995-12-15">1995</date>
+			<publisher>Rockefeller University Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,93.94,226.61,6.99" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">A short history of blebbing</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">T</forename><surname>Charras</surname></persName>
+		</author>
+		<idno type="DOI">10.1111/j.1365-2818.2008.02059.x</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Microscopy</title>
+		<idno type="ISSN">0022-2720</idno>
+		<idno type="ISSNe">1365-2818</idno>
+		<imprint>
+			<biblScope unit="volume">231</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="466" to="478"/>
+			<date type="published" when="2008-09">2008</date>
+			<publisher>Wiley</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,102.90,227.52,6.99;17,316.46,111.91,172.66,6.99" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Blebs lead the way: how to migrate without lamellipodia</title>
+		<author>
+			<persName><forename type="first">Guillaume</forename><surname>Charras</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ewa</forename><surname>Paluch</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nrm2453</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Reviews Molecular Cell Biology</title>
+		<title level="j" type="abbrev">Nat Rev Mol Cell Biol</title>
+		<idno type="ISSN">1471-0072</idno>
+		<idno type="ISSNe">1471-0080</idno>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="730" to="736"/>
+			<date type="published" when="2008-07-16">2008</date>
+			<publisher>Springer Science and Business Media LLC</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,120.87,227.53,6.99;17,316.46,129.83,215.55,6.99;17,316.46,138.78,62.26,6.99" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Non-equilibration of hydrostatic pressure in blebbing cells</title>
+		<author>
+			<persName><forename type="first">Guillaume</forename><forename type="middle">T</forename><surname>Charras</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Justin</forename><forename type="middle">C</forename><surname>Yarrow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mike</forename><forename type="middle">A</forename><surname>Horton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Mahadevan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">J</forename><surname>Mitchison</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature03550</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<title level="j" type="abbrev">Nature</title>
+		<idno type="ISSN">0028-0836</idno>
+		<idno type="ISSNe">1476-4687</idno>
+		<imprint>
+			<biblScope unit="volume">435</biblScope>
+			<biblScope unit="issue">7040</biblScope>
+			<biblScope unit="page" from="365" to="369"/>
+			<date type="published" when="2005-05">2005</date>
+			<publisher>Springer Science and Business Media LLC</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,147.74,227.51,6.99;17,316.46,156.70,204.33,6.99" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Reassembly of contractile actin cortex in cell blebs</title>
+		<author>
+			<persName><forename type="first">Guillaume</forename><forename type="middle">T</forename><surname>Charras</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chi-Kuo</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Margaret</forename><surname>Coughlin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Timothy</forename><forename type="middle">J</forename><surname>Mitchison</surname></persName>
+		</author>
+		<idno type="DOI">10.1083/jcb.200602085</idno>
+	</analytic>
+	<monogr>
+		<title level="j">The Journal of Cell Biology</title>
+		<idno type="ISSN">0021-9525</idno>
+		<idno type="ISSNe">1540-8140</idno>
+		<imprint>
+			<biblScope unit="volume">175</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="477" to="490"/>
+			<date type="published" when="2006-11-06">2006</date>
+			<publisher>Rockefeller University Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,165.71,227.54,6.99;17,316.46,174.67,157.41,6.99" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Life and Times of a Cellular Bleb</title>
+		<author>
+			<persName><forename type="first">Guillaume</forename><forename type="middle">T</forename><surname>Charras</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Margaret</forename><surname>Coughlin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Timothy</forename><forename type="middle">J</forename><surname>Mitchison</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Mahadevan</surname></persName>
+		</author>
+		<idno type="DOI">10.1529/biophysj.107.113605</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Biophysical Journal</title>
+		<title level="j" type="abbrev">Biophysical Journal</title>
+		<idno type="ISSN">0006-3495</idno>
+		<imprint>
+			<biblScope unit="volume">94</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="1836" to="1853"/>
+			<date type="published" when="2008-03">2008</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,183.63,227.52,6.99;17,316.46,192.59,215.55,6.99;17,316.46,201.54,98.21,6.99" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Time-resolved ultrastructure of the cortical actin cytoskeleton in dynamic membrane blebs</title>
+		<author>
+			<persName><forename type="first">Aleksandra</forename><forename type="middle">S</forename><surname>Chikina</surname></persName>
+			<idno type="ORCID">0000-0002-6801-7031</idno>
+		</author>
+		<author>
+			<persName><forename type="first">Tatyana</forename><forename type="middle">M</forename><surname>Svitkina</surname></persName>
+			<idno type="ORCID">0000-0002-8424-447X</idno>
+		</author>
+		<author>
+			<persName><forename type="first">Antonina</forename><forename type="middle">Y</forename><surname>Alexandrova</surname></persName>
+			<idno type="ORCID">0000-0001-5071-2290</idno>
+		</author>
+		<idno type="DOI">10.1083/jcb.201806075</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Cell Biology</title>
+		<idno type="ISSN">0021-9525</idno>
+		<idno type="ISSNe">1540-8140</idno>
+		<imprint>
+			<biblScope unit="volume">218</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="445" to="454"/>
+			<date type="published" when="2019">2019</date>
+			<publisher>Rockefeller University Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,210.50,227.54,6.99;17,316.46,219.52,215.56,6.99;17,316.46,228.47,215.58,6.99;17,316.46,237.43,29.89,6.99" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Effects of ultrasound on apoptosis induced by anti-CD20 antibody in CD20-positive B lymphoma cells</title>
+		<author>
+			<persName><forename type="first">Daisuke</forename><surname>Danno</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Masatoshi</forename><surname>Kanno</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shinichi</forename><surname>Fujimoto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Loreto</forename><forename type="middle">B</forename><surname>Feril</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Takashi</forename><surname>Kondo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shinobu</forename><surname>Nakamura</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultsonch.2007.08.004</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasonics Sonochemistry</title>
+		<title level="j" type="abbrev">Ultrasonics Sonochemistry</title>
+		<idno type="ISSN">1350-4177</idno>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="463" to="471"/>
+			<date type="published" when="2008-04">2008</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,246.39,227.56,6.99;17,316.46,255.35,215.55,6.99;17,316.46,264.30,215.57,6.99;17,316.46,273.26,181.74,6.99" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Ultrasound and microbubble mediated drug delivery: Acoustic pressure as determinant for uptake via membrane pores or endocytosis</title>
+		<author>
+			<persName coords=""><forename type="first">De</forename><surname>Cock</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Zagato</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Braeckmans</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Luan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>De Jong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">De</forename><surname>Smedt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">C</forename><surname>Lentacker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J Control Release</title>
+		<imprint>
+			<biblScope unit="volume">197</biblScope>
+			<biblScope unit="page" from="20" to="28"/>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,282.28,227.53,6.99;17,316.46,291.23,157.88,6.99" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Ultrasound-induced cell membrane porosity</title>
+		<author>
+			<persName><forename type="first">Cheri</forename><forename type="middle">X</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fred</forename><surname>Sieling</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hua</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jianmin</forename><surname>Cui</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2004.01.005</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">30</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="519" to="526"/>
+			<date type="published" when="2004-04">2004</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,300.19,227.52,6.99;17,316.46,309.15,215.57,6.99;17,316.46,318.11,109.18,6.99" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Dealing with damage: Plasma membrane repair mechanisms</title>
+		<author>
+			<persName><forename type="first">Annette</forename><surname>Draeger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Roman</forename><surname>Schoenauer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alexander</forename><forename type="middle">P</forename><surname>Atanassoff</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Heidi</forename><surname>Wolfmeier</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eduard</forename><forename type="middle">B</forename><surname>Babiychuk</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.biochi.2014.08.008</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Biochimie</title>
+		<title level="j" type="abbrev">Biochimie</title>
+		<idno type="ISSN">0300-9084</idno>
+		<imprint>
+			<biblScope unit="volume">107</biblScope>
+			<biblScope unit="page" from="66" to="72"/>
+			<date type="published" when="2014-12">2014</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+	<note>Pt A</note>
+</biblStruct>
+
+<biblStruct coords="17,304.50,327.06,227.54,6.99;17,316.46,336.08,215.60,6.99;17,316.46,345.04,107.41,6.99" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Intracellular delivery and calcium transients generated in sonoporation facilitated by microbubbles</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">E</forename><surname>Kumon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">X</forename><surname>Deng</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jconrel.2009.09.031</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Controlled Release</title>
+		<title level="j" type="abbrev">Journal of Controlled Release</title>
+		<idno type="ISSN">0168-3659</idno>
+		<imprint>
+			<biblScope unit="volume">142</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="31" to="39"/>
+			<date type="published" when="2010-02">2010</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,353.99,227.64,6.99;17,316.46,362.95,213.87,6.99" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Spatiotemporally controlled single cell sonoporation</title>
+		<author>
+			<persName><forename type="first">Zhenzhen</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haiyan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michael</forename><surname>Mayer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Cheri</forename><forename type="middle">X</forename><surname>Deng</surname></persName>
+		</author>
+		<idno type="DOI">10.1073/pnas.1208198109</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the National Academy of Sciences</title>
+		<title level="j" type="abbrev">Proc. Natl. Acad. Sci. U.S.A.</title>
+		<idno type="ISSN">0027-8424</idno>
+		<idno type="ISSNe">1091-6490</idno>
+		<imprint>
+			<biblScope unit="volume">109</biblScope>
+			<biblScope unit="issue">41</biblScope>
+			<biblScope unit="page" from="16486" to="16491"/>
+			<date type="published" when="2012-09-24">2012</date>
+			<publisher>Proceedings of the National Academy of Sciences</publisher>
+			<pubPlace>USA</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,371.91,227.52,6.99;17,316.46,380.87,215.57,6.99;17,316.46,389.83,135.15,6.99" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Ultrasound Microbubble Contrast Agents: Fundamentals and Application to Gene and Drug Delivery</title>
+		<author>
+			<persName><forename type="first">Katherine</forename><surname>Ferrara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rachel</forename><surname>Pollard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mark</forename><surname>Borden</surname></persName>
+		</author>
+		<idno type="DOI">10.1146/annurev.bioeng.8.061505.095852</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Annual Review of Biomedical Engineering</title>
+		<title level="j" type="abbrev">Annu. Rev. Biomed. Eng.</title>
+		<idno type="ISSN">1523-9829</idno>
+		<idno type="ISSNe">1545-4274</idno>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="415" to="447"/>
+			<date type="published" when="2007-08-15">2007</date>
+			<publisher>Annual Reviews</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,398.84,227.56,6.99;17,316.46,407.80,215.58,6.99;17,316.46,416.75,215.55,6.99;17,316.46,425.71,115.38,6.99" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Self-assembled liposome-loaded microbubbles: The missing link for safe and efficient ultrasound triggered drug-delivery</title>
+		<author>
+			<persName><forename type="first">Bart</forename><surname>Geers</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ine</forename><surname>Lentacker</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Niek</forename><forename type="middle">N</forename><surname>Sanders</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Joseph</forename><surname>Demeester</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stephen</forename><surname>Meairs</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stefaan</forename><forename type="middle">C</forename><surname>De Smedt</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jconrel.2011.02.024</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Controlled Release</title>
+		<title level="j" type="abbrev">Journal of Controlled Release</title>
+		<idno type="ISSN">0168-3659</idno>
+		<imprint>
+			<biblScope unit="volume">152</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="249" to="256"/>
+			<date type="published" when="2011-06">2011</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,434.67,163.58,6.99;17,468.11,432.91,6.35,4.66;17,476.62,434.66,55.37,6.99;17,316.46,443.62,215.59,6.99;17,316.46,452.63,80.61,6.99" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">The role of Ca2+ in ultrasound-elicited bioeffects: progress, perspectives and prospects</title>
+		<author>
+			<persName><forename type="first">Mariame</forename><forename type="middle">A</forename><surname>Hassan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Campbell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Takashi</forename><surname>Kondo</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.drudis.2010.08.005</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Drug Discovery Today</title>
+		<title level="j" type="abbrev">Drug Discovery Today</title>
+		<idno type="ISSN">1359-6446</idno>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="issue">21-22</biblScope>
+			<biblScope unit="page" from="892" to="906"/>
+			<date type="published" when="2010-11">2010</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,461.59,227.53,6.99;17,316.46,470.55,215.57,6.99;17,316.46,479.51,70.23,6.99" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Biophysical insight into mechanisms of sonoporation</title>
+		<author>
+			<persName><forename type="first">Brandon</forename><surname>Helfield</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xucai</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Simon</forename><forename type="middle">C</forename><surname>Watkins</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Flordeliza</forename><forename type="middle">S</forename><surname>Villanueva</surname></persName>
+		</author>
+		<idno type="DOI">10.1073/pnas.1606915113</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the National Academy of Sciences</title>
+		<title level="j" type="abbrev">Proc. Natl. Acad. Sci. U.S.A.</title>
+		<idno type="ISSN">0027-8424</idno>
+		<idno type="ISSNe">1091-6490</idno>
+		<imprint>
+			<biblScope unit="volume">113</biblScope>
+			<biblScope unit="issue">36</biblScope>
+			<biblScope unit="page" from="9983" to="9988"/>
+			<date type="published" when="2016-08-22">2016</date>
+			<publisher>Proceedings of the National Academy of Sciences</publisher>
+			<pubPlace>USA</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,488.46,227.50,6.99;17,316.46,497.42,215.59,6.99;17,316.46,506.38,66.25,6.99" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Membrane Perforation and Recovery Dynamics in Microbubble-Mediated Sonoporation</title>
+		<author>
+			<persName><forename type="first">Yaxin</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jennifer</forename><forename type="middle">M F</forename><surname>Wan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2013.08.003</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">39</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="2393" to="2405"/>
+			<date type="published" when="2013-12">2013</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,515.39,227.51,6.99;17,316.46,524.35,153.60,6.99;17,470.10,522.54,6.35,4.66;17,476.45,524.35,55.59,6.99;17,316.46,533.31,124.28,6.99" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Repair of injured plasma membrane by rapid Ca2+-dependent endocytosis</title>
+		<author>
+			<persName><forename type="first">Vincent</forename><surname>Idone</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christina</forename><surname>Tam</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">John</forename><forename type="middle">W</forename><surname>Goss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Derek</forename><surname>Toomre</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marc</forename><surname>Pypaert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Norma</forename><forename type="middle">W</forename><surname>Andrews</surname></persName>
+		</author>
+		<idno type="DOI">10.1083/jcb.200708010</idno>
+	</analytic>
+	<monogr>
+		<title level="j">The Journal of Cell Biology</title>
+		<idno type="ISSN">0021-9525</idno>
+		<idno type="ISSNe">1540-8140</idno>
+		<imprint>
+			<biblScope unit="volume">180</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="905" to="914"/>
+			<date type="published" when="2008-03-03">2008</date>
+			<publisher>Rockefeller University Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,542.26,227.54,6.99;17,316.46,551.22,215.54,6.99;17,316.46,560.18,215.55,6.99;17,316.46,569.19,80.50,6.99" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">New Insights in the Actin Cytoskeleton Dynamics of the Sonoporated Human Umbilical Vein Endothelial Cells</title>
+		<author>
+			<persName><forename type="first">Caixia</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jianmin</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fan</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ping</forename><surname>Cai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Qin</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ultsym.2018.8579686</idno>
+	</analytic>
+	<monogr>
+		<title level="m">2018 IEEE International Ultrasonics Symposium (IUS)</title>
+		<meeting><address><addrLine>Kobe</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2018-10">2018. 2018</date>
+			<biblScope unit="page" from="1" to="4"/>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,578.15,227.53,6.99;17,316.46,587.11,215.59,6.99;17,316.46,596.07,215.60,6.99;17,316.46,605.02,70.23,6.99" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Generation of Reactive Oxygen Species in Heterogeneously Sonoporated Cells by Microbubbles with Single-Pulse Ultrasound</title>
+		<author>
+			<persName><forename type="first">Caixia</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lin</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ping</forename><surname>Cai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Qin</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2018.01.006</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">44</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="1074" to="1085"/>
+			<date type="published" when="2018-05">2018</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,613.98,227.54,6.99;17,316.46,622.94,215.58,6.99;17,316.46,631.95,78.53,6.99" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">ESCRT Machinery Is Required for Plasma Membrane Repair</title>
+		<author>
+			<persName><forename type="first">Ana</forename><forename type="middle">Joaquina</forename><surname>Jimenez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paolo</forename><surname>Maiuri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Julie</forename><surname>Lafaurie-Janvore</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Séverine</forename><surname>Divoux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Matthieu</forename><surname>Piel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Franck</forename><surname>Perez</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/science.1247136</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<title level="j" type="abbrev">Science</title>
+		<idno type="ISSN">0036-8075</idno>
+		<idno type="ISSNe">1095-9203</idno>
+		<imprint>
+			<biblScope unit="volume">343</biblScope>
+			<biblScope unit="issue">6174</biblScope>
+			<biblScope unit="page">1247136</biblScope>
+			<date type="published" when="2014-02-28">2014</date>
+			<publisher>American Association for the Advancement of Science (AAAS)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,640.91,227.57,6.99;17,316.46,649.87,215.56,6.99;17,316.46,658.83,195.25,6.99" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Pulsed-laser creation and characterization of giant plasma membrane vesicles from cells</title>
+		<author>
+			<persName><forename type="first">Christopher</forename><forename type="middle">V</forename><surname>Kelly</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mary-Margaret T.</forename><surname>Kober</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Päivö</forename><surname>Kinnunen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><forename type="middle">A</forename><surname>Reis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bradford</forename><forename type="middle">G</forename><surname>Orr</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mark</forename><forename type="middle">M</forename><surname>Banaszak Holl</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s10867-009-9167-7</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Biological Physics</title>
+		<title level="j" type="abbrev">J Biol Phys</title>
+		<idno type="ISSN">0092-0606</idno>
+		<idno type="ISSNe">1573-0689</idno>
+		<imprint>
+			<biblScope unit="volume">35</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="279" to="295"/>
+			<date type="published" when="2009-06-20">2009</date>
+			<publisher>Springer Science and Business Media LLC</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="17,304.50,667.79,227.54,6.99;17,316.46,676.74,215.56,6.99;17,316.46,685.76,215.59,6.99;17,316.46,694.72,70.23,6.99" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Streptolysin O clearance through sequestration into blebs that bud passively from the plasma membrane</title>
+		<author>
+			<persName><forename type="first">Peter</forename><forename type="middle">A</forename><surname>Keyel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lyussiena</forename><surname>Loultcheva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Robyn</forename><surname>Roth</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Russell</forename><forename type="middle">D</forename><surname>Salter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Simon</forename><forename type="middle">C</forename><surname>Watkins</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wayne</forename><forename type="middle">M</forename><surname>Yokoyama</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">John</forename><forename type="middle">E</forename><surname>Heuser</surname></persName>
+		</author>
+		<idno type="DOI">10.1242/jcs.076182</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Cell Science</title>
+		<idno type="ISSN">0021-9533</idno>
+		<idno type="ISSNe">1477-9137</idno>
+		<imprint>
+			<biblScope unit="volume">124</biblScope>
+			<biblScope unit="issue">14</biblScope>
+			<biblScope unit="page" from="2414" to="2423"/>
+			<date type="published" when="2011-07-15">2011</date>
+			<publisher>The Company of Biologists</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,67.06,227.56,6.99;18,64.97,76.02,215.60,6.99;18,64.97,84.98,65.10,6.99" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Acoustic behavior of microbubbles and implications for drug delivery</title>
+		<author>
+			<persName><forename type="first">Klazina</forename><surname>Kooiman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hendrik</forename><forename type="middle">J</forename><surname>Vos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michel</forename><surname>Versluis</surname></persName>
+			<idno type="ORCID">0000-0002-2296-1860</idno>
+		</author>
+		<author>
+			<persName><forename type="first">Nico</forename><surname>De Jong</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.addr.2014.03.003</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Advanced Drug Delivery Reviews</title>
+		<title level="j" type="abbrev">Advanced Drug Delivery Reviews</title>
+		<idno type="ISSN">0169-409X</idno>
+		<imprint>
+			<biblScope unit="volume">72</biblScope>
+			<biblScope unit="page" from="28" to="48"/>
+			<date type="published" when="2014-06">2014</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,93.94,227.56,6.99;18,64.97,102.89,215.60,6.99;18,64.97,111.91,174.18,6.99" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Understanding ultrasound induced sonoporation: Definitions and underlying mechanisms</title>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Lentacker</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>De Cock</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Deckers</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">C</forename><surname>De Smedt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">T W</forename><surname>Moonen</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.addr.2013.11.008</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Advanced Drug Delivery Reviews</title>
+		<title level="j" type="abbrev">Advanced Drug Delivery Reviews</title>
+		<idno type="ISSN">0169-409X</idno>
+		<imprint>
+			<biblScope unit="volume">72</biblScope>
+			<biblScope unit="page" from="49" to="64"/>
+			<date type="published" when="2014-06">2014</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,120.87,227.51,6.99;18,64.97,129.82,215.54,6.99;18,64.97,138.78,183.08,6.99" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Membrane blebbing as a recovery manoeuvre in site-specific sonoporation mediated by targeted microbubbles</title>
+		<author>
+			<persName><forename type="first">Ruen</forename><forename type="middle">Shan</forename><surname>Leow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jennifer</forename><forename type="middle">M F</forename><surname>Wan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="DOI">10.1098/rsif.2015.0029</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of The Royal Society Interface</title>
+		<title level="j" type="abbrev">J. R. Soc. Interface.</title>
+		<idno type="ISSN">1742-5689</idno>
+		<idno type="ISSNe">1742-5662</idno>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="issue">105</biblScope>
+			<biblScope unit="page">20150029</biblScope>
+			<date type="published" when="2015-04">2015</date>
+			<publisher>The Royal Society</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,147.74,227.58,6.99;18,64.97,156.70,215.58,6.99;18,64.97,165.71,215.60,6.99;18,64.97,174.67,39.68,6.99" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Dynamics and mechanisms of intracellular calcium waves elicited by tandem bubble-induced jetting flow</title>
+		<author>
+			<persName><forename type="first">Fenfang</forename><surname>Li</surname></persName>
+			<idno type="ORCID">0000-0002-1690-3373</idno>
+		</author>
+		<author>
+			<persName><forename type="first">Chen</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fang</forename><surname>Yuan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Defei</forename><surname>Liao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Farshid</forename><surname>Guilak</surname></persName>
+			<idno type="ORCID">0000-0001-7380-0330</idno>
+		</author>
+		<author>
+			<persName><forename type="first">Pei</forename><surname>Zhong</surname></persName>
+		</author>
+		<idno type="DOI">10.1073/pnas.1713905115</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the National Academy of Sciences</title>
+		<title level="j" type="abbrev">Proc. Natl. Acad. Sci. U.S.A.</title>
+		<idno type="ISSN">0027-8424</idno>
+		<idno type="ISSNe">1091-6490</idno>
+		<imprint>
+			<biblScope unit="volume">115</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="353" to="E362"/>
+			<date type="published" when="2018">2018</date>
+			<publisher>Proceedings of the National Academy of Sciences</publisher>
+			<pubPlace>USA</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,183.63,227.54,6.99;18,64.97,192.58,215.60,6.99;18,64.97,201.54,215.56,6.99;18,64.97,210.50,93.88,6.99" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Effect of acoustic parameters on the cavitation behavior of SonoVue microbubbles induced by pulsed ultrasound</title>
+		<author>
+			<persName><forename type="first">Yutong</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lizhou</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mouwen</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lifang</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lianfang</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lin</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Qin</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultsonch.2016.09.016</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasonics Sonochemistry</title>
+		<title level="j" type="abbrev">Ultrasonics Sonochemistry</title>
+		<idno type="ISSN">1350-4177</idno>
+		<imprint>
+			<biblScope unit="volume">35</biblScope>
+			<biblScope unit="page" from="176" to="184"/>
+			<date type="published" when="2017-03">2017</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,219.51,227.54,6.99;18,64.97,228.47,203.97,6.99" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Plasma Membrane Disruption: Repair, Prevention, Adaptation</title>
+		<author>
+			<persName><forename type="first">Paul</forename><forename type="middle">L</forename><surname>Mcneil</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Richard</forename><forename type="middle">A</forename><surname>Steinhardt</surname></persName>
+		</author>
+		<idno type="DOI">10.1146/annurev.cellbio.19.111301.140101</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Annual Review of Cell and Developmental Biology</title>
+		<title level="j" type="abbrev">Annu. Rev. Cell Dev. Biol.</title>
+		<idno type="ISSN">1081-0706</idno>
+		<idno type="ISSNe">1530-8995</idno>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="697" to="731"/>
+			<date type="published" when="2003-11">2003</date>
+			<publisher>Annual Reviews</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,237.43,227.53,6.99;18,64.97,246.39,215.58,6.99;18,64.97,255.35,150.53,6.99" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Plasma membrane poration induced by ultrasound exposure: Implication for drug delivery</title>
+		<author>
+			<persName><forename type="first">Sophie</forename><surname>Mehier-Humbert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thierry</forename><surname>Bettinger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Feng</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Richard</forename><forename type="middle">H</forename><surname>Guy</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jconrel.2005.01.007</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Controlled Release</title>
+		<title level="j" type="abbrev">Journal of Controlled Release</title>
+		<idno type="ISSN">0168-3659</idno>
+		<imprint>
+			<biblScope unit="volume">104</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="213" to="222"/>
+			<date type="published" when="2005-05">2005</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,264.30,227.52,6.99;18,64.97,273.26,215.57,6.99;18,64.97,282.28,114.29,6.99" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Control of cytoskeletal dynamics during cellular responses to pore forming toxins</title>
+		<author>
+			<persName><forename type="first">Francisco</forename><forename type="middle">Sarmento</forename><surname>Mesquita</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Cláudia</forename><surname>Brito</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Didier</forename><surname>Cabanes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sandra</forename><surname>Sousa</surname></persName>
+		</author>
+		<idno type="DOI">10.1080/19420889.2017.1349582</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Communicative &amp; Integrative Biology</title>
+		<title level="j" type="abbrev">Communicative &amp; Integrative Biology</title>
+		<idno type="ISSNe">1942-0889</idno>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="issue">5-6</biblScope>
+			<biblScope unit="page">e1349582</biblScope>
+			<date type="published" when="2017-09-28">2017</date>
+			<publisher>Informa UK Limited</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,291.23,227.54,6.99;18,64.97,300.19,215.56,6.99;18,64.97,309.15,78.96,6.99" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Into the breach: how cells cope with wounds</title>
+		<author>
+			<persName><forename type="first">Mitsutoshi</forename><surname>Nakamura</surname></persName>
+			<idno type="ORCID">0000-0001-7879-3176</idno>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><forename type="middle">N M</forename><surname>Dominguez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jacob</forename><forename type="middle">R</forename><surname>Decker</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alexander</forename><forename type="middle">J</forename><surname>Hull</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeffrey</forename><forename type="middle">M</forename><surname>Verboon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Susan</forename><forename type="middle">M</forename><surname>Parkhurst</surname></persName>
+			<idno type="ORCID">0000-0001-5806-9930</idno>
+		</author>
+		<idno type="DOI">10.1098/rsob.180135</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Open Biology</title>
+		<title level="j" type="abbrev">Open Biol.</title>
+		<idno type="ISSNe">2046-2441</idno>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page">180135</biblScope>
+			<date type="published" when="2018-10">2018</date>
+			<publisher>The Royal Society</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,318.11,227.53,6.99;18,64.97,327.06,215.54,6.99;18,64.97,336.08,130.42,6.99" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Cell Blebbing and Membrane Area Homeostasis in Spreading and Retracting Cells</title>
+		<author>
+			<persName><forename type="first">Leann</forename><forename type="middle">L</forename><surname>Norman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jan</forename><surname>Brugés</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kheya</forename><surname>Sengupta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pierre</forename><surname>Sens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Helim</forename><surname>Aranda-Espinoza</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.bpj.2010.07.031</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Biophysical Journal</title>
+		<title level="j" type="abbrev">Biophysical Journal</title>
+		<idno type="ISSN">0006-3495</idno>
+		<imprint>
+			<biblScope unit="volume">99</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="1726" to="1733"/>
+			<date type="published" when="2010-09">2010</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,345.04,227.56,6.99;18,64.97,353.99,123.64,6.99" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">The role and regulation of blebs in cell migration</title>
+		<author>
+			<persName><forename type="first">Ewa</forename><forename type="middle">K</forename><surname>Paluch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Erez</forename><surname>Raz</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ceb.2013.05.005</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Current Opinion in Cell Biology</title>
+		<title level="j" type="abbrev">Current Opinion in Cell Biology</title>
+		<idno type="ISSN">0955-0674</idno>
+		<imprint>
+			<biblScope unit="volume">25</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="582" to="590"/>
+			<date type="published" when="2013-10">2013</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,362.95,227.53,6.99;18,64.97,371.91,215.58,6.99;18,64.97,380.87,215.58,6.99;18,64.97,389.82,29.89,6.99" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Sonoporation-Induced Depolarization of Plasma Membrane Potential: Analysis of Heterogeneous Impact</title>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lin</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yaxin</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wenjing</forename><surname>Zhong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ping</forename><surname>Cai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lianfang</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lifang</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2013.11.024</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="979" to="989"/>
+			<date type="published" when="2014-05">2014</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,398.84,227.52,6.99;18,64.97,407.80,215.58,6.99;18,64.97,416.75,205.05,6.99" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Effect of non-acoustic parameters on heterogeneous sonoporation mediated by single-pulse ultrasound and microbubbles</title>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lin</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lianfang</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultsonch.2015.12.001</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasonics Sonochemistry</title>
+		<title level="j" type="abbrev">Ultrasonics Sonochemistry</title>
+		<idno type="ISSN">1350-4177</idno>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="page" from="107" to="115"/>
+			<date type="published" when="2016-07">2016</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,53.01,425.71,227.53,6.99;18,64.97,434.67,215.57,6.99;18,64.97,443.63,150.53,6.99" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Mechanistic understanding the bioeffects of ultrasound-driven microbubbles to enhance macromolecule delivery</title>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lin</forename><surname>Xu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jconrel.2018.01.001</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Controlled Release</title>
+		<title level="j" type="abbrev">Journal of Controlled Release</title>
+		<idno type="ISSN">0168-3659</idno>
+		<imprint>
+			<biblScope unit="volume">272</biblScope>
+			<biblScope unit="page" from="169" to="181"/>
+			<date type="published" when="2018-02">2018</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,304.50,67.07,227.53,6.99;18,316.46,76.03,215.56,6.99;18,316.46,84.99,215.54,6.99;18,316.46,93.94,158.72,6.99" xml:id="b43">
+	<analytic>
+		<title level="a" type="main">The correlation between acoustic cavitation and sonoporation involved in ultrasound-mediated DNA transfection with polyethylenimine (PEI) in vitro</title>
+		<author>
+			<persName><forename type="first">Yuanyuan</forename><surname>Qiu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yi</forename><surname>Luo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yanli</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Weicheng</forename><surname>Cui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dong</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Junru</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Junfeng</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Juan</forename><surname>Tu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jconrel.2010.04.010</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Controlled Release</title>
+		<title level="j" type="abbrev">Journal of Controlled Release</title>
+		<idno type="ISSN">0168-3659</idno>
+		<imprint>
+			<biblScope unit="volume">145</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="40" to="48"/>
+			<date type="published" when="2010-07-01">2010</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,304.50,102.90,227.51,6.99;18,316.46,111.92,37.39,6.99;18,353.88,110.10,6.35,4.66;18,360.23,111.91,171.84,6.99;18,316.46,120.87,29.89,6.99" xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Plasma Membrane Repair Is Mediated by Ca2+-Regulated Exocytosis of Lysosomes</title>
+		<author>
+			<persName><forename type="first">Anita</forename><surname>Reddy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Elisabet</forename><forename type="middle">V</forename><surname>Caler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Norma</forename><forename type="middle">W</forename><surname>Andrews</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/s0092-8674(01)00421-4</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Cell</title>
+		<title level="j" type="abbrev">Cell</title>
+		<idno type="ISSN">0092-8674</idno>
+		<imprint>
+			<biblScope unit="volume">106</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="157" to="169"/>
+			<date type="published" when="2001-07">2001</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,304.50,129.82,227.54,6.99;18,316.46,138.78,80.99,6.99" xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Response of contrast agents to ultrasound</title>
+		<author>
+			<persName coords=""><forename type="first">Vassilis</forename><surname>Sboros</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.addr.2008.03.011</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Advanced Drug Delivery Reviews</title>
+		<title level="j" type="abbrev">Advanced Drug Delivery Reviews</title>
+		<idno type="ISSN">0169-409X</idno>
+		<imprint>
+			<biblScope unit="volume">60</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="1117" to="1136"/>
+			<date type="published" when="2008-06">2008</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,304.50,147.74,227.54,6.99;18,316.46,156.70,215.55,6.99;18,316.46,165.71,215.55,6.99;18,316.46,174.67,61.51,6.99" xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Reversible Cavitation‐Induced Junctional Opening in an Artificial Endothelial Layer</title>
+		<author>
+			<persName><forename type="first">Giulia</forename><surname>Silvani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chiara</forename><surname>Scognamiglio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Davide</forename><surname>Caprini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luca</forename><surname>Marino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mauro</forename><surname>Chinappi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Giorgia</forename><surname>Sinibaldi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Giovanna</forename><surname>Peruzzi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mohammad</forename><forename type="middle">F</forename><surname>Kiani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Carlo</forename><forename type="middle">M</forename><surname>Casciola</surname></persName>
+			<idno type="ORCID">0000-0001-8795-4517</idno>
+		</author>
+		<idno type="DOI">10.1002/smll.201905375</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Small</title>
+		<title level="j" type="abbrev">Small</title>
+		<idno type="ISSN">1613-6810</idno>
+		<idno type="ISSNe">1613-6829</idno>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="issue">51</biblScope>
+			<biblScope unit="page">1905375</biblScope>
+			<date type="published" when="2019-11-25">2019</date>
+			<publisher>Wiley</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,304.50,183.63,227.56,6.99;18,316.46,192.58,215.56,6.99;18,316.46,201.54,215.57,6.99;18,316.46,210.50,215.53,6.99;18,316.46,219.51,81.93,6.99" xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Real-time detection of intracellular reactive oxygen species and mitochondrial membrane potential in THP-1 macrophages during ultrasonic irradiation for optimal sonodynamic therapy</title>
+		<author>
+			<persName><forename type="first">Xin</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haobo</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jing</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shuyuan</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sa</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Juhua</forename><surname>Dan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fang</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yanfeng</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ye</forename><surname>Tian</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultsonch.2014.06.016</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasonics Sonochemistry</title>
+		<title level="j" type="abbrev">Ultrasonics Sonochemistry</title>
+		<idno type="ISSN">1350-4177</idno>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="page" from="7" to="14"/>
+			<date type="published" when="2015-01">2015</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,304.50,228.47,227.56,6.99;18,316.46,237.43,215.59,6.99;18,316.46,246.39,215.56,6.99;18,316.46,255.34,164.46,6.99" xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Exocytosis of acid sphingomyelinase by wounded cells promotes endocytosis and plasma membrane repair</title>
+		<author>
+			<persName><forename type="first">Christina</forename><surname>Tam</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vincent</forename><surname>Idone</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Cecilia</forename><surname>Devlin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Maria</forename><forename type="middle">Cecilia</forename><surname>Fernandes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><surname>Flannery</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xingxuan</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Edward</forename><surname>Schuchman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ira</forename><surname>Tabas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Norma</forename><forename type="middle">W</forename><surname>Andrews</surname></persName>
+		</author>
+		<idno type="DOI">10.1083/jcb.201003053</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Cell Biology</title>
+		<idno type="ISSN">0021-9525</idno>
+		<idno type="ISSNe">1540-8140</idno>
+		<imprint>
+			<biblScope unit="volume">189</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="1027" to="1038"/>
+			<date type="published" when="2010-06-07">2010</date>
+			<publisher>Rockefeller University Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,304.50,264.30,227.52,6.99;18,316.46,273.26,112.40,6.99" xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Myosin IIA drives membrane bleb retraction</title>
+		<author>
+			<persName><forename type="first">Nilay</forename><surname>Taneja</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dylan</forename><forename type="middle">T</forename><surname>Burnette</surname></persName>
+		</author>
+		<idno type="DOI">10.1091/mbc.e18-11-0752</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Molecular Biology of the Cell</title>
+		<title level="j" type="abbrev">MBoC</title>
+		<idno type="ISSN">1059-1524</idno>
+		<idno type="ISSNe">1939-4586</idno>
+		<imprint>
+			<biblScope unit="volume">30</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="1051" to="1059"/>
+			<date type="published" when="2019-04-15">2019</date>
+			<publisher>American Society for Cell Biology (ASCB)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,304.50,282.27,227.52,6.99;18,316.46,291.23,215.56,6.99;18,316.46,300.19,203.63,6.99" xml:id="b50">
+	<analytic>
+		<title level="a" type="main">Ultrasound and microbubble guided drug delivery: mechanistic understanding and clinical implications</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Tzu-Yin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><forename type="middle">E</forename><surname>Wilson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Machtaler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">K</forename><surname>Willmann</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Curr Pharm Biotechnol</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="page" from="743" to="752"/>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,304.50,309.15,227.57,6.99;18,316.46,318.11,215.60,6.99;18,316.46,327.06,215.56,6.99;18,316.46,336.08,215.54,6.99;18,316.46,345.03,194.30,6.99" xml:id="b51">
+	<analytic>
+		<title level="a" type="main">Viability of endothelial cells after ultrasound-mediated sonoporation: Influence of targeting, oscillation, and displacement of microbubbles</title>
+		<author>
+			<persName><forename type="first">Tom</forename><surname>Van Rooij</surname></persName>
+			<idno type="ORCID">0000-0002-3163-7376</idno>
+		</author>
+		<author>
+			<persName><forename type="first">Ilya</forename><surname>Skachkov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Inés</forename><surname>Beekers</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kirby</forename><forename type="middle">R</forename><surname>Lattwein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jason</forename><forename type="middle">D</forename><surname>Voorneveld</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tom</forename><forename type="middle">J A</forename><surname>Kokhuis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Deep</forename><surname>Bera</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ying</forename><surname>Luan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Antonius</forename><forename type="middle">F W</forename><surname>Van Der Steen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nico</forename><surname>De Jong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Klazina</forename><surname>Kooiman</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jconrel.2016.07.037</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Controlled Release</title>
+		<title level="j" type="abbrev">Journal of Controlled Release</title>
+		<idno type="ISSN">0168-3659</idno>
+		<imprint>
+			<biblScope unit="volume">238</biblScope>
+			<biblScope unit="page" from="197" to="211"/>
+			<date type="published" when="2016-09">2016</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,304.50,353.99,227.51,6.99;18,316.46,362.95,215.55,6.99;18,316.46,371.91,185.04,6.99" xml:id="b52">
+	<analytic>
+		<title level="a" type="main">Cellular blebs: pressure-driven, axisymmetric, membrane protrusions</title>
+		<author>
+			<persName><forename type="first">Thomas</forename><forename type="middle">E</forename><surname>Woolley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eamonn</forename><forename type="middle">A</forename><surname>Gaffney</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">James</forename><forename type="middle">M</forename><surname>Oliver</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ruth</forename><forename type="middle">E</forename><surname>Baker</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sarah</forename><forename type="middle">L</forename><surname>Waters</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alain</forename><surname>Goriely</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s10237-013-0509-9</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Biomechanics and Modeling in Mechanobiology</title>
+		<title level="j" type="abbrev">Biomech Model Mechanobiol</title>
+		<idno type="ISSN">1617-7959</idno>
+		<idno type="ISSNe">1617-7940</idno>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="463" to="476"/>
+			<date type="published" when="2014">2014</date>
+			<publisher>Springer Science and Business Media LLC</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,304.50,380.87,227.49,6.99;18,316.46,389.82,215.58,6.99;18,316.46,398.84,62.26,6.99" xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Experimental study on cell self-sealing during sonoporation</title>
+		<author>
+			<persName><forename type="first">Fang</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ning</forename><surname>Gu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Di</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiaoyu</forename><surname>Xi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dong</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yixin</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Junru</forename><surname>Wu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jconrel.2008.07.038</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Controlled Release</title>
+		<title level="j" type="abbrev">Journal of Controlled Release</title>
+		<idno type="ISSN">0168-3659</idno>
+		<imprint>
+			<biblScope unit="volume">131</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="205" to="210"/>
+			<date type="published" when="2008-11">2008</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="18,304.50,407.80,227.50,6.99;18,316.46,416.75,215.59,6.99;18,316.46,425.71,109.90,6.99" xml:id="b54">
+	<analytic>
+		<title level="a" type="main">Cell membrane deformation and bioeffects produced by tandem bubble-induced jetting flow</title>
+		<author>
+			<persName><forename type="first">Fang</forename><surname>Yuan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chen</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pei</forename><surname>Zhong</surname></persName>
+		</author>
+		<idno type="DOI">10.1073/pnas.1518679112</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the National Academy of Sciences</title>
+		<title level="j" type="abbrev">Proc. Natl. Acad. Sci. U.S.A.</title>
+		<idno type="ISSN">0027-8424</idno>
+		<idno type="ISSNe">1091-6490</idno>
+		<imprint>
+			<biblScope unit="volume">112</biblScope>
+			<biblScope unit="issue">51</biblScope>
+			<biblScope unit="page" from="7039" to="E7047"/>
+			<date type="published" when="2015-12-09">2015</date>
+			<publisher>Proceedings of the National Academy of Sciences</publisher>
+			<pubPlace>USA</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

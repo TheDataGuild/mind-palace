@@ -1,0 +1,1487 @@
+<?xml version="1.0" encoding="UTF-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Sonoporation generates downstream cellular impact after membrane resealing</title>
+				<funder ref="#_dkRUhEb">
+					<orgName type="full">Natural Sciences and Engineering Research Council of Canada</orgName>
+					<orgName type="abbreviated">CRSNG</orgName>
+					<idno type="DOI" subtype="crossref">10.13039/501100000038</idno>
+				</funder>
+				<funder ref="#_nPTZnV5">
+					<orgName type="full">Canada Foundation for Innovation</orgName>
+					<orgName type="abbreviated">CFI</orgName>
+					<idno type="DOI" subtype="crossref">10.13039/501100000196</idno>
+				</funder>
+				<funder>
+					<orgName type="full">University of Hong Kong</orgName>
+					<orgName type="abbreviated">HKU</orgName>
+					<idno type="DOI" subtype="crossref">10.13039/501100003803</idno>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Springer Science and Business Media LLC</publisher>
+				<availability status="unknown"><p>Copyright Springer Science and Business Media LLC</p>
+				</availability>
+				<date type="published" when="2021-03-04">2021-03-04</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,155.91,226.69,58.25,8.92"><forename type="first">Xinxing</forename><surname>Duan</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department" key="dep1">Schlegel Research Institute for Aging</orgName>
+								<orgName type="department" key="dep2">Department of Electrical and Computer Engineering</orgName>
+								<orgName type="institution">University of Waterloo</orgName>
+								<address>
+									<settlement>Waterloo</settlement>
+									<region>ON</region>
+									<country key="CA">Canada</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="department">School of Biological Sciences</orgName>
+								<orgName type="institution">The University of Hong Kong</orgName>
+								<address>
+									<settlement>Hong Kong</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,227.89,226.69,45.10,8.92"><forename type="first">Qian</forename><surname>Zhou</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="department">School of Biological Sciences</orgName>
+								<orgName type="institution">The University of Hong Kong</orgName>
+								<address>
+									<settlement>Hong Kong</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,281.44,226.69,78.72,8.92"><forename type="first">Jennifer</forename><forename type="middle">M F</forename><surname>Wan</surname></persName>
+							<email>jmfwan@hku.hk</email>
+							<affiliation key="aff1">
+								<orgName type="department">School of Biological Sciences</orgName>
+								<orgName type="institution">The University of Hong Kong</orgName>
+								<address>
+									<settlement>Hong Kong</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,381.54,226.69,61.20,8.92"><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+							<email>alfred.yu@uwaterloo.ca</email>
+							<affiliation key="aff0">
+								<orgName type="department" key="dep1">Schlegel Research Institute for Aging</orgName>
+								<orgName type="department" key="dep2">Department of Electrical and Computer Engineering</orgName>
+								<orgName type="institution">University of Waterloo</orgName>
+								<address>
+									<settlement>Waterloo</settlement>
+									<region>ON</region>
+									<country key="CA">Canada</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Sonoporation generates downstream cellular impact after membrane resealing</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">Scientific Reports</title>
+						<title level="j" type="abbrev">Sci Rep</title>
+						<idno type="eISSN">2045-2322</idno>
+						<imprint>
+							<publisher>Springer Science and Business Media LLC</publisher>
+							<biblScope unit="volume">11</biblScope>
+							<biblScope unit="issue">1</biblScope>
+							<date type="published" when="2021-03-04"/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">F9B2ED1A6D02815D27D1EBCE103E37DF</idno>
+					<idno type="DOI">10.1038/s41598-021-84341-3</idno>
+					<note type="submission">Received: 27 September 2020; Accepted: 15 February 2021</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.0-SNAPSHOT" ident="GROBID" when="2023-09-06T05:59+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Sonoporation via microbubble-mediated ultrasound exposure has shown potential in drug and gene delivery. However, there is a general lack of mechanistic knowledge on sonoporation-induced cellular impact after membrane resealing, and this issue has made it challenging to apply sonoporation efficiently in practice. Here, we present new evidence on how sonoporation, without endangering immediate cell viability, may disrupt downstream cellular hemostasis in ways that are distinguished from the bioeffects observed in other sonicated and unsonoporated cells. Sonoporation was realized on HL-60 leukemia cells by delivering pulsed ultrasound (1 MHz frequency, 0.50 MPa peak negative pressure; 10% duty cycle; 30 s exposure period; 29.1 J/cm 2 acoustic energy density) in the presence of lipid-shelled microbubbles (1:1 cell-to-bubble ratio). Results showed that 54.6% of sonoporated cells, despite remaining initially viable, underwent apoptosis or necrosis at 24 h after sonoporation. Anti-proliferation behavior was also observed in sonoporated cells as their subpopulation size was reduced by 43.8% over 24 h. Preceding these cytotoxic events, the percentages of sonoporated cells in different cell cycle phases were found to be altered by 12 h after exposure. As well, for sonoporated cells, their expressions of cytoprotective genes in the heat shock protein-70 (HSP-70) family were upregulated by at least 4.1 fold at 3 h after exposure. Taken altogether, these findings indicate that sonoporated cells attempted to restore homeostasis after membrane resealing, but many of them ultimately failed to recover. Such mechanistic knowledge should be taken into account to devise more efficient sonoporation-mediated therapeutic protocols.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="595.276" lry="782.362"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="595.276" lry="782.362"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="595.276" lry="782.362"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="595.276" lry="782.362"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="595.276" lry="782.362"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="595.276" lry="782.362"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="595.276" lry="782.362"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="595.276" lry="782.362"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="595.276" lry="782.362"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="595.276" lry="782.362"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="595.276" lry="782.362"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="595.276" lry="782.362"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Sonoporation has been well-regarded as an emerging membrane perforation paradigm in cancer therapeutics <ref type="bibr" coords="1,546.01,463.36,4.15,5.91" target="#b1">1,</ref><ref type="bibr" coords="1,551.37,463.36,2.81,5.91" target="#b2">2</ref> and drug/gene delivery <ref type="bibr" coords="1,240.60,473.36,2.91,5.91" target="#b3">[3]</ref><ref type="bibr" coords="1,243.50,473.36,2.91,5.91" target="#b4">[4]</ref><ref type="bibr" coords="1,246.41,473.36,2.91,5.91" target="#b5">[5]</ref> . This membrane perforation paradigm often works by applying low-intensity ultrasound to microbubble situated near the cell membrane to create transient pores that in turn serve as physical windows for extracellular molecules to infiltrate target cells without inducing undesired thermal effects <ref type="bibr" coords="1,527.46,493.36,2.81,5.91" target="#b6">6</ref> . From a drug delivery standpoint, one major advantage of sonoporation is its high spatiotemporal specificity <ref type="bibr" coords="1,518.11,503.36,2.81,5.91" target="#b7">7</ref> . Accordingly, it has strong potential in facilitating precise, controlled release of drug payload to target cells.</p><p>Alas, sonoporation-mediated drug delivery has yet to reach widespread clinical use, as the efficiency of this approach has been deemed to be mediocre <ref type="bibr" coords="1,314.09,533.36,2.81,5.91" target="#b8">8</ref> . Detailed understanding on sonoporation mechanisms has long been regarded as vital to determine how sonoporation may be efficiently realized without inducing unwanted confounding effects <ref type="bibr" coords="1,230.24,553.36,4.25,5.91" target="#b9">9,</ref><ref type="bibr" coords="1,236.39,553.36,5.72,5.91" target="#b10">10</ref> . On this topic, not only is it important to unravel the acute biophysical impact of sonoporation <ref type="bibr" coords="1,204.53,563.36,5.74,5.91" target="#b11">[11]</ref><ref type="bibr" coords="1,210.28,563.36,2.87,5.91" target="#b12">[12]</ref><ref type="bibr" coords="1,210.28,563.36,2.87,5.91" target="#b13">[13]</ref><ref type="bibr" coords="1,210.28,563.36,2.87,5.91" target="#b14">[14]</ref><ref type="bibr" coords="1,213.15,563.36,5.74,5.91" target="#b15">[15]</ref> , the downstream cellular bioeffects of sonoporation after membrane resealing also need to be accounted for <ref type="bibr" coords="1,204.70,573.36,5.60,5.91" target="#b16">16</ref> . Without such mechanistic understanding, pursuing rational use of sonoporation in biomedicine inherently becomes more challenging <ref type="bibr" coords="1,291.75,583.36,4.17,5.91" target="#b8">8,</ref><ref type="bibr" coords="1,297.23,583.36,7.01,5.91" target="#b10">10,</ref><ref type="bibr" coords="1,305.55,583.36,5.64,5.91" target="#b16">16</ref> .</p><p>Although it is recognized that analyzing the downstream bioeffects of sonoporation is critical to enhance its practical efficiency, such analyses are not trivial to carry out properly from an experimental design standpoint. One known issue is that, when using ultrasound and microbubbles to induce sonoporation in a cell population, such exposure would lead to a heterogeneity of response among the sonicated cells <ref type="bibr" coords="1,461.16,623.36,7.07,5.91" target="#b17">17,</ref><ref type="bibr" coords="1,469.81,623.36,5.67,5.91" target="#b18">18</ref> . In particular, not all sonicated cells may undergo sonoporation, and some of them may instantly lose viability <ref type="bibr" coords="1,467.89,633.36,6.90,5.91" target="#b17">17,</ref><ref type="bibr" coords="1,475.94,633.36,5.59,5.91" target="#b19">19</ref> . Such heterogeneity, if neglected, fundamentally represents a significant confounding factor in the analysis of sonoporation-induced cellular bioeffects. Previously, without acknowledging the heterogeneity of cell response, some studies have shown that ultrasound exposure in the presence of microbubbles may lead to cell lysis <ref type="bibr" coords="1,461.02,663.36,6.96,5.91" target="#b20">20,</ref><ref type="bibr" coords="1,469.17,663.36,5.62,5.91" target="#b21">21</ref> , apoptosis <ref type="bibr" coords="1,512.70,663.36,5.62,5.91" target="#b22">22</ref> , cell cycle arrest <ref type="bibr" coords="2,176.23,338.04,5.62,5.91" target="#b23">23</ref> , and morphological changes <ref type="bibr" coords="2,284.32,338.04,6.95,5.91" target="#b24">24,</ref><ref type="bibr" coords="2,292.47,338.04,5.62,5.91" target="#b25">25</ref> . Yet, it remains unclear as to whether these biological effects are specific to sonoporation or whether they are merely attributed to ultrasound exposure.</p><p>In this paper, we present a new substantiated body of evidence on the downstream cellular impact of sonoporation by properly differentiating the bioeffects of viable sonoporated cells from other sonicated cells. The focus of our investigation is on analyzing sonoporated cells' post-resealing viability, proliferation trend, cell-cycle distribution, and heat shock protein-70 (HSP-70) expression level, the last of which is known to be upregulated when cells are stressed <ref type="bibr" coords="2,258.48,398.04,5.65,5.91" target="#b26">26</ref> . Such an analysis allows us to more precisely identify whether, after membrane resealing has taken place, sonoporation may induce cellular impact that could be cytoprotective or cytotoxic in nature. Here, we have sought to test the overall hypothesis that various downstream bioeffects of sonoporated cells, such as proliferation behavior and HSP-70 expression levels, are different from those for cells that merely received ultrasound exposure. We further hypothesized that, in sonoporated cells, alterations in cell proliferation kinetics and HSP-70 expressions may emerge hours after ultrasound exposure when membrane integrity has long been restored.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="2,155.91,479.82,34.60,9.81">Results</head><p>A broad range of sonoporation-induced cellular impact was unraveled using: (i) a meticulously designed experimental protocol for population-based sonoporation bioeffect studies 27 ; (ii) multiple bioassays that gauged the time-lapsed viability, proliferation, cell-cycle behavior, and HSP-70 expression of sonoporated cells. As illustrated in Fig. <ref type="figure" coords="2,181.30,521.14,4.32,9.10" target="#fig_0">1</ref> and described in the Methods section, the protocol involves the use of a calibrated, immersion-based ultrasound exposure setup (1 MHz ultrasound frequency, 10% duty cycle, 0.50 MPa in-situ peak negative pressure, 30 s exposure period, 29.1 J/cm 2 acoustic energy density). Experiments were conducted using HL-60 leukemia cells (CCL240, American Type Culture Collection, Manassas, VA, USA) as the cell model, because their pro-apoptotic protein deficiency <ref type="bibr" coords="2,273.60,560.04,5.64,5.91" target="#b28">28</ref> suitably acted as an experimental control in our investigation that included analysis of sonoporation-induced anti-proliferation effects <ref type="bibr" coords="2,369.05,570.04,5.66,5.91" target="#b29">29</ref> . Microbubbles (USphere Prime; Trust Biosonics, Hsinchu, Taiwan) were injected into the cell chamber at a 1:1 cell-to-bubble ratio to serve as sonoporation agents. Such a cell-to-bubble ratio is known to efficiently trigger the onset of sonoporation without significantly inducing instant cell death <ref type="bibr" coords="2,251.63,600.04,5.64,5.91" target="#b20">20</ref> . As shown previously, our exposure protocol yielded an average sonoporation rate of 41.9% among sonicated HL-60 cells <ref type="bibr" coords="2,293.88,610.04,5.64,5.91" target="#b27">27</ref> .</p><p>In this investigation, sonicated cells were re-incubated for 5 min after exposure to allow for membrane resealing to take place. Such post-exposure re-incubation period effectively took into consideration previous direct observations that showed how membrane resealing would typically happen within 1 min from the onset of a resealable sonoporation episode <ref type="bibr" coords="2,272.53,650.04,5.65,5.91" target="#b11">11</ref> . Afterward, fluorescence activated cell sorting (FACS) was carried out. Two subpopulations were accordingly isolated for cellular impact analysis: (i) viable sonoporated cells (SNP+ group); (ii) viable unsonoporated cells (SNP-group). To facilitate comparison, experiments were also conducted for: (i) a control cell group (CTL group) with sham exposure; (ii) a sonicated cell group (US group) that received exposure in the absence of microbubbles. As presented in the following subsections, our investigation has yielded a new, unique body of experimental insights on the downstream bioeffects that emerged in viable sonoporated cells (i.e. SNP+ group) at different post-resealing time points.  For the SNP+ group, significant emergence of dead cells, which may stem from late apoptosis or necrosis, was found over 24 h. Figure <ref type="figure" coords="4,240.99,398.59,8.89,9.10" target="#fig_1">2b</ref> shows the trend of the percentage of dead cells in the four tested cell groups over 24 h after exposure. As can been observed, dead cells in the SNP+ group had a significantly higher population than those in the CTL group at 8 h (p &lt; 0.05), 12 h (p &lt; 0.001), and 24 h (p &lt; 0.001). The average percentage of dead cells in the SNP+ group reached 28.8% at 12 h. The dead cell percentage subsequently dropped to 18.5% at 24 h after exposure because some dead cells, whether they originate from the apoptosis or necrosis pathways, had already been lysed by that time and could no longer be detected by flow cytometry. In contrast, the SNP-and US groups had dead cell percentages below 20% over 24 h. Both groups showed no significant difference in dead cells between them and with respect to the CTL group at 24 h.</p><p>The percentage of apoptotic and necrotic cells in each group at different post-exposure time points is plotted in Fig. <ref type="figure" coords="4,181.58,488.58,6.85,9.10" target="#fig_1">2c</ref>. The data points were derived by summing the early apoptotic (Annexin-V + and PI-) and dead cell (PI +) populations. The primary observation to be noted is that for cells in the SNP+ group, over half of them failed to survive at 24 h after exposure (apoptotic and necrotic cells on average accounted for 54.6% of group population). Since some dead cells were already lysed and were thus not detectable after 24 h, the actual number of apoptotic and necrotic cells in the SNP+ group may be even higher than that reported in Fig. <ref type="figure" coords="4,507.31,528.58,6.86,9.10" target="#fig_1">2c</ref>. Note that the significant rise in the SNP+ group's apoptotic and necrotic cell subpopulation (p &lt; 0.001) started to emerge at 12 h after exposure. In contrast, the average apoptotic and necrotic cell percentage in the SNP-group merely comprised 16.8% of the group population at 24 h after exposure. This trend is similar to that observed for the CTL and US groups.</p><p>Viable sonoporated cells exhibited anti-proliferation behavior. Proliferation of cells in the SNP+ group was found to be halted over a 24-h post-exposure observation period. Figure <ref type="figure" coords="4,485.29,600.59,4.32,9.10" target="#fig_2">3</ref> presents the normalized cell population of each group at 3, 8, 12 and 24 h after exposure as obtained from a Cell Counting Kit-8 (CCK-8) bioassay. CTL, US and SNP-groups showed a rising trend in their population over 24 h, while the SNP+ group exhibited a substantial decrease in population. The population of CTL and US groups did not exhibit a statistically significant change from 3 to 8 h after exposure, whereas SNP+ and SNP-populations were decreased over the same period (p &lt; 0.001 for SNP+ ; p &lt; 0.01 for SNP-). Subsequently, at 12 h after exposure, the SNP-group by-and-large restored its population to the baseline level (with no statistically significant difference in comparison to the SNP-population at 3 h). In contrast, the SNP+ cells were still significantly lower than the initial population (p &lt; 0.001). The low population of SNP+ persisted at 24 h after exposure, while the other three groups exhibited a population growth trend from 12 to 24 h.</p><p>To quantify the differences in the proliferation trends of the four groups, we calculated the post-exposure proliferation rate as the ratio of the population at 24 h to the population at 3 h. As shown in Table <ref type="table" coords="4,505.39,710.58,3.20,9.10" target="#tab_0">1</ref>, the average proliferation rate of the CTL, US and SNP-cell groups were accordingly found to be 1.75, 2.12, and 1.31 respectively. In contrast, the average proliferation rate of the SNP+ group was estimated to be 0.56, which corresponds to an average population loss of 44% from 3 to 24 h. The population changes from 8 to 12 h (Δ 1 ) and from 12 to 24 h (Δ 2 ) were also calculated to evaluate the transient cell growth trend of each group. Results showed that over the period between 8 and 12 h, the SNP+ group population increased transiently by 60.1% on average (p &lt; 0.001). Yet, this group's population did not continue its rising trend from 12 to 24 h, as no statistically significant difference was found between the SNP+ group populations at 12 h and 24 h (the 13.2% decrease stated in Table <ref type="table" coords="5,549.87,216.09,4.32,9.10" target="#tab_0">1</ref> only exhibited weak statistical difference; p &lt; 0.1). This population trend is different from the growth trends for the CTL, US, and SNP-cell groups, all of which experienced a statistically significant population increase from 8 to 12 h and from 12 to 24 h.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="5,155.91,267.42,398.27,8.92;5,155.91,277.42,61.43,8.92">Time-lapsed disruption of cell cycle distribution after ultrasound exposure in presence of microbubbles.</head><p>The results of cell proliferation rates suggested differences in the cell division activities of the four groups of cells. To investigate the impact of the exposure on each phase of cell division, a time-lapse cell cycle analysis was conducted at 3 h, 8 h, 12 h and 24 h after exposure via flow cytometry analysis of the cells' deoxyribonucleic acid (DNA) contents. This analysis focused on the subgroup size of three cell-cycle phases: (i) G 0 /G 1 phase (cells in quiescence or in preparation for DNA synthesis); (ii) S phase (cells undergoing DNA synthesis); (iii) G 2 /M phase (cells after completion of DNA synthesis but have not yet divided).</p><p>For the four cell groups of interest, Fig. <ref type="figure" coords="5,309.32,338.09,16.87,9.10" target="#fig_3">4a-c</ref> show the percentage of cells in the three phases as a function of post-exposure time. The CTL and US groups remained at similar distribution levels for each phase of cell cycle progression over 24 h after exposure. In contrast, the SNP+ and SNP-groups had shown fluctuations in the cellcycle distribution from 8 h onward. Specifically, as highlighted in Fig. <ref type="figure" coords="5,408.65,368.09,6.82,9.10" target="#fig_3">4e</ref>, the percentage of S-phase cells in the SNP+ group decreased slightly at 8 h, and it further declined at 12 h (p &lt; 0.001). In sync with the latter trend, at 12 h, there was a commensurate rise in the percentage of cells in the G 0 /G 1 and G 2 /M phases (p &lt; 0.01). At 24 h, in the SNP+ cell group, we observed respectively a persistent reduction and increase in the size of the S-phase and G 0 /G 1 -phase subgroups (p &lt; 0.001), while the size of the G 2 /M-phase subgroup returned to the baseline level.</p><p>It is worth noting that, as compared to the SNP+ group, the SNP-group exhibited a less substantial cell-cycle perturbation trend over a 24 h period as shown in Fig. <ref type="figure" coords="5,353.37,428.09,7.44,9.10" target="#fig_3">4d</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="5,155.91,449.42,398.27,8.92;5,155.91,459.42,20.38,8.92">Upregulation of HSP-70 genes induced by ultrasound exposure in presence of microbubbles.</head><p>The cell-cycle disruption trends observed in the SNP+ and SNP-cell groups indicated that their subcellular stress signal expressions may be concomitantly altered over time. To investigate the potential downstream molecular bioeffects of ultrasound exposure in the presence of microbubbles, we evaluated the post-exposure transcription levels of three HSP-70 genes (HSPA1A, HSPA1B and HSPA6) by quantitative polymerase chain reaction (qPCR) analysis. These three genes encode the key proteins of the HSP70 family, which play a cytoprotective role in a cell's protein folding machinery and is highly conserved in all organisms.</p><p>Figure <ref type="figure" coords="5,192.61,520.08,4.32,9.10" target="#fig_4">5</ref> shows the messenger ribonucleic acid (mRNA) expression level of the HSPA1A, HSPA1B and HSPA6 genes at 3 h after exposure. For SNP+ cells, the expression of HSPA1A, HSPA1B, and HSPA6 were found to be increased by 4.1-fold (p &lt; 0.001), 4.9-fold (p &lt; 0.01), and 13.7-fold (p &lt; 0.05) respectively on average. A similar HSP70-related gene upregulation trend was observed in the SNP-cell group. In particular, the HSPA1A, HSPA1B and HSPA6 genes of SNP-cells were upregulated by 4.5-fold (p &lt; 0.001), 5.9-fold (p &lt; 0.001), and 20.1-fold (p &lt; 0.001) respectively on average. Between the SNP+ and SNP-cell groups, no statistically significant difference was found in their HSP-70 gene upregulation trends. These results should be contrasted with that for the US cell group, which did not exhibit statistically significant changes in the three genes' expression level.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="5,155.91,610.77,50.09,9.81">Discussion</head><p>Integrative perspective of experimental results. Sonoporation, despite being considered as a promising membrane perforation technique with strong application potential in drug/gene delivery, has not yet reached widespread clinical use largely because its mechanistic foundations are still not well characterized. Results from our investigation have allowed us to form new perspectives on the cellular impact of sonoporation by revealing how this membrane perforation approach, even whilst it may not affect the viability of target cells, may jeopardize post-exposure cellular homeostasis over a prolonged, 24 h period. Our new experimental insights were uniquely derived from the use of a rigorous experimental protocol that allowed viable cells with confirmed occurrence of sonoporation (and its absence) to be isolated for group-specific bioassay analysis (Fig. <ref type="figure" coords="5,513.56,692.08,3.16,9.10" target="#fig_0">1</ref>). Accordingly, our findings are seemingly more specific than those reported in past studies that did not account for the heterogeneity of bioeffects that tend to emerge in a sonicated cell population. The primary findings of this investigation are summarized in Fig. <ref type="figure" coords="6,407.19,677.18,3.21,9.10" target="#fig_5">6</ref>. In general, our study has disentangled the downstream cellular impact of viable, sonoporated cells (the SNP+ group) from that of unsonoporated ones (the SNP-group). Over a 3-h time frame, sonoporated cells exhibited an upregulation of their HSP-70 expression levels (Fig. <ref type="figure" coords="6,214.63,707.18,3.21,9.10" target="#fig_4">5</ref>; gold bars). In the face of proteotoxic stress, such an enhanced expression of HSP-70 is supposed to play a cytoprotective role in a stressed cell's quest to maintain viability and to facilitate protein damage repair <ref type="bibr" coords="6,177.58,726.08,5.64,5.91" target="#b30">30</ref> . Nonetheless, our data has shown that a significant fraction of sonoporated cells lost viability over time  as they entered apoptosis and necrosis (Fig. <ref type="figure" coords="7,314.75,588.59,3.21,9.10" target="#fig_1">2</ref>; gold boxes). In turn, the proliferation trend of sonoporated cells was interrupted over a 24-h period (Fig. <ref type="figure" coords="7,302.70,598.59,3.21,9.10" target="#fig_2">3</ref>; orange line). The correpsonding cell-cycle distribution also became disordered (Fig. <ref type="figure" coords="7,217.74,608.59,6.83,9.10" target="#fig_3">4e</ref>), wherein many sonoporated cells, after 12 h, had failed to progress into DNA synthesis (Fig. <ref type="figure" coords="7,174.68,618.59,7.35,9.10" target="#fig_3">4b</ref>; gold bars) and had stalled from undergoing mitosis (Fig. <ref type="figure" coords="7,393.55,618.59,6.84,9.10" target="#fig_3">4c</ref>; gold bars). Taken together, these findings have demonstrated that, in sonoporated cells, cytoprotective bioeffects may be triggered within the first few hours after exposure as these cells attempt to restore homeostasis after membrane resealing; yet, many of them failed to recover and ultimately lost viability over a 24 h period.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="7,155.91,669.92,240.50,8.92">Comparison of bioeffects between sonicated cell groups.</head><p>As illustrated in Fig. <ref type="figure" coords="7,479.61,670.59,3.19,9.10" target="#fig_5">6</ref>, the fate of sonoporated cells is generally different from that observed in viable, unsonoporated cells (i.e. cells without membrane disruption after being subjected to ultrasound exposure in the presence of microbubbles), even though these two cell groups have exhibited similar cytoprotective behavior. Over a 24-h period, unsonoporated cells mostly remained viable (Fig. <ref type="figure" coords="7,234.57,710.59,3.19,9.10" target="#fig_1">2</ref>; dark gray boxes) and showed proliferation characteristics (Fig. <ref type="figure" coords="7,470.64,710.59,3.19,9.10" target="#fig_2">3</ref>; gold line). Also, they had an increase in HSP-70 expression 3 h after exposure (Fig. <ref type="figure" coords="7,386.30,720.58,3.19,9.10" target="#fig_4">5</ref>; yellow bars) and had a perturbed cell-cycle distribution by 12 h after exposure (Fig. <ref type="figure" coords="7,303.09,730.58,7.12,9.10" target="#fig_3">4d</ref>). These trends altogether suggest that unsonoporated cells, despite not undergoing membrane perforation, may still be reversibly stressed by ultrasound exposure in the presence of microbubbles, but they were able to cope with this stress without losing viability over time.</p><p>Regarding the downstream behavior of unsonoporated cells, one plausible mechanistic inference that can be drawn is that, because they were mechanically perturbed by the cavitational interactions between ultrasound and microbubbles, they consequently activated their cytoprotective signaling pathways and temporarily slowed their cell-cycle dynamics to promote cellular recovery. After they have restored cellular homeostasis, unsonoporated cells would resume their normal proliferation trend. Such a time-varying biological response is seemingly attributed to the presence of microbubbles during ultrasound exposure.</p><p>In contrast, for cells that were sonicated in the absence of microbubbles (the US group), they did not exhibit significant changes in viability (Fig. <ref type="figure" coords="8,286.00,141.17,3.21,9.10" target="#fig_1">2</ref>; light gray boxes), cell-cycle distribution (Fig. <ref type="figure" coords="8,458.30,141.17,15.18,9.10" target="#fig_3">4a-c</ref>; gray bars), and HSP-70 expression levels (Fig. <ref type="figure" coords="8,247.42,151.17,3.21,9.10" target="#fig_4">5</ref>; gray bars) as compared to the sham exposure group (the CTL group). Interestingly, the US group exhibited a growth spurt in its proliferation trend (Fig. <ref type="figure" coords="8,404.86,161.17,3.21,9.10" target="#fig_2">3</ref>; gray line) that resulted in a larger postexposure population size than the CTL group (Fig. <ref type="figure" coords="8,340.38,171.17,3.21,9.10" target="#fig_2">3</ref>; black line). This result corroborates with previous understanding that short-term cytomechanical perturbations with low-intensity ultrasound may lead to long-term growth stimulation of cells <ref type="bibr" coords="8,252.63,190.08,5.64,5.91" target="#b31">31</ref> . In general, our experiments have demonstrated that the downstream behavior of sonoporated and unsonoporated cells is characteristically different from that for cells that were sonicated in the absence of microbubbles (i.e. the US group in the presented results).</p><p>Significance of research findings. Overall, our investigation has unveiled that multifaceted bioeffects, including both cytoprotective and cytotoxic phenomena, may be triggered on a time-lapsed basis after a sonoporation episode. This work has served well to prompt the need to re-consider how sonoporation should be more rationally incorporated in a drug delivery paradigm to enhance its efficacy. After all, in therapeutic studies, longterm cell viability is an essential efficacy indicator <ref type="bibr" coords="8,331.85,272.08,6.95,5.91" target="#b32">32,</ref><ref type="bibr" coords="8,340.02,272.08,5.62,5.91" target="#b33">33</ref> , and it plays a major role in cancer therapy in determining chemotherapy dosage and in planning treatment cycles <ref type="bibr" coords="8,358.98,282.08,6.95,5.91" target="#b34">34,</ref><ref type="bibr" coords="8,367.86,282.08,5.62,5.91" target="#b35">35</ref> . It would thus be worthwhile to devise a refined sonoporation-mediated drug delivery protocol to exploit the observed bioeffects to our advantage. For instance, one may leverage the cell-cycle disruption trends observed in this work to develop a revised treatment protocol that involves the use of cycle-specific drugs <ref type="bibr" coords="8,310.25,312.08,5.62,5.91" target="#b36">36</ref> .</p><p>Regarding post-sonoporation cytoprotective maneuvers, we have identified the potential molecular facilitators involved in this process. In particular, HSP-70 genes were studied as the molecular targets. Interestingly, both sonoporated and unsonoporated cells exhibited a significant upregulation of HSP-70 genes a few hours after sonication in the presence of microbubbles. This finding suggested that these cells' self-protection, pro-survival machinery had been activated in response to the exposure. It is worth reiterating that, while unsonoporated cells managed to restore homeostasis within 24 h, a significant fraction of sonoporated cells had failed to recover and restore normal cell division activities. This difference in the time-lapsed developmental behavior of the two sonicated cell subpopulations indicate that other molecular pathways in addition to HSP-70 are likely involved at different post-exposure time points. In the future, it would be worthwhile to establish a more detailed account of the molecular orchestration of sonoporated cell fate (and compare them to that for unsonoporated cells). Further investigation on this topic will deepen our mechanistic understanding on sonoporation-induced bioeffects.</p><p>It is worth emphasizing that our experiment protocol was specifically designed to analyze the downstream behavior of viable, sonoporated cells among a sonicated cell population. The ultrasound-microbubble mediated exposure condition used in our protocol was well defined in vitro and was kept constant. Specifically, cells and microbubbles within the cell chamber were held in suspension such that they were uniformly distributed to ensure that cells were consistently sonicated with 1 MHz ultrasound pulses (with 0.50 MPa in-situ peak negative pressure) in the presence of microbubbles (with 1:1 cell-to-bubble ratio). This way of realizing sonoporation is naturally more meticulous, yet different, from that for in vivo applications, where microbubbles are injected as a bolus into the blood stream and the in situ ultrasound-microbubble mediated exposure conditions are not characterized. Since HL-60 leukemia cells are after all circulating cells in the vasculature, one further investigation that can be performed in the future will be to examine the extent of the observed sonoporation bioeffects in a flow phantom environment that more closely resembles physiologically relevant ultrasound-microbubble mediated exposure conditions <ref type="bibr" coords="8,267.46,542.08,5.69,5.91" target="#b37">37</ref> . This further study will help to connect our reported research findings with in vivo application settings.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="8,155.91,573.86,51.84,9.81">Conclusion</head><p>Sonoporation is still in need of refining its efficiency such that its therapeutic efficacy can be critically enhanced. Our investigation has served well to underscore how sonoporation may instigate a variety of cellular impact over time. This new body of mechanistic knowledge can be leveraged in different ways. For instance, in sonoporationmediated chemotherapy, where the ultimate outcome is cell death, the intended drug action can be designed to synergize with the antiproliferation impact induced by sonoporation. In other drug delivery applications where cell survival is desired, efficiency may be improved by targeting HSP-70 signaling as a potential modulation pathway to boost the cytoprotective response of sonoporated cells, since our investigation has revealed that HSP-70 genes were upregulated as a cytoprotective maneuver to promote post-sonoporation cell recovery. In general, realizing rational use of sonoporation-mediated drug delivery will significantly broaden its application potential in biomedicine.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="8,155.91,695.86,108.93,9.81">Materials and methods</head><p>Sonication protocol. Exposure platform. The ultrasound apparatus employed in this investigation was an immersion-based exposure setup that coupled a secure-sealed cell chamber to a mounted ultrasound transducer with calibrated field levels within a 37 °C degassed water bath. Its design details have been established in our previous work <ref type="bibr" coords="9,233.81,50.08,5.62,5.91" target="#b27">27</ref> . In brief, its hardware components included a cylindrical ultrasound transducer with 1 MHz center frequency (Ø25mm, Advanced Devices, Wakefield, MA, USA), an arbitrary waveform generator (33120A; Agilent Technologies, Santa Clara, CA, USA), a broadband amplifier with 50 dB gain (2100L; E&amp;I, Rochester, NY, USA), and a three-level acrylic-based mounting platform. The transducer and the secure-sealed cell chamber were respectively mounted to the bottom and middle panels of the mounting platform, and they were distanced at 10 cm apart. The platform's top panel served as an acoustic shield that prevented acoustic standing waves from emerging in the cell chamber.</p><p>Acoustic parameters. During operation, sinusoidal pulses were first generated by the exposure platform's waveform generator, and they were fed into the broadband amplifier that relayed the amplified output to the ultrasound transducer. The waveform frequency was set at 1 MHz in accordance with the transducer's center frequency. Also, the pulse repetition frequency was set to 1 kHz, and the duration of each pulse was 100 cycles. These parameters corresponded to a 10% duty cycle. Exposure duration was set to 30 s in each experiment run. As calibrated previously <ref type="bibr" coords="9,230.62,182.08,5.62,5.91" target="#b27">27</ref> , in situ ultrasound exposure level was measured with a needle hydrophone (HMB-0500; Onda Corporation, Sunnyvale, CA, USA) and an automated three-axis micro-positioner (ASTS-01; Onda Corporation). The spatial-average peak negative pressure was measured to be 0.50 MPa in the cell chamber region. The corresponding intensity values of interest were 9.71 W/cm 2 (spatial-peak, pulse-average) and 0.97 W/cm 2 (spatial-peak, time-average), and the delivered acoustic energy density was 29.1 J/cm 2 .</p><p>Sonicated cell sample preparation. Cell culture. HL-60 leukemia cells (CCL-240; American Type Culture Collection, Manassas, VA, USA) were chosen as the experimental cell line in this study. Owing to its intrinsic deficiency in pro-apoptotic regulatory proteins <ref type="bibr" coords="9,335.35,264.08,5.62,5.91" target="#b34">34</ref> , this immortal cell line was naturally more resistant against pro-apoptotic stress. Such property served well as an intrinsic control in our investigation of anti-proliferation effects <ref type="bibr" coords="9,178.49,284.08,5.62,5.91" target="#b35">35</ref> . The HL-60 cells were routinely cultured in Roswell Park Memorial Institute (RPMI) 1640 medium (R8758; Sigma-Aldrich, St. Louis, MO, USA) and were supplemented with 10% fetal bovine serum (American Type Culture Collection). The cell culture incubator was kept at 37 °C with 5% carbon dioxide (CO 2 ). Cell density were constantly monitored to ensure that they did not exceed 10 6 cells/ml. As such, exponential cell growth can be maintained. HL-60 cells were sub-cultured every three days. During sub-culture, cells were harvested in a sterilized 15 ml centrifuge tube (BDAA352196; BD Biosciences, East Rutherford, NJ, USA) and were centrifuged at 1000 rpm for 5 min. Afterward, supernatants were removed and the harvested cells were resuspended with fresh RPMI medium.</p><p>Addition of sonoporation tracer. Calcein (C481, Invitrogen, Carlsbad, CA, USA) was employed as the exogenous, fluorescent sonoporation tracer to facilitate the sorting of sonoporated cells using flow cytometry. They were added to the cell suspension at a 10 µM concentration 10 min before cells were transferred to the cell chamber. Note that calcein (Ex: 495 nm/Em: 515 nm) is a 623 Da macromolecule with a radius of 0.65 nm, which is normally unable to permeate the cell membrane and remain extracellularly in the cell medium. Upon the occurrence of sonoporation, calcein would infiltrate the cell membrane via the perforated site and subsequently bind to cytoplasmic calcium ions, thereby resulting in the emission of green fluorescence from the cytoplasm of sonoporated cells. Hence, in our experiments, post-exposure intracellular presence of calcein fluorescence served well to indicate that sonoporation had occurred in that sonicated cell. Addition of microbubbles. Commercial microbubbles (USphere Prime; TRUST Bio-Sonics, Taiwan) were used as the artificial gas nuclei for acoustic cavitation to trigger sonoporation. These microbubbles comprised a perfluorobutane gas core that was encapsulated by a phospholipid shell. They had a mean diameter of 2.09 µm, and less than 1.7% of the population were larger than 5 µm according to the manufacturer's data. During experiments, microbubbles were added to the cell suspension 3 min before the ultrasound exposure at a cell-to-bubble ratio of 1:1. Note that the choice of cell-to-bubble ratio plays a significant role in the resulting sonoporation efficiency <ref type="bibr" coords="9,189.92,538.08,5.62,5.91" target="#b20">20</ref> . The 1:1 cell-to-bubble ratio was empirically found to provide a balance between inducing substantial sonoporation (&gt; 30%) and minimizing instant cell death (&lt; 20%) in our previous studies <ref type="bibr" coords="9,473.59,548.08,6.95,5.91" target="#b25">25,</ref><ref type="bibr" coords="9,482.05,548.08,5.62,5.91" target="#b27">27</ref> . With this cell-tobubble ratio and the prescribed acoustic exposure parameters, over 99% of the supplemented microbubbles were found to have collapsed after the 30 s exposure, as observed under bright-field microscope.</p><p>Delivery of ultrasound exposure. Before exposure, the cell suspension (supplemented with microbubbles and calcein) was filled into the ultrasound exposure platform's cell chamber, which was acoustically transparent and was sterilized beforehand <ref type="bibr" coords="9,248.25,610.08,5.62,5.91" target="#b27">27</ref> . The cell chamber was securely sealed after filling and was promptly placed at the middle panel of the exposure platform. Thereafter, ultrasound exposure was delivered as described in the previous subsection. After exposure, cells were immediately taken out from the cell chamber and were incubated for 5 min to allow sonoporated cells to reseal their perforation sites and, in turn, to restore the resistance against the uptake of exogeneous molecules. Note that the post-exposure incubation time was set based on previously published findings that showed membrane resealing to be typically taking place within 1 min after the onset of a resealable sonoporation episode <ref type="bibr" coords="9,276.76,670.08,5.62,5.91" target="#b11">11</ref> .</p><p>Isolation of sonoporated cells. Labeling of non-viable cells. Following the post-exposure incubation period, sonicated cells were transferred to 5-ml sterile flow cytometry tubes (352054; BD Biosciences). After rinsing them twice with RPMI medium, they were stained for 15-min with 0.75 µM PI (P4170, Sigma-Aldrich) to label non-viable sonicated cells whose membrane remain compromised after the sonoporation episode and the 5 min post-exposure incubation period. Afterwards, cells were washed twice with PBS.</p><p>Identification of cell subpopulations with flow cytometry. Identification of subpopulations was achieved through calcein/PI bivariate fluorescence analysis of the sonicated cell samples using a flow cytometer (Aria III, BD Biosciences). In each flow cytometry run, data for 10 4 cells per sample was acquired at a rate of 300 events/s. Also, calcein fluorescence was measured with a 530/30 nm filter, and PI fluorescence was detected with a 616/23 nm filter. Cells showing positive PI fluorescence were deemed to belong to the non-viable population, while those showing positive calcein fluorescence were deemed to belong to the sonoporated cell population. Accordingly, the bivariate flow cytometry analysis allowed us to identify subpopulations of viable sonoporated cells (PI-/ calcein +), viable unsonoprated cells (PI-/calcein-), and non-viable cells that may or may not be sonoporated (PI + /calcein + and PI + /calcein-). Our previous data showed that among a sonicated HL-60 cell population, 41.9% were viable sonoporated cells <ref type="bibr" coords="10,284.40,172.08,5.62,5.91" target="#b27">27</ref> .</p><p>Cell sorting. Using the FACS functionality of the flow cytometer, viable sonoporated cells (SNP+) and viable unsonoporated cells (SNP-) were isolated by setting each subpopulation's gate fluorescence level according to the observed bivariate fluorescence distribution in the post-exposure cell population sample. Non-viable cells were excluded from this sorting process. From each sorting experiment, 5 × 10 6 cells for each targeted subpopulation were collected. Note that cells were sorted at a rate of 3000 events/s flow rate to ensure the targeted number of cells can be harvested efficiently within 30 min. During the cell sorting process, the sheath fluid of flow cytometer and the sample container were maintained at 4 °C to preserve cell viability <ref type="bibr" coords="10,435.72,254.08,5.62,5.91" target="#b38">38</ref> . The harvested cell populations were immediately re-incubated until the corresponding time points for conducting biological assays. Note that cells of the sham control group (CTL) and a sonicated cell group that received ultrasound exposure in the absence of microbubbles (US) also went through the identical cell sorting procedures.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="10,155.91,306.51,76.05,8.92">Biological assays.</head><p>Apoptosis and necrosis analysis. Apoptosis and necrosis were analyzed using the Annexin-V/PI bivariate fluorescence assay at 3 h, 8 h, 12 h and 24 h after exposure according to the established protocol <ref type="bibr" coords="10,186.20,326.08,5.62,5.91" target="#b39">39</ref> . For each sorted cell sample, 2 × 10 5 cells were harvested and were washed with 4 °C PBS. The samples were then resuspended in binding buffer (1 × HEPES buffer solution). After centrifugation and removal of supernatants, each cell population sample was incubated with 5 μl Annexin-V (A23202, Alexa Fluor 350 conjugate, Invitrogen) and 1 μl of 100 μg/mL PI in a 100 μl binding buffer at room temperature for 15 min. Annexin-V binding served to label instances of phosphatidylserine externalization manifested in cells undergoing early apoptosis, whereas cytoplasmic presence of PI served to label cells with compromised membrane permeability that is well regarded as a shared feature of late apoptotic and necrotic cells <ref type="bibr" coords="10,402.98,386.08,5.62,5.91" target="#b39">39</ref> . Subsequently, 400 μl binding buffer was added to each sample on ice. Flow cytometry was then applied using fluorescence with Ex/Em of 346/440 nm laser for Annexin-V and Ex/Em of 488/625 nm for PI. The cell group was then displayed as scatter plots with horizontal and vertical axis representing Annexin-V and PI level respectively. From this analysis, three groups of cells could be identified: (a) early apoptotic cells (PI-/Annexin V +); (b) late apoptotic or necrotic cells (PI +); (c) viable cells (PI-/annexin-V-). Note that this protocol cannot identify dead cells that had already been lysed at a given post-exposure time as they were inevitably removed by centrifugation.</p><p>Cell proliferation analysis. The CCK-8 colorimetric assay (Dojindo Molecular Technologies, Inc., MD, USA) was carried out to determine the number of viable cells at different post-exposure times. This assay was chosen in view of its low cytotoxicity to living cells and high sensitivity comparing with other proliferation assays such as MTT. In each experiment, a sorted cell subpopulation sample was centrifuged at 1000 rpm for 5 min at 37 °C and was resuspended into the culture medium at a density of 2 × 10 5 cells/ml. The cell suspension was then transferred to a 96-well plate with 100 µl per well. Subsequently, 10 µl of CCK-8 solution was added to each well. The 96-well place was incubated for 2 h at 37 °C and 5% CO 2 to foster reaction. The plate was afterward transferred to a spectrophotometer (Multiskan Go; Thermo Scientific Inc.) and the absorbance at 450 nm was measured. In each experiment, calibration samples were prepared by inoculating 5 × 10 3 , 1 × 10 4 , 2 × 10 4 , 4 × 10 4 cells/well respectively with identical volume of 100 µl.</p><p>Cell cycle analysis. The cell-cycle distribution at different time points was examined by fixing the cell subpopulation sample and analyzing the fixed cells' DNA contents via PI fluorescence staining and flow cytometry. The sorted cell populations were extracted at 3 h, 8 h, 12 h and 24 h after exposure and was fixed with 75% ice-cold ethanol. The fixed samples were stored at -20 °C for further analysis. Before carrying out the cell-cycle analysis, the fixed samples were washed with PBS to remove the ethanol. Subsequently, the samples were stained with 0.5 ml of PI solution (75 mM) in the dark at room temperature. The fluorescence of the PI-stained cells was analyzed by a flow cytometer following the standard protocol <ref type="bibr" coords="10,375.15,640.08,5.62,5.91" target="#b40">40</ref> . Histograms of PI fluorescence, which represent distribution of cellular DNA contents instead of cell viability because cells were already fixed, were then formed from 10,000 cell counts for each sample. Cells at G 0 /G 1 -,S-and G 2 /M-phases were gated and quantified from the DNA histogram.</p><p>HSP-70 expression analysis. qPCR analysis was conducted to evaluate the mRNA level of HSPA6, HASPA1A, HSPA1B in each sorted population at 3 h after exposure. The three genes were chosen as they encode the 70-kDa heat shock proteins (HSP70) that serve a cytoprotective function in response to disturbance of cell homeostasis via chaperon regulation <ref type="bibr" coords="10,241.59,722.08,5.62,5.91" target="#b26">26</ref> . Prior to the analysis, 1 × 10 7 cells were harvested for each sample and the total RNA of the sample was isolated with the standard TRIzol (Invitrogen) method. To verify the quality of the extracted RNA, a quantitative estimation was conducted with the Multiskan GO spectrophotometer, and its integrity was double confirmed by agarose gel electrophoresis. cDNA was synthesized from 100 ng of total RNA using the TaqMan reverse transcription kit (Thermofisher) according to the manufacturer's protocol. The qPCR reaction mix was prepared using a SYBR Fast qPCR Kit (Kapa Biosystems). Cycling and gene expression detection was conducted with a real-time PCR system (ABI-7500; Applied Biosystems). The primers used in the experiments are listed in Table <ref type="table" coords="11,221.24,286.08,3.19,9.10" target="#tab_1">2</ref>. RNA quantity was normalized using GAPDH content, and gene expression was quantified according to the 2 -ΔΔCT method <ref type="bibr" coords="11,267.80,294.99,5.62,5.91" target="#b41">41</ref> .</p><p>Statistical evaluation. For all conducted bioassays, the analysis of variance (ANOVA) test was applied to the acquired measurements to evaluate whether there were statistically significant differences in the data samples between cell groups and between different post-exposure time points. This statistical evaluation task was conducted using OriginPro (ver. 9.0; OriginLab Corporation, Northampton, MA, USA). Trends of statistical significance were identified as ones with p values of &lt; 0.05, &lt; 0.01, and &lt; 0.001, which respectively correspond to confidence intervals of 95%, 99%, and 99.9%. </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="2,155.91,275.40,398.11,9.10;2,155.91,285.40,364.92,9.10;2,155.91,295.40,395.78,9.10;2,155.91,305.40,371.70,9.10;2,155.91,315.40,142.89,9.10;2,72.24,50.49,481.94,213.02"><head>Figure 1 .</head><label>1</label><figDesc>Figure1. Experimental protocol for investigating the downstream cellular impact of sonoporation. A calibrated acoustic exposure platform was used to deliver ultrasound pulses to cell samples at 0 min. Fluorescence activated cell sorting (FACS) was then performed to isolate sonoporated cells (SNP+ group) and unsonoporated cells (SNP-group). The development trends of each sorted cell group were then assayed at different postexposure time points over a 24 h period.</figDesc><graphic coords="2,72.24,50.49,481.94,213.02" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="3,155.91,545.04,390.75,9.10;3,155.91,555.04,378.27,9.10;3,155.91,565.04,390.05,9.10;3,155.91,575.04,393.36,9.10;3,155.91,585.04,373.53,9.10;3,155.91,595.04,389.43,9.10;3,155.91,605.04,206.31,9.10;3,155.91,50.50,227.64,482.52"><head>Figure 2 .</head><label>2</label><figDesc>Figure 2. Cytotoxicity trends at different post-exposure time points (3 h to 24 h) for sonoporated (SNP+) and unsonoporated cells (SNP-) that were initially viable after exposure. Each box-whisker plot shows, for each sorted cell group, the percentage of cells in (a) early apoptosis, (b) late apoptosis or necrosis (i.e. dead), and (c) either death pathway (i.e. sum of apoptosis and necrosis). Results are also shown for sham exposure cells (CTL) and cells that were sonicated in the absence of microbubbles (US) (N = 9; *,**, and *** respectively denote p&lt;0.05, p&lt;0.01, and p&lt;0.001 versus the 3 h time point of the same group. # and ### respectively denote p&lt;0.05 and p&lt;0.001 versus CTL at the corresponding time point).</figDesc><graphic coords="3,155.91,50.50,227.64,482.52" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="4,155.91,303.84,378.63,9.10;4,155.91,313.84,373.78,9.10;4,155.91,323.84,145.42,9.10;4,301.28,322.74,2.81,5.91;4,306.06,323.84,233.49,9.10;4,155.91,333.84,394.36,9.10;4,155.91,343.84,339.66,9.10;4,155.91,50.50,255.96,241.32"><head>Figure 3 .</head><label>3</label><figDesc>Figure 3. Growth curves of four sorted cell groups (SNP+, SNP-, US, CTL) over 24 h after exposure. Each line plots the total number of viable cells in a sorted cell group at 3 h, 8 h, 12 h, and 24 h after exposure. to evaluate Cell count was normalized to 10 4 cells at the initial time point. Each data point, acquired from three experiments (N=3) with 3 to 5 population samples each, was presented as mean ± standard deviation (*, **, and *** respectively denote p &lt; 0.05, p &lt; 0.01, p &lt; 0.001 versus the 3 h time point of the same group).</figDesc><graphic coords="4,155.91,50.50,255.96,241.32" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="6,155.91,355.08,381.09,9.10;6,155.91,365.08,383.78,9.10;6,155.91,375.08,393.25,9.77;6,155.90,385.08,380.99,9.10;6,155.90,395.08,377.50,9.10;6,155.90,405.08,396.27,9.10;6,155.90,415.08,395.84,9.10;6,155.90,425.08,325.97,9.10;6,71.41,50.50,482.76,292.56"><head>Figure 4 .</head><label>4</label><figDesc>Figure 4. Time-lapsed cell cycle progression trends of four sorted cell groups (SNP+, SNP-, US, CTL) over a 24 h period. Percentages of cells in the following cell-cycle phases are shown at 3 h, 8 h, 12 h, and 24 h after exposure: (a) gap 0 or gap 1 (G 0 /G 1 ); (b) synthesis (S); (c) gap 2 or mitosis (G 2 /M). Cell cycle distribution at the four post-exposure time points are also plotted as stacked bar charts for (d) SNP-and (e) SNP+ cell groups. Population percentages were calculated based on the total number of viable cells. Results were presented as mean ± standard deviation. Data points were acquired from three experiments (N = 3), each of which had 3 to 5 samples (*, **, and *** respectively denote p &lt; 0.05, p &lt; 0.01, and p &lt; 0.001 versus CTL at the same time point. #, ##, and ### denote p &lt; 0.05, p &lt; 0.01, p &lt; 0.001 versus the 3 h time point of the same group).</figDesc><graphic coords="6,71.41,50.50,482.76,292.56" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="6,155.91,618.37,387.95,9.10;6,155.91,628.37,390.27,9.10;6,155.91,638.37,397.19,9.10;6,155.91,648.37,291.89,9.10;6,71.41,450.71,482.76,155.64"><head>Figure 5 .</head><label>5</label><figDesc>Figure 5. Messenger ribonucleic acid (mRNA) expressions of three genes in the heat shock protein-70 (HSP-70) family for four sorted cell groups (SNP+, SNP-, US, CTL) at 3h after exposure. Fold changes relative to the CTL group are shown for: (a) HSPA1A; (b) HSPA1B; (c) HSPA6. Error bars denote standard deviation (N=6) (*, **, and *** respectively denote p &lt; 0.05, p &lt; 0.01, and p &lt; 0.001 versus CTL group).</figDesc><graphic coords="6,71.41,450.71,482.76,155.64" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="7,155.91,522.36,390.92,9.10;7,155.91,532.36,390.04,9.10;7,155.91,542.36,394.52,9.10;7,155.91,552.36,318.54,9.10;7,155.91,50.50,341.04,459.84"><head>Figure 6 .</head><label>6</label><figDesc>Figure 6. Downstream cellular impact observed in unsonoporated cells (left) and sonoporated cells (right), as derived from the experimental findings. Both cell groups experienced upregulation of HSP-70 expression level and disruption of cell-cycle distribution. Unsonoporated cells eventually restored their proliferation trend (after 24 h), whereas many sonoporated cells failed to recover and became apoptotic or necrotic.</figDesc><graphic coords="7,155.91,50.50,341.04,459.84" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="5,155.91,53.67,261.40,87.12"><head>Table 1 .</head><label>1</label><figDesc>Assessment of proliferation rates of the four sorted cell groups.</figDesc><table coords="5,158.99,53.67,248.66,65.53"><row><cell/><cell cols="2">Exposure</cell><cell/><cell cols="2">Average proliferation rate Δ 1 (%)</cell><cell>Δ 2 (%)</cell></row><row><cell>Group</cell><cell cols="4">US MB SNP 3-24 h</cell><cell>8-12 h</cell><cell>12-24 h</cell></row><row><cell>CTL</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell>1.75</cell><cell cols="2">55.5 ± 22.9 39.8 ± 13.2</cell></row><row><cell>US</cell><cell>+</cell><cell>-</cell><cell>-</cell><cell>2.12</cell><cell cols="2">88.7 ± 19.7 32.9 ± 6.6</cell></row><row><cell>SNP-</cell><cell>+</cell><cell>+</cell><cell>-</cell><cell>1.31</cell><cell cols="2">66.1 ± 26.9 15.5 ± 8.1</cell></row><row><cell>SNP+</cell><cell>+</cell><cell>+</cell><cell>+</cell><cell>0.56</cell><cell cols="2">60.1 ± 22.7 -13.2 ± 4.7</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="11,155.91,53.67,252.65,142.12"><head>Table 2 .</head><label>2</label><figDesc>List of primer sequences used in this investigation.</figDesc><table coords="11,159.02,53.67,249.53,119.78"><row><cell>Gene</cell><cell>Oligo</cell><cell>Sequence</cell></row><row><cell>HSPA6</cell><cell>Forward</cell><cell>GAT GTG TCG GTT CTC TCC ATTG</cell></row><row><cell/><cell>Reverse</cell><cell>CTT CCA TGA AGT GGT TCA CGA</cell></row><row><cell>HSPAJA</cell><cell>Forward</cell><cell>CCG AGA AGG ACG AGT TTG AG</cell></row><row><cell/><cell>Reverse</cell><cell>ACA AAA ACA GCA ATC TTG GAA AGG</cell></row><row><cell>HSPAJB</cell><cell>Forward</cell><cell>TGA AGC AGC AAA GAG CTG AA</cell></row><row><cell/><cell>Reverse</cell><cell>GTG GAT TAG GGG CCT TTG TT</cell></row><row><cell>DNAJBJ</cell><cell>Forward</cell><cell>TTC CCC AGA CAT CAA GAA CC</cell></row><row><cell/><cell>Reverse</cell><cell>ACC CTC TCA TGG TCC ACA AC</cell></row><row><cell>GAPDH</cell><cell>Forward Reverse</cell><cell>CAT CAA TGG AAA TCC CAT CA TTC TCC ATG GTG GTG AAG AC</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0" coords="5,41.10,758.77,60.43,7.14;5,103.13,764.24,67.98,1.00;5,229.38,758.77,147.33,7.14"><p>Scientific Reports | (2021) 11:5161 | https://doi.org/10.1038/s41598-021-84341-3</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_1" coords="6,41.10,758.77,130.01,7.38;6,229.38,758.77,147.33,7.14"><p>Scientific Reports | (2021) 11:5161 | https://doi.org/10.1038/s41598-021-84341-3</p></note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head coords="12,155.91,425.77,95.06,9.81">Acknowledgements</head><p>The authors are grateful to <rs type="person">Dr. Wai-Hung Sit</rs> for his technical advice on the flow cytometry and cell sorting analysis. This work is supported in part by <rs type="funder">Natural Sciences and Engineering Council of Canada</rs> (<rs type="grantNumber">CRE-ATE-528202-2019</rs>), <rs type="funder">Canada Foundation for Innovation</rs> (<rs type="grantNumber">36138</rs>), and the <rs type="funder">University of Hong Kong</rs>.</p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funding" xml:id="_dkRUhEb">
+					<idno type="grant-number">CRE-ATE-528202-2019</idno>
+				</org>
+				<org type="funding" xml:id="_nPTZnV5">
+					<idno type="grant-number">36138</idno>
+				</org>
+			</listOrg>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="12,155.91,475.77,100.19,9.81">Author contributions</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head coords="12,155.91,526.75,97.25,9.81">Competing interests</head><p>The authors declare no competing interests.</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="4,4.82,775.01,58.49,7.14;4,41.10,758.77,130.01,7.38;4,229.38,758.77,147.33,7.14;10,4.82,775.01,58.49,7.14;10,41.10,758.77,130.01,7.38;10,229.38,758.77,147.33,7.14;11,155.91,419.77,52.74,9.81" xml:id="b0">
+	<analytic>
+		<title/>
+		<idno type="DOI">10.1038/s41598-021-84341-3Vol:.(1234567890</idno>
+		<idno>11:5161</idno>
+		<ptr target="https://doi.org/10.1038/s41598-021-84341-3References"/>
+	</analytic>
+	<monogr>
+		<title level="j">Scientific Reports</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="issue">1234567890</biblScope>
+			<biblScope unit="page">5161</biblScope>
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+	<note>Scientific Reports</note>
+</biblStruct>
+
+<biblStruct coords="11,162.94,430.57,391.28,7.58;11,169.41,439.06,86.94,7.58" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Microbubble-mediated ultrasound therapy: a review of its potential in cancer treatment</title>
+		<author>
+			<persName><forename type="first">Stuart</forename><surname>Ibsen</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Schutt</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Esener</surname></persName>
+		</author>
+		<idno type="DOI">10.2147/dddt.s31564</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Drug Design, Development and Therapy</title>
+		<title level="j" type="abbrev">DDDT</title>
+		<idno type="ISSNe">1177-8881</idno>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page">375</biblScope>
+			<date type="published" when="2013-05">2013</date>
+			<publisher>Informa UK Limited</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.93,447.56,391.16,7.58;11,169.40,456.06,18.88,7.58" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Sonoporation: Applications for Cancer Therapy</title>
+		<author>
+			<persName><forename type="first">Jiale</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tzu-Yin</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jürgen</forename><forename type="middle">K</forename><surname>Willmann</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-319-22536-4_15</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Experimental Medicine and Biology</title>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="263" to="291"/>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.93,464.56,391.24,7.58;11,169.40,473.05,133.05,7.58" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Sonoporation: Mechanistic insights and ongoing challenges for gene transfer</title>
+		<author>
+			<persName><forename type="first">Anthony</forename><surname>Delalande</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Spiros</forename><surname>Kotopoulis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michiel</forename><surname>Postema</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Patrick</forename><surname>Midoux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chantal</forename><surname>Pichon</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.gene.2013.03.095</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Gene</title>
+		<title level="j" type="abbrev">Gene</title>
+		<idno type="ISSN">0378-1119</idno>
+		<imprint>
+			<biblScope unit="volume">525</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="191" to="199"/>
+			<date type="published" when="2013-08">2013</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.93,481.55,391.13,7.58;11,169.39,490.05,50.29,7.58" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Sonoporation: Concept and Mechanisms</title>
+		<author>
+			<persName><forename type="first">Ayache</forename><surname>Bouakaz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Aya</forename><surname>Zeghimi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alexander</forename><forename type="middle">A</forename><surname>Doinikov</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-319-22536-4_10</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Experimental Medicine and Biology</title>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="175" to="189"/>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.93,498.55,391.28,7.58;11,169.39,507.04,350.68,7.58" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Microbubbles for Nucleic Acid Delivery in Liver Using Mild Sonoporation</title>
+		<author>
+			<persName><forename type="first">Nathalie</forename><surname>Mignet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Corinne</forename><surname>Marie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Anthony</forename><surname>Delalande</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Simona</forename><surname>Manta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michel-Francis</forename><surname>Bureau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gilles</forename><surname>Renault</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><surname>Scherman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chantal</forename><surname>Pichon</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-1-4939-9092-4_25</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Nanotechnology for Nucleic Acid Delivery</title>
+		<imprint>
+			<publisher>Springer New York</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="377" to="387"/>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.93,515.54,391.32,7.58;11,169.39,524.04,121.45,7.58" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Reparable Cell Sonoporation in Suspension: Theranostic Potential of Microbubble</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">Moosavi</forename><surname>Nejad</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hamid</forename><surname>Hosseini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hidenori</forename><surname>Akiyama</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Katsuro</forename><surname>Tachibana</surname></persName>
+		</author>
+		<idno type="DOI">10.7150/thno.13518</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Theranostics</title>
+		<title level="j" type="abbrev">Theranostics</title>
+		<idno type="ISSN">1838-7640</idno>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="446" to="455"/>
+			<date type="published" when="2016">2016</date>
+			<publisher>Ivyspring International Publisher</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.93,532.54,391.12,7.58;11,169.39,541.03,74.68,7.58" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Sonoporation by Single-Shot Pulsed Ultrasound with Microbubbles Adjacent to Cells</title>
+		<author>
+			<persName><forename type="first">Nobuki</forename><surname>Kudo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kengo</forename><surname>Okada</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Katsuyuki</forename><surname>Yamamoto</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.bpj.2009.02.072</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Biophysical Journal</title>
+		<title level="j" type="abbrev">Biophysical Journal</title>
+		<idno type="ISSN">0006-3495</idno>
+		<imprint>
+			<biblScope unit="volume">96</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="4866" to="4876"/>
+			<date type="published" when="2009-06">2009</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.93,549.53,391.26,7.58;11,169.39,558.03,188.68,7.58" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Can Ultrasound Enable Efficient Intracellular Uptake of Molecules? A Retrospective Literature Review and Analysis</title>
+		<author>
+			<persName><forename type="first">Ying</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jing</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mark</forename><forename type="middle">R</forename><surname>Prausnitz</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2012.01.006</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="876" to="888"/>
+			<date type="published" when="2012-05">2012</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.93,566.53,351.61,7.58" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Future Directions for Therapeutic Ultrasound</title>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Campbell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mark</forename><forename type="middle">R</forename><surname>Prausnitz</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2006.11.001</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page">657</biblScope>
+			<date type="published" when="2007-04">2007</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.61,575.02,391.70,7.58;11,169.40,583.52,241.48,7.58" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Understanding ultrasound induced sonoporation: Definitions and underlying mechanisms</title>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Lentacker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>De Cock</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Deckers</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">C</forename><surname>De Smedt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">T W</forename><surname>Moonen</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.addr.2013.11.008</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Advanced Drug Delivery Reviews</title>
+		<title level="j" type="abbrev">Advanced Drug Delivery Reviews</title>
+		<idno type="ISSN">0169-409X</idno>
+		<imprint>
+			<biblScope unit="volume">72</biblScope>
+			<biblScope unit="page" from="49" to="64"/>
+			<date type="published" when="2014-06">2014</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.62,592.02,391.55,7.58;11,169.41,600.52,118.43,7.58" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Membrane Perforation and Recovery Dynamics in Microbubble-Mediated Sonoporation</title>
+		<author>
+			<persName><forename type="first">Yaxin</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jennifer</forename><forename type="middle">M F</forename><surname>Wan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2013.08.003</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">39</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="2393" to="2405"/>
+			<date type="published" when="2013-12">2013</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.63,609.01,391.61,7.58;11,169.41,617.51,82.92,7.58" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Biophysical insight into mechanisms of sonoporation</title>
+		<author>
+			<persName><forename type="first">Brandon</forename><surname>Helfield</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xucai</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Simon</forename><forename type="middle">C</forename><surname>Watkins</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Flordeliza</forename><forename type="middle">S</forename><surname>Villanueva</surname></persName>
+		</author>
+		<idno type="DOI">10.1073/pnas.1606915113</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the National Academy of Sciences</title>
+		<title level="j" type="abbrev">Proc. Natl. Acad. Sci. U.S.A.</title>
+		<idno type="ISSN">0027-8424</idno>
+		<idno type="ISSNe">1091-6490</idno>
+		<imprint>
+			<biblScope unit="volume">113</biblScope>
+			<biblScope unit="issue">36</biblScope>
+			<biblScope unit="page" from="9983" to="9988"/>
+			<date type="published" when="2016-08-22">2016</date>
+			<publisher>Proceedings of the National Academy of Sciences</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.64,626.01,391.64,7.58;11,169.42,634.51,104.22,7.58" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Single-site sonoporation disrupts actin cytoskeleton organization</title>
+		<author>
+			<persName><forename type="first">Xian</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ruen</forename><forename type="middle">Shan</forename><surname>Leow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yaxin</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jennifer</forename><forename type="middle">M F</forename><surname>Wan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="DOI">10.1098/rsif.2014.0071</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of The Royal Society Interface</title>
+		<title level="j" type="abbrev">J. R. Soc. Interface.</title>
+		<idno type="ISSN">1742-5689</idno>
+		<idno type="ISSNe">1742-5662</idno>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="issue">95</biblScope>
+			<biblScope unit="page">20140071</biblScope>
+			<date type="published" when="2014-06-06">2014</date>
+			<publisher>The Royal Society</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.64,643.00,391.48,7.58;11,169.43,651.50,67.13,7.58" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">High-Resolution Imaging of Intracellular Calcium Fluctuations Caused by Oscillating Microbubbles</title>
+		<author>
+			<persName><forename type="first">Inés</forename><surname>Beekers</surname></persName>
+			<idno type="ORCID">0000-0003-0905-5422</idno>
+		</author>
+		<author>
+			<persName><forename type="first">Frits</forename><surname>Mastik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Robert</forename><surname>Beurskens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Phoei</forename><forename type="middle">Ying</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Merel</forename><surname>Vegter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Antonius</forename><forename type="middle">F W</forename><surname>Van Der Steen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nico</forename><surname>De Jong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Martin</forename><forename type="middle">D</forename><surname>Verweij</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Klazina</forename><surname>Kooiman</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2020.03.029</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">46</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<biblScope unit="page" from="2017" to="2029"/>
+			<date type="published" when="2020-08">2020</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.65,660.00,391.50,7.58;11,169.44,668.50,188.88,7.58" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Membrane blebbing as a recovery manoeuvre in site-specific sonoporation mediated by targeted microbubbles</title>
+		<author>
+			<persName><forename type="first">Ruen</forename><forename type="middle">Shan</forename><surname>Leow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jennifer</forename><forename type="middle">M F</forename><surname>Wan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="DOI">10.1098/rsif.2015.0029</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of The Royal Society Interface</title>
+		<title level="j" type="abbrev">J. R. Soc. Interface.</title>
+		<idno type="ISSN">1742-5689</idno>
+		<idno type="ISSNe">1742-5662</idno>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="issue">105</biblScope>
+			<biblScope unit="page">20150029</biblScope>
+			<date type="published" when="2015-04">2015</date>
+			<publisher>The Royal Society</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.66,676.99,391.65,7.58;11,169.44,685.49,194.05,7.58" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Mechanistic understanding the bioeffects of ultrasound-driven microbubbles to enhance macromolecule delivery</title>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lin</forename><surname>Xu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jconrel.2018.01.001</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Controlled Release</title>
+		<title level="j" type="abbrev">Journal of Controlled Release</title>
+		<idno type="ISSN">0168-3659</idno>
+		<imprint>
+			<biblScope unit="volume">272</biblScope>
+			<biblScope unit="page" from="169" to="181"/>
+			<date type="published" when="2018-02">2018</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.66,693.99,391.50,7.58;11,169.45,702.49,167.10,7.58" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Ultrasound-mediated disruption of cell membranes. II. Heterogeneous effects on cells</title>
+		<author>
+			<persName><forename type="first">Héctor</forename><forename type="middle">R</forename><surname>Guzmán</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><forename type="middle">X</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sohail</forename><surname>Khan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mark</forename><forename type="middle">R</forename><surname>Prausnitz</surname></persName>
+		</author>
+		<idno type="DOI">10.1121/1.1376130</idno>
+	</analytic>
+	<monogr>
+		<title level="j">The Journal of the Acoustical Society of America</title>
+		<idno type="ISSN">0001-4966</idno>
+		<idno type="ISSNe">1520-8524</idno>
+		<imprint>
+			<biblScope unit="volume">110</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="597" to="606"/>
+			<date type="published" when="2001-07-01">2001</date>
+			<publisher>Acoustical Society of America (ASA)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,162.67,710.98,391.75,7.58;11,169.46,719.48,253.13,7.58;12,4.82,775.01,58.49,7.14;12,41.10,758.77,130.01,7.38;12,229.38,758.77,147.33,7.14;12,41.10,21.86,159.48,1.00" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Effect of non-acoustic parameters on heterogeneous sonoporation mediated by single-pulse ultrasound and microbubbles</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41598-021-84341-3www.nature.com/scientificreports/</idno>
+		<idno>11:5161</idno>
+		<ptr target="https://doi.org/10.1038/s41598-021-84341-3www.nature.com/scientificreports/"/>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrason. Sonochem</title>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="issue">1234567890</biblScope>
+			<biblScope unit="page" from="107" to="115"/>
+			<date type="published" when="2016">2016. 2021</date>
+		</imprint>
+	</monogr>
+	<note>Scientific Reports</note>
+</biblStruct>
+
+<biblStruct coords="12,162.63,51.07,391.49,7.58;12,169.41,59.57,384.79,7.58" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Saving Cells from Ultrasound-Induced Apoptosis: Quantification of Cell Death and Uptake Following Sonication and Effects of Targeted Calcium Chelation</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">D</forename><surname>Hutcheson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">K</forename><surname>Schlicher</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><forename type="middle">K</forename><surname>Hicks</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">R</forename><surname>Prausnitz</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2010.03.011</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">36</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="1008" to="1021"/>
+			<date type="published" when="2010-06">2010</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.63,68.06,391.65,7.58;12,169.42,76.56,384.77,7.58;12,169.42,85.06,56.18,7.58" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Bioeffects caused by changes in acoustic cavitation bubble density and cell concentration: a unified explanation based on cell-to-bubble ratio and blast radius</title>
+		<author>
+			<persName><forename type="first">Héctor</forename><forename type="middle">R</forename><surname>Guzmán</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><forename type="middle">J</forename><surname>Mcnamara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><forename type="middle">X</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mark</forename><forename type="middle">R</forename><surname>Prausnitz</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/s0301-5629(03)00899-8</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">29</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<biblScope unit="page" from="1211" to="1222"/>
+			<date type="published" when="2003-08">2003</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.64,93.56,391.53,7.58;12,169.43,102.05,184.61,7.58" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Biological effects of low intensity ultrasound: the mechanism involved, and its implications on therapy and on biosafety of ultrasound</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><forename type="middle">B</forename><surname>Feril</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Kondo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Radiat. Res</title>
+		<imprint>
+			<biblScope unit="volume">45</biblScope>
+			<biblScope unit="page" from="479" to="489"/>
+			<date type="published" when="2004">2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.65,110.55,391.55,7.58;12,169.44,119.05,21.51,7.58" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Induction of Apoptosis in Sonoporation and Ultrasonic Gene Transfer</title>
+		<author>
+			<persName><forename type="first">Douglas</forename><forename type="middle">L</forename><surname>Miller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chunyan</forename><surname>Dou</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2008.06.007</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">35</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="144" to="154"/>
+			<date type="published" when="2009-01">2009</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.66,127.55,391.58,7.58;12,169.44,136.04,179.97,7.58" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Sonoporation Induces Apoptosis and Cell Cycle Arrest in Human Promyelocytic Leukemia Cells</title>
+		<author>
+			<persName><forename type="first">Wenjing</forename><surname>Zhong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wai</forename><forename type="middle">Hung</forename><surname>Sit</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jennifer</forename><forename type="middle">M F</forename><surname>Wan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2011.09.012</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">37</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="2149" to="2159"/>
+			<date type="published" when="2011-12">2011</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.66,144.54,391.50,7.58;12,169.45,153.04,81.28,7.58" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Different effects of sonoporation on cell morphology and viability</title>
+		<author>
+			<persName><forename type="first">Ji-Zhen</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jasdeep</forename><surname>K. Saggar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhao-Li</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bing</forename><surname>Hu</surname></persName>
+		</author>
+		<idno type="DOI">10.17305/bjbms.2012.2497</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Bosnian Journal of Basic Medical Sciences</title>
+		<title level="j" type="abbrev">Bosn J of Basic Med Sci</title>
+		<idno type="ISSN">1512-8601</idno>
+		<idno type="ISSNe">1840-4812</idno>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page">64</biblScope>
+			<date type="published" when="2012-05-20">2012</date>
+			<publisher>Association of Basic Medical Sciences of FBIH</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.67,161.54,391.44,7.58;12,169.46,170.03,156.17,7.58" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Sonoporation as a Cellular Stress: Induction of Morphological Repression and Developmental Delays</title>
+		<author>
+			<persName><forename type="first">Xian</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jennifer</forename><forename type="middle">M F</forename><surname>Wan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2013.01.008</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">39</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="1075" to="1086"/>
+			<date type="published" when="2013-06">2013</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.68,178.53,391.54,7.58" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Hsp70 chaperones: Cellular functions and molecular mechanism</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">P</forename><surname>Mayer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Bukau</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s00018-004-4464-6</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Cellular and Molecular Life Sciences</title>
+		<title level="j" type="abbrev">CMLS, Cell. Mol. Life Sci.</title>
+		<idno type="ISSN">1420-682X</idno>
+		<idno type="ISSNe">1420-9071</idno>
+		<imprint>
+			<biblScope unit="volume">62</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="670" to="684"/>
+			<date type="published" when="2005-03">2005</date>
+			<publisher>Springer Science and Business Media LLC</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.69,187.03,391.63,7.58;12,169.47,195.53,347.63,7.58" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Cellular Bioeffect Investigations on Low-Intensity Pulsed Ultrasound and Sonoporation: Platform Design and Flow Cytometry Protocol</title>
+		<author>
+			<persName><forename type="first">Xinxing</forename><surname>Duan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+			<idno type="ORCID">0000-0002-8604-0219</idno>
+		</author>
+		<author>
+			<persName><forename type="first">Jennifer</forename><forename type="middle">M F</forename><surname>Wan</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/tuffc.2019.2923443</idno>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</title>
+		<title level="j" type="abbrev">IEEE Trans. Ultrason., Ferroelect., Freq. Contr.</title>
+		<idno type="ISSN">0885-3010</idno>
+		<idno type="ISSNe">1525-8955</idno>
+		<imprint>
+			<biblScope unit="volume">66</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="1422" to="1434"/>
+			<date type="published" when="2019-09">2019</date>
+			<publisher>Institute of Electrical and Electronics Engineers (IEEE)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.69,204.02,391.60,7.58;12,169.48,212.52,106.75,7.58" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Major deletions in the gene encoding the p53 tumor antigen cause lack of p53 expression in HL-60 cells.</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Wolf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Rotter</surname></persName>
+		</author>
+		<idno type="DOI">10.1073/pnas.82.3.790</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the National Academy of Sciences</title>
+		<title level="j" type="abbrev">Proc. Natl. Acad. Sci. U.S.A.</title>
+		<idno type="ISSN">0027-8424</idno>
+		<idno type="ISSNe">1091-6490</idno>
+		<imprint>
+			<biblScope unit="volume">82</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="790" to="794"/>
+			<date type="published" when="1985-02">1985</date>
+			<publisher>Proceedings of the National Academy of Sciences</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.70,221.02,391.48,7.58;12,169.48,229.52,149.88,7.58" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Induction of Endoplasmic Reticulum Stress by Sonoporation: Linkage to Mitochondria-Mediated Apoptosis Initiation</title>
+		<author>
+			<persName><forename type="first">Wenjing</forename><surname>Zhong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xian</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pingping</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jennifer</forename><forename type="middle">M F</forename><surname>Wan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2013.08.005</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">39</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="2382" to="2392"/>
+			<date type="published" when="2013-12">2013</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.70,238.01,354.65,7.58" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">The human HSP70 family of chaperones: where do we stand?</title>
+		<author>
+			<persName coords=""><forename type="first">Jürgen</forename><surname>Radons</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s12192-016-0676-6</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Cell Stress and Chaperones</title>
+		<title level="j" type="abbrev">Cell Stress and Chaperones</title>
+		<idno type="ISSN">1355-8145</idno>
+		<idno type="ISSNe">1466-1268</idno>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="379" to="404"/>
+			<date type="published" when="2016-02-10">2016</date>
+			<publisher>Springer Science and Business Media LLC</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.71,246.51,391.68,7.58;12,169.50,255.01,67.13,7.58" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Cytomechanical Perturbations during Low-Intensity Ultrasound Pulsing</title>
+		<author>
+			<persName><forename type="first">Yaxin</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jennifer</forename><forename type="middle">M F</forename><surname>Wan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultrasmedbio.2014.01.003</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasound in Medicine &amp; Biology</title>
+		<title level="j" type="abbrev">Ultrasound in Medicine &amp; Biology</title>
+		<idno type="ISSN">0301-5629</idno>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="issue">7</biblScope>
+			<biblScope unit="page" from="1587" to="1598"/>
+			<date type="published" when="2014-07">2014</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.72,263.51,391.58,7.58;12,169.50,272.00,191.70,7.58" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Photodynamic therapy with indocyanine green complements and enhances low-dose cisplatin cytotoxicity in MCF-7 breast cancer cells</title>
+		<author>
+			<persName><forename type="first">Elvira</forename><surname>Crescenzi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Linda</forename><surname>Varriale</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mariangela</forename><surname>Iovino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Angela</forename><surname>Chiaviello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bianca</forename><forename type="middle">Maria</forename><surname>Veneziani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Giuseppe</forename><surname>Palumbo</surname></persName>
+		</author>
+		<idno type="DOI">10.1158/1535-7163.537.3.5</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Molecular Cancer Therapeutics</title>
+		<idno type="ISSN">1535-7163</idno>
+		<idno type="ISSNe">1538-8514</idno>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="537" to="544"/>
+			<date type="published" when="2004-05-01">2004</date>
+			<publisher>American Association for Cancer Research (AACR)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.71,280.50,391.57,7.58;12,169.50,289.00,144.85,7.58" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">A Novel &lt;b&gt; &lt;i&gt;Ex vivo&lt;/i&gt; &lt;/b&gt; Model System for Evaluation of Conditionally Replicative Adenoviruses Therapeutic Efficacy and Toxicity</title>
+		<author>
+			<persName><forename type="first">Tyler</forename><forename type="middle">O</forename><surname>Kirby</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Angel</forename><surname>Rivera</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><surname>Rein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Minghui</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ilya</forename><surname>Ulasov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Martina</forename><surname>Breidenbach</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Manjula</forename><surname>Kataram</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Juan</forename><forename type="middle">L</forename><surname>Contreras</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Carlos</forename><surname>Krumdieck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Masato</forename><surname>Yamamoto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marianne</forename><forename type="middle">G</forename><surname>Rots</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hidde</forename><forename type="middle">J</forename><surname>Haisma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ronald</forename><forename type="middle">D</forename><surname>Alvarez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Parameshwar</forename><forename type="middle">J</forename><surname>Mahasreshti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><forename type="middle">T</forename><surname>Curiel</surname></persName>
+		</author>
+		<idno type="DOI">10.1158/1078-0432.ccr-04-1166</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Clinical Cancer Research</title>
+		<idno type="ISSN">1078-0432</idno>
+		<idno type="ISSNe">1557-3265</idno>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="issue">24</biblScope>
+			<biblScope unit="page" from="8697" to="8703"/>
+			<date type="published" when="2004-12-15">2004</date>
+			<publisher>American Association for Cancer Research (AACR)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.71,297.50,391.49,7.58;12,169.50,305.99,86.74,7.58" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Chemotherapy-Induced and/or Radiation Therapy-Induced Oral Mucositis-Complicating the Treatment of Cancer</title>
+		<author>
+			<persName><forename type="first">Maddireddy</forename><forename type="middle">Umameshwar Rao</forename><surname>Naidu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gogula</forename><forename type="middle">Venkat</forename><surname>Ramana</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pingali</forename><forename type="middle">Usha</forename><surname>Rani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lyyapu</forename><forename type="middle">Krishna</forename><surname>Mohan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Avula</forename><surname>Suman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Priyadarshni</forename><surname>Roy</surname></persName>
+		</author>
+		<idno type="DOI">10.1593/neo.04169</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Neoplasia</title>
+		<title level="j" type="abbrev">Neoplasia</title>
+		<idno type="ISSN">1476-5586</idno>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="423" to="431"/>
+			<date type="published" when="2004-09">2004</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.71,314.49,391.54,7.58;12,169.49,322.99,21.51,7.58" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">A Preclinical Evaluation of Minnelide as a Therapeutic Agent Against Pancreatic Cancer</title>
+		<author>
+			<persName><forename type="first">Rohit</forename><surname>Chugh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Veena</forename><surname>Sangwan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Satish</forename><forename type="middle">P</forename><surname>Patil</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vikas</forename><surname>Dudeja</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rajinder</forename><forename type="middle">K</forename><surname>Dawra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sulagna</forename><surname>Banerjee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Robert</forename><forename type="middle">J</forename><surname>Schumacher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bruce</forename><forename type="middle">R</forename><surname>Blazar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gunda</forename><forename type="middle">I</forename><surname>Georg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Selwyn</forename><forename type="middle">M</forename><surname>Vickers</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ashok</forename><forename type="middle">K</forename><surname>Saluja</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/scitranslmed.3004334</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Science Translational Medicine</title>
+		<title level="j" type="abbrev">Sci. Transl. Med.</title>
+		<idno type="ISSN">1946-6234</idno>
+		<idno type="ISSNe">1946-6242</idno>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="issue">156</biblScope>
+			<biblScope unit="page" from="156" to="195"/>
+			<date type="published" when="2012-10-17">2012</date>
+			<publisher>American Association for the Advancement of Science (AAAS)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.71,331.49,391.57,7.58;12,169.50,339.98,103.32,7.58" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Silibinin Efficacy against Human Hepatocellular Carcinoma</title>
+		<author>
+			<persName><forename type="first">Leyon</forename><surname>Varghese</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chapla</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alpana</forename><surname>Tyagi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rana</forename><forename type="middle">P</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rajesh</forename><surname>Agarwal</surname></persName>
+		</author>
+		<idno type="DOI">10.1158/1078-0432.ccr-05-1646</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Clinical Cancer Research</title>
+		<idno type="ISSN">1078-0432</idno>
+		<idno type="ISSNe">1557-3265</idno>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="issue">23</biblScope>
+			<biblScope unit="page" from="8441" to="8448"/>
+			<date type="published" when="2005-12-01">2005</date>
+			<publisher>American Association for Cancer Research (AACR)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.72,348.48,391.51,7.58;12,169.50,356.98,275.71,7.58" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Effects of ultrasound pulse parameters on cavitation properties of flowing microbubbles under physiologically relevant conditions</title>
+		<author>
+			<persName><forename type="first">Mouwen</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fan</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><forename type="middle">C H</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Qin</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ultsonch.2018.12.031</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ultrasonics Sonochemistry</title>
+		<title level="j" type="abbrev">Ultrasonics Sonochemistry</title>
+		<idno type="ISSN">1350-4177</idno>
+		<imprint>
+			<biblScope unit="volume">52</biblScope>
+			<biblScope unit="page" from="512" to="521"/>
+			<date type="published" when="2019-04">2019</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.73,365.48,371.73,7.58" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">A method to maintain mammalian cells for days alive at 4 °C</title>
+		<author>
+			<persName><forename type="first">Laura</forename><surname>Mocé-Llivina</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Juan</forename><surname>Jofre</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s10616-005-2106-y</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Cytotechnology</title>
+		<title level="j" type="abbrev">Cytotechnology</title>
+		<idno type="ISSN">0920-9069</idno>
+		<idno type="ISSNe">1573-0778</idno>
+		<imprint>
+			<biblScope unit="volume">46</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="57" to="61"/>
+			<date type="published" when="2004-09">2004</date>
+			<publisher>Springer Science and Business Media LLC</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.73,373.97,391.46,7.58;12,169.52,382.47,380.85,7.58" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">A novel assay for apoptosis Flow cytometric detection of phosphatidylserine expression on early apoptotic cells using fluorescein labelled Annexin V</title>
+		<author>
+			<persName><forename type="first">István</forename><surname>Vermes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Clemens</forename><surname>Haanen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Helga</forename><surname>Steffens-Nakken</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chris</forename><surname>Reutellingsperger</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/0022-1759(95)00072-i</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Immunological Methods</title>
+		<title level="j" type="abbrev">Journal of Immunological Methods</title>
+		<idno type="ISSN">0022-1759</idno>
+		<imprint>
+			<biblScope unit="volume">184</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="39" to="51"/>
+			<date type="published" when="1995-07">1995</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.74,390.97,338.00,7.58" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">DNA Measurement and Cell Cycle Analysis by Flow Cytometry</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Nunez</surname></persName>
+		</author>
+		<idno type="DOI">10.21775/cimb.003.067</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Current Issues in Molecular Biology</title>
+		<idno type="ISSN">1467-3037</idno>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="67" to="70"/>
+			<date type="published" when="2001">2001</date>
+			<publisher>MDPI AG</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,162.74,398.65,391.43,8.50;12,169.40,408.07,86.91,7.58" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Analysis of Relative Gene Expression Data Using Real-Time Quantitative PCR and the 2−ΔΔCT Method</title>
+		<author>
+			<persName><forename type="first">Kenneth</forename><forename type="middle">J</forename><surname>Livak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thomas</forename><forename type="middle">D</forename><surname>Schmittgen</surname></persName>
+		</author>
+		<idno type="DOI">10.1006/meth.2001.1262</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Methods</title>
+		<title level="j" type="abbrev">Methods</title>
+		<idno type="ISSN">1046-2023</idno>
+		<imprint>
+			<biblScope unit="volume">25</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="402" to="408"/>
+			<date type="published" when="2001-12">2001</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

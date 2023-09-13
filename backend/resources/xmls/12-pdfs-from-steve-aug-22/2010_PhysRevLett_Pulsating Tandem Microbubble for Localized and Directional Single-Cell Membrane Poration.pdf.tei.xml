@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration</title>
+				<funder ref="#_ZHHKCkE #_34xNgJX #_9GAuwET #_CgHRkTC">
+					<orgName type="full">National Institutes of Health</orgName>
+					<orgName type="abbreviated">NIH</orgName>
+					<idno type="DOI" subtype="crossref">10.13039/100000002</idno>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>American Physical Society (APS)</publisher>
+				<availability status="unknown"><p>Copyright American Physical Society (APS)</p>
+				</availability>
+				<date type="published" when="2010-08-09">9 August 2010</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,226.66,87.70,52.22,9.20"><forename type="first">G</forename><forename type="middle">N</forename><surname>Sankin</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Mechanical Engineering and Materials Science</orgName>
+								<orgName type="institution">Duke University</orgName>
+								<address>
+									<postBox>Box 90300</postBox>
+									<postCode>27708</postCode>
+									<settlement>Durham</settlement>
+									<region>North Carolina</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,286.41,87.70,29.99,9.20"><forename type="first">F</forename><surname>Yuan</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Mechanical Engineering and Materials Science</orgName>
+								<orgName type="institution">Duke University</orgName>
+								<address>
+									<postBox>Box 90300</postBox>
+									<postCode>27708</postCode>
+									<settlement>Durham</settlement>
+									<region>North Carolina</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author role="corresp">
+							<persName coords="1,342.42,87.70,37.72,9.20"><forename type="first">P</forename><surname>Zhong</surname></persName>
+							<email>pzhong@duke.edu</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Mechanical Engineering and Materials Science</orgName>
+								<orgName type="institution">Duke University</orgName>
+								<address>
+									<postBox>Box 90300</postBox>
+									<postCode>27708</postCode>
+									<settlement>Durham</settlement>
+									<region>North Carolina</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">Physical Review Letters</title>
+						<title level="j" type="abbrev">Phys. Rev. Lett.</title>
+						<idno type="ISSN">0031-9007</idno>
+						<idno type="eISSN">1079-7114</idno>
+						<imprint>
+							<publisher>American Physical Society (APS)</publisher>
+							<biblScope unit="volume">105</biblScope>
+							<biblScope unit="issue">7</biblScope>
+							<date type="published" when="2010-08-09">9 August 2010</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">9B7C706CA73241A16FB723CF62D7565D</idno>
+					<idno type="DOI">10.1103/physrevlett.105.078101</idno>
+					<note type="submission">Received 17 May 2010; revised manuscript received 28 June 2010;</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.0-SNAPSHOT" ident="GROBID" when="2023-09-06T00:53+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>numbers: 87.50.cj</term>
+					<term>47.55.DÀ</term>
+					<term>87.16.dp</term>
+					<term>87.50.YÀ</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The interaction of laser-generated tandem microbubble (maximum diameter of about 50 m) with single (rat mammary carcinoma) cells is investigated in a 25-m liquid layer. Antiphase and coupled oscillation of the tandem microbubble leads to the formation of alternating, directional microjets (with max microstreaming velocity of 10 m=s) and vortices (max vorticity of 350 000 s À1 ) in opposite directions. Localized and directional membrane poration (200 nm to 2 m in pore size) can be produced by the tandem microbubble in an orientation and proximity-dependent manner, which is absent from a single oscillating microbubble of comparable size and at the same stand-off distance.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Introduction.-Cavitation, the formation and dynamics of vapor or gas bubbles in aqueous medium, plays a pivotal role in a diverse range of biomedical and engineering applications <ref type="bibr" coords="1,104.77,278.98,11.33,9.19" target="#b0">[1,</ref><ref type="bibr" coords="1,116.09,278.98,7.55,9.19" target="#b1">2]</ref>. An oscillating bubble can release energy upon symmetric collapse in the form of heat, light, and shock wave, <ref type="bibr" coords="1,107.72,302.90,12.21,9.19" target="#b2">[3]</ref> or a high-speed liquid jet due to bubblebubble interaction <ref type="bibr" coords="1,133.00,314.81,11.08,9.19" target="#b3">[4]</ref>, asymmetric collapse either near a boundary <ref type="bibr" coords="1,94.05,326.77,12.22,9.19" target="#b1">[2]</ref> or under the influence of an impinging shock wave <ref type="bibr" coords="1,79.14,338.73,11.12,9.19" target="#b4">[5]</ref>. In contrast to damaging ship propellers and hydraulic structures <ref type="bibr" coords="1,138.67,350.69,11.12,9.19" target="#b5">[6]</ref>, the power of cavitation has often been harnessed in biomedical applications for the treatment of cancers by high-intensity focused ultrasound, noninvasive disintegration of kidney stones by shock wave lithotripsy, and ultrasound-mediated drug and gene delivery <ref type="bibr" coords="1,68.88,410.44,11.12,9.19" target="#b0">[1]</ref>. However, understanding the dynamic bubble-cell interaction and its causal relation with the biological consequences still remains to be a significant challenge. Only a few studies have been performed to investigate bubble-cell interaction under well-controlled experimental conditions, using either a small air bubble <ref type="bibr" coords="1,182.44,470.25,12.02,9.19" target="#b6">[7,</ref><ref type="bibr" coords="1,194.46,470.25,8.02,9.19" target="#b7">8]</ref> or ultrasound contrast agents as stabilized cavitation nuclei <ref type="bibr" coords="1,218.27,482.21,12.22,9.19" target="#b8">[9]</ref> in an acoustic field, or a laser-generated millimeter-and micron-size bubble to interact with adherent <ref type="bibr" coords="1,195.36,506.08,17.43,9.20" target="#b9">[10]</ref> or suspension <ref type="bibr" coords="1,279.61,506.08,17.43,9.20" target="#b10">[11]</ref> cells. Overall, these previous studies are limited in resolving the transient bubble-cell interaction, associated fluid dynamics, and membrane poration by the cavitating bubble, as well as subsequent transport of macromolecule into the cell.</p><p>In this Letter, we introduce a method for generating tandem microbubble in close proximity that leads to alternating formation of microjets in opposite directions. The transient bubble-bubble and microjet-cell interaction, as well as resultant microstreaming and vortex formation are characterized by high-speed imaging and microparticle image velocimetry (PIV). Using this method, localized and directional membrane poration in single biological cells can be produced in an orientation and proximity-dependent manner.</p><p>Experimental setup.-A Zeiss Axio Observer inverted microscope was configured to incorporate two laser beams for tandem microbubble generation and high-speed cameras for imaging of bubble dynamics, bubble-cell interaction, and PIV of fluid motion [Fig. <ref type="figure" coords="1,465.79,267.00,15.33,9.19" target="#fig_1">1(a)</ref>]. Two Q-switched Nd:YAG lasers of 5 ns pulse duration [MiniLase I (LASER1) and Solo PIV (LASER2), New Wave Research] with wavelength of 1064 nm and 532 nm, respectively, were transmitted through a 63Â long-workingdistance objective. The incident angle of LASER1 was slightly tilted so that the foci of the two laser beams were separated by a distance of Á ¼ 40 m. Each laser beam ($ 30 J) is preferentially absorbed by the fluid medium containing 0.4% Trypan blue in a microfluidic channel [Fig. <ref type="bibr" coords="1,339.53,386.56,15.67,9.19">1(b)</ref>], generating a microbubble via optical breakdown <ref type="bibr" coords="1,341.80,398.52,16.04,9.19" target="#b10">[11]</ref>. By controlling the release of individual laser pulses using a digital delay generator (BNC 555, Berkeley Nucleonics Corporation), tandem microbubbles with different oscillation phases can be produced.</p><p>High-speed imaging and PIV.-Two 45 -dichroic mirrors (900dcsp and z532dcrb, Chroma) were used for reflection of the laser beams and simultaneous transmission of illumination light for high-speed imaging. A fiber-optic coupled Xenon flash lamp (ML1000, Dyna-Lite) was used to provide backlight illumination, petitioned into an 80=20 intensity ratio between two high-speed cameras (Imacon 200, DRS Hadland and Phantom v7.3, Vision Research). The Imacon 200 was operated at 1 Â 10 6 frames per second, 50 ns exposure time, and 14 frames per sequence to capture the dynamics of bubble-bubble-cell interaction. The Phantom camera was used to record the subsequent uptake and progressive diffusion of Trypan blue into the targeted cell within 1 min. Moreover, a Shimadzu HPV-1 camera operated at 1 Â 10 6 frames per second, 250 ns exposure time, and 100 frames per sequence was used for PIV. For flow visualization, 2 m polystyrene beads (R0200, Duke Scientific) were added in the medium as tracers at 1 Â 10 9 beads=ml concentration. The acquired images were processed using DaVis 7 software (LaVision, GmbH) for determining the velocity field around pulsating microbubble(s). Cell culture and experimental design.-Rat mammary carcinoma cells maintained routinely in culture (37 C) were trypsinized and reseeded in a 60-mm diameter Petri dish at 10 5 cells=ml concentration one day before the experiment. When cell growth reached about 10% confluence, the culture medium was replaced by saline solution containing 0.4% Trypan blue (T8154, Sigma-Aldrich) at room temperature ($ 20 C). Subsequently, two 25-m platinum wires (A-M Systems) were placed in parallel in the Petri dish to form a channel of $10 mm wide and 25 mm long. A 1.0-mm thick glass plate was then placed on top of the platinum wires to form a microfluidic exposure chamber [Fig. <ref type="figure" coords="2,142.92,394.23,15.67,9.19" target="#fig_1">1(b)</ref>]. Trypan blue enhanced laser absorption to facilitate optical breakdown while providing concomitantly a biomarker for membrane poration.</p><p>Adherent cells of spindle shape were selected and randomly assigned to one of the seven groups. Cells in groups G 1 to G 3 were treated at different orientations (0 and 90 ) with respect to tandem microbubble axis while maintaining the same stand-off distance (SD) of 10 m. Cells in groups G 4 to G 6 were treated at SD ¼ 20, 30, and 40 m, respectively, while maintaining the same orientation (0 , as used in case G 1 ). In group G 0 (control), cells were treated by a single bubble (B 1 ) produced at SD ¼ 10 m.</p><p>Bubble-bubble and microjet-cell interaction.-Similar to shockwave-bubble interaction <ref type="bibr" coords="2,194.85,551.61,16.54,9.20" target="#b11">[12,</ref><ref type="bibr" coords="2,211.40,551.61,12.41,9.20" target="#b12">13]</ref>, the most effective energy transfer is produced when the collapse time of the bubble matches with the duration of external driving force. By releasing the two laser pulses in tandem with a 4 s interpulse delay, a first bubble (B 1 ) can be generated (at time ¼ 0 s) that expands to a maximum size of about 50 m before a second bubble (B 2 ) of similar size is produced [Fig. <ref type="figure" coords="2,117.86,636.48,19.51,9.20" target="#fig_1">1(c),</ref><ref type="figure" coords="2,140.82,635.56,14.75,10.46" target="#fig_4">4 s</ref>]. Consequently, the collapse of B 1 is coupled with the simultaneous expansion of B 2 , leading to asymmetric deformation of the bubbles with microjets formation [Fig. <ref type="figure" coords="2,163.45,672.88,3.90,9.20" target="#fig_1">1</ref>(c), 6 s] under the influence of secondary Bjerknes forces <ref type="bibr" coords="2,175.24,685.01,16.04,9.20" target="#b13">[14]</ref>. Thereafter, B 2 begins to collapse with its elongated portion in contact with B 1 contracting rapidly, producing a second microjet moving away from B 1 [Fig. <ref type="figure" coords="2,147.00,721.41,11.71,9.20" target="#fig_1">1(c</ref>), 8 $ 12 s]. This alternating formation of microjets moving in opposite directions along the axis of the tandem microbubble (movie 1 in the supplementary material <ref type="bibr" coords="2,402.58,272.97,16.69,9.19" target="#b14">[15]</ref>) is not observed during the symmetric expansion and collapse of a single microbubble (movie 2 in the supplementary material <ref type="bibr" coords="2,491.02,297.23,16.69,9.19" target="#b14">[15]</ref>) of comparable size produced by one laser [Fig. <ref type="figure" coords="2,472.65,309.37,19.59,9.19" target="#fig_1">1(d)]</ref>. Similar bubble dynamics have been observed in an unconstrained fluid medium using spark-generated vapor bubbles of millimeter size <ref type="bibr" coords="2,334.32,345.71,16.04,9.19" target="#b15">[16]</ref>.</p><p>Flow field around the pulsating microbubble(s).-Following the 1st optical breakdown, the fluid is initially pushed outward from the center of B 1 before reversing the direction of flow during subsequent collapse after the maximum bubble expansion (movie 3 in the supplementary material <ref type="bibr" coords="2,373.61,418.33,15.69,9.19" target="#b14">[15]</ref>). In contrast, the initial symmetric expansion of B 2 is quickly distorted with its proximal end being sucked in by the collapsing B 1 , leading to the formation of the first microjet [J 1 in Fig. <ref type="figure" coords="2,488.75,454.73,3.90,9.20" target="#fig_3">2</ref>(a), 6 s]. The acceleration of J 1 produces a microstreaming impulse with a maximum flow velocity on the order of 10 m=s near the jet tip (5 to 6 s). Upon maximum expansion, the elongated B 2 collapses asymmetrically and generates the second microjet (J 2 ) that moves away from B 1 (7 to 11 s). As a consequence of the alternating microjet formation, two pairs of vortices are generated around B 1 and B 2 , one rotating clockwise and the other counterclockwise [Fig. <ref type="figure" coords="2,338.29,563.92,15.67,9.20" target="#fig_3">2(b)</ref>], reaching a maximum vorticity of 350 000 s À1 at 6 s. Vortex formation from laser-induced single bubble ($150 m in diameter) near a microfludic channel wall was recently reported with a maximum vorticity of 100 000 s À1 <ref type="bibr" coords="2,368.84,612.39,16.04,9.20" target="#b16">[17]</ref>.</p><p>Cell membrane poration.-Because of the unique flow pattern produced by the pulsating tandem microbubble, we examined its influence on the morphology and membrane permeability of individual adherent cells (Rat mammary carcinoma) placed nearby. As shown in Fig. <ref type="figure" coords="2,512.33,672.88,3.90,9.20">3</ref>(a), a cell placed on the axis of B 1 and B 2 with a SD of 10 m from the proximal surface of B 2 (case G 2 ) can be deformed significantly [see Fig. <ref type="figure" coords="2,414.60,709.28,4.22,9.20" target="#fig_3">2</ref>(a) for an example of case G 1 ] while its counterpart in the symmetric flow field of a single ) and its interaction with an adherent cell (pointed to by arrow). The asymmetric deformation with resultant formation of alternating microjets in opposite directions along the tandem microbubble axis (movie 1 in the supplementary material <ref type="bibr" coords="2,276.66,208.49,15.11,8.32" target="#b14">[15]</ref>) is not observed during the symmetric expansion and collapse of the laser-generated single microbubble of comparable size (movie 2 in the supplementary material <ref type="bibr" coords="2,421.56,219.49,14.21,8.32" target="#b14">[15]</ref>). bubble is only strained mildly (case G 0 ). The microjetflow-cell interaction along the tandem bubble axis causes a micron-scale bending and shear deformation of the cell [65 s in Fig. <ref type="figure" coords="3,119.62,492.03,4.22,9.20">3</ref>(a) for case G 2 ] that leads to localized membrane disruption and uptake of Trypan blue within 1 min. In comparison, when a cell is placed at the same SD but rotated by 90 from the axis of B 1 and B 2 [Fig. <ref type="figure" coords="3,277.57,528.26,15.56,9.20">3(a)</ref>, case G 3 ] or subjected to the symmetric expansion and collapse of a single bubble (case G 0 ), a much milder strain with no concomitant Trypan blue uptake is observed. Also, no appreciable membrane poration is produced when the cell is located either off the tandem microbubble axis with a SD greater than 10 m or on the axis with a SD greater than 40 m. Quantitatively, the membrane poration produced by the tandem microbubble shows a clear dependence on orientation [Fig. <ref type="figure" coords="3,173.37,636.99,16.71,9.20">3(b)</ref>] and stand-off distance [Fig. <ref type="figure" coords="3,75.52,649.07,15.29,9.20">3(c)</ref>]. Statistically significant (p &lt; 0:05) increase in Trypan blue uptake is observed in G 1 and G 4 compared to G and G 6 , respectively, with maximum probability for Trypan blue uptake produced at SD ¼ 20 m along the tandem microbubble axis.</p><p>Localized and directional membrane poration.-The membrane disruption is highly localized. Using time-lapse imaging [Fig. <ref type="figure" coords="3,377.69,409.31,15.33,9.19" target="#fig_4">4(a)</ref>], we can observe a pinpoint entrance of the Trypan blue from the cell surface proximal to the jet impact in 6 s. The dye gradually diffuses and spreads out in the cytosol towards the distal end in 24 s, with subsequent directional entrance and staining of the cell nuclei by 42 s (movie 4 in the supplementary material <ref type="bibr" coords="3,314.98,481.37,15.65,9.19" target="#b14">[15]</ref>). Using our setup, the cell can be quickly fixed by a perfusion flow of 2.5% glutaraldehyde, started in about 10 seconds after the tandem microbubble-cell interaction. Subsequently, cell location and jet impact direction are registered by laser-produced markings at the bottom of the Petri dish [Fig. <ref type="figure" coords="3,402.06,541.41,15.67,9.20" target="#fig_4">4(b)</ref>]. Scanning electron microscopy of the treated cell reveals highly localized membrane disruption with single or dual pore formation at the site of membrane surface facing the microjet impact. The pore size varies from 200 nm to 2 m [Figs. <ref type="figure" coords="3,496.12,589.43,16.87,9.20" target="#fig_4">4(c)</ref> and<ref type="figure" coords="3,536.54,589.43,19.59,9.20" target="#fig_4">4(d)]</ref>. Because the cell is treated in Trypan blue solution (with no Ca 2þ content), active repair of the pore is likely to be significantly compromised with smaller than 1 m spherical vesicles observed at the disruption site [see Fig. <ref type="figure" coords="3,539.15,637.45,16.71,9.20" target="#fig_4">4(d)</ref>] <ref type="bibr" coords="3,314.99,649.41,16.54,9.20" target="#b17">[18,</ref><ref type="bibr" coords="3,331.53,649.41,12.41,9.20" target="#b18">19]</ref>. Therefore, the observed pore size may represent an upper limit in membrane disruption produced by the tandem microbubble under physiological conditions.</p><p>Discussion and summary.-A new method is developed to produce localized and directional membrane poration on single cells with high precision and reproducibility. The pore size can be varied from nanometer to micrometer  <ref type="bibr" coords="4,115.31,413.62,15.99,9.19" target="#b18">[19]</ref>. Because jet diameter is usually about one-tenth of the maximum bubble size, the potential energy accumulated by a single bubble with comparable size to a cell (i.e., $20 m) is limited and insufficient to produce measurable membrane disruption when collapsing near a boundary <ref type="bibr" coords="4,123.82,473.38,16.04,9.19" target="#b19">[20]</ref>. By confining the bubble generation in a quasi-2D thin layer, and furthermore, by transferring and focusing energy through tandem microbubble interaction, we have demonstrated the feasibility for generating pinpoint mechanical forces for highly localized membrane poration.</p><p>Microjetting induced flow shear stress and resultant bending (and stretching) of the cell body may contribute to the observed pore formation. The flow-induced shear stress () near the microfluidic channel (height ¼ 2h ¼ 25 m) surface can be estimated by ¼ ðV j =hÞ where is dynamic viscosity of the medium and V j is jet speed. The estimated maximum shear stress in our setup is about 1 kPa, which is within the range of previously reported critical shear stress of 0.1 kPa for cell detachment <ref type="bibr" coords="4,261.98,642.61,17.37,9.20" target="#b19">[20]</ref> and water-hammer pressure of 3 kPa for jet impact induced membrane rupture <ref type="bibr" coords="4,132.60,666.53,11.08,9.20" target="#b8">[9]</ref>.</p><p>Individual cells placed on the axis of the tandem microbubble [see Figs. <ref type="figure" coords="4,129.03,690.45,11.71,9.20" target="#fig_1">1(c</ref>), 2(a), and 3(a)] show different de-grees of bending deformation produced by jet impact and resultant microstreaming and vortex flow. The central portion of the cell directly under jet impact is detached, while one or both distal ends of the cell remain attached, leading to a significant stretching of the cell membrane. The stretching ratios of material lines located at different orientations and SDs from the tandem microbubble (data not shown), estimated based on PIV images, show a good correlation with the membrane poration.</p><p>It is envisioned that the technique developed in this work can be easily integrated in microfluidics and thus possessing great potential in high-throughput biosynthesis and bioengineering applications, and for mechanistic investigation of cavitation-induced bioeffects. </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="1,51.93,29.78,105.84,9.34;1,236.35,15.76,151.28,9.41;1,209.88,27.94,192.28,9.19;1,505.36,22.68,44.08,7.44;1,494.76,31.13,65.29,7.44;1,51.93,738.76,144.38,9.20;1,285.90,738.76,40.10,9.20;1,390.90,737.84,169.06,10.46"><head/><label/><figDesc>PRL 105, 078101 (2010) Selected for a Viewpoint in Physics P H Y S I C A L R E V I E W L E T T E R</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="2,51.93,142.78,508.07,8.32;2,51.93,152.89,508.13,9.46;2,51.93,163.83,508.11,9.46;2,51.93,174.77,508.13,9.46;2,51.93,186.60,508.13,9.79;2,51.93,197.55,508.10,8.32;2,51.93,208.49,508.14,8.32;2,51.93,219.49,390.95,8.32;2,53.97,46.83,504.96,83.28"><head>FIG. 1 (</head><label>1</label><figDesc>FIG. 1 (color online). Dynamics of tandem microbubble and bubble-cell interaction. (a) Experimental setup. Microbubbles are generated by two pulsed Nd:YAG lasers, which are separated by Á ¼ 40 m in the focal plane of a 63Â objective. (b) Microfluidic exposure chamber with 25 m in height, 10 mm Â 25 mm in channel width and length. (c) Dynamics of tandem microbubble (generated by both lasers with a 4 s interpulse delay) and their interaction with an adherent cell (pointed to by arrow) near the first bubble (B 1 ). (d) Dynamics of single microbubble (generated by LASER1) and its interaction with an adherent cell (pointed to by arrow). The asymmetric deformation with resultant formation of alternating microjets in opposite directions along the tandem microbubble axis (movie 1 in the supplementary material<ref type="bibr" coords="2,276.66,208.49,15.11,8.32" target="#b14">[15]</ref>) is not observed during the symmetric expansion and collapse of the laser-generated single microbubble of comparable size (movie 2 in the supplementary material<ref type="bibr" coords="2,421.56,219.49,14.21,8.32" target="#b14">[15]</ref>).</figDesc><graphic coords="2,53.97,46.83,504.96,83.28" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="2,51.93,29.78,105.84,9.34;2,209.88,27.94,192.28,9.20;2,505.36,22.68,44.08,7.44;2,494.76,31.13,65.29,7.44;2,285.90,738.76,40.10,9.20"><head/><label/><figDesc>PRL 105, 078101 (2010) P H Y S I C A L R E V I E W L E T T E</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="3,51.93,311.44,245.08,8.32;3,51.93,322.38,245.12,8.32;3,51.93,332.49,245.09,9.46;3,51.93,344.32,245.11,8.32;3,51.93,354.43,245.07,9.46;3,51.93,366.21,245.09,8.32;3,51.93,377.21,245.11,8.63;3,51.93,388.15,245.11,8.32;3,51.93,398.26,245.07,9.46;3,51.93,410.09,245.11,8.32;3,51.93,421.03,50.24,8.32;3,54.54,46.83,240.00,252.00"><head>FIG. 2 (</head><label>2</label><figDesc>FIG. 2 (color online). Fluid motion. (a) High-speed imaging of bubble dynamics and micro-particle image velocimetry (PIV) using 10 Â 10 m interrogation windows with 25% overlap indicating the flow direction around individual oscillating microbubbles. Flow tracers (i.e., 2 m polystyrene beads) were used to facilitate visualization of the velocity field. (b) Streamline display of three PIV images, demonstrating vortex formation in the flow field, with one pair of vortices rotating clockwise and the other counterclockwise within 22 s (movie 3 in the supplementary material [15]) following the generation of the tandem microbubble.</figDesc><graphic coords="3,54.54,46.83,240.00,252.00" type="bitmap"/></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="4,51.93,191.48,245.08,8.32;4,51.93,202.42,245.09,8.32;4,51.93,213.36,245.09,8.32;4,51.93,224.36,245.08,8.32;4,51.93,235.30,245.08,8.32;4,51.93,246.25,245.07,8.32;4,51.93,256.36,245.10,9.46;4,51.93,268.19,245.12,8.32;4,51.93,279.13,245.08,8.32;4,51.93,290.07,245.09,8.32;4,51.93,301.07,245.10,8.32;4,51.93,312.01,245.10,8.32;4,51.93,322.12,245.10,9.46;4,51.93,333.12,245.10,9.46;4,51.93,344.89,245.15,8.32;4,51.93,355.84,245.12,8.32;4,51.93,366.00,25.73,9.46;4,77.67,364.78,119.73,10.37;4,64.86,46.83,219.36,132.00"><head>FIG. 4 (</head><label>4</label><figDesc>FIG. 4 (color online). Membrane poration. (a) Time-elapse images showing pinpoint entrance of Trypan blue into the cell from the site of microjet impact (pointed to by arrow) with subsequent progressive diffusion in the cytosol and staining of the nuclei (movie 4 in the supplementary material [15]). (b) Laser-generated marking dots (circled) on the bottom surface ($1:0 mm thick polystyrene) of the Petri dish, which are used to register the treated cell, site and direction (distal to ''T'' marking) of the microjet impact. (c) SEM images of the porated cell shown in (b), demonstrating the formation of a 200 nm pore (pointed by arrow) at the site of microjet impact. (d) SEM images of another porated cell, showing the formation of two adjacent pores (pointed to by arrow) of about 1 $ 2 m in individual pore size. Spherical vesicles of less than 1 m in size were observed near the disruption site, which is characteristic of cell membrane resealing after mechanical damage without Ca 2þ in the surrounding medium.</figDesc><graphic coords="4,64.86,46.83,219.36,132.00" type="bitmap"/></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><p>We thank <rs type="person">K. Wolf</rs> for discussion of laser optics in a microscope, <rs type="person">C. Y. Li</rs> for providing rat mammary carcinoma cells, <rs type="person">W. N. Simmons</rs> for fabricating fixation plate, <rs type="person">M. Heaton</rs> for assistance in statistical analysis, and <rs type="institution">DRS</rs> <rs type="person">Hadland</rs>, <rs type="affiliation">Inc</rs>. for providing a Shimadzu HPV-1 camera. This work was supported in part by <rs type="funder">NIH</rs> through Grants No. <rs type="grantNumber">RO1-EB002682</rs>, No. <rs type="grantNumber">RO1-DK052985</rs>, No. <rs type="grantNumber">R21-CA135221</rs>, and No. <rs type="grantNumber">S10-RR016802</rs>.</p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funding" xml:id="_ZHHKCkE">
+					<idno type="grant-number">RO1-EB002682</idno>
+				</org>
+				<org type="funding" xml:id="_34xNgJX">
+					<idno type="grant-number">RO1-DK052985</idno>
+				</org>
+				<org type="funding" xml:id="_9GAuwET">
+					<idno type="grant-number">R21-CA135221</idno>
+				</org>
+				<org type="funding" xml:id="_CgHRkTC">
+					<idno type="grant-number">S10-RR016802</idno>
+				</org>
+			</listOrg>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="4,338.85,362.16,203.00,8.45" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Healing sound: the use of ultrasound in drug delivery and other therapeutic applications</title>
+		<author>
+			<persName coords=""><forename type="first">Samir</forename><surname>Mitragotri</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nrd1662</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Reviews Drug Discovery</title>
+		<title level="j" type="abbrev">Nat Rev Drug Discov</title>
+		<idno type="ISSN">1474-1776</idno>
+		<idno type="ISSNe">1474-1784</idno>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="255" to="260"/>
+			<date type="published" when="2005-03">2005</date>
+			<publisher>Springer Science and Business Media LLC</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.85,373.16,221.20,8.45;4,338.85,384.24,40.12,8.32" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Cavitation Bubbles Near Boundaries</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">R</forename><surname>Blake</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">C</forename><surname>Gibson</surname></persName>
+		</author>
+		<idno type="DOI">10.1146/annurev.fl.19.010187.000531</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Annual Review of Fluid Mechanics</title>
+		<title level="j" type="abbrev">Annu. Rev. Fluid Mech.</title>
+		<idno type="ISSN">0066-4189</idno>
+		<idno type="ISSNe">1545-4479</idno>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="99" to="123"/>
+			<date type="published" when="1987-01">1987</date>
+			<publisher>Annual Reviews</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.85,394.98,221.18,8.52;4,338.85,406.18,27.59,8.32" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Bubble dynamics, shock waves and sonoluminescence</title>
+		<author>
+			<persName><forename type="first">Claus–dieter</forename><surname>Ohl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Kurz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Reinhard</forename><surname>Geisler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Olgert</forename><surname>Lindau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Werner</forename><surname>Lauterborn</surname></persName>
+		</author>
+		<idno type="DOI">10.1098/rsta.1999.0327</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Philosophical Transactions of the Royal Society of London. Series A: Mathematical, Physical and Engineering Sciences</title>
+		<title level="j" type="abbrev">Philosophical Transactions of the Royal Society of London. Series A: Mathematical, Physical and Engineering Sciences</title>
+		<idno type="ISSN">1364-503X</idno>
+		<idno type="ISSNe">1471-2962</idno>
+		<imprint>
+			<biblScope unit="volume">357</biblScope>
+			<biblScope unit="issue">1751</biblScope>
+			<biblScope unit="page" from="269" to="294"/>
+			<date type="published" when="1999-02-15">1999</date>
+			<publisher>The Royal Society</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.85,416.92,221.21,8.52;4,338.86,428.06,27.59,8.32" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Manipulation and Microrheology of Carbon Nanotubes with Laser-Induced Cavitation Bubbles</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">A</forename><surname>Quinto-Su</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><forename type="middle">H</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">R</forename><surname>Gonzalez-Avila</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">D</forename><surname>Ohl</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/physrevlett.104.014501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review Letters</title>
+		<title level="j" type="abbrev">Phys. Rev. Lett.</title>
+		<idno type="ISSN">0031-9007</idno>
+		<idno type="ISSNe">1079-7114</idno>
+		<imprint>
+			<biblScope unit="volume">104</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">14501</biblScope>
+			<date type="published" when="2010-01-07">2010</date>
+			<publisher>American Physical Society (APS)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.86,439.06,221.22,8.32;4,338.86,449.87,64.45,8.45" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Gas compression and jet formation in cavities collapsed by a shock wave</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">P</forename><surname>Dear</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">E</forename><surname>Field</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">J</forename><surname>Walton</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/332505a0</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<title level="j" type="abbrev">Nature</title>
+		<idno type="ISSN">0028-0836</idno>
+		<idno type="ISSNe">1476-4687</idno>
+		<imprint>
+			<biblScope unit="volume">332</biblScope>
+			<biblScope unit="issue">6164</biblScope>
+			<biblScope unit="page" from="505" to="508"/>
+			<date type="published" when="1988-04">1988</date>
+			<publisher>Springer Science and Business Media LLC</publisher>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.86,460.81,215.70,8.45" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Cavitation in Fluid Machinery and Hydraulic Structures</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">E A</forename><surname>Arndt</surname></persName>
+		</author>
+		<idno type="DOI">10.1146/annurev.fl.13.010181.001421</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Annual Review of Fluid Mechanics</title>
+		<title level="j" type="abbrev">Annu. Rev. Fluid Mech.</title>
+		<idno type="ISSN">0066-4189</idno>
+		<idno type="ISSNe">1545-4479</idno>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="273" to="326"/>
+			<date type="published" when="1981-01">1981</date>
+			<publisher>Annual Reviews</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.86,471.75,151.01,8.45" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Hemolysis Near an Ultrasonically Pulsating Gas Bubble</title>
+		<author>
+			<persName coords=""><forename type="first">James</forename><forename type="middle">A</forename><surname>Rooney</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/science.169.3948.869</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<title level="j" type="abbrev">Science</title>
+		<idno type="ISSN">0036-8075</idno>
+		<idno type="ISSNe">1095-9203</idno>
+		<imprint>
+			<biblScope unit="volume">169</biblScope>
+			<biblScope unit="issue">3948</biblScope>
+			<biblScope unit="page" from="869" to="871"/>
+			<date type="published" when="1970-08-28">1970</date>
+			<publisher>American Association for the Advancement of Science (AAAS)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.86,482.75,221.20,8.45;4,338.86,493.83,44.83,8.32" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Controlled vesicle deformation and lysis by single oscillating bubbles</title>
+		<author>
+			<persName><forename type="first">Philippe</forename><surname>Marmottant</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sascha</forename><surname>Hilgenfeldt</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature01613</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<title level="j" type="abbrev">Nature</title>
+		<idno type="ISSN">0028-0836</idno>
+		<idno type="ISSNe">1476-4687</idno>
+		<imprint>
+			<biblScope unit="volume">423</biblScope>
+			<biblScope unit="issue">6936</biblScope>
+			<biblScope unit="page" from="153" to="156"/>
+			<date type="published" when="2003-05">2003</date>
+			<publisher>Springer Science and Business Media LLC</publisher>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.86,504.57,176.47,8.52" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Membrane disruption by optically controlled microbubble cavitation</title>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Prentice</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><surname>Cuschieri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kishan</forename><surname>Dholakia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mark</forename><surname>Prausnitz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Campbell</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nphys148</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Physics</title>
+		<title level="j" type="abbrev">Nature Phys</title>
+		<idno type="ISSN">1745-2473</idno>
+		<idno type="ISSNe">1745-2481</idno>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="107" to="110"/>
+			<date type="published" when="2005-10-23">2005</date>
+			<publisher>Springer Science and Business Media LLC</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.86,515.57,196.76,8.52" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Controlled cavitation–cell interaction: trans-membrane transport and viability studies</title>
+		<author>
+			<persName><forename type="first">Rory</forename><surname>Dijkink</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Séverine</forename><surname>Le Gac</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Erwin</forename><surname>Nijhuis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Albert</forename><surname>Van Den Berg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">István</forename><surname>Vermes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">André</forename><surname>Poot</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Claus-Dieter</forename><surname>Ohl</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/0031-9155/53/2/006</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physics in Medicine and Biology</title>
+		<title level="j" type="abbrev">Phys. Med. Biol.</title>
+		<idno type="ISSN">0031-9155</idno>
+		<idno type="ISSNe">1361-6560</idno>
+		<imprint>
+			<biblScope unit="volume">53</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="375" to="390"/>
+			<date type="published" when="2008">2008</date>
+			<publisher>IOP Publishing</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.86,526.51,166.09,8.52" xml:id="b10">
+	<analytic>
+		<title/>
+		<author>
+			<persName coords=""><forename type="first">S</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Le</forename><surname>Gac</surname></persName>
+		</author>
+		<idno type="DOI">10.1039/b712897p</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Lab Chip</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page">1666</biblScope>
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.86,537.45,215.70,8.52" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Shock Wave Interaction with Laser-Generated Single Bubbles</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">N</forename><surname>Sankin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">N</forename><surname>Simmons</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">L</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Zhong</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/physrevlett.95.034501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review Letters</title>
+		<title level="j" type="abbrev">Phys. Rev. Lett.</title>
+		<idno type="ISSN">0031-9007</idno>
+		<idno type="ISSNe">1079-7114</idno>
+		<imprint>
+			<biblScope unit="volume">95</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page">34501</biblScope>
+			<date type="published" when="2005-07-11">2005</date>
+			<publisher>American Physical Society (APS)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.85,548.52,221.21,8.45;4,338.85,559.59,27.59,8.32" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Interaction between shock wave and single inertial bubbles near an elastic boundary</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">N</forename><surname>Sankin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Zhong</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/physreve.74.046304</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review E</title>
+		<title level="j" type="abbrev">Phys. Rev. E</title>
+		<idno type="ISSN">1539-3755</idno>
+		<idno type="ISSNe">1550-2376</idno>
+		<imprint>
+			<biblScope unit="volume">74</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page">46304</biblScope>
+			<date type="published" when="2006-10-16">2006</date>
+			<publisher>American Physical Society (APS)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.85,570.40,221.18,8.45;4,338.85,581.48,27.59,8.32" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Dynamical Interactions in a Multi-Bubble Cloud</title>
+		<author>
+			<persName><forename type="first">Georges</forename><forename type="middle">L</forename><surname>Chahine</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ramani</forename><surname>Duraiswami</surname></persName>
+		</author>
+		<idno type="DOI">10.1115/1.2910085</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Fluids Engineering</title>
+		<idno type="ISSN">0098-2202</idno>
+		<idno type="ISSNe">1528-901X</idno>
+		<imprint>
+			<biblScope unit="volume">114</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="680" to="686"/>
+			<date type="published" when="1992-12-01">1992</date>
+			<publisher>ASME International</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.85,592.48,221.18,8.32;4,338.85,603.42,221.27,8.32;4,338.85,614.36,12.90,8.32" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration</title>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">N</forename><surname>Sankin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Yuan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Zhong</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/physrevlett.105.078101</idno>
+		<ptr target="http://link.aps.org/supplemental/10.1103/PhysRevLett.105.078101formov-ies"/>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review Letters</title>
+		<title level="j" type="abbrev">Phys. Rev. Lett.</title>
+		<idno type="ISSN">0031-9007</idno>
+		<idno type="ISSNe">1079-7114</idno>
+		<imprint>
+			<biblScope unit="volume">105</biblScope>
+			<biblScope unit="issue">7</biblScope>
+			<date type="published" when="2010-08-09"/>
+			<publisher>American Physical Society (APS)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.85,625.16,207.88,8.52" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">MULTIPLE SPARK-GENERATED BUBBLE INTERACTIONS</title>
+		<author>
+			<persName><forename type="first">Boo</forename><forename type="middle">Cheong</forename><surname>Khoo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Deepak</forename><surname>Adikhari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Siew</forename><forename type="middle">Wan</forename><surname>Fong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Evert</forename><surname>Klaseboer</surname></persName>
+		</author>
+		<idno type="DOI">10.1142/s0217984909018072</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Modern Physics Letters B</title>
+		<title level="j" type="abbrev">Mod. Phys. Lett. B</title>
+		<idno type="ISSN">0217-9849</idno>
+		<idno type="ISSNe">1793-6640</idno>
+		<imprint>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="issue">03</biblScope>
+			<biblScope unit="page" from="229" to="232"/>
+			<date type="published" when="2009-01-30">2009</date>
+			<publisher>World Scientific Pub Co Pte Lt</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.85,636.09,203.45,8.52" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Controlled Cavitation in Microfluidic Systems</title>
+		<author>
+			<persName><forename type="first">Ed</forename><surname>Zwaan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Séverine</forename><surname>Le Gac</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kinko</forename><surname>Tsuji</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Claus-Dieter</forename><surname>Ohl</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/physrevlett.98.254501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review Letters</title>
+		<title level="j" type="abbrev">Phys. Rev. Lett.</title>
+		<idno type="ISSN">0031-9007</idno>
+		<idno type="ISSNe">1079-7114</idno>
+		<imprint>
+			<biblScope unit="volume">98</biblScope>
+			<biblScope unit="issue">25</biblScope>
+			<biblScope unit="page">254501</biblScope>
+			<date type="published" when="2007-06-19">2007</date>
+			<publisher>American Physical Society (APS)</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.85,647.04,194.89,8.52" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Effects of extracellular calcium on cell membrane resealing in sonoporation</title>
+		<author>
+			<persName><forename type="first">Yun</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jingyi</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jianmin</forename><surname>Cui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Cheri</forename><forename type="middle">X</forename><surname>Deng</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jconrel.2007.11.007</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Controlled Release</title>
+		<title level="j" type="abbrev">Journal of Controlled Release</title>
+		<idno type="ISSN">0168-3659</idno>
+		<imprint>
+			<biblScope unit="volume">126</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="34" to="43"/>
+			<date type="published" when="2008-02">2008</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.85,658.23,221.20,8.32;4,338.85,669.04,81.45,8.45" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Plasma Membrane Disruption: Repair, Prevention, Adaptation</title>
+		<author>
+			<persName><forename type="first">Paul</forename><forename type="middle">L</forename><surname>Mcneil</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Richard</forename><forename type="middle">A</forename><surname>Steinhardt</surname></persName>
+		</author>
+		<idno type="DOI">10.1146/annurev.cellbio.19.111301.140101</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Annual Review of Cell and Developmental Biology</title>
+		<title level="j" type="abbrev">Annu. Rev. Cell Dev. Biol.</title>
+		<idno type="ISSN">1081-0706</idno>
+		<idno type="ISSNe">1530-8995</idno>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="697" to="731"/>
+			<date type="published" when="2003-11">2003</date>
+			<publisher>Annual Reviews</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,338.85,679.98,221.20,8.45;4,338.85,691.12,44.83,8.32" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Detachment and sonoporation of adherent HeLa-cells by shock wave-induced cavitation</title>
+		<author>
+			<persName><forename type="first">Claus-Dieter</forename><surname>Ohl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bernhard</forename><surname>Wolfrum</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.bbagen.2003.10.005</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Biochimica et Biophysica Acta (BBA) - General Subjects</title>
+		<title level="j" type="abbrev">Biochimica et Biophysica Acta (BBA) - General Subjects</title>
+		<idno type="ISSN">0304-4165</idno>
+		<imprint>
+			<biblScope unit="volume">1624</biblScope>
+			<biblScope unit="issue">1-3</biblScope>
+			<biblScope unit="page" from="131" to="138"/>
+			<date type="published" when="2003-12">2003</date>
+			<publisher>Elsevier BV</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>
