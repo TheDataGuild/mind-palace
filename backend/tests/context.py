@@ -6,3 +6,4 @@ sys.path.insert(
 )
 
 import extract
+import docs
