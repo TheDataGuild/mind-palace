@@ -5,6 +5,22 @@ from llama_index.schema import TextNode, NodeRelationship
 XML_PATH = "./resources/xmls/12-pdfs-from-steve-aug-22/"
 
 
+def test_set_next_relationships():
+    nodes = [
+        TextNode(text="this is first"),
+        TextNode(text="this is second"),
+        TextNode(text="this is third"),
+    ]
+    docs.set_next_relationships(nodes)
+    assert (
+        nodes[0].relationships[NodeRelationship.NEXT].node_id == nodes[1].node_id
+    )
+    assert (
+        nodes[1].relationships[NodeRelationship.NEXT].node_id == nodes[2].node_id
+    )
+    assert not nodes[2].relationships
+
+
 def test_body():
     xml = docs.load_tei_xml(
         XML_PATH
