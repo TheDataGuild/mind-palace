@@ -28,6 +28,8 @@ def nodes(documents, service_context=li.ServiceContext.from_defaults()):
 # 'start_char_idx', 'end_char_idx', 'text_template', 'metadata_template',
 # 'metadata_seperator'])
 
+# TODO: move these into a submodule
+
 
 def _load_tei_xml(filepath):
     with open(filepath, "r") as xml_file:
