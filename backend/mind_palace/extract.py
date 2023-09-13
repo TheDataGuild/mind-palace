@@ -12,10 +12,15 @@ def _gen_document_dict(file_path) -> dict[str, TextNode]:
     try:
         title_node = docs.title(xml, doi)
         abstract_node = docs.abstract(xml, doi)
-        # TODO: load more sections
+        body_nodes = docs.body(xml, doi)
 
-        docs.set_relationships(title_node, abstract_node)
-        return {"title": title_node, "abstract": abstract_node}
+        docs.set_relationships(title_node, abstract_node, body_nodes)
+        return {
+            "title": title_node,
+            "abstract": abstract_node,
+            "body_paragraphs": body_nodes,
+        }
+
     except Exception as e:
         print(f"failed to load DOI {doi} because {e}")
         return {}
@@ -38,6 +43,9 @@ def seed_nodes(input_dir) -> list[TextNode]:
         nodes_dict = _gen_document_dict(file_path)
         if nodes_dict:
             for node in nodes_dict.values():
-                nodes.append(node)
+                if isinstance(node, TextNode):
+                    nodes.append(node)
+                elif isinstance(node, list):
+                    nodes.extend(node)
 
     return nodes
