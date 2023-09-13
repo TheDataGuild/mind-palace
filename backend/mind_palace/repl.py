@@ -4,7 +4,7 @@ import index
 
 
 # PDF Extraction
-input_dir = "./resources/pdfs/12-pdfs-from-steve-aug-22/xml"
+input_dir = "./resources/xmls/12-pdfs-from-steve-aug-22/"
 nodes = extract.seed_nodes(input_dir)
 
 

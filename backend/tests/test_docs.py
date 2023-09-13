@@ -2,7 +2,7 @@ from .context import docs
 import grobid_tei_xml.types as grobid_types
 from llama_index.schema import TextNode, NodeRelationship
 
-XML_PATH = "./resources/pdfs/12-pdfs-from-steve-aug-22/xml/"
+XML_PATH = "./resources/xmls/12-pdfs-from-steve-aug-22/"
 
 
 def test_node_relationships():
