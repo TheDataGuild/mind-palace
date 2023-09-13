@@ -28,31 +28,49 @@ def nodes(documents, service_context=li.ServiceContext.from_defaults()):
 # 'start_char_idx', 'end_char_idx', 'text_template', 'metadata_template',
 # 'metadata_seperator'])
 
+# TODO: move these into a submodule
 
-def _load_tei_xml(path):
-    with open(path, "r") as xml_file:
-        doc = grobid_tei_xml.parse_document_xml(xml_file.read())
 
-    filename = os.path.basename(path)
+def _load_tei_xml(filepath):
+    with open(filepath, "r") as xml_file:
+        return grobid_tei_xml.parse_document_xml(xml_file.read())
+
+
+def title(xml, doc_id):
+    return TextNode(
+        text=xml.header.title,
+        id_=f"{doc_id}-title",
+    )
+
+
+def abstract(xml, doc_id):
+    return TextNode(
+        text=xml.abstract,
+        id_=f"{doc_id}-abstract",
+    )
+
+
+def set_relationships(title_node, abstract_node):
+    abstract_node.relationships[NodeRelationship.PARENT] = RelatedNodeInfo(
+        node_id=title_node.node_id
+    )
+    return
+
+
+def _gen_document_dict(xml) -> dict[str, TextNode]:
+    doi = xml.header.doi
+    assert doi is not None
 
     try:
-        node_title = TextNode(
-            text=doc.header.title,
-            id_=f"{filename}-title",
-        )
-        node_abstract = TextNode(
-            text=doc.abstract,
-            id_=f"{filename}-abstract",
-        )
+        title_node = title(xml, doi)
+        abstract_node = abstract(xml, doi)
         # TODO: load more sections
 
-        node_abstract.relationships[NodeRelationship.PARENT] = RelatedNodeInfo(
-            node_id=node_title.node_id
-        )
-        return [node_title, node_abstract]
+        set_relationships(title_node, abstract_node)
+        return {"title": title_node, "abstract": abstract_node}
     except Exception as e:
-        print(f"failed to load {path} because {e}")
-        return None
+        print(f"failed to load DOI {doi} because {e}")
+        return {}
 
 
 def _get_file_paths(directory_path):
@@ -64,14 +82,16 @@ def _get_file_paths(directory_path):
     return file_paths
 
 
-def seed_nodes(input_dir):
+def seed_nodes(input_dir) -> list[TextNode]:
     nodes = []
     file_paths = _get_file_paths(input_dir)
 
     for file_path in file_paths:
         print(f"loading {file_path}")
-        node = _load_tei_xml(file_path)
-        if node:
-            nodes.extend(node)
+        xml_data = _load_tei_xml(file_path)
+        nodes_dict = _gen_document_dict(xml_data)
+        if nodes_dict:
+            for node in nodes_dict.values():
+                nodes.append(node)
 
     return nodes
