@@ -22,6 +22,17 @@ def abstract(xml, doc_id):
     )
 
 
+def body(xml, doc_id):
+    """A naive implementation of body extraction"""
+    return [
+        TextNode(
+            text=line,
+            id_=f"{doc_id}-body-paragraph-{index}",
+        )
+        for index, line in enumerate(xml.body.split("\n"))
+    ]
+
+
 def set_relationships(title_node, abstract_node):
     abstract_node.relationships[NodeRelationship.PARENT] = RelatedNodeInfo(
         node_id=title_node.node_id

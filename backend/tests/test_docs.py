@@ -5,6 +5,14 @@ from llama_index.schema import TextNode, NodeRelationship
 XML_PATH = "./resources/xmls/12-pdfs-from-steve-aug-22/"
 
 
+def test_body():
+    xml = docs.load_tei_xml(
+        XML_PATH
+        + "2019_IEEE Transactions_Cellular Bioeffect Investigations on Low-Intensity Pulsed Ultrasound and Sonoporation_ Platform Design and Flow Cytometry Protocol.pdf.tei.xml"
+    )
+    assert isinstance(docs.body(xml, xml.header.doi), list)
+
+
 def test_node_relationships():
     title_node = TextNode(text="this is title")
     abstract_node = TextNode(text="this is abstract")
