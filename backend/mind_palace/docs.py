@@ -22,6 +22,14 @@ def abstract(xml, doc_id):
     )
 
 
+def set_prev_relationships(nodes):
+    for index, node in enumerate(nodes[1:]):
+        node.relationships[NodeRelationship.PREVIOUS] = RelatedNodeInfo(
+            node_id=nodes[index].node_id
+        )
+    return
+
+
 def set_next_relationships(nodes):
     for index, node in enumerate(nodes[:-1]):
         node.relationships[NodeRelationship.NEXT] = RelatedNodeInfo(
