@@ -13,12 +13,8 @@ def test_set_prev_relationships():
     ]
     docs.set_prev_relationships(nodes)
     assert not nodes[0].relationships
-    assert (
-        nodes[1].relationships[NodeRelationship.PREVIOUS].node_id == nodes[0].node_id
-    )
-    assert (
-        nodes[2].relationships[NodeRelationship.PREVIOUS].node_id == nodes[1].node_id
-    )
+    assert nodes[1].relationships[NodeRelationship.PREVIOUS].node_id == nodes[0].node_id
+    assert nodes[2].relationships[NodeRelationship.PREVIOUS].node_id == nodes[1].node_id
 
 
 def test_set_next_relationships():
@@ -28,12 +24,8 @@ def test_set_next_relationships():
         TextNode(text="this is third"),
     ]
     docs.set_next_relationships(nodes)
-    assert (
-        nodes[0].relationships[NodeRelationship.NEXT].node_id == nodes[1].node_id
-    )
-    assert (
-        nodes[1].relationships[NodeRelationship.NEXT].node_id == nodes[2].node_id
-    )
+    assert nodes[0].relationships[NodeRelationship.NEXT].node_id == nodes[1].node_id
+    assert nodes[1].relationships[NodeRelationship.NEXT].node_id == nodes[2].node_id
     assert not nodes[2].relationships
 
 
@@ -48,11 +40,31 @@ def test_body():
 def test_node_relationships():
     title_node = TextNode(text="this is title")
     abstract_node = TextNode(text="this is abstract")
-    assert docs.set_relationships(title_node, abstract_node) is None
+    body_nodes = [
+        TextNode(text="this is first"),
+        TextNode(text="this is second"),
+        TextNode(text="this is third"),
+    ]
+    assert docs.set_relationships(title_node, abstract_node, body_nodes) is None
     assert (
         abstract_node.relationships[NodeRelationship.PARENT].node_id
         == title_node.node_id
     )
+    for body_node in body_nodes:
+        assert (
+            body_node.relationships[NodeRelationship.PARENT].node_id
+            == title_node.node_id
+        )
+    for body_node in body_nodes[:-1]:
+        assert (
+            body_node.relationships[NodeRelationship.NEXT].node_id
+            == body_nodes[body_nodes.index(body_node) + 1].node_id
+        )
+    for body_node in body_nodes[1:]:
+        assert (
+            body_node.relationships[NodeRelationship.PREVIOUS].node_id
+            == body_nodes[body_nodes.index(body_node) - 1].node_id
+        )
 
 
 def test_load_tei_xml():
