@@ -7,12 +7,17 @@ def test_gen_document_dict():
         test_docs.XML_PATH
         + "2010_PhysRevLett_Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration.pdf.tei.xml"
     )
-    for node in nodes_dict.values():
-        assert isinstance(node, extract.TextNode)
+    assert isinstance(nodes_dict, dict)
+    assert isinstance(nodes_dict["title"], extract.TextNode)
+    assert isinstance(nodes_dict["abstract"], extract.TextNode)
+    assert isinstance(nodes_dict["body_paragraphs"], list)
+    assert all(
+        isinstance(body_node, extract.TextNode)
+        for body_node in nodes_dict["body_paragraphs"]
+    )
 
 
 def test_seed_nodes():
     nodes = extract.seed_nodes(test_docs.XML_PATH)
     assert isinstance(nodes, list)
-    for node in nodes:
-        assert isinstance(node, extract.TextNode)
+    assert all(isinstance(node, extract.TextNode) for node in nodes)
