@@ -34,25 +34,38 @@ def _load_tei_xml(filepath):
         return grobid_tei_xml.parse_document_xml(xml_file.read())
 
 
+def title(xml, doc_id):
+    return TextNode(
+        text=xml.header.title,
+        id_=f"{doc_id}-title",
+    )
+
+
+def abstract(xml, doc_id):
+    return TextNode(
+        text=xml.abstract,
+        id_=f"{doc_id}-abstract",
+    )
+
+
+def set_relationships(title_node, abstract_node):
+    abstract_node.relationships[NodeRelationship.PARENT] = RelatedNodeInfo(
+        node_id=title_node.node_id
+    )
+    return
+
+
 def _gen_document_dict(xml) -> dict[str, TextNode]:
     doi = xml.header.doi
     assert doi is not None
 
     try:
-        node_title = TextNode(
-            text=xml.header.title,
-            id_=f"{doi}-title",
-        )
-        node_abstract = TextNode(
-            text=xml.abstract,
-            id_=f"{doi}-abstract",
-        )
+        title_node = title(xml, doi)
+        abstract_node = abstract(xml, doi)
         # TODO: load more sections
 
-        node_abstract.relationships[NodeRelationship.PARENT] = RelatedNodeInfo(
-            node_id=node_title.node_id
-        )
-        return {"title": node_title, "abstract": node_abstract}
+        set_relationships(title_node, abstract_node)
+        return {"title": title_node, "abstract": abstract_node}
     except Exception as e:
         print(f"failed to load DOI {doi} because {e}")
         return {}
