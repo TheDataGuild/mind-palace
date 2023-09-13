@@ -1,5 +1,4 @@
 import os
-import llama_index as li
 from llama_index.schema import TextNode
 
 import docs
