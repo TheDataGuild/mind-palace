@@ -1,4 +1,4 @@
-from .context import extract
+from tests.context import extract
 from . import test_docs
 
 

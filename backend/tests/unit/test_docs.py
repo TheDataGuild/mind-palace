@@ -1,4 +1,4 @@
-from .context import docs
+from tests.context import docs
 import grobid_tei_xml.types as grobid_types
 from llama_index.schema import TextNode, NodeRelationship
 
