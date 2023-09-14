@@ -7,3 +7,5 @@ sys.path.insert(
 
 import extract
 import docs
+import index
+import measure
