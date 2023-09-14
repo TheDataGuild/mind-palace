@@ -11,7 +11,7 @@ Load scientific paper PDFs into structured data
 
 1. loaded PDFs with default pypdf. Lacking metadata and formatting Information from scientific paper style.
 1. parsed PDFs with Grobid (see [issue #9](https://github.com/TheDataGuild/mind-palace/issues/9)). Extracted metadata and text. Lacking section association.
-1. NEXT: continue with Grobid and chunk body text
+1. continue with Grobid and chunk body text
 
 ## Embedding
 
@@ -43,9 +43,9 @@ Load scientific paper PDFs into structured data
 
 ## Operations
 
-- [ ] Continous Integration
+- [x] Continous Integration
 - [ ] Continuous Delivery
-- [ ] Continuous Benchmarking
+- [x] Continuous Evaluation
 
 
 ## More?
