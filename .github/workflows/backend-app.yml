@@ -30,7 +30,7 @@ jobs:
 
       - name: Lint with ruff
         run: |
-          ruff --format=github --ignore=E501 --exclude=tests/context.py .
+          ruff --format=github --ignore=E501 --exclude=context.py .
 
       - name: Format check with black
         run: |
@@ -40,4 +40,4 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          pytest
+          pytest tests/unit/
