@@ -49,11 +49,14 @@ for message in st.session_state.messages:  # Display the prior chat messages
 if st.session_state.messages[-1]["role"] != "assistant":
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-
             response = query_engine.query(prompt)
             st.write(response.response)
-            for source_node in response.source_nodes:
-                st.write(source_node.node.get_text())
 
             message = {"role": "assistant", "content": response.response}
             st.session_state.messages.append(message)  # Add response to message history
+
+    for i, source_node in enumerate(response.source_nodes):
+        st.write(f"[{i+1}]")
+        st.write(f"id: {source_node.node.node_id}")
+        st.write(f"score: {source_node.score}")
+        st.write(f"text: {source_node.node.get_text().split(':', 1)[1]}")
