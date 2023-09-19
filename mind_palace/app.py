@@ -4,6 +4,8 @@ import openai
 
 import extract
 import index
+from llama_index.query_engine import CitationQueryEngine
+
 
 openai.api_key = st.secrets.openai_key
 xml_dir = "./resources/xmls/12-pdfs-from-steve-aug-22/"
@@ -32,7 +34,7 @@ def load_index(model):
 
 
 vector_index = load_index(selected_model)
-chat_engine = vector_index.as_chat_engine(chat_mode="context", verbose=True)
+query_engine = CitationQueryEngine.from_args(index=vector_index, verbose=True)
 
 if prompt := st.chat_input(
     "Your question"
@@ -47,7 +49,14 @@ for message in st.session_state.messages:  # Display the prior chat messages
 if st.session_state.messages[-1]["role"] != "assistant":
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            response = chat_engine.chat(prompt)
+            response = query_engine.query(prompt)
             st.write(response.response)
+
             message = {"role": "assistant", "content": response.response}
             st.session_state.messages.append(message)  # Add response to message history
+
+    for i, source_node in enumerate(response.source_nodes):
+        st.write(f"[{i+1}]")
+        st.write(f"id: {source_node.node.node_id}")
+        st.write(f"score: {source_node.score}")
+        st.write(f"text: {source_node.node.get_text().split(':', 1)[1]}")
