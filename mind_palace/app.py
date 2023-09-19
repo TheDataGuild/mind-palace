@@ -8,6 +8,7 @@ import index
 openai.api_key = st.secrets.openai_key
 xml_dir = "./resources/xmls/12-pdfs-from-steve-aug-22/"
 
+st.set_page_config(page_title="Chatting with Steve's PDFs")
 st.title("Chat with Steve's 12 PDFs 💬🦙")
 
 selected_model = st.sidebar.selectbox(
