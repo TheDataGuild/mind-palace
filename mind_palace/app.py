@@ -31,7 +31,7 @@ def load_index(model):
 
 
 vector_index = load_index(selected_model)
-chat_engine = vector_index.as_chat_engine(chat_mode="condense_question", verbose=True)
+chat_engine = vector_index.as_chat_engine(chat_mode="context", verbose=True)
 
 if prompt := st.chat_input(
     "Your question"
