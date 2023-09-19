@@ -10,6 +10,10 @@ xml_dir = "./resources/xmls/12-pdfs-from-steve-aug-22/"
 
 st.title("Chat with Steve's 12 PDFs 💬🦙")
 
+selected_model = st.sidebar.selectbox(
+    "Choose your GPT model", ("gpt-3.5-turbo", "gpt-4"), index=0
+)
+
 if "messages" not in st.session_state.keys():  # Initialize the chat messages history
     st.session_state.messages = [
         {"role": "assistant", "content": "Ask me a question about these PDFs"}
@@ -17,16 +21,16 @@ if "messages" not in st.session_state.keys():  # Initialize the chat messages hi
 
 
 @st.cache_resource(show_spinner=False)
-def load_index():
+def load_index(model):
     with st.spinner(
         text="Loading and indexing the PDFs – hang tight! This should take 1-2 minutes."
     ):
         nodes = extract.seed_nodes(xml_dir)
-        vector_index = index.index_nodes(nodes)
+        vector_index = index.index_nodes(nodes, model)
         return vector_index
 
 
-vector_index = load_index()
+vector_index = load_index(selected_model)
 chat_engine = vector_index.as_chat_engine(chat_mode="condense_question", verbose=True)
 
 if prompt := st.chat_input(
