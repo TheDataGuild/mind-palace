@@ -2,6 +2,8 @@ import time
 
 
 def time_function(func):
+    """Decorator to time and print timing of a single function call"""
+
     def timed_func(*args, **kwargs):
         start_time = time.time()
         result = func(*args, **kwargs)
