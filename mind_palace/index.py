@@ -1,7 +1,10 @@
 from llama_index.llms import OpenAI
 import llama_index as li
 
+from measure import time_function
 
+
+@time_function
 def index_nodes(nodes, model="gpt-3.5-turbo"):
     service_context = li.ServiceContext.from_defaults(
         llm=OpenAI(model=model),

@@ -1,12 +1,10 @@
-from tests.context import extract, index, measure
+from tests.context import extract, index
 import llama_index as li
 
 
 def bootstrap_index(xml_dir):
     nodes = extract.seed_nodes(xml_dir)
-    vector_index, elapsed_time = measure.time_function(lambda: index.index_nodes(nodes))
-    print(f"Elapsed time {elapsed_time:.1f} seconds: Indexed {len(nodes)} nodes")
-    return vector_index
+    return index.index_nodes(nodes)
 
 
 def persist_index(vector_index):
