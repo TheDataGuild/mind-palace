@@ -12,8 +12,16 @@ def cite_authors(xml):
     first_author = xml.header.authors[0]
     first_author_display_name = f"{first_author.surname}, {first_author.given_name}"
     return first_author_display_name + (
-        ", et al." if len(xml.header.authors) > 1 else "."
+        ", et al" if len(xml.header.authors) > 1 else ""
     )
+
+
+def cite_journal(xml):
+    return f"{xml.header.journal.journal_abbrev} {xml.header.date};{xml.header.volume}({xml.header.issue}). doi:{xml.header.doi}"
+
+
+def cite(xml):
+    return f"{cite_authors(xml)}. {xml.header.title}. {cite_journal(xml)}."
 
 
 def title(xml, doc_id):

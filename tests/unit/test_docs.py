@@ -1,4 +1,4 @@
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 import grobid_tei_xml.types as grobid_types
 from llama_index.schema import NodeRelationship, TextNode
@@ -14,10 +14,26 @@ def test_cite_authors():
         MagicMock(surname="Doe", given_name="John"),
         MagicMock(surname="Smith", given_name="Jane"),
     ]
-    assert docs.cite_authors(xml) == "Doe, John, et al."
+    assert docs.cite_authors(xml) == "Doe, John, et al"
 
     xml.header.authors = [MagicMock(surname="Doe", given_name="John")]
-    assert docs.cite_authors(xml) == "Doe, John."
+    assert docs.cite_authors(xml) == "Doe, John"
+
+
+def test_cite():
+    xml = MagicMock()
+
+    with patch("docs.cite_authors", return_value="Doe, John"):
+        xml.header.title = "This is a title"
+        xml.header.journal.journal_abbrev = "J. Abbrev."
+        xml.header.date = "2023"
+        xml.header.volume = "1"
+        xml.header.issue = "9"
+        xml.header.doi = "10.1234/1234"
+        assert (
+            docs.cite(xml)
+            == "Doe, John. This is a title. J. Abbrev. 2023;1(9). doi:10.1234/1234."
+        )
 
 
 def gen_nodes():
