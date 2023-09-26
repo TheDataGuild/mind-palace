@@ -17,7 +17,7 @@ def cite_authors(xml):
 
 
 def cite_journal(xml):
-    return f"{xml.header.journal.journal_abbrev} {xml.header.date};{xml.header.volume}({xml.header.issue}). doi:{xml.header.doi}"
+    return f"{xml.header.journal_abbrev} {xml.header.date};{xml.header.volume}({xml.header.issue}). doi:{xml.header.doi}"
 
 
 def cite(xml):
@@ -79,4 +79,22 @@ def set_relationships(title_node, abstract_node, body_nodes):
     # set relationships between body paragraphs
     set_prev_relationships(body_nodes)
     set_next_relationships(body_nodes)
+    return
+
+
+def _set_citation_metadata(citation, node):
+    node.metadata["citation"] = citation
+    return
+
+
+def set_citations(xml, nodes):
+    citation = cite(xml)
+    for node in nodes:
+        if isinstance(node, list):
+            for sub_node in node:
+                _set_citation_metadata(citation, sub_node)
+            continue
+        else:
+            _set_citation_metadata(citation, node)
+
     return

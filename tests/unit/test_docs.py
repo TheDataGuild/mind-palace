@@ -25,7 +25,7 @@ def test_cite():
 
     with patch("docs.cite_authors", return_value="Doe, John"):
         xml.header.title = "This is a title"
-        xml.header.journal.journal_abbrev = "J. Abbrev."
+        xml.header.journal_abbrev = "J. Abbrev."
         xml.header.date = "2023"
         xml.header.volume = "1"
         xml.header.issue = "9"
@@ -92,6 +92,21 @@ def test_node_relationships():
             body_node.relationships[NodeRelationship.PREVIOUS].node_id
             == body_nodes[body_nodes.index(body_node) - 1].node_id
         )
+
+
+def test_set_citations():
+    xml = docs.load_tei_xml(
+        XML_PATH
+        + "2010_PhysRevLett_Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration.pdf.tei.xml"
+    )
+    title_node = TextNode(text="this is title")
+    abstract_node = TextNode(text="this is abstract")
+    body_nodes = gen_nodes()
+    docs.set_citations(xml=xml, nodes=[title_node, abstract_node, body_nodes])
+    assert title_node.metadata["citation"] == docs.cite(xml)
+    assert abstract_node.metadata["citation"] == docs.cite(xml)
+    for body_node in body_nodes:
+        assert body_node.metadata["citation"] == docs.cite(xml)
 
 
 def test_load_tei_xml():
