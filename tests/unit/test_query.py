@@ -21,7 +21,7 @@ def persist_index(vector_index):
 
 def test_query():
     storage_context = li.StorageContext.from_defaults(
-        persist_dir="./tests/end_to_end/llama_stores/12-pdfs-from-steve-aug-22/"
+        persist_dir="./tests/unit/llama_stores/12-pdfs-from-steve-aug-22/"
     )
     vector_index = li.load_index_from_storage(storage_context)
     assert vector_index is not None
