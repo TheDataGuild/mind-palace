@@ -1,11 +1,19 @@
-from llama_index.schema import TextNode, NodeRelationship, RelatedNodeInfo
 import grobid_tei_xml
+from llama_index.schema import NodeRelationship, RelatedNodeInfo, TextNode
 
 
 def load_tei_xml(file_path):
     print(f"Loading {file_path}")
     with open(file_path, "r") as xml_file:
         return grobid_tei_xml.parse_document_xml(xml_file.read())
+
+
+def cite_authors(xml):
+    first_author = xml.header.authors[0]
+    first_author_display_name = f"{first_author.surname}, {first_author.given_name}"
+    return first_author_display_name + (
+        ", et al." if len(xml.header.authors) > 1 else "."
+    )
 
 
 def title(xml, doc_id):
