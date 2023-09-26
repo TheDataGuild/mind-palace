@@ -6,13 +6,15 @@ from llama_index.query_engine import CitationQueryEngine
 
 openai.api_key = st.secrets.openai_key
 xml_dir = "./resources/xmls/12-pdfs-from-steve-aug-22/"
+gpt_model = "gpt-3.5-turbo"
 
 st.set_page_config(page_title="Chatting with Steve's PDFs")
 st.title("Chat with Steve's 12 PDFs 💬🦙")
 
-selected_model = st.sidebar.selectbox(
-    "Choose your GPT model", ("gpt-3.5-turbo", "gpt-4"), index=0
-)
+with st.sidebar:
+    st.markdown("Conversation History")
+    st.text("Coming soon...")
+
 
 if "messages" not in st.session_state.keys():  # Initialize the chat messages history
     st.session_state.messages = [
@@ -30,7 +32,7 @@ def load_index(model):
         return vector_index
 
 
-vector_index = load_index(selected_model)
+vector_index = load_index(gpt_model)
 query_engine = CitationQueryEngine.from_args(index=vector_index, verbose=True)
 
 if prompt := st.chat_input(
