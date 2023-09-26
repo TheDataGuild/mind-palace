@@ -19,6 +19,7 @@ def persist_index(vector_index):
     vector_index.storage_context.persist()
 
 
+@pytest.mark.skip(reason="This cost money to run")
 def test_query():
     storage_context = li.StorageContext.from_defaults(
         persist_dir="./tests/unit/llama_stores/12-pdfs-from-steve-aug-22/"
