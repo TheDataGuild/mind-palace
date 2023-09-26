@@ -52,8 +52,9 @@ if st.session_state.messages[-1]["role"] != "assistant":
             message = {"role": "assistant", "content": response.response}
             st.session_state.messages.append(message)  # Add response to message history
 
+            st.markdown("### Sources")
             for i, source_node in enumerate(response.source_nodes):
-                st.write(f"[{i+1}]")
-                st.write(f"id: {source_node.node.node_id}")
-                st.write(f"score: {source_node.score}")
-                st.write(f"text: {source_node.node.get_text().split(':', 1)[1]}")
+                with st.expander(f"[{i + 1}] {source_node.node.node_id}"):
+                    st.write(f"relevancy score: {source_node.score}")
+                    st.write("original text:")
+                    st.write(source_node.node.get_text().split(":", 1)[1])
