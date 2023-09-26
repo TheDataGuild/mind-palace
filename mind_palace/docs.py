@@ -60,6 +60,7 @@ def body(xml, doc_id):
     return [
         TextNode(
             text=line,
+            metadata={"paragraph_number": index + 1},
             id_=f"{doc_id}-body-paragraph-{index}",
         )
         for index, line in enumerate(xml.body.split("\n"))
