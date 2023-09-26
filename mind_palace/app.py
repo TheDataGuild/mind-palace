@@ -56,7 +56,10 @@ if st.session_state.messages[-1]["role"] != "assistant":
 
             st.markdown("### Sources")
             for i, source_node in enumerate(response.source_nodes):
-                with st.expander(f"[{i + 1}] {source_node.node.node_id}"):
-                    st.write(f"relevancy score: {source_node.score}")
+                with st.expander(f"[{i + 1}] {source_node.node.metadata['citation']}"):
+                    if source_node.metadata["paragraph_number"]:
+                        st.write(
+                            f"paragraph number: {source_node.metadata['paragraph_number']}"
+                        )
                     st.write("original text:")
                     st.write(source_node.node.get_text().split(":", 1)[1])

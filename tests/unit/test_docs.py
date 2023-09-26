@@ -1,8 +1,39 @@
-from tests.context import docs
+from unittest.mock import MagicMock, patch
+
 import grobid_tei_xml.types as grobid_types
-from llama_index.schema import TextNode, NodeRelationship
+from llama_index.schema import NodeRelationship, TextNode
+
+from tests.context import docs
 
 XML_PATH = "./resources/xmls/12-pdfs-from-steve-aug-22/"
+
+
+def test_cite_authors():
+    xml = MagicMock()
+    xml.header.authors = [
+        MagicMock(surname="Doe", given_name="John"),
+        MagicMock(surname="Smith", given_name="Jane"),
+    ]
+    assert docs.cite_authors(xml) == "Doe, John, et al"
+
+    xml.header.authors = [MagicMock(surname="Doe", given_name="John")]
+    assert docs.cite_authors(xml) == "Doe, John"
+
+
+def test_cite():
+    xml = MagicMock()
+
+    with patch("docs.cite_authors", return_value="Doe, John"):
+        xml.header.title = "This is a title"
+        xml.header.journal_abbrev = "J. Abbrev."
+        xml.header.date = "2023"
+        xml.header.volume = "1"
+        xml.header.issue = "9"
+        xml.header.doi = "10.1234/1234"
+        assert (
+            docs.cite(xml)
+            == "Doe, John. This is a title. J. Abbrev. 2023;1(9). doi:10.1234/1234."
+        )
 
 
 def gen_nodes():
@@ -61,6 +92,21 @@ def test_node_relationships():
             body_node.relationships[NodeRelationship.PREVIOUS].node_id
             == body_nodes[body_nodes.index(body_node) - 1].node_id
         )
+
+
+def test_set_citations():
+    xml = docs.load_tei_xml(
+        XML_PATH
+        + "2010_PhysRevLett_Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration.pdf.tei.xml"
+    )
+    title_node = TextNode(text="this is title")
+    abstract_node = TextNode(text="this is abstract")
+    body_nodes = gen_nodes()
+    docs.set_citations(xml=xml, nodes=[title_node, abstract_node, body_nodes])
+    assert title_node.metadata["citation"] == docs.cite(xml)
+    assert abstract_node.metadata["citation"] == docs.cite(xml)
+    for body_node in body_nodes:
+        assert body_node.metadata["citation"] == docs.cite(xml)
 
 
 def test_load_tei_xml():
