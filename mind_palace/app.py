@@ -1,11 +1,8 @@
-import streamlit as st
-
-import openai
-
 import extract
 import index
+import openai
+import streamlit as st
 from llama_index.query_engine import CitationQueryEngine
-
 
 openai.api_key = st.secrets.openai_key
 xml_dir = "./resources/xmls/12-pdfs-from-steve-aug-22/"
@@ -55,8 +52,9 @@ if st.session_state.messages[-1]["role"] != "assistant":
             message = {"role": "assistant", "content": response.response}
             st.session_state.messages.append(message)  # Add response to message history
 
-    for i, source_node in enumerate(response.source_nodes):
-        st.write(f"[{i+1}]")
-        st.write(f"id: {source_node.node.node_id}")
-        st.write(f"score: {source_node.score}")
-        st.write(f"text: {source_node.node.get_text().split(':', 1)[1]}")
+            st.markdown("### Sources")
+            for i, source_node in enumerate(response.source_nodes):
+                with st.expander(f"[{i + 1}] {source_node.node.node_id}"):
+                    st.write(f"relevancy score: {source_node.score}")
+                    st.write("original text:")
+                    st.write(source_node.node.get_text().split(":", 1)[1])
