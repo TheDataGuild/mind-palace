@@ -1,7 +1,7 @@
 import os
-from llama_index.schema import TextNode
 
 import docs
+from llama_index.schema import TextNode
 
 
 def _gen_document_dict(file_path) -> dict[str, TextNode]:
@@ -15,6 +15,8 @@ def _gen_document_dict(file_path) -> dict[str, TextNode]:
         body_nodes = docs.body(xml, doi)
 
         docs.set_relationships(title_node, abstract_node, body_nodes)
+        docs.set_citations(xml=xml, nodes=[title_node, abstract_node, body_nodes])
+
         return {
             "title": title_node,
             "abstract": abstract_node,
