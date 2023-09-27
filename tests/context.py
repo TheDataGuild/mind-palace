@@ -9,3 +9,4 @@ import docs
 import extract
 import index
 import measure
+import welcome
