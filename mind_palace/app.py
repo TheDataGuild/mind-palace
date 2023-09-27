@@ -23,16 +23,16 @@ if "messages" not in st.session_state.keys():  # Initialize the chat messages hi
 
 
 @st.cache_resource(show_spinner=False)
-def load_index(model):
+def load_nodes_and_index(xml_dir, model):
     with st.spinner(
         text="Loading and indexing the PDFs – hang tight! This should take 1-2 minutes."
     ):
         nodes = extract.seed_nodes(xml_dir)
         vector_index = index.index_nodes(nodes, model)
-        return vector_index
+        return nodes, vector_index
 
 
-vector_index = load_index(gpt_model)
+nodes, vector_index = load_nodes_and_index(xml_dir, gpt_model)
 query_engine = CitationQueryEngine.from_args(index=vector_index, verbose=True)
 
 if prompt := st.chat_input(
