@@ -2,6 +2,7 @@ import extract
 import index
 import openai
 import streamlit as st
+import welcome
 from llama_index.query_engine import CitationQueryEngine
 
 openai.api_key = st.secrets.openai_key
@@ -9,17 +10,11 @@ xml_dir = "./resources/xmls/12-pdfs-from-steve-aug-22/"
 gpt_model = "gpt-3.5-turbo"
 
 st.set_page_config(page_title="Chatting with Steve's PDFs")
-st.title("Chat with Steve's 12 PDFs 💬🦙")
+st.title("Chat with Steve's PDFs 💬")
 
 with st.sidebar:
     st.markdown("Conversation History")
     st.text("Coming soon...")
-
-
-if "messages" not in st.session_state.keys():  # Initialize the chat messages history
-    st.session_state.messages = [
-        {"role": "assistant", "content": "Ask me a question about these PDFs"}
-    ]
 
 
 @st.cache_resource(show_spinner=False)
@@ -34,6 +29,13 @@ def load_nodes_and_index(xml_dir, model):
 
 nodes, vector_index = load_nodes_and_index(xml_dir, gpt_model)
 query_engine = CitationQueryEngine.from_args(index=vector_index, verbose=True)
+
+
+if "messages" not in st.session_state.keys():  # Initialize the chat messages history
+    st.session_state.messages = [
+        {"role": "assistant", "content": welcome.get_welcome_message(nodes)}
+    ]
+
 
 if prompt := st.chat_input(
     "Your question"
