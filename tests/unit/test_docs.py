@@ -6,6 +6,15 @@ from llama_index.schema import NodeRelationship, TextNode
 from tests.context import docs
 
 XML_PATH = "./resources/xmls/12-pdfs-from-steve-aug-22/"
+XML_SAMPLE_FILE_PATH = (
+    XML_PATH
+    + "2010_PhysRevLett_Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration.pdf.tei.xml"
+)
+
+
+def test_load_tei_xml():
+    xml = docs.load_tei_xml(XML_SAMPLE_FILE_PATH)
+    assert isinstance(xml, grobid_types.GrobidDocument)
 
 
 def test_cite_authors():
@@ -61,10 +70,7 @@ def test_set_next_relationships():
 
 
 def test_body():
-    xml = docs.load_tei_xml(
-        XML_PATH
-        + "2019_IEEE Transactions_Cellular Bioeffect Investigations on Low-Intensity Pulsed Ultrasound and Sonoporation_ Platform Design and Flow Cytometry Protocol.pdf.tei.xml"
-    )
+    xml = docs.load_tei_xml(XML_SAMPLE_FILE_PATH)
     assert isinstance(docs.body(xml, xml.header.doi), list)
 
 
@@ -95,10 +101,7 @@ def test_node_relationships():
 
 
 def test_set_citations():
-    xml = docs.load_tei_xml(
-        XML_PATH
-        + "2010_PhysRevLett_Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration.pdf.tei.xml"
-    )
+    xml = docs.load_tei_xml(XML_SAMPLE_FILE_PATH)
     title_node = TextNode(text="this is title")
     abstract_node = TextNode(text="this is abstract")
     body_nodes = gen_nodes()
@@ -107,11 +110,3 @@ def test_set_citations():
     assert abstract_node.metadata["citation"] == docs.cite(xml)
     for body_node in body_nodes:
         assert body_node.metadata["citation"] == docs.cite(xml)
-
-
-def test_load_tei_xml():
-    xml = docs.load_tei_xml(
-        XML_PATH
-        + "2010_PhysRevLett_Pulsating Tandem Microbubble for Localized and Directional Single-Cell Membrane Poration.pdf.tei.xml"
-    )
-    assert isinstance(xml, grobid_types.GrobidDocument)
