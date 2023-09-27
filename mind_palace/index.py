@@ -1,6 +1,5 @@
-from llama_index.llms import OpenAI
 import llama_index as li
-
+from llama_index.llms import OpenAI
 from measure import time_function
 
 
