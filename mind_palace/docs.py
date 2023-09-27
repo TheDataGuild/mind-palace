@@ -28,6 +28,8 @@ def title(xml, doc_id):
     return TextNode(
         text=xml.header.title,
         id_=f"{doc_id}-title",
+        metadata={"section": "title"},
+        excluded_embed_metadata_keys=["section"],
     )
 
 
@@ -35,6 +37,8 @@ def abstract(xml, doc_id):
     return TextNode(
         text=xml.abstract,
         id_=f"{doc_id}-abstract",
+        metadata={"section": "abstract"},
+        excluded_embed_metadata_keys=["section"],
     )
 
 
@@ -60,7 +64,8 @@ def body(xml, doc_id):
     return [
         TextNode(
             text=line,
-            metadata={"paragraph_number": index + 1},
+            metadata={"section": "body", "paragraph_number": index + 1},
+            excluded_embed_metadata_keys=["section"],
             id_=f"{doc_id}-body-paragraph-{index}",
         )
         for index, line in enumerate(xml.body.split("\n"))
