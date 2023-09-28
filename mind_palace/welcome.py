@@ -33,9 +33,7 @@ def summarize(gpt_model, texts: List[str]):
         ChatMessage(role="user", content=prompt["user"]),
     ]
     resp = OpenAI(model=gpt_model).chat(messages)
-
-    # TODO: parse response
-    return resp
+    return resp.message.content
 
 
 def get_welcome_message(nodes):
