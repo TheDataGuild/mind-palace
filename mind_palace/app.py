@@ -30,7 +30,7 @@ nodes, vector_index = load_nodes_and_index(xml_dir, gpt_model)
 query_engine = CitationQueryEngine.from_args(index=vector_index, verbose=True)
 
 
-@st.cache_data(show_spinner="Summarizing papers... just a few more seconds.")
+@st.cache_data(show_spinner="Analyzing papers... just a few more seconds.")
 def get_welcome_message(abstracts):
     return (
         welcome.summarize(gpt_model, abstracts)
