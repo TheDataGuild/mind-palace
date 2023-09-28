@@ -18,7 +18,8 @@ with st.sidebar:
 
 
 @st.cache_resource(
-    show_spinner="Loading and indexing the PDFs – hang tight! This should take 1-2 minutes."
+    show_spinner="Loading and indexing the PDFs – hang tight! This should take 1-2 minutes.",
+    max_entries=3,
 )
 def load_nodes_and_index(xml_dir, model):
     nodes = extract.seed_nodes(xml_dir)
@@ -30,7 +31,9 @@ nodes, vector_index = load_nodes_and_index(xml_dir, gpt_model)
 query_engine = CitationQueryEngine.from_args(index=vector_index, verbose=True)
 
 
-@st.cache_data(show_spinner="Analyzing papers... just a few more seconds.")
+@st.cache_data(
+    show_spinner="Analyzing papers... just a few more seconds.", max_entries=3
+)
 def get_welcome_message(abstracts):
     return (
         welcome.summarize(gpt_model, abstracts)
