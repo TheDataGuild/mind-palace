@@ -31,9 +31,21 @@ nodes, vector_index = load_nodes_and_index(xml_dir, gpt_model)
 query_engine = CitationQueryEngine.from_args(index=vector_index, verbose=True)
 
 
+# TODO: pass in nodes instead of abstracts
+@st.cache_data
+def get_welcome_message(abstracts):
+    return (
+        welcome.summarize_prompt(gpt_model, abstracts)
+        + "\n\nAsk me a question about these papers."
+    )
+
+
 if "messages" not in st.session_state.keys():  # Initialize the chat messages history
     st.session_state.messages = [
-        {"role": "assistant", "content": welcome.get_welcome_message(nodes)}
+        {
+            "role": "assistant",
+            "content": get_welcome_message(welcome.parse_abstracts(nodes)),
+        }
     ]
 
 

@@ -34,8 +34,3 @@ def summarize(gpt_model, texts: List[str]):
     ]
     resp = OpenAI(model=gpt_model).chat(messages)
     return resp.message.content
-
-
-def get_welcome_message(nodes):
-    # TODO:
-    return "Ask me a question about these PDFs"
