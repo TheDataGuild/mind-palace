@@ -13,8 +13,11 @@ def parse_abstracts(nodes) -> List[str]:
     ]
 
 
+def _as_bullet_points(texts: List[str]) -> str:
+    return "\n".join([f"* {text}" for text in texts])
+
+
 def _summarize_prompt(abstracts: List[str]):
-    bullet_points = "\n".join([f"* {text}" for text in abstracts])
     return {
         "system": (
             "You are a science journalist summarizing papers for your readers.\n"
@@ -22,7 +25,7 @@ def _summarize_prompt(abstracts: List[str]):
             "respond with fewer than 100 words\n"
             f"start your response with 'This collection of {len(abstracts)} papers'"
         ),
-        "user": f"Summarize these research papers:\n'''{bullet_points}'''",
+        "user": f"Summarize these research papers:\n'''{_as_bullet_points(abstracts)}'''",
     }
 
 
