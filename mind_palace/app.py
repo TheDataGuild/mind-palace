@@ -31,7 +31,7 @@ query_engine = CitationQueryEngine.from_args(index=vector_index, verbose=True)
 
 
 # TODO: pass in nodes instead of abstracts
-@st.cache_data(show_spinner="Summarizing papers...")
+@st.cache_data(show_spinner="Summarizing papers... just a few more seconds.")
 def get_welcome_message(abstracts):
     return welcome.summarize(gpt_model, abstracts)
 

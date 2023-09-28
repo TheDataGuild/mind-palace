@@ -20,7 +20,7 @@ def summarize_prompt(abstracts: List[str]):
             "You are a science journalist summarizing papers for your readers.\n"
             "Instructions:\n"
             "respond with fewer than 100 words\n"
-            "start your response with 'This collection of papers'"
+            f"start your response with 'This collection of {len(abstracts)} papers'"
         ),
         "user": f"Summarize these research papers:\n'''{bullet_points}'''",
     }
