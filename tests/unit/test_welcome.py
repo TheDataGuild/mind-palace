@@ -25,7 +25,7 @@ def test_parse_abstracts():
 
 def test_summarize_prompt():
     abstracts = ["this is abstract", "second abstract"]
-    prompt = w.summarize_prompt(abstracts)
+    prompt = w._summarize_prompt(abstracts)
     assert isinstance(prompt, dict)
     assert isinstance(prompt["system"], str)
     assert re.search(r"'''\* this is abstract\n\* second abstract'''", prompt["user"])
@@ -35,7 +35,7 @@ def test_summarize_prompt():
 def test_summerize():
     nodes = extract.seed_nodes(test_docs.XML_PATH)
     abstracts = w.parse_abstracts(nodes)
-    resp = w.summarize("gpt-3.5-turbo", abstracts)
+    summary = w.summarize("gpt-3.5-turbo", abstracts)
 
     # An example response from GPT:
     # This collection of papers focuses on the process of sonoporation, which
@@ -50,6 +50,29 @@ def test_summerize():
     # valuable insights into the potential applications and optimization of
     # sonoporation as a drug and gene delivery technique.
 
-    assert resp.startswith("This collection of papers")
-    assert len(resp.split()) < 200
-    assert "sonoporation" in resp
+    assert summary.startswith("This collection of papers")
+    assert len(summary.split()) < 200
+    assert "sonoporation" in summary
+
+
+def test_extract_keywords_output():
+    assert w._extract_keywords_output(
+        "1. Sonoporation\n2. Microbubble-mediated ultrasound\n3. Drug delivery\n4. Cellular impact\n5. Membrane resealing"
+    ) == [
+        "Sonoporation",
+        "Microbubble-mediated ultrasound",
+        "Drug delivery",
+        "Cellular impact",
+        "Membrane resealing",
+    ]
+
+
+@pytest.mark.skip(reason="calls out to OpenAI API and is not free")
+def test_extract_keywords():
+    nodes = extract.seed_nodes(test_docs.XML_PATH)
+    abstracts = w.parse_abstracts(nodes)
+    keywords = w.extract_keywords("gpt-3.5-turbo", abstracts)
+    assert isinstance(keywords, list)
+    assert len(keywords) == 5
+    assert all(isinstance(keyword, str) for keyword in keywords)
+    assert "Sonoporation" in keywords
