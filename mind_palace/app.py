@@ -17,14 +17,13 @@ with st.sidebar:
     st.text("Coming soon...")
 
 
-@st.cache_resource(show_spinner=False)
+@st.cache_resource(
+    show_spinner="Loading and indexing the PDFs – hang tight! This should take 1-2 minutes."
+)
 def load_nodes_and_index(xml_dir, model):
-    with st.spinner(
-        text="Loading and indexing the PDFs – hang tight! This should take 1-2 minutes."
-    ):
-        nodes = extract.seed_nodes(xml_dir)
-        vector_index = index.index_nodes(nodes, model)
-        return nodes, vector_index
+    nodes = extract.seed_nodes(xml_dir)
+    vector_index = index.index_nodes(nodes, model)
+    return nodes, vector_index
 
 
 nodes, vector_index = load_nodes_and_index(xml_dir, gpt_model)
@@ -32,12 +31,9 @@ query_engine = CitationQueryEngine.from_args(index=vector_index, verbose=True)
 
 
 # TODO: pass in nodes instead of abstracts
-@st.cache_data
+@st.cache_data(show_spinner="Summarizing papers...")
 def get_welcome_message(abstracts):
-    return (
-        welcome.summarize_prompt(gpt_model, abstracts)
-        + "\n\nAsk me a question about these papers."
-    )
+    return welcome.summarize(gpt_model, abstracts)
 
 
 if "messages" not in st.session_state.keys():  # Initialize the chat messages history
@@ -45,7 +41,11 @@ if "messages" not in st.session_state.keys():  # Initialize the chat messages hi
         {
             "role": "assistant",
             "content": get_welcome_message(welcome.parse_abstracts(nodes)),
-        }
+        },
+        {
+            "role": "assistant",
+            "content": "Ask me a question about these papers.",
+        },
     ]
 
 
