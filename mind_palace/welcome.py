@@ -29,7 +29,7 @@ def _summarize_prompt(abstracts: List[str]):
     }
 
 
-def summarize(gpt_model, texts: List[str]):
+def summarize(gpt_model, texts: List[str]) -> str:
     prompt = _summarize_prompt(texts)
     messages = [
         ChatMessage(role="system", content=prompt["system"]),
@@ -37,3 +37,25 @@ def summarize(gpt_model, texts: List[str]):
     ]
     resp = OpenAI(model=gpt_model).chat(messages)
     return resp.message.content
+
+
+def _extract_keywords_prompt(abstracts: List[str]):
+    return {
+        "system": "You are a science journalist extracting keywords from papers for your readers.\n",
+        "user": f"Extract five keywords from these research papers:\n'''{_as_bullet_points(abstracts)}'''",
+    }
+
+
+def _extract_keywords_output(message):
+    keywords = message.split("\n")
+    return [keyword.split(". ")[1] for keyword in keywords]
+
+
+def extract_keywords(gpt_model, texts: List[str]) -> List[str]:
+    prompt = _extract_keywords_prompt(texts)
+    messages = [
+        ChatMessage(role="system", content=prompt["system"]),
+        ChatMessage(role="user", content=prompt["user"]),
+    ]
+    resp = OpenAI(model=gpt_model).chat(messages)
+    return _extract_keywords_output(resp.message.content)
