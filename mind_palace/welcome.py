@@ -2,6 +2,7 @@ from typing import List
 
 from docs import Section
 from llama_index.llms import ChatMessage, OpenAI
+from measure import time_function
 
 
 def parse_abstracts(nodes) -> List[str]:
@@ -29,7 +30,9 @@ def _summarize_prompt(abstracts: List[str]):
     }
 
 
+@time_function
 def summarize(gpt_model, texts: List[str]) -> str:
+    print(f"Summarizing {len(texts)} pieces of texts with {gpt_model} model.")
     prompt = _summarize_prompt(texts)
     messages = [
         ChatMessage(role="system", content=prompt["system"]),
@@ -51,7 +54,11 @@ def _extract_keywords_output(message):
     return [keyword.split(". ")[1] for keyword in keywords]
 
 
+@time_function
 def extract_keywords(gpt_model, texts: List[str]) -> List[str]:
+    print(
+        f"Extracting keywords from {len(texts)} pieces of texts with {gpt_model} model."
+    )
     prompt = _extract_keywords_prompt(texts)
     messages = [
         ChatMessage(role="system", content=prompt["system"]),
