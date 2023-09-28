@@ -25,7 +25,7 @@ def test_parse_abstracts():
 
 def test_summarize_prompt():
     abstracts = ["this is abstract", "second abstract"]
-    prompt = w.summarize_prompt(abstracts)
+    prompt = w._summarize_prompt(abstracts)
     assert isinstance(prompt, dict)
     assert isinstance(prompt["system"], str)
     assert re.search(r"'''\* this is abstract\n\* second abstract'''", prompt["user"])

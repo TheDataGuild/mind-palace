@@ -13,7 +13,7 @@ def parse_abstracts(nodes) -> List[str]:
     ]
 
 
-def summarize_prompt(abstracts: List[str]):
+def _summarize_prompt(abstracts: List[str]):
     bullet_points = "\n".join([f"* {text}" for text in abstracts])
     return {
         "system": (
@@ -27,7 +27,7 @@ def summarize_prompt(abstracts: List[str]):
 
 
 def summarize(gpt_model, texts: List[str]):
-    prompt = summarize_prompt(texts)
+    prompt = _summarize_prompt(texts)
     messages = [
         ChatMessage(role="system", content=prompt["system"]),
         ChatMessage(role="user", content=prompt["user"]),
