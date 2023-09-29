@@ -9,8 +9,8 @@ openai.api_key = st.secrets.openai_key
 xml_dir = "./resources/xmls/12-pdfs-from-steve-aug-22/"
 gpt_model = "gpt-3.5-turbo"
 
-st.set_page_config(page_title="Chatting with Steve's PDFs")
-st.title("Chat with Steve's PDFs 💬")
+st.set_page_config(page_title="Q&A with Steve's PDFs")
+st.title("Q&A with Steve's PDFs 💬")
 
 with st.sidebar:
     st.markdown("Conversation History")
@@ -54,6 +54,8 @@ if "messages" not in st.session_state.keys():  # Initialize the chat messages hi
             "content": "Ask me a question about these papers.",
         },
     ]
+else:
+    st.session_state.messages = []
 
 
 if prompt := st.chat_input(
