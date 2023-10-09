@@ -7,7 +7,9 @@ from llama_index.schema import TextNode
 def _gen_document_dict(file_path) -> dict[str, TextNode]:
     xml = docs.load_tei_xml(file_path)
     doi = xml.header.doi
-    assert doi is not None
+    if doi is None:
+        print(f"DOI is None for {file_path}. Replacing with title instead.")
+        doi = xml.header.title
 
     try:
         title_node = docs.title(xml, doi)
