@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Decoding Small Surface Codes with Feedforward Neural Networks</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+				<date type="published" when="2017-05-02">2 May 2017</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Savvas</forename><surname>Varsamopoulos</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Computer Engineering</orgName>
+								<orgName type="institution">Delft University of Technology</orgName>
+								<address>
+									<addrLine>Mekelweg 4</addrLine>
+									<postCode>2628 CD</postCode>
+									<settlement>Delft</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="department">QuTech</orgName>
+								<orgName type="institution">Delft University of Technology</orgName>
+								<address>
+									<postBox>P.O. Box 5046</postBox>
+									<postCode>2600 GA</postCode>
+									<settlement>Delft</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Ben</forename><surname>Criger</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Computer Engineering</orgName>
+								<orgName type="institution">Delft University of Technology</orgName>
+								<address>
+									<addrLine>Mekelweg 4</addrLine>
+									<postCode>2628 CD</postCode>
+									<settlement>Delft</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="department">QuTech</orgName>
+								<orgName type="institution">Delft University of Technology</orgName>
+								<address>
+									<postBox>P.O. Box 5046</postBox>
+									<postCode>2600 GA</postCode>
+									<settlement>Delft</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Koen</forename><surname>Bertels</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Computer Engineering</orgName>
+								<orgName type="institution">Delft University of Technology</orgName>
+								<address>
+									<addrLine>Mekelweg 4</addrLine>
+									<postCode>2628 CD</postCode>
+									<settlement>Delft</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="department">QuTech</orgName>
+								<orgName type="institution">Delft University of Technology</orgName>
+								<address>
+									<postBox>P.O. Box 5046</postBox>
+									<postCode>2600 GA</postCode>
+									<settlement>Delft</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Decoding Small Surface Codes with Feedforward Neural Networks</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2017-05-02">2 May 2017</date>
+						</imprint>
+					</monogr>
+					<idno type="arXiv">arXiv:1705.00857v1[quant-ph]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.3" ident="GROBID" when="2023-10-09T23:23+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Surface codes reach high error thresholds when decoded with known algorithms, but the decoding time will likely exceed the available time budget, especially for near-term implementations. To decrease the decoding time, we reduce the decoding problem to a classification problem that a feedforward neural network can solve. We investigate quantum error correction and fault tolerance at small code distances using neural network-based decoders, demonstrating that the neural network can generalize to inputs that were not provided during training and that they can reach similar or better decoding performance compared to previous algorithms. We conclude by discussing the time required by a feedforward neural network decoder in hardware.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Quantum computing has emerged as a solution to accelerate various calculations using systems governed by quantum mechanics. Such calculations are believed to take exponential time to perform using classical computers. Initial applications where quantum computing will be useful are simulation of quantum physics <ref type="bibr" target="#b0">[1]</ref>, cryptanalysis <ref type="bibr" target="#b1">[2,</ref><ref type="bibr" target="#b2">3]</ref> and unstructured search <ref type="bibr" target="#b3">[4]</ref>, and there is a growing set of other quantum algorithms <ref type="bibr" target="#b4">[5]</ref>.</p><p>Simple quantum algorithms have been shown to scale better than classical algorithms <ref type="bibr" target="#b5">[6]</ref><ref type="bibr" target="#b6">[7]</ref><ref type="bibr" target="#b7">[8]</ref> for small test cases, though larger computers are required to solve real-world problems. The main obstacle to scalability is that the required quantum operations (state preparations, singleand two-qubit unitary gates, and measurements) are subject to external noise, therefore quantum algorithms cannot run with perfect fidelity. This requires quantum computers to use active error correction <ref type="bibr" target="#b8">[9]</ref> to achieve scalability, which in turn requires a classical co-processor to infer which corrections to make, given a stream of measurement results as input. If this co-processor is slow, performance of the quantum computer may be degraded (though recent results <ref type="bibr" target="#b9">[10]</ref> suggest that this may be mitigated).</p><p>The remainder of this paper is organized as follows. In Section II, we outline the relevant aspects of quantum error correction and fault tolerance. We discuss the need for a fast classical coprocessor in Section III. In Section IV, we give a brief summary of existing techniques to perform decoding quickly, and follow this in Section V with the introduction of a new technique based on feedforward neural networks. We examine the accuracy of the proposed decoder in Section VI, and conclude by discussing its speed in Section VII.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. QUANTUM ERROR CORRECTION</head><p>While it is often possible to decrease the amount of noise affecting a quantum operation using advanced control techniques <ref type="bibr" target="#b10">[11,</ref><ref type="bibr" target="#b11">12]</ref>, their analog nature suggests that some imperfection will always remain. This has driven the development of algorithmic techniques to protect quantum states and computations from noise, which are called quantum error correction and fault tolerance, respectively.</p><p>Quantum error correction replaces unprotected qubit states (e.g. |0 , |1 ) with specially encoded multi-qubit entangled states (typically called | 0 , | 1 ), such that a random operation E acting on fewer than d qubits cannot transform one encoded state into another ( 0| E | 1 = 0), where d is called the code distance <ref type="bibr" target="#b12">[13,</ref><ref type="bibr" target="#b13">14]</ref>. Typically, these random operations are taken to be Pauli operators, whose names and effects on single-qubit states are given below:</p><formula xml:id="formula_0">X : |0 → |1 |1 → |0 , Z : |0 → |0 |1 → -|1 , Y : |0 → i |1 |1 → -i |0<label>(1)</label></formula><p>These operators form a convenient basis for the space of possible errors; codes which can correct these errors on a subset of qubits can correct arbitrary errors on the same subset [14, <ref type="bibr">Chapter 2]</ref>.</p><p>Often, the encoded states are chosen to be in the mutual +1 eigenspace of a set of multi-qubit Pauli operators, called stabilisers, resulting in a stabiliser code. Projective measurements of the stabilisers are used by a reliable classical co-processor to determine which error has occurred, a process called decoding. The use of stabiliser codes can effectively reduce the probability of error from transmitting a qubit through a noisy channel (though logical errors can still occur, acting as X, Z, or Ȳ). This reduction in the probability of error is obtained when operations are perfect, however, quantum error correction is not enough on its own to guarantee that computation can be performed with a low probability of error when using noisy operations.</p><p>To suppress errors from the physical operations themselves, it is necessary to design logical operations which act directly on encoded states (i.e. without first transforming the encoded states to bare qubit states), in such a way that random errors affecting physical operations are likely to result in correctable errors with respect to the underlying code. Operations which have this property are called fault-tolerant. Fault-tolerant syndrome measurements can be applied repeatedly to correct time-dependent errors, which occur continuously as computation proceeds. There are many schemes for attaining fault tolerance, based on different families of quantum codes, and using different techniques for ensuring noise from imperfect state preparation and stabiliser measurement remains suppressable.</p><p>Each fault tolerance scheme has a threshold error rate, beneath which there exists a code in the associated code family which can suppress errors to exponential accuracy, using a polynomiallylarge number of qubits and operations <ref type="bibr" target="#b14">[15]</ref>. Each code in such a family also typically has a pseudothreshold, an error rate at which encoded operations using that specific code provide higher accuracy than is possible using bare qubits/operations. These figures of merit are used to characterize fault tolerance schemes, and are especially important when considering near-term implementations of these schemes.</p><p>One scheme which has a relatively high threshold error rate uses surface codes <ref type="bibr" target="#b15">[16]</ref><ref type="bibr" target="#b16">[17]</ref><ref type="bibr" target="#b17">[18]</ref><ref type="bibr" target="#b18">[19]</ref>, stabiliser codes whose stabilisers are supported on qubits which are adjacent on a 2D square tiling (see Figure <ref type="figure">1</ref>). This approach also allows the use of exclusively planar connections between qubits, and uses at most four connections between each qubit and its neighbours (see Figure <ref type="figure">2</ref>). These features make surface codes especially attractive for near-term implementation.</p><p>To complete such an implementation and analyse its performance, it is also necessary to specify the method by which surface codes are to be decoded. Syndromes obtained by measuring surface code stabilisers have a special mathematical structure, which leads to a polynomial-time decoding algorithm. These syndromes occur at the endpoints of continuous one-dimensional chains of errors if stabiliser measurement is performed with perfect operations, and differences between consecutive syndromes occur at the endpoints of one-dimensional chains of data/measurement errors if realistically noisy operations are used (see Figure <ref type="figure">3</ref>). If error rates are low, then the smallest error which conforms with the syndrome is likely a valid correction. To find it requires the FIG. <ref type="figure">1</ref>. Surface codes with distances 3, 5, and 7, respectively. Data qubits are placed at the corners of the square tiles, on which the stabilisers are supported. White and grey squares support stabilisers of the form X ⊗4 and Z ⊗4 , respectively. White and grey semi-circles support stabilisers of the form X ⊗2 and Z ⊗2 , respectively. Ancilla qubits placed inside the tiles can be coupled to neighbouring data qubits and measured to effect indirect stabiliser measurement.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>|0</head><p>Z</p><formula xml:id="formula_1">|+ X FIG. 2.</formula><p>Stabiliser measurement circuit for the distance-3 surface code <ref type="bibr" target="#b19">[20]</ref><ref type="bibr" target="#b20">[21]</ref><ref type="bibr" target="#b21">[22]</ref>. Left: Measurement circuit for individual Z tiles (top) and X tiles (bottom), including an ancilla qubit to be placed at the center of each tile. Ancilla qubits are prepared in the +1-eigenstate of the appropriate basis, four CNOT gates are executed, and the ancilla qubits are measured in the appropriate basis. Right: Interleaving of separate stabiliser measurements, including late preparation and early measurement for weight-two stabilisers.</p><p>classical co-processor to minimize the sum of the lengths of chains connecting pairs of syndrome changes, a problem known as minimum-weight perfect matching <ref type="bibr" target="#b22">[23]</ref>. This problem can be solved using the Blossom algorithm <ref type="bibr" target="#b23">[24,</ref><ref type="bibr" target="#b24">25]</ref>. This algorithm produces accurate corrections for the surface code, but has a complexity which scales polynomially with respect to d. This is an obstacle to using the Blossom algorithm for decoding surface codes in practice, for reasons which we explain in the following section.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. NEED FOR FAST DECODING</head><p>Projective measurement of the logical qubits and classical feedforward of the measurement values are key ingredients in universal fault-tolerant quantum computing. To calculate the bit which we feed forward, we need to decode. Thus, it is necessary to decode frequently during a FIG. <ref type="figure">3</ref>. Three consecutive rounds of surface code measurement arranged in a 2 + 1-dimensional lattice. Errors on data qubits result in horizontally-separated changes in the syndrome record, measurement errors result in vertically-separated changes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>computation.</head><p>While the decoding takes place at the classical co-processor, we could either continue running rounds of syndrome measurement or stop and wait for the decoding to be concluded. If we stop the computation, errors will build up until they become uncorrectable. This takes an amount of time which depends on the implementation in question (∼ 10 µs in current superconducting circuits, for example <ref type="bibr" target="#b25">[26]</ref>). On the other hand, if we continue measuring syndromes, we will build a backlog of data that produces a more difficult decoding problem in the future. The ideal case would be a decoder that decodes d rounds of syndrome measurement in less time than the time needed to perform the measurements themselves. In superconducting circuits, the time for a single round of syndrome measurement is 800 ns <ref type="bibr" target="#b26">[27]</ref>.</p><p>There are many techniques that provide high performance decoding. In the following section, we summarize some of them.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. RELATED WORK</head><p>To decrease decoding time when correcting time-dependent errors, the "overlapping recovery" method was introduced in <ref type="bibr" target="#b19">[20]</ref>. This method divides the measurement record into windows, defined as a set of ∼ d consecutive error correction cycles. In the overlapping recovery technique, syndromes are matched either to each other (pairwise) or to a time boundary placed immediately after the last round of syndrome measurement. At the next window, the syndromes matched to the time boundary are forwarded to the following window, in order to identify chains of errors which cross the boundary. This reduces the backlog problem mentioned earlier, by allowing the decoding problem to be solved incrementally.</p><p>To further reduce the backlog, Fowler <ref type="bibr" target="#b27">[28]</ref> has parallelized the Blossom algorithm, using message-passing between local processors to replace slow subroutines. This technique produces accurate corrections, resulting in a high threshold error rate, and is scalable to large code distances. However, in the near future, only small code distances will be experimentally viable, so it is likely that a heuristic approach will perform well.</p><p>One such approach is taken in <ref type="bibr" target="#b21">[22]</ref>. In this paper, the authors have designed a heuristic-based decoder that resembles the parallelized MWPM decoding for a distance-3 Surface Code with a window of 3 error correction cycles. The simple structure of this heuristic algorithm makes it easily programmable to hardware, decreasing the decoding time. The main drawback of this algorithm is that it cannot easily be extended to higher code distances, so an alternate method is required. Currently, machine learning techniques are being explored as possible alternate decoding techniques, independently of the need for high-speed decoding. One such technique is being used in <ref type="bibr" target="#b28">[29]</ref>. The authors of this paper use a stochastic neural network (or Boltzmann machine) to decode stabilizer codes. They optimize the neural network to fit a dataset that includes the errors and their respective syndromes. The network then models the probability distribution of the errors in the dataset and generates prospective recovery error chains when a syndrome is input. Many networks are produced for a variety of physical error probabilities p, so when an error syndrome is obtained, a random recovery chain of errors is sampled from the distribution corresponding to the known value of p. While this method produced similar performance to MWPM decoding for simple error models, repeated sampling is required in order to produce an error that conforms with the syndrome, which takes unknown time.</p><p>To achieve high performance in bounded time, we use a simpler machine learning technique, the feed-forward neural network, which we introduce and apply to the decoding problem in the next section.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. NEURAL NETWORK DECODER</head><p>To apply machine learning techniques to surface code decoding, we first reduce the decoding problem to a well-studied problem in machine learning; classification. Classification problems consist of a set of (generally high-dimensional) inputs, each of which is associated with a (generally low-dimensional) label. The goal is to optimize the assignment of known labels to known inputs (a process called training) so that unknown inputs can also be correctly labeled.</p><p>To reduce the decoding problem to a classification problem, we decompose an error E into three multi-qubit Pauli operators:</p><formula xml:id="formula_2">E = S • C • L,<label>(2)</label></formula><p>where S is a stabiliser, C is any unique Pauli which produces the syndrome s (also known as a pure error <ref type="bibr" target="#b29">[30]</ref>), and L is a logical Pauli operator of the surface code. Any decoder which provides a correction E = S • C • L, in which the stabiliser in the correction is different from that in the actual error, does not lead to a logical error. This implies that S can be assigned arbitrarily with no impact on decoder performance. Also, it is possible to produce a pure error by parallel table look-up, since each bit of the syndrome can be assigned a unique pure error, independently of the other bits. We call the apparatus that produces this error the simple decoder. Since pure errors can be determined quickly in this fashion, the neural network only has to identify L, which can take one of four values; 1, X, Ȳ, or Z. These four values can be used as labels in a classification problem.</p><p>To solve this problem, we use feed-forward neural networks, which are widely regarded as the simplest machine learning technique <ref type="bibr" target="#b30">[31]</ref>. A feed-forward neural net can be described graphically or functionally, see Figure <ref type="figure">4</ref>. In either description, a feed-forward neural network contains a large number of free parameters, which are assigned values which minimize a given cost function. A typical cost function, which we use in this work, is the average cross-entropy:</p><formula xml:id="formula_3">H(p, y) ∝ -∑ ( p, x)∈T p • ln( y( x)),<label>(3)</label></formula><p>where T is the training set, consisting of desired ('target') distributions p and input values x. To minimize this function, we use stochastic gradient descent, as implemented in the Tensorflow library <ref type="bibr" target="#b31">[32]</ref>. To produce a training set, we use direct sampling at a single physical error probability, where the Blossom algorithm produces a logical error rate of ∼ 25%. This physical error probability is chosen so that a large variety of error syndromes can be produced while still ensuring that correction is possible. For small surface codes, it is possible to sample the entire set of possible syndromes, we limit the size of the training set to at most 10 6 samples for larger codes. This training set size provides relatively fast training and high accuracy, as seen in Section VI.</p><p>x 2</p><p>x 1</p><formula xml:id="formula_4">x 0 i h o y 1 y 0 y = σ Ŵo σ Ŵh x + b h + b o FIG. 4.</formula><p>The graphical and functional descriptions of a feed-forward neural network. In the graphical description (left), inputs x j are passed to neurons in a hidden layer, and each of these neurons outputs σ ( w • x + b), where w and b are a local set of weights and a bias, and σ(x) is a non-linear activation function (we use σ(x) = (1 + exp(x)) -1 for all neurons considered in this work). The final outputs y k can be rounded to {0, 1}, and interpreted as a class label. In the functional picture, the weights and biases are assembled into matrices and vectors, respectively, allowing the output vector to be expressed as a composition of functions acting on the input vector.</p><p>In the following section, we compare the performance of our decoder to the performance of Blossom and the performance of the partial lookup table (PLUT), which contains the error syndromes and corrections from the training set, returning the most likely correction ( 1) for error syndromes that are not in the training set. The comparison in terms of performance is based on the logical error rate of each decoder for specific code distances and error models.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. RESULTS</head><p>In the proposed decoder, we provide the error syndrome to both the simple decoder and the neural network. As presented in Table <ref type="table">1</ref>, the size of the input for the neural network is equal to the number of required syndrome bits, depending on the error model, and only one hidden layer was deemed adequate for all networks. The number of nodes in the hidden layer was decided based on the performance of the neural network during training and testing. determined by the number of syndromes in the quantum error correction scenario, using only X (or Z) syndrome bits for independent X/Z errors, and all syndrome bits for depolarizing errors. In the fault tolerance scenario, d rounds of measurement are followed by readout of the data qubits, and calculated stabiliser eigenvalues are included in the input. The output layer is restricted to two nodes for independent X/Z errors, since logical X/Z errors are also independent. In all other scenarios, four nodes are used to discriminate between 1, X, Ȳ, and Z. The number of nodes in the hidden layer is determined by analysing the performance of the resulting decoder empirically.</p><p>We test the proposed decoder against Blossom and the PLUT decoder for two classes of error models, called quantum error correction (QEC) and fault tolerance (FT). Quantum error correction (QEC) error models approximate noise only on data qubits and fault tolerance (FT) error models approximate noise on gates and operations, therefore requiring multiple rounds of measurement to find all errors. The channel capacity model inserts only X or only Z errors with probability p in the data qubits. The depolarizing model places X/Y/Z errors with equal probability, p /3, on the data qubits. For these error models only one cycle of error correction is required to find all errors.</p><p>In the fault tolerance scenario, the probability of an error occurring on a qubit and the probability of a measurement error is the same, therefore the minimum number of rounds of measurement is taken to be d. Instead of data qubit and measurement errors, the circuit noise model assumes that all operations and gates are noisy. Each single-qubit gate is followed by depolarizing noise with probability p /3 and each two-qubit gate is followed by a two-bit depolarizing map where each non-1 ⊗ 1 two-bit Pauli has probability p /15. Preparation and measurement locations fail with probability p, resulting in a prepared -1-eigenstate or measurement error, respectively.</p><p>In our simulations more than 10 6 error correction cycles were run per point and each point has a confidence interval of 99.9%. The percentage of the most frequent error syndromes that were used as training cases for the QEC error models were 100% (d = 3), 72.46% (d = 5), 2.75% (d = 7), see figure <ref type="figure">5</ref>, and 100% (d = 3), 0.98% (d = 5), 3 × 10 -7 % (d = 7), see figure <ref type="figure">6</ref>, for channel capacity and depolarizing models respectively. The percentage of the most frequent error syndromes that were used as training cases for the fault tolerance error models were 30.09%, 0.022% and 0.01% for the channel capacity (see figure <ref type="figure">7</ref> top), the depolarizing (see figure <ref type="figure">7</ref> middle), and the circuit model (see figure <ref type="figure">7</ref> bottom), respectively. The performance of our decoder was compared to the Blossom algorithm and the PLUT decoder. In the QEC error models, see figure <ref type="figure">5</ref> and figure <ref type="figure">6</ref>, we observe a clear trend. In both error models, as the distance increases the performance of our decoder remains similar to Blossom, and becomes much better that the PLUT-based decoder. This demonstrates that the neural networks of our decoder can successfully correct error syndromes that were not included in training. At small code distances, almost all possible error syndromes were used in training, resulting in identical performance from both the PLUT and our decoder. However, going to larger distances while using a small set of error syndromes for training, leads to sub-optimal decoding by the PLUT decoder.</p><p>It is known that, for the channel capacity error model, Blossom can reach near-optimal performance, therefore it is sufficient for our decoder to reach similar performance. There are correctable errors (with weight ≤ 3) in distance 7 that are not included in the training set and the neural network is not generalizing correctly. Therefore, the performance is slightly worse than Blossom's. However, for the depolarizing error model, Blossom is known to misidentify Y errors, since it performs the decoding for X and Z errors separately, treating a Y error as two distinct errors. Thus, if we train our decoder to take Y errors into account as weight-1 errors, the performance will be better than Blossom's. In the depolarizing model, there are still a few weight 3 errors that are being mis-identified, however the existance of higher weight errors in the training set, that are being corrected properly, account for the sligthly better performance compared to the Blossom decoder.</p><p>In the fault tolerance scenario, see figure <ref type="figure">7</ref>, due to the small code distance, all decoders reach a similar level of performance. Specifically, for the channel capacity and the depolarizing error model, a small amount of error syndromes was only necessary to reach Blossom's performance. The circuit metric required more syndromes, however slightly better performance was achieved in this case as well.</p><p>It is encouraging that the neural network based decoder can achieve similar performance to Blossom. However, the main reason that such a design is proposed is to accelerate the decoding time. In the following section, we provide an estimation of the speed of the neural network based decoder in hardware, and discuss the implications for future research.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VII. DISCUSSION AND CONCLUSION</head><p>In order to accurately estimate the execution time of the proposed decoder in hardware, we take advantage of the ability to perform many operations in parallel. For example, in the simple decoder, the correction for each syndrome bit is independent of the other bits, allowing all of these corrections to be derived simultaneously. In order to determine whether to apply an X to a given qubit, for example, it is then necessary to determine the parity of the number of corrections affecting the qubit. There are at most d /2 possible corrections (this is the largest possible number of syndrome bits between an arbitrary syndrome bit and the boundary), and evaluating the parity of a set of b bits requires a tree-like circuit of depth log 2 (b) xor gates. In an FPGA (field-programmable gate array), simple operations such as xor can be evaluated in a single clock cycle, typically 2.5-5 ns <ref type="bibr" target="#b32">[33]</ref>. We can also take advantage of the graphical description of neural  networks (see Figure <ref type="figure">4</ref>) to evaluate their output quickly. Firstly, the output of each neuron can be evaluated independently, so the runtime is dominated by the time needed to take an inner product between the weight vector and an intermediate state in the network. Each multiplication can be performed independently, and summation requires a logarithmic number of adders, similar to calculating parity. In a digital signal processing (DSP) slice, present in most FPGAs, simple arithmetic operations can also be carried out in a single clock cycle. For our largest neural network, then, we require two multiplications (one for the hidden layer, and one for the output layer), 15 addition steps ( log 2 (32) + log 2 (768) ), and two evaluations of the sigmoid function, for a total of 19 serial steps. If each of these can be carried out in a single clock cycle, the time required will be ∼ 100 ns. This timing estimate is optimistic, since it does not account for the possibility that high-accuracy arithmetic may require additional clock cycles, or that communication between distant components of the FPGA may take longer than arithmetic operations. However, if these factors increase the execution time by a factor of ∼ 20, the proposed decoder will still be able to decode the syndrome from three consecutive rounds of measurement if each round requires ∼ 800 ns.</p><p>Immediate future work will focus on implementing the proposed decoder in hardware, to determine the overhead caused by communication. Once this overhead is reduced to an acceptable level, we can begin to extend the proposed decoder to the case where syndromes from a finite window are fed forward, as in <ref type="bibr" target="#b19">[20]</ref>. In addition, we can begin testing the applicability of feedforward neural networks to surface codes with larger distance, as well as to alternate codes for which existing decoders do not attain high accuracy and speed simultaneously <ref type="bibr" target="#b33">[34]</ref><ref type="bibr" target="#b34">[35]</ref><ref type="bibr" target="#b35">[36]</ref>.</p><p>In conclusion, feedforward neural networks provide a fast and accurate method to decode small surface codes, both for performing quantum error correction, as well as fault-tolerant operations. Given that the hardware requirements and anticipated runtime are relatively low, we expect feedfoward neural network decoders to be usable in the near term.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>7 FIG. 5 .</head><label>75</label><figDesc>FIG.5. Channel capacity error model without measurement errors for Surface Code distances 3,5 and 7. Performance comparison of the neural network decoder (blue) to the MWPM algorithm (orange) and partial look-up table (green).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head>TABLE I .</head><label>I</label><figDesc>Layer sizes for the neural networks used throughout this work. The number of input nodes is</figDesc><table><row><cell></cell><cell cols="2">QEC Error Models</cell><cell></cell></row><row><cell></cell><cell cols="2">Channel Capacity Noise</cell><cell></cell></row><row><cell cols="4">Code distance Input nodes Hidden nodes Output nodes</cell></row><row><cell>3</cell><cell>4</cell><cell>10</cell><cell>2</cell></row><row><cell>5</cell><cell>12</cell><cell>90</cell><cell>2</cell></row><row><cell>7</cell><cell>24</cell><cell>512</cell><cell>2</cell></row><row><cell></cell><cell cols="2">Depolarizing Noise</cell><cell></cell></row><row><cell>3</cell><cell>8</cell><cell>128</cell><cell>4</cell></row><row><cell>5</cell><cell>24</cell><cell>660</cell><cell>4</cell></row><row><cell>7</cell><cell>48</cell><cell>256</cell><cell>4</cell></row><row><cell></cell><cell cols="2">FT Error Models</cell><cell></cell></row><row><cell></cell><cell cols="2">Channel Capacity &amp; Measurement Noise</cell><cell></cell></row><row><cell cols="4">Code distance Input nodes Hidden nodes Output nodes</cell></row><row><cell>3</cell><cell>16</cell><cell>768</cell><cell>4</cell></row><row><cell></cell><cell cols="2">Depolarizing &amp; Measurement Noise</cell><cell></cell></row><row><cell>3</cell><cell>32</cell><cell>768</cell><cell>4</cell></row><row><cell></cell><cell cols="2">Circuit noise</cell><cell></cell></row><row><cell>3</cell><cell>32</cell><cell>704</cell><cell>4</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1"><head></head><label></label><figDesc>Depolarizing error model without measurement errors for Surface Code distances 3,5 and 7. Performance comparison of the neural network decoder (blue) to the MWPM algorithm (orange) and partial look-up table (green).</figDesc><table><row><cell></cell><cell></cell><cell cols="2">d = 3</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell>d = 5</cell></row><row><cell>logical error rate</cell><cell>0.05 0.1 0.15 0.2</cell><cell></cell><cell></cell><cell></cell><cell>logical error rate</cell><cell>0 0.1 0.2 0.3</cell><cell></cell></row><row><cell></cell><cell>0.08</cell><cell>0.1</cell><cell>0.12</cell><cell>0.14</cell><cell></cell><cell cols="2">0.08</cell><cell>0.1</cell><cell>0.12</cell><cell>0.14</cell></row><row><cell></cell><cell></cell><cell cols="2">physical error rate</cell><cell></cell><cell></cell><cell></cell><cell cols="2">physical error rate</cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="2">d = 7</cell><cell></cell></row><row><cell></cell><cell></cell><cell>logical error rate</cell><cell>0 0.2 0.4 0.6</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell></cell><cell></cell><cell></cell><cell cols="2">0.08</cell><cell>0.1</cell><cell>0.12</cell><cell>0.14</cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="3">physical error rate</cell><cell></cell></row><row><cell>FIG. 6.</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Quantum simulation</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Georgescu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Franco</forename><surname>Ashhab</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Nori</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Reviews of Modern Physics</title>
+		<imprint>
+			<biblScope unit="volume">86</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">153</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Polynomial-time algorithms for prime factorization and discrete logarithms on a quantum computer</title>
+		<author>
+			<persName><forename type="first">Peter</forename><forename type="middle">W</forename><surname>Shor</surname></persName>
+		</author>
+		<idno type="DOI">10.1137/S0097539795293172</idno>
+		<ptr target="http://dx.doi.org/10.1137/S0097539795293172" />
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Computing</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="1484" to="1509" />
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Realization of a scalable shor algorithm</title>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Monz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><surname>Nigg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Esteban</forename><forename type="middle">A</forename><surname>Martinez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Matthias</forename><forename type="middle">F</forename><surname>Brandl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Philipp</forename><surname>Schindler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Richard</forename><surname>Rines</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shannon</forename><forename type="middle">X</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Isaac</forename><forename type="middle">L</forename><surname>Chuang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rainer</forename><surname>Blatt</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/science.aad9480</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">351</biblScope>
+			<biblScope unit="issue">6277</biblScope>
+			<biblScope unit="page" from="1068" to="1070" />
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Quantum mechanics helps in searching for a needle in a haystack</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Lov</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Grover</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.79.325</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevLett.79.325" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">79</biblScope>
+			<biblScope unit="page" from="325" to="328" />
+			<date type="published" when="1997-07">Jul 1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<monogr>
+		<title level="m" type="main">Quantum algorithms @ONLINE</title>
+		<author>
+			<persName><forename type="first">Stephen</forename><surname>Jordan</surname></persName>
+		</author>
+		<ptr target="http://math.nist.gov/quantum/zoo/" />
+		<imprint>
+			<date type="published" when="2016-10">October 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Experimental demonstration of the deutsch-jozsa algorithm in homonuclear multispin systems</title>
+		<author>
+			<persName><forename type="first">Zhen</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jun</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wenqiang</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jun</forename><surname>Luo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mang</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xinhua</forename><surname>Peng</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.84.042312</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevA.84.042312" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">84</biblScope>
+			<biblScope unit="page">42312</biblScope>
+			<date type="published" when="2011-10">Oct 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">First experimental demonstration of an exact quantum search algorithm in nuclear magnetic resonance system</title>
+		<author>
+			<persName><forename type="first">Yang</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Feihao</forename><surname>Zhang</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s11433-015-5661-z</idno>
+		<ptr target="http://dx.doi.org/10.1007/s11433-015-5661-z" />
+	</analytic>
+	<monogr>
+		<title level="j">Science China Physics, Mechanics &amp; Astronomy</title>
+		<idno type="ISSN">1869-1927</idno>
+		<imprint>
+			<biblScope unit="volume">58</biblScope>
+			<biblScope unit="issue">7</biblScope>
+			<biblScope unit="page" from="1" to="6" />
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">A variational eigenvalue solver on a photonic quantum processor</title>
+		<author>
+			<persName><forename type="first">Alberto</forename><surname>Peruzzo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jarrod</forename><surname>Mcclean</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peter</forename><surname>Shadbolt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Man-Hong</forename><surname>Yung</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiao-Qi</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peter</forename><forename type="middle">J</forename><surname>Love</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alán</forename><surname>Aspuru-Guzik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeremy</forename><forename type="middle">L</forename><surname>O'brien</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/ncomms5213</idno>
+		<ptr target="http://dx.doi.org/10.1038/ncomms5213" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature Communications</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="issue">4213</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Demonstration of two-qubit algorithms with a superconducting quantum processor</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Dicarlo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Chow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Gambetta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lev</forename><forename type="middle">S</forename><surname>Bishop</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">R</forename><surname>Johnson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">I</forename><surname>Schuster</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Majer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Blais</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Frunzio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">M</forename><surname>Girvin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Schoelkopf</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature08121</idno>
+		<ptr target="http://dx.doi.org/10.1038/nature08121" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">460</biblScope>
+			<biblScope unit="issue">7252</biblScope>
+			<biblScope unit="page" from="240" to="244" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<title level="m" type="main">Fault-Tolerant Quantum Computing in the Pauli or Clifford Frame with Slow Error Diagnostics</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Chamberland</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Iyer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Poulin</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017-04">April 2017</date>
+		</imprint>
+	</monogr>
+	<note>ArXiv e-prints</note>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Arbitrarily accurate dynamical control in open quantum systems</title>
+		<author>
+			<persName><forename type="first">Khodjasteh</forename><surname>Kaveh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lidar</forename><surname>Daniel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Viola</forename><surname>Lorenza</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.104.090501</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevLett.104.090501" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">104</biblScope>
+			<biblScope unit="page">90501</biblScope>
+			<date type="published" when="2010-03">Mar 2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Simple pulses for elimination of leakage in weakly nonlinear qubits</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Motzoi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Gambetta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Rebentrost</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">K</forename><surname>Wilhelm</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.103.110501</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevLett.103.110501" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">103</biblScope>
+			<biblScope unit="page">110501</biblScope>
+			<date type="published" when="2009-09">Sep 2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<author>
+			<persName><surname>Daniel Gottesman</surname></persName>
+		</author>
+		<title level="m">Stabilizer Codes and Quantum Error Correction</title>
+		<imprint>
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Caltech Ph.D. Thesis</note>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<monogr>
+		<title level="m" type="main">Quantum Error Correction</title>
+		<author>
+			<persName><forename type="first">Daniel</forename><forename type="middle">A</forename><surname>Lidar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Todd</forename><forename type="middle">A</forename><surname>Brun</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<publisher>Cambridge University Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Reliable quantum computers</title>
+		<author>
+			<persName><forename type="first">John</forename><surname>Preskill</surname></persName>
+		</author>
+		<idno type="DOI">10.1098/rspa.1998.0167</idno>
+		<ptr target="https://link.aps.org/doi/10.1098/rspa.1998.0167" />
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the Royal Society</title>
+		<imprint>
+			<biblScope unit="page" from="385" to="410" />
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Fault-tolerant quantum computation by anyons</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Kitaev</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/S0003-4916(02)00018-0</idno>
+		<ptr target="http://www.sciencedirect.com/science/article/pii/S0003491602000180" />
+	</analytic>
+	<monogr>
+		<title level="j">Annals of Physics</title>
+		<idno type="ISSN">0003-4916</idno>
+		<imprint>
+			<biblScope unit="volume">303</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="2" to="30" />
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Projective plane and planar quantum codes</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Michael</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><forename type="middle">A</forename><surname>Freedman</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Meyer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Foundations of Computational Mathematics</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="325" to="332" />
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<monogr>
+		<author>
+			<persName><forename type="first">B</forename><surname>Sergey</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Bravyi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kitaev</forename><surname>Yu</surname></persName>
+		</author>
+		<idno>quant- ph/9811052</idno>
+		<title level="m">Quantum codes on a lattice with boundary</title>
+		<imprint>
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Optimal resources for topological two-dimensional stabilizer codes: Comparative study</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Bombin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Miguel</forename><forename type="middle">A</forename><surname>Martin-Delgado</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<imprint>
+			<biblScope unit="volume">76</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">12305</biblScope>
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Topological quantum memory</title>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Dennis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alexei</forename><surname>Kitaev</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><surname>Landahl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">John</forename><surname>Preskill</surname></persName>
+		</author>
+		<idno type="DOI">10.1063/1.1499754</idno>
+		<ptr target="http://dx.doi.org/10.1063/1.1499754" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Mathematical Physics</title>
+		<imprint>
+			<biblScope unit="volume">43</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="4452" to="4505" />
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">High-threshold universal quantum computation on the surface code</title>
+		<author>
+			<persName><forename type="first">Ashley</forename><forename type="middle">M</forename><surname>Austin G Fowler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peter</forename><surname>Stephens</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Groszkowski</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<imprint>
+			<biblScope unit="volume">80</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page">52312</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Low-distance surface codes under realistic quantum noise</title>
+		<author>
+			<persName><forename type="first">Yu</forename><surname>Tomita</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Krysta</forename><forename type="middle">M</forename><surname>Svore</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.90.062320</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevA.90.062320" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="page">62320</biblScope>
+			<date type="published" when="2014-12">Dec 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<monogr>
+		<title level="m" type="main">Combinatorial Optimization: Polyhedra and Efficiency. Number v. 1 in Algorithms and Combinatorics</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Schrijver</surname></persName>
+		</author>
+		<ptr target="https://books.google.nl/books?id=mqGeSQ6dJycC" />
+		<imprint>
+			<date type="published" when="2003">2003</date>
+			<publisher>Springer</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Paths, trees, and flowers</title>
+		<author>
+			<persName><forename type="first">Jack</forename><surname>Edmonds</surname></persName>
+		</author>
+		<idno type="DOI">10.4153/CJM-1965-045-4</idno>
+		<ptr target="http://dx.doi.org/10.4153/CJM-1965-045-4" />
+	</analytic>
+	<monogr>
+		<title level="j">Canadian Journal of Mathematics</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="page" from="449" to="467" />
+			<date type="published" when="1965">1965</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Blossom v: a new implementation of a minimum cost perfect matching algorithm</title>
+		<author>
+			<persName><forename type="first">Vladimir</forename><surname>Kolmogorov</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s12532-009-0002-8</idno>
+		<ptr target="http://dx.doi.org/10.1007/s12532-009-0002-8" />
+	</analytic>
+	<monogr>
+		<title level="j">Mathematical Programming Computation</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="43" to="67" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<monogr>
+		<title level="m" type="main">Density-matrix simulation of small surface codes under current and projected experimental noise</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Te O'brien</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Tarasinski</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Dicarlo</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1703.04136</idno>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<monogr>
+		<author>
+			<persName><surname>Versluis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Poletto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Khammassi</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Haider</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Michalak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Bruno</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Bertels</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Dicarlo</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1612.08208</idno>
+		<title level="m">Scalable quantum circuit and control for a superconducting surface code</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Minimum weight perfect matching of fault-tolerant topological quantum error correction in average o(1) parallel time</title>
+		<author>
+			<persName><forename type="first">Austin</forename><forename type="middle">G</forename><surname>Fowler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum Information &amp; Computation</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page" from="145" to="158" />
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<monogr>
+		<author>
+			<persName><forename type="first">Giacomo</forename><surname>Torlai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Roger</forename><forename type="middle">G</forename><surname>Melko</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1610.04238</idno>
+		<title level="m">A neural decoder for topological codes</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Optimal and efficient decoding of concatenated quantum block codes</title>
+		<author>
+			<persName><forename type="first">David</forename><surname>Poulin</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.74.052333</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevA.74.052333" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">74</biblScope>
+			<biblScope unit="page">52333</biblScope>
+			<date type="published" when="2006-11">Nov 2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<monogr>
+		<title level="m" type="main">Information theory, inference and learning algorithms</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">C</forename><surname>David</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Mackay</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2003">2003</date>
+			<publisher>Cambridge university press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<monogr>
+		<title level="m" type="main">TensorFlow: Large-scale machine learning on heterogeneous systems</title>
+		<author>
+			<persName><forename type="first">Martín</forename><surname>Abadi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ashish</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Barham</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eugene</forename><surname>Brevdo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhifeng</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Craig</forename><surname>Citro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Greg</forename><forename type="middle">S</forename><surname>Corrado</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andy</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeffrey</forename><surname>Dean</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Matthieu</forename><surname>Devin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sanjay</forename><surname>Ghemawat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ian</forename><surname>Goodfellow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><surname>Harp</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Geoffrey</forename><surname>Irving</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michael</forename><surname>Isard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yangqing</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rafal</forename><surname>Jozefowicz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lukasz</forename><surname>Kaiser</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Manjunath</forename><surname>Kudlur</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Josh</forename><surname>Levenberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dan</forename><surname>Mané</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rajat</forename><surname>Monga</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sherry</forename><surname>Moore</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Derek</forename><surname>Murray</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chris</forename><surname>Olah</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mike</forename><surname>Schuster</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jonathon</forename><surname>Shlens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Benoit</forename><surname>Steiner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ilya</forename><surname>Sutskever</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kunal</forename><surname>Talwar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Tucker</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vincent</forename><surname>Vanhoucke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vijay</forename><surname>Vasudevan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fernanda</forename><surname>Viégas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Oriol</forename><surname>Vinyals</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pete</forename><surname>Warden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Martin</forename><surname>Wattenberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Martin</forename><surname>Wicke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuan</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiaoqiang</forename><surname>Zheng</surname></persName>
+		</author>
+		<ptr target="http://tensorflow.org/.Softwareavailablefromtensorflow.org" />
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<monogr>
+		<author>
+			<persName><forename type="first">Nick</forename><surname>Mehta</surname></persName>
+		</author>
+		<ptr target="xilinx.com/support/documentation/white_papers/wp373_V7_K7_A7_Devices.pdf.www.xilinx.com" />
+		<title level="m">Xilinx redefines power, performance, and design productivity with three innovative 28 nm fpga families: Virtex-7, kintex-7, and artix-7 devices</title>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Topological quantum distillation</title>
+		<author>
+			<persName><forename type="first">Hector</forename><surname>Bombin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Miguel</forename><surname>Angel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Martin-Delgado</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Physical review letters</title>
+		<imprint>
+			<biblScope unit="volume">97</biblScope>
+			<biblScope unit="issue">18</biblScope>
+			<biblScope unit="page">180501</biblScope>
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<monogr>
+		<author>
+			<persName><forename type="first">Jonas</forename><forename type="middle">T</forename><surname>Andrew J Landahl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Patrick</forename><forename type="middle">R</forename><surname>Anderson</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Rice</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1108.5738</idno>
+		<title level="m">Fault-tolerant quantum computing with color codes</title>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Universal topological phase of twodimensional stabilizer codes</title>
+		<author>
+			<persName><forename type="first">Hector</forename><surname>Bombin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Guillaume</forename><surname>Duclos-Cianci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><surname>Poulin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">New Journal of Physics</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="issue">7</biblScope>
+			<biblScope unit="page">73048</biblScope>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

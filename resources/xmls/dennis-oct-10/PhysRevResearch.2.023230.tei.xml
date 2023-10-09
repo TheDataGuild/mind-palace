@@ -1,0 +1,2354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Deep Q-learning decoder for depolarizing noise on the toric code</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+				<date type="published" when="2020-05-26">26 May 2020</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">David</forename><surname>Fitzek</surname></persName>
+							<email>davidfi@chalmers.se</email>
+							<idno type="ORCID">0000-0003-4268-5485</idno>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Microtechnology and Nanoscience</orgName>
+								<orgName type="laboratory">Wallenberg Centre for Quantum Technology</orgName>
+								<orgName type="institution">Chalmers University of Technology</orgName>
+								<address>
+									<postCode>SE-41296</postCode>
+									<settlement>Gothenburg</settlement>
+									<country key="SE">Sweden</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="laboratory">Volvo Group Trucks Technology</orgName>
+								<address>
+									<postCode>405 08</postCode>
+									<settlement>Gothenburg</settlement>
+									<country key="SE">Sweden</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Mattias</forename><surname>Eliasson</surname></persName>
+							<affiliation key="aff2">
+								<orgName type="department">Department of Physics</orgName>
+								<orgName type="institution">University of Gothenburg</orgName>
+								<address>
+									<postCode>SE-41296</postCode>
+									<settlement>Gothenburg</settlement>
+									<country key="SE">Sweden</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Anton</forename><forename type="middle">Frisk</forename><surname>Kockum</surname></persName>
+							<idno type="ORCID">0000-0002-2534-3021</idno>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Microtechnology and Nanoscience</orgName>
+								<orgName type="laboratory">Wallenberg Centre for Quantum Technology</orgName>
+								<orgName type="institution">Chalmers University of Technology</orgName>
+								<address>
+									<postCode>SE-41296</postCode>
+									<settlement>Gothenburg</settlement>
+									<country key="SE">Sweden</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Mats</forename><surname>Granath</surname></persName>
+							<email>mats.granath@physics.gu.se</email>
+							<idno type="ORCID">0000-0003-3185-2014</idno>
+							<affiliation key="aff2">
+								<orgName type="department">Department of Physics</orgName>
+								<orgName type="institution">University of Gothenburg</orgName>
+								<address>
+									<postCode>SE-41296</postCode>
+									<settlement>Gothenburg</settlement>
+									<country key="SE">Sweden</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Deep Q-learning decoder for depolarizing noise on the toric code</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2020-05-26">26 May 2020</date>
+						</imprint>
+					</monogr>
+					<idno type="DOI">10.1103/PhysRevResearch.2.023230</idno>
+					<note type="submission">Received 30 December 2019; accepted 5 May 2020;</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.3" ident="GROBID" when="2023-10-09T23:23+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>We present an AI-based decoding agent for quantum error correction of depolarizing noise on the toric code. The agent is trained using deep reinforcement learning (DRL), where an artificial neural network encodes the state-action Q values of error-correcting X , Y , and Z Pauli operations, occurring with probabilities p x , p y , and p z , respectively. By learning to take advantage of the correlations between bit-flip and phase-flip errors, the decoder outperforms the minimum-weight-perfect-matching algorithm, achieving higher success rate and higher error threshold for depolarizing noise (p z = p x = p y ), for code distances d 9. The decoder trained on depolarizing noise also has close to optimal performance for uncorrelated noise and provides functional but suboptimal decoding for biased noise (p z = p x = p y ). We argue that the DRL-type decoder provides a promising framework for future practical error correction of topological codes, striking a balance between on-the-fly calculations, in the form of forward evaluation of a deep Q network, and pretraining and information storage. The complete code, as well as ready-to-use decoders (pretrained networks), can be found in the repository github.com/mats-granath/toric-RL-decoder.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>The basic building block of a quantum computer is the quantum bit (qubit), the quantum entity that corresponds to the bit in a classical computer, but which can store a superposition of 0 and 1 <ref type="bibr" target="#b0">[1]</ref>. The main challenge in building a quantum computer is that the qubit states are very fragile and susceptible to noise. Surface codes <ref type="bibr" target="#b1">[2]</ref><ref type="bibr" target="#b2">[3]</ref><ref type="bibr" target="#b3">[4]</ref><ref type="bibr" target="#b4">[5]</ref> are two-dimensional structures of qubits located on a regular grid which provide fault tolerance by entangling the qubits. In the surface code, logical qubits are topologically protected, which means that only strings of bit flips that stretch from one side to the other of the code cause logical bit flips, whereas topologically trivial loops (contractible to a point) do not. In recent years, experiments have taken first steps in quantum error correction in several promising quantum-computing architectures, e.g., superconducting circuits <ref type="bibr" target="#b5">[6]</ref><ref type="bibr" target="#b6">[7]</ref><ref type="bibr" target="#b7">[8]</ref><ref type="bibr" target="#b8">[9]</ref><ref type="bibr" target="#b9">[10]</ref><ref type="bibr" target="#b10">[11]</ref><ref type="bibr" target="#b11">[12]</ref><ref type="bibr" target="#b12">[13]</ref><ref type="bibr" target="#b13">[14]</ref><ref type="bibr" target="#b14">[15]</ref>, trapped ions <ref type="bibr" target="#b15">[16]</ref><ref type="bibr" target="#b16">[17]</ref><ref type="bibr" target="#b17">[18]</ref><ref type="bibr" target="#b18">[19]</ref><ref type="bibr" target="#b19">[20]</ref>, and photonics <ref type="bibr" target="#b20">[21,</ref><ref type="bibr" target="#b21">22]</ref>, and work continues toward large-scale implementation of surface codes.</p><p>Even though the surface-code architecture provides extra protection to logical qubits, the physical qubits are still susceptible to noise causing bit-flip or phase-flip errors. Such errors need to be monitored and corrected before they proliferate and create nontrivial strings that cause logical failure. The challenge with correcting quantum-mechanical errors is that the errors themselves cannot be detected (because such measurements would destroy the quantum superposition of states), but only the syndrome, corresponding in the surface codes to local 4-qubit parity measurements, can. An algorithm that provides a set of recovery operations for correction of the error given a syndrome is called a decoder. As the syndrome does not uniquely determine the errors, the decoder needs to incorporate the statistics of errors corresponding to any given syndrome. Optimal decoders, which give the highest theoretically possible error-correction success rate, are generally hard to find, except for the simplest hypothetical types of noise.</p><p>Many types of decoder algorithms exist that deal in different ways with the lack of uniqueness in the mapping from syndrome to error configuration. Methods range from Markov chain Monte Carlo based decoders <ref type="bibr" target="#b22">[23,</ref><ref type="bibr" target="#b23">24]</ref>, cellular automata <ref type="bibr" target="#b24">[25,</ref><ref type="bibr" target="#b25">26]</ref>, renormalization group <ref type="bibr" target="#b26">[27]</ref>, as well as various types of neural-network-based decoders <ref type="bibr" target="#b27">[28]</ref><ref type="bibr" target="#b28">[29]</ref><ref type="bibr" target="#b29">[30]</ref><ref type="bibr" target="#b30">[31]</ref><ref type="bibr" target="#b31">[32]</ref><ref type="bibr" target="#b32">[33]</ref><ref type="bibr" target="#b33">[34]</ref><ref type="bibr" target="#b34">[35]</ref><ref type="bibr" target="#b35">[36]</ref><ref type="bibr" target="#b36">[37]</ref><ref type="bibr" target="#b37">[38]</ref><ref type="bibr" target="#b38">[39]</ref><ref type="bibr" target="#b39">[40]</ref>, which is also the tool used in this paper. The benchmark algorithm for the decoding problem is minimum-weight-perfect-matching (MWPM) <ref type="bibr" target="#b40">[41]</ref><ref type="bibr" target="#b41">[42]</ref><ref type="bibr" target="#b42">[43]</ref><ref type="bibr" target="#b43">[44]</ref>, which is a graph algorithm for shortest pairwise matching of syndrome defects. In the standard formulation, MWPM is set up as two separate graph problems for the two types of syndrome defects, ignoring possible correlations between these or that error channels may have different probabilities.</p><p>For a decoder to be used for actual operation in a quantum computer, not only correction success rate, but also speed, is a crucial factor. A long delay for calculating error-correcting operations will not only slow down the calculations, but also make the code susceptible to additional errors. For this reason, decoders based on algorithms that do extensive sampling of the configuration space on the fly, such as Monte Carlo based decoders <ref type="bibr" target="#b22">[23,</ref><ref type="bibr" target="#b23">24]</ref>, may not be viable as practical decoders. Instead, using some level of pretraining to generate and store information for fast retrieval will likely be necessary. Tabulating the information of syndrome versus most likely logical error is expected to be prohibitively expensive in terms of both storage and training, and slow to access, for anything but very small codes. Given these constraints, the need for pretraining, the massive state space and corresponding amount of data, it is natural to consider machine-learning (ML) solutions, especially given the recent deep-learning revolution <ref type="bibr" target="#b44">[45,</ref><ref type="bibr" target="#b45">46]</ref> and its applications within quantum physics <ref type="bibr" target="#b46">[47]</ref><ref type="bibr" target="#b47">[48]</ref><ref type="bibr" target="#b48">[49]</ref><ref type="bibr" target="#b49">[50]</ref>. In particular, reinforcement learning and (DRL) <ref type="bibr" target="#b50">[51,</ref><ref type="bibr" target="#b51">52]</ref> has recently emerged as a promising tool for various quantum control tasks <ref type="bibr" target="#b52">[53,</ref><ref type="bibr" target="#b53">54]</ref>.</p><p>In this paper, we use DRL, expanding on the framework for error correction for the toric code (i.e., surface code with periodic boundary conditions) introduced by Andreasson et al. <ref type="bibr" target="#b35">[36]</ref>. In Ref. <ref type="bibr" target="#b35">[36]</ref>, only uncorrelated noise (with independent bit-and phase-flip errors) was considered. It was found that the DRL decoder could achieve success rates of error correction on par with MWPM. In this work, we consider depolarizing noise (p x = p y = p z ) and find that a similar decoder can outperform MWPM for moderate code size d 9. The performance is instead similar to augmented versions of MWPM, optimal in the limit p → 0, where correlations between phase-and bit-flip errors are taken into account <ref type="bibr" target="#b23">[24,</ref><ref type="bibr" target="#b41">42]</ref>. The decoder trained on depolarizing noise is also found to be quite versatile, having MWPM success rates on uncorrelated noise, as well as giving intermediate performance on biased noise. Similarly to the previous work we do not consider syndrome measurement errors, but focus on mastering the more elementary but nevertheless challenging task of efficiently decoding a perfect syndrome with depolarizing noise.</p><p>A decoder based on DRL has the potential to offer an ideal balance between calculations on the fly and pretraining. The information about the proper error correction string for a given syndrome is stored in a very efficient way, using two principles:</p><p>(1) The step-by-step decoding using the pretrained neural network generates an effective tree structure where many different syndromes will reduce to the same syndrome after one operation, such that subsequent correction steps will use the same information, iteratively reducing the complexity.</p><p>(2) The deep neural network is a "generalizer" which can spot and draw conclusions from common features of different syndromes, including syndromes that have not been seen during training.</p><p>The paper is organized as follows. In Sec. II, we give a brief introduction to quantum error correction for the toric code. In Sec. III, we introduce deep reinforcement learning and Q learning, and discuss how these are implemented in training and utilizing the decoder. In Sec. IV, the performance of the DRL decoder is presented and benchmarked against both MWPM and analytic expression valid for low error rates. We summarize the main results and give an outlook to further developments in Sec. V.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Y X Z</head><p>FIG. <ref type="figure">1</ref>. A d = 9 toric code showing the basic operations. Circles represent physical qubits, with shading showing periodic boundaries. Bit-flip X (red), phase-flip Z (blue), and Y ∼ X Z (yellow) errors with corresponding plaquette and vertex "defects" as end points of error chains. The defects are measured by the plaquette (⊗Z) and vertex (⊗X ) parity-check operators, respectively. Also shown are logical bit-and phase-flip operators corresponding to closed loops spanning the torus.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. TORIC CODE</head><p>The toric code in the form considered here consists of a two-dimensional quadratic grid of physical qubits with periodic boundary conditions. In this section, we provide a high-level summary of the main concepts relevant for our study and refer the reader to the literature for more details <ref type="bibr" target="#b1">[2]</ref><ref type="bibr" target="#b2">[3]</ref><ref type="bibr" target="#b3">[4]</ref><ref type="bibr" target="#b4">[5]</ref>. A d × d grid contains 2d 2 qubits corresponding to a Hilbert space of 2 2d 2 states, out of which four will form the logical code space. That is, it encodes a fourfold qudit corresponding to two qubits, which we will nevertheless refer to as the logical qubit. It is a stabilizer code where a large set of commuting local parity-check operators (the stabilizers) split the state space into distinct sectors.</p><p>The stabilizers for the toric code are divided into two types, here represented as plaquette and vertex operators, consisting of products of Pauli Z or X operators on the four qubits on a plaquette or vertex (see Fig. <ref type="figure">1</ref>), respectively. Eigenstates of the full set of stabilizers, with eigenvalue ±1 on each plaquette and vertex of the lattice, are globally entangled, which provides the basic robustness to errors. The logical qubit corresponds to the sector with eigenvalue +1 on all stabilizers. We will refer to a stabilizer with eigenvalue -1 as a plaquette or vertex defect. A single bit flip X or phase flip Z on a state in the qubit sector will produce a pair of defects on neighboring plaquettes or vertices, with Pauli Y ∼ X Z giving both pairs of defects, as shown in Fig. <ref type="figure">1</ref>.</p><p>The set of stabilizer defects corresponding to any given configuration of X , Y , or Z operations on a state in the logical sector is called the syndrome. Logical operations, which map between the different states in the logical sector, are given by strings of X or Z operators that encircle the torus, corresponding to logical bit-flip and phase-flip operations, respectively (see Fig. <ref type="figure">1</ref>). The shortest loop that can encircle the torus has length d; correspondingly, the code distance is d. For simplicity, we consider only odd d, as there is an odd-even effect in some quantitative aspects of the problem. The toric code is an example of a topological code, as the logical operations correspond to "noncontractible" loops on the torus, whereas products of stabilizers can only generate "contractible" loops.</p><p>Figure <ref type="figure">2</ref>(a) shows an example of an error configuration (also referred to as an error chain) on a d = 9 toric code together with the corresponding syndrome, generated randomly at an error rate p = 0.22. Visible for the decoder is only the syndrome [Fig. <ref type="figure">2(b)</ref>] based upon which the decoder should suggest a sequence of operations (a correction chain) that eliminates the syndrome in such a way that it is least likely to cause a logical bit-and/or phase-flip operation. To evaluate the success rate of a correction chain for a given syndrome, it should be complemented by the full distribution of error chains corresponding to that syndrome, to calculate which fraction of error + correction chains contain an odd number of logical operations of any type.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. DEEP REINFORCEMENT LEARNING ALGORITHM</head><p>The DRL-based decoder presented in this paper is an agent utilizing reinforcement learning together with a deep convolutional neural network, called the Q network, for approximation of Q values. The agent suggests, step by step, a sequence of corrections that eliminates all defects in the system as illustrated in Fig. <ref type="figure">3</ref> (see also Figs. 17 and 18 in Appendix C).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Q learning</head><p>The purpose of Q learning <ref type="bibr" target="#b55">[56]</ref> is for an agent to learn a policy, π (s, a), that prescribes what action a to take in state s. An optimal policy maximizes the future cumulative reward of actions within a Markov decision process with the rewards provided by the environment, depending on the initial and final states and the action r a (s, s ). In this paper, we use a deterministic reward scheme, as discussed below. To measure the future cumulative reward, the action value function, or Q function, is given by</p><formula xml:id="formula_0">Q π (s t , a t ) = E π [r t + γ r t+1 + γ 2 r t+2 + • • • ],<label>(1)</label></formula><p>where action a t is taken at time t, and subsequently following the policy π , with γ 1 a discounting factor. The Q function corresponding to the optimal policy satisfies the Bellman equation</p><formula xml:id="formula_1">Q(s t , a t ) = r + γ max a Q(s t+1 , a ),<label>(2)</label></formula><p>such that the optimal policy will self-consistently correspond to the action maximizing Q. As discussed in more detail in Sec. III B, we use one-step Q learning, in which the current measure of Q(s, a) is updated by explicit use of the Bellman equation with some learning rate α, using -greedy exploration.</p><p>(a) (b)</p><formula xml:id="formula_2">FIG. 2.</formula><p>Example of a random configuration of qubit errors on a d = 9 toric code. (a) The qubit state and the corresponding syndrome forming an error chain. (b) Syndrome given by plaquette and vertex defects. The objective of the DRL decoder is to find a correction string which is consistent with the syndrome and which takes the minimal number of qubit operations <ref type="bibr" target="#b54">[55]</ref>. The benchmark MWPM decoder instead treats the plaquette and vertex configurations as separate graph problems, suggesting the shortest independent correction chains of X and Z.</p><p>The reward scheme that we use is given by</p><formula xml:id="formula_3">r t = 100 if episode terminates at step t + 1, E t -E t+1 otherwise,<label>(3)</label></formula><p>where E t represents the number of defects in the syndrome at step t, such that X and Z operators can give reward -2, 0, or 2, whereas Y operators can give reward -4, -2, 0, 2, or 4. The terminal reward, given a discounting factor γ &lt; 1, incites the agent to correct the full syndrome in the minimal 3.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>2.</head><p>FIG. <ref type="figure">3</ref>. Value functions V (s) = max a Q(s, a) for a sequence of syndromes corresponding to a particular error chain, using the reward scheme in Eq. ( <ref type="formula" target="#formula_3">3</ref>) with γ = 0.95. For this simple syndrome, the optimal sequence is three steps long and the theoretical state values are compared to those output by the Q network. The error chain itself is irrelevant to the correction sequence; only the syndrome is important. number of steps. The explicit reward for eliminating defects is implemented to speed up convergence, without which the agent would have to find terminal states by completely random exploration. The reward scheme is not expected to give an optimally performing decoder <ref type="bibr" target="#b35">[36,</ref><ref type="bibr" target="#b39">40]</ref>; rather than using the statistics of error chains in an unbiased fashion, it makes the assumption that the most likely error chain is the shortest. As expected (see Sec. IV), for biased noise this gives suboptimal performance. Figure <ref type="figure">3</ref> shows an example of Q-network estimated and exact state values V (s) = max a Q(s, a) for an example syndrome, showing that the Q network gives a quantitatively accurate representation of Q values. The numerical accuracy in general deteriorates the larger the syndrome is, i.e., the further it is removed from the terminal state.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Efficient Q-network representation</head><p>To improve the representational capacity of the Q network, we use an efficient state-action space representation, which was suggested in Ref. <ref type="bibr" target="#b35">[36]</ref> for bit-flip operations and which we now extend to general X , Y , and Z operations. It is built on three basic concepts:</p><p>(i) By having the Q network only output action values for one particular qubit, the representational complexity can be reduced significantly. (ii) Due to the periodic boundary conditions of the toric code, only the relative positions of syndrome defects are important, i.e., arbitrary translations and fourfold rotations are allowed.</p><p>(iii) The converged decoder will never operate on a qubit which is not adjacent to any syndrome defect. Consequently, we have no need to calculate Q values for such actions.</p><p>The Q network takes input in the form of two channels of d × d matrices, corresponding to the location of vertex and plaquette defects, respectively. The output is the three Q values for X , Y , and Z operations on one particular qubit, in a fixed location r 0 with respect to an external reference frame, as indicated in Fig. <ref type="figure" target="#fig_1">4</ref>. To obtain the full set of action values for a syndrome, we thus successively translate and rotate the syndrome to locate each qubit at location r 0 . Each such matrix representation of the syndrome, with a particular qubit at r 0 , is called a "perspective," and the whole set of perspectives makes up an "observation," as exemplified in Fig. <ref type="figure">5</ref>. In the observation, we only include perspectives for qubits that are adjacent to a syndrome defect.</p><p>To obtain the full relevant Q function of a syndrome, the Q function of each individual perspective of an observation is calculated. In decoding mode, the agent chooses greedily the action with the highest Q value. After the chosen action has been performed, a new syndrome is produced and the process repeats until no defects remain. As discussed in the Introduction, and exemplified in Fig. <ref type="figure">6</ref>, the DRL decoding framework gives a compact structure for information storage and utilization: using a neural network to generalize information between syndromes and using step-by-step decoding to successively reduce syndromes to a smaller subset.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Training the Q network</head><p>The neural network is trained using the deep Q-learning algorithm utilizing prioritized experience replay <ref type="bibr" target="#b51">[52,</ref><ref type="bibr" target="#b56">57]</ref>. To increase stability, two architecturally equivalent neural networks are used, the regular Q network, with parameters θ , and</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Perspective Perspective</head><p>Perspective Perspective Observation Syndrome FIG. <ref type="figure">5</ref>. Expanded representation of a syndrome into different perspectives, based on rotations and translations, used for compact processing in the Q network (Fig. <ref type="figure" target="#fig_1">4</ref>). Only the syndrome, visible to the network, is shown, not the physical qubits. The two-layer structure corresponds to separate channels of input for vertex and plaquette defects. The set of all perspectives form an observation O = {P 1 , P 2 , . . . , P Nper }.</p><p>the target Q network, with parameters θ T . The target network is synchronized with the Q network on a set interval.</p><p>Experience replay saves every transition in a memory buffer, from which the agent randomly samples a minibatch of transitions used to update the Q network. Instead of sampling the minibatch uniformly, as is done with regular experience replay, prioritized experience replay prioritizes importance when sampling. This importance is measured with the absolute value of the temporal difference (TD) error</p><formula xml:id="formula_4">δ j = r j + γ max a [Q(s j , a; θ T )] -Q(s j , a j ; θ ),<label>(4)</label></formula><p>where the state (syndrome) s j follows from action a j on state (syndrome) s j , and where the expression Q(s, a; θ ) implies choosing the appropriate perspective for the Q network that corresponds to action a in syndrome s. Following Ref. <ref type="bibr" target="#b56">[57]</ref>, the probability of sampling a transition j from the memory buffer is given by P j = |δ j | α / k |δ k | α such that values with higher TD error are more likely to be sampled. Here, α controls the amount of prioritization used (α = 0 corresponding to uniform sampling) and k = 1, . . . , M, with M the size of the memory buffer. Using nonuniform sampling in this way, however, skews the learning away from the probability distribution used to generate experiences. To partially compensate for this, importance-sampling weights are introduced according to w j = (MP j ) -β , with the product of the weights and TD error, w j δ j , used as the loss during stochastic gradient descent training of the network. Here, β controls the extent of compensation of the prioritized sampling, with β = 1 corresponding to full compensation.</p><p>The training can be divided into two stages: the action stage and the learning stage. Pseudocode of the algorithm used for training is shown in Algorithm I. The training starts with the action stage. Given a syndrome s t , the agent suggests an action a t following an -greedy policy, such that with probability (1 -) the agent takes the action with the highest FIG. <ref type="figure">6</ref>. Schematic of the operation of the deep reinforcement learning (DRL) decoder for several syndromes that successively reduce to a smaller subset of syndromes through step-by-step decoding. Top left are two syndromes that after one step of decoding reduces to the same syndrome, and similarly to the right. Both these branches in turn reduce to the same syndrome after the next decoding step. In this way, the complexity of the decoding problem is reduced, compared to decoding each high-level syndrome independently.</p><p>Q value; otherwise, a random action is followed. The agent receives a reward r t and the syndrome s t = s t+1 , that follows from the action a t . The transition is stored as a tuple T = (P t , a t , r t , s t+1 , t+1 ), where t+1 is a Boolean containing the information whether s t+1 is a terminal state (there are no defects left) or not. j=1 from replay memory using prioritized sampling; 8 Calculate weights used for weighted importance sampling w j ; 9 If terminal state reached, set y j = r j ; otherwise, set y j = r j + γ max a Q(s j , a; θ T ); 10 Perform gradient descent step on w j |y j -Q(P j , a j ; θ )| with respect to the network parameter θ; 11 Every C steps synchronize the target network with the policy network, θ T = θ.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="12">end</head><p>After the action stage, the agent continues with the learning stage. For that we use stochastic gradient descent (SGD) and the tuples stored in the replay memory. A minibatch of N transitions, {T j = (P j , a j , r j , s j , j )} N j=1 , is sampled from the replay memory with replacement. The training target value for the policy Q network is given by y j = r j if j = 1, and y j = r j + γ max a Q(s j , a; θ t ) otherwise. FIG. <ref type="figure">7</ref>. Error-correction success rate P s for the DRL decoder on depolarizing noise, as a function of total error probability p, for system sizes d = 5, 7, 9 (blue circles, orange squares, and green triangles, respectively), and compared to the corresponding results using the MWPM algorithm (blue solid curve, orange dotted curve, and dashed green curve, respectively). The DRL-based algorithm outperforms the MWPM-based algorithm for all these system sizes and error rates.</p><p>The agents are initially trained with an error rate of 10% and further during the training with syndromes up to 30% error rate. Details of network architectures and hyperparameters are found in Appendix B.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. RESULTS</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Depolarizing noise</head><p>The main result of the paper is displayed in Fig. <ref type="figure">7</ref>, where the error-correction success rate for depolarizing noise, p x = p y = p z = p/3, is shown for decoders trained at three different code dimensions. This is compared to MWPM, which treats the plaquette and vertex defects as separate graph problems. See comment 1 for a discussion about the MWPM decoder for depolarizing noise. We thus find that the DRL decoder has a significantly higher error-correction success rate, which is achievable by learning to account for the correlations between plaquette and vertex defects.</p><p>From the crossing of the d = 5 and 7 error-correction success rates, we can identify a threshold of around 16.5% (for MWPM, the crossing is close to 15%), below which error correction can be guaranteed, were we able to increase d arbitrarily. The deduced threshold is significantly below the theoretical limit of 18.9% <ref type="bibr" target="#b22">[23,</ref><ref type="bibr" target="#b57">58]</ref>, but similar to that found for the Markov-chain Monte Carlo decoder based on shortest 1 The MWPM decoder assumes that X and Z errors are uncorrelated, with independent error rates p x = p z = 2p/3 and, correspondingly, p y = (2p/3) 2 . The MWPM success rate for that problem would be P S (p) = (P S,X (2p/3)) 2 , with P S,X (p) corresponding to pure bit-flip noise (Fig. <ref type="figure">8</ref>). This expression is a good approximation to the MWPM success rate for depolarizing noise which is exact in the low-p limit (see Appendix A). FIG. <ref type="figure">8</ref>. Error-correction success rate P s for the DRL decoder trained on depolarizing noise, when applied to pure bit-flip noise, as a function of error probability p. Dashed curves show the corresponding results using the MWPM algorithm.</p><p>average correction chain formulated in Ref. <ref type="bibr" target="#b23">[24]</ref>. As discussed in the Introduction, for a practical decoder the threshold may not be the most important measure. Nevertheless, we anticipate that the success rate and threshold can be enhanced by further developing the reward scheme to be based on success rate rather than minimum number of operations. (Work along these lines was recently presented by Colomer et al. <ref type="bibr" target="#b39">[40]</ref>.)</p><p>We also note that even though the d = 9 DRL decoder gives a significant improvement over MWPM, it has not fully converged to the optimal performance within the limitations of the algorithm, as indicated by the earlier crossing with d = 5 and 7. We do not anticipate that this is a fundamental limitation of the DRL-type decoder, but could be improved by a more efficient training scheme.</p><p>In Fig. <ref type="figure">8</ref>, we have employed the same DRL decoders, pretrained on depolarizing noise, to decode pure bit-flip noise. Here, we find a performance for d = 5 and 7 which is very close to MWPM, thus reproducing the results of our first-generation DRL decoder from Ref. <ref type="bibr" target="#b35">[36]</ref>. For d = 9, the decoder has slightly worse performance, confirming that this decoder has not yet converged to optimal algorithmic performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Asymptotic fail rates</head><p>In addition to the MWPM benchmark, we also benchmark the DRL decoders for small error rates p -→ 0, by deriving analytical expressions (see Appendix A) for the fail rate for depolarizing noise to lowest nonvanishing order in p. We can derive such fail rates for both the MWPM algorithm and the algorithm based on finding the shortest correction strings. The latter is similar to, but not exactly equivalent with, what we expect for the DRL decoder based on our reward scheme. These algorithms both have a fail rate that scales as P L ∼ p d 2 , but with different prefactors.</p><p>In Fig. <ref type="figure">9</ref>, we confirm that the DRL decoder indeed performs ideally for d = 5 and 7 for short error chains, following very closely the algorithm based on minimal X, Y, Z chains. FIG. <ref type="figure">9</ref>. Error-correction fail rate P L of the DRL decoder for depolarizing noise ranging from small to large error rates. (The p 0.05 data are the same as in Fig. <ref type="figure">7</ref>.) The dashed and dotted lines correspond to analytic expressions [Eqs. (A4) and (A8) in Appendix A], valid to lowest order in p, for a decoder that operates based on the minimal correction chain (MCC) or the MWPM algorithm. The MCC decoder is optimal for p → 0.</p><p>Because of the excessive time consumption to generate good statistics for d = 9, we have only compared the performance in the true asymptotic limit, i.e., the rate for only the shortest fallible error chains, as shown in Table <ref type="table" target="#tab_1">I</ref>, again confirming the suboptimal performance for d = 9. In this limit, data are generated by only considering the subgroup of error chains that are in a single row or column, in contrast to generating completely random error chains that will very rarely fail.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Biased noise</head><p>For the prospect of an operational decoder on a physical quantum computer, the noise is expected to be biased, such that phase-flip errors are relatively less or more likely <ref type="bibr" target="#b58">[59]</ref><ref type="bibr" target="#b59">[60]</ref><ref type="bibr" target="#b60">[61]</ref><ref type="bibr" target="#b61">[62]</ref><ref type="bibr" target="#b62">[63]</ref><ref type="bibr" target="#b63">[64]</ref>. To identify the exact error distribution is a challenging problem in itself (see, e.g., Ref. <ref type="bibr" target="#b64">[65]</ref>), and the degree of bias can fluctuate in time <ref type="bibr" target="#b61">[62]</ref><ref type="bibr" target="#b62">[63]</ref><ref type="bibr" target="#b63">[64]</ref>, so a decoder that can adequately decode biased noise without retraining might be an alternative. To quantify the performance of the DRL decoder for biased noise, we consider the probability of an error of any type p, probability of phase-flip error p z = p rel p, and consequently p x = p y = (1p rel )p/2. Thus, for p rel = 1 the syndromes contain only Z errors, which corresponds to uncorrelated noise, whereas p rel = 1 3 corresponds to depolarizing noise. In Fig. <ref type="figure">10</ref>, we show the success rate for the decoder on biased noise. We find that the highest success rate is attained for depolarizing noise, which also is what the decoder is FIG. <ref type="figure">10</ref>. Error-correction success rate for biased noise (d = 5)p z = p rel p, p x = p y = (1p rel )p/2, using a decoder trained on depolarizing noise (p rel = 1 3 ). For pure phase-flip noise (p rel = 1), the decoder is compared to MWPM. The line MWPM (p/2) 2 indicates expected performance for an MWPM decoder designed explicitly for p z = 0 noise. trained for. We can understand this as a consequence of the superlinear decline (for low p) in success rate with the number of defects, such that the majority species dominates the outcome. At p rel = 1  3 there is an equal mean number of vertex and plaquette defects, while away from this limit, the number of either one or the other grows. That the operation of the trained DRL decoder is suboptimal is clear from the limit p rel = 0, corresponding to only X and Y errors, which should, in principle, be a simpler decoding problem, similar to uncorrelated noise with independent error rates p/2. 2 Nevertheless, the decoder gives fair performance for the full range of biased noise, which may be an advantage over having a decoder which is specialized to a particular, potentially unknown, bias.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. CONCLUSION AND OUTLOOK</head><p>We have shown how deep reinforcement learning can be used for quantum error correction of depolarizing noise (p x = p y = p z ) in the toric code, with significantly improved performance compared to the standard MWPM algorithm. The advantage is gained by learning to account for the correlations between the vertex and plaquette defects. The super-MWPM performance for depolarizing noise was achieved for system sizes up to d = 9, corresponding to 162 qubits. However, by 2 Even though the limit p z = 0 corresponds to a surplus of plaquette defects versus vertex defects, the decoding problem is, in principle, equivalent to the problem of noncoinciding X and Z errors with error rates p x = p z = p/2: the decoder could first decode the vertex defects using Y operators, and subsequently decode the remaining plaquette defects using X . The corresponding uncorrelated problem [with nonzero coincidence probability (p/2) 2 ] would have MWPM success rate P S = (P S,X (p/2)) 2 , which we expect is still a good approximation (for small p) and also close to optimal for this weakly correlated noise.</p><p>applying the trained decoder to decode pure bit-flip noise, it was found that ideal performance was only achieved for d &lt; 9. For biased noise (p z = p x = p y ), the decoder gives fair, but suboptimal, success rates.</p><p>A crucial question that needs to be explored in subsequent work is how to scale up the DRL decoder to larger codes, and how this will effect the decoder speed. One limitation that we encounter is an increasingly slow training convergence with the increasing network size used for larger d. In contrast to supervised learning using preannotated data, allowing for very high throughput training of the deep neural network, a challenge with DRL is that the training data are generated using the network itself which limits the pace of data generation. To improve this, we are currently implementing distributed reinforcement learning <ref type="bibr" target="#b65">[66]</ref>, where a large set of agents independently explore the environment to fill a common memory buffer, allowing for better hardware utilization and decreased training times.</p><p>The type and depth of network best suited for the task also needs to be explored in a systematic way. For d = 9, we are currently using a deep residual neural network, for which skip connections are known to improve convergence <ref type="bibr" target="#b66">[67]</ref>, and which is the workhorse for DRL <ref type="bibr" target="#b67">[68]</ref>. Nevertheless, going to significantly larger networks also increases the hardware requirements, and even if it is possible to train a very large network, the time required for forward propagation through the network will limit the decoding speed. As a primer for a more systematic study of the DRL decoder execution time, we show in Table <ref type="table" target="#tab_6">V</ref> in Appendix B the time per step of error correction. As expected, this time grows with code distance, reflecting the time consumption for the policy generation using an increasingly deep neural network.</p><p>A promising path to improving the performance of the decoder is to go beyond the conceptually simple but inefficient Q learning. The action-value function contains more information than is actually needed for the decoding task; instead, a policy (best action) for each syndrome is sufficient. (Although, the advantage of a Q network for our implementation is that the Q values allow for independent evaluation for each qubit action.) We are currently working on implementing the ALPHAZERO algorithm that combines a trained policy (and value) network with an on-the-fly Monte Carlo tree search <ref type="bibr" target="#b67">[68,</ref><ref type="bibr" target="#b68">69]</ref>, and which has recently been applied to quantum control problems <ref type="bibr" target="#b69">[70]</ref>. A drawback of this approach is the additional computational demand during operation of the decoder. A simpler approach would be to use a policy-based algorithm, such as the RE- INFORCE algorithm <ref type="bibr" target="#b70">[71]</ref>. This algorithm directly optimizes a policy without calculating action values or performing any kind of tree search. A natural extension is the class of actorcritic methods <ref type="bibr" target="#b71">[72]</ref>. These combine concepts from valueand policy-based methods and are more robust and stable during the training. Moreover, it could be worth investigating the possibility of transferring the domain-specific knowledge (transfer learning) obtained from small grid instances to comparably larger grid sizes <ref type="bibr" target="#b72">[73]</ref>.</p><p>Another important limiting component to the DRL decoder performance is the reward scheme. In this work, we use the heuristic to minimize the length of correction chains, which is only optimal for p → 0 <ref type="bibr" target="#b23">[24,</ref><ref type="bibr" target="#b41">42]</ref>. To improve performance for larger error rates and for biased noise, with greater or smaller probability of phase-flip errors, we are currently exploring a reward scheme based on a Monte Carlo generated distribution of error chains for each syndrome <ref type="bibr" target="#b22">[23,</ref><ref type="bibr" target="#b23">24]</ref>.</p><p>In addition to improving the prowess of the DRL decoder for the problem discussed in this paper, further developments should include addressing syndrome measurement errors and nontoric topological codes <ref type="bibr" target="#b34">[35]</ref>. Even though the DRL-type decoder presented in this paper and in Refs. <ref type="bibr" target="#b35">[36,</ref><ref type="bibr" target="#b39">40]</ref> is still limited in scope, we have shown that it can flexibly address various types of noise, and in some regimes give super-MWPM performance. In addition, the information gathered from exploration is stored and used in an efficient and generalizable way using a deep neural network and step-by-step error correction, limiting both the complexity of concurrent calculations and the need for massive information storage, which may be instrumental for future operational decoders.  12. (a)-(c) For each of these syndromes, the shortest correction chains are of the same length (four steps in all cases). This is also true for other constellations of errors. The length of the error correction chain does not depend on the relative position of the syndrome defects in a row or a column.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ACKNOWLEDGMENTS</head><p>Computations were performed on the Vera cluster at Chalmers Centre for Computational Science and Engineering (C3SE). We acknowledge the financial support from the Knut and Alice Wallenberg Foundation through the Wallenberg Center for Quantum Technology (WACQT).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>APPENDIX A: SMALL ERROR RATE</head><p>It is possible to derive a theoretical expression for the logical fail rate, that becomes exact in the limit of low error probabilities, by considering only the shortest possible error strings that may lead to an error given the decoding scheme. Here, we derive such expressions for depolarizing noise p x = p y = p z = p 3 for an algorithm which is based on correction using the minimum number of correction steps, and for an algorithm which is based on using MWPM separately on the graphs given by plaquette and vertex errors. The former algorithm, which we refer to as "minimal correction chain" (MCC), is similar to, but not exactly equivalent to, our trained decoder since our reward scheme, in addition to penalizing steps, also gives reward for annihilating syndrome defects. The latter will give a slight priority to using Y operators (which can annihilate two pairs of defects) at an early stage of the decoding sequence. Nevertheless, we expect that this algorithm serves as a good benchmark for how well our DRL implementation of the algorithm works. In particular, we would like to see that our decoder outperforms the MWPM decoder also for low error rates.</p><p>The shortest error strings that can give an error with either of the algorithms are d 2 long, aligned along one row or column <ref type="bibr" target="#b23">[24,</ref><ref type="bibr" target="#b35">36,</ref><ref type="bibr" target="#b41">42]</ref>. This means that the fail rate for both types of decoders will scale as P L ∼ (p/3)</p><formula xml:id="formula_5">d 2</formula><p>for small p, but with different prefactors. We will only consider odd d; the scaling is true for even d, but prefactors are different. Figure <ref type="figure" target="#fig_2">11</ref> gives a demonstrative example of an error string, for d = 7, where the outcome differs between the two algorithms. Here, MWPM will fail, solving the vertex defects with one Z and the plaquette defects with two X to generate a logical bit flip consisting of a vertical X loop. In contrast, the MCC algorithm will only fail 50% of the time (we assume draws are settled by a coin flip), either using the MWPM-prescribed sequence or using the actual error string (Y X X X ) as the correction string. Interestingly, our specific decoder implementation should succeed 100% of the time for this particular error string since it will prefer to use the Y , but it is not clear that this advantage is general.</p><p>To derive the general expressions for the asymptotic fail rates, we go through several examples of error chains. First, one has to keep in mind that we are interested in the minimum amount of steps to annihilate all excitations. The order in which the errors are placed in the chain does not matter (see Fig. <ref type="figure">12</ref>). Also, the errors do not have to be connected; it is a sufficient criterion that they all are in one column or row. Now, we can investigate the different combinations that can make the decoder fail. Length d 2 error chains containing either only X or Z errors will always generate a nontrivial loop (see Fig. <ref type="figure" target="#fig_4">13</ref>). Moreover, combinations of X and Y errors can lead to a failure. Figures <ref type="figure" target="#fig_2">11</ref> and<ref type="figure" target="#fig_5">14</ref> show that we have to consider syndromes with exactly one Y error and the rest uniformly X or Z errors. For two or more Y errors, the decoder will always succeed with the error correction. Finally, we have to find out how X and Z errors in combination behave. Figures <ref type="figure">15</ref> and<ref type="figure" target="#fig_8">16</ref> show that for exactly one Z error and the rest being X errors, the decoder succeeds with a 50% chance. Here again, the reward scheme of the actual DRL decoder would disfavor using a Y if the Z is isolated, giving a slight discrepancy between this and the MCC algorithm.</p><p>We can convince ourselves that the cases presented here generalize to larger odd d, allowing for the derivation of an analytic expression for the logical fail rate. For the MCC algorithm, which we identify as close to the performance of our DRL decoder, the fail rate is given by P L MCC = P({X X . . .  The minimum amount of steps, three, to merge the excitations is by introducing a nontrivial loop around the torus. (c) Revoking the errors introduced would take four steps. Any decoder will fail on such error chains with 100% certainty. Note that X chains of errors on the columns with vertical bonds, or rows with horizontal bonds, will not give quantum error correction failure (a).</p><p>where {. . .} indicates any configuration of errors in one row or column.</p><p>To lowest order in p [i.e., ignoring factors that are powers of (1p)], the probability of d 2 errors of the same type is given by</p><formula xml:id="formula_6">P({X X . . . X }) = P({ZZ . . . Z}) = 2d d d 2 p 3 d 2 , (A2)</formula><p>where the 2d corresponds to the number of rows and columns (with the appropriate orientation of bonds; see Fig. <ref type="figure" target="#fig_4">13</ref>).</p><p>The probability of failure from the mixed-type chains is given by</p><formula xml:id="formula_7">P({Y X . . . X }) = P({Y Z . . . Z}) = P({ZX . . . X }) = P({X Z . . . Z}) = 1 2 2d d 1 p 3 d -1 d 2 -1 p 3 d 2 -1 = d d 2 d d 2 p 3 d 2 , (<label>A3</label></formula><formula xml:id="formula_8">)</formula><p>where the 1 2 comes from 50% failure for this type of configuration. Inserting Eqs. (A2) and (A3) in Eq. (A1) and simplifying, we obtain the following probability of failure in the case of very low p:</p><formula xml:id="formula_9">P L MCC = 4d 1 + d 2 d d 2 p 3 d 2 .</formula><p>(A4)</p><p>For reference, we mention the corresponding expression for d even. Here, pure chains of all X or all Z of length d/2 will fail with 50% chance, whereas for all mixed chains error  The initial syndrome with one Z and three X errors. There are two possible minimal error-correction chains, one leading to (b) a failed and one leading to (c) a successful error correction. We assign 50% chance to each outcome. Interestingly, the MWPM algorithm will always succeed on these kinds of syndromes as Y would count as two operators. correction will succeed. This gives a fail rate</p><formula xml:id="formula_10">P L MCC ,even = 2d d d/2 p 3 d/2 . (<label>A5</label></formula><formula xml:id="formula_11">)</formula><p>This expression can be compared to Eq. (3) of Fowler <ref type="bibr" target="#b41">[42]</ref> for the surface code, where the factor-of-4 difference comes from us counting both X and Z logical failure and from the fact that for the toric code these can be both "horizontal" and "vertical."</p><p>To derive the corresponding asymptotic fail rate for the MWPM algorithm, we use the fact that it only uses X and Z for correction. This decoder (similarly to any reasonable decoder) will always fail for chains of length d 2 in a row or column containing all X or all Z. It will also fail if one or more of the X or Z in such a chain are replaced by Y . This is clear from, e.g., correcting a Y with a Z in a chain {Y X X . . .}, which will reduce the chain to a pure {X X X . . .} of the type that always fails: where, compared to Eq. (A3), there is no 1 2 , as these chains always fail using MWPM, and where the chain consisting purely of Y is multiplied by a factor of 2 because it will fail on  </p><formula xml:id="formula_12">P L MWPM = P({X X . . . X }) + P({ZZ . . . Z}) + P({Y X . . . X }) + P({Y Z . . . Z}) + • • • + P({YY . . . Y }),<label>(A6)</label></formula><formula xml:id="formula_13">P L MWPM = 4d 2 d 2 d d 2 p 3 d 2 . (<label>A8</label></formula><formula xml:id="formula_14">)</formula><p>As expected, we find a higher fail rate for the decoder that uses MWPM compared to the decoder using the minimum number of correction steps, with</p><formula xml:id="formula_15">P L /P L MWPM = (1 + d 2 )/2 d 2 &lt; 1 for d 3.</formula><p>We also note that the asymptotic fail rate for pure bit-flip (or phase-flip) noise with error rate p is given by Eq. (A2) with p/3 → p, P L,X (p) = 2d d d 2 p d 2 . Thus, under the assumption of uncorrelated X and Z errors with probability 2p/3 (corresponding to the rates for depolarizing noise) we find exactly that the total fail rate in Eq. (A8) is given by adding up two independent error channels: P L MWPM = 2P L,X (2p/3).</p><p>Another useful representation is to calculate the ratio of error chains with d 2 errors that lead to a failure compared to     Table <ref type="table" target="#tab_6">V</ref> shows execution time t step per correction step for two different error rates of depolarizing noise. This is calculated by taking the average time to correct 10 000 randomly generated syndromes divided by the average number of errors 2pd 2 . As expected, time per step depends only weakly on p, but much more strongly on d. The increase with code length is mainly due to the corresponding growing complexity of the networks, which increases the computational time required for the policy generating forward propagation through the network. To estimate how t step scales with d is left for future work as it would require a careful study of the minimal network size and structure, more (even integer) and larger d, as well as optimizing the full computational structure.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>APPENDIX C: SELECTED EPISODES</head><p>In this Appendix, we present two selected episodes of error correction using the fully trained decoder for d = 5. Figure <ref type="figure">17</ref> shows an example where the error correction fails and Fig. <ref type="figure" target="#fig_10">18</ref> shows an example of successful error correction.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>FlattenedFIG. 4 .</head><label>4</label><figDesc>FIG.4. Input-output structure of the deep Q network. The input is a perspective P, constructed from the syndrome s, as shown in Fig.5. The hidden layers consist primarily of convolutional layers (see Appendix B for details). The output is the three action Q values, Q(P, a, θ ), for a ∈ {X, Y, Z} operators on the marked (bold) qubit, with θ representing the current state of the network.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>FIG. 11</head><label>11</label><figDesc>FIG. 11. (a) The initial syndrome corresponding to one Y error and three X errors. (b) MWPM will always introduce a nontrivial loop and therefore fail. The "minimum correction chain" decoder has a 50% probability each for failure and success [correction chains (b) or (c), respectively].</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head></head><label></label><figDesc>FIG.12. (a)-(c) For each of these syndromes, the shortest correction chains are of the same length (four steps in all cases). This is also true for other constellations of errors. The length of the error correction chain does not depend on the relative position of the syndrome defects in a row or a column.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>FIG. 13 .</head><label>13</label><figDesc>FIG. 13. (a)The initial syndrome with four X errors. (b) The minimum amount of steps, three, to merge the excitations is by introducing a nontrivial loop around the torus. (c) Revoking the errors introduced would take four steps. Any decoder will fail on such error chains with 100% certainty. Note that X chains of errors on the columns with vertical bonds, or rows with horizontal bonds, will not give quantum error correction failure (a).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>FIG. 14</head><label>14</label><figDesc>FIG. 14. (a)The initial syndrome with two Y operators in the error chain. (b) Five steps are needed if one uses Z operators. (c) There is only one shortest correction chain with four steps. We can also conclude that with at least two or more Y errors in the chain, the MCC algorithm (and DRL decoder) always succeeds with the error correction. In contrast, MWPM will fail, using the middle chain (b).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head></head><label></label><figDesc>FIG. 15. (a)The initial syndrome with one Z and three X errors. There are two possible minimal error-correction chains, one leading to (b) a failed and one leading to (c) a successful error correction. We assign 50% chance to each outcome. Interestingly, the MWPM algorithm will always succeed on these kinds of syndromes as Y would count as two operators.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head></head><label></label><figDesc>where the ellipsis indicates chains with increasing numbers of Y . The general expression for N y ∈ {0, 1, . . . , d 2 } Y errors in a chain with d 2 -N y X (Z) errors reads as P({YY...X X }) = P({YY...ZZ}) = 2(1 + δ N y ,</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><head>FIG. 16 .</head><label>16</label><figDesc>FIG.<ref type="bibr" target="#b15">16</ref>. The shortest error-correction chain for the initial syndrome is (a) four steps by simply (c) reversing the changes. (b) Using Y operators would take five steps and will therefore not be chosen by the decoder. The agent always succeeds on these syndromes.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><head></head><label></label><figDesc>FIG. 17. A selected correction sequence from the fully trained decoder. The sequence goes from left to right and top to bottom. The circles indicate on which qubit an action was performed. In this case, the error correction fails, with the last state corresponding to a logical Y operator, i.e., both bit and and phase flip.</figDesc><graphic coords="14,50.58,263.20,243.60,427.56" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><head>FIG. 18 .</head><label>18</label><figDesc>FIG.18. A selected correction chain from the fully trained decoder. The sequence goes from left to right and top to bottom. The circles indicate on which qubit an action was performed. Here, the error correction is successful, with only trivial loops remaining.</figDesc><graphic coords="14,313.59,70.67,243.60,424.80" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head>Algorithm 1. Training the DRL agent decoder. 1 while defects remain do 2</head><label></label><figDesc>Get observation O t corresponding to syndrome s t ; 3 With probability select random action a t and corresponding perspective P t ; 4 Otherwise select:{P t , a t } = argmax P,a (Q(P, a; θ ) P∈Ot ; 5 Execute action a t and observe reward r t and syndrome s t+1 ; 6 Store transition (P t , a t , r t , s t+1 , t+1 ) in replay memory; 7 Sample random minibatch of transitions {T j } N</figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1"><head>TABLE I .</head><label>I</label><figDesc>Comparison of asymptotic logical fail rates P L .</figDesc><table><row><cell></cell><cell>Analytic</cell><cell>DRL decoder</cell></row><row><cell>d = 5</cell><cell>1 .51 × 10 -3</cell><cell>1.45 × 10 -3</cell></row><row><cell>d = 7</cell><cell>2 .12 × 10 -5</cell><cell>2.07 × 10 -5</cell></row><row><cell>d = 9</cell><cell>2 .50 × 10 -7</cell><cell>4.30 × 10 -7</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3"><head>TABLE II .</head><label>II</label><figDesc>List of hyperparameters and their values.</figDesc><table><row><cell>Hyperparameter</cell><cell>Value</cell><cell>Description</cell></row><row><cell>Minibatch size</cell><cell>32</cell><cell>Number of training samples used for stochastic gradient descent update</cell></row><row><cell>Training steps</cell><cell>10 000</cell><cell>Total amount of training steps per epoch</cell></row><row><cell>Replay memory size, N</cell><cell>10 000</cell><cell>Total amount of stored memory samples</cell></row><row><cell>Priority exponent, α</cell><cell>0.6</cell><cell>Prioritized experience replay parameter</cell></row><row><cell>Importance weight, β</cell><cell>0.4</cell><cell>Prioritized experience replay parameter</cell></row><row><cell>Target network update frequency, C</cell><cell>1000</cell><cell>The frequency with which the target network is updated with the policy network</cell></row><row><cell>Discount factor, γ</cell><cell>0.95</cell><cell>Discount factor γ used in the Q-learning update</cell></row><row><cell>Learning rate</cell><cell>0.00025</cell><cell>The learning rate used by Adam</cell></row><row><cell>Initial exploration</cell><cell>1</cell><cell>Initial value of in -greedy exploration</cell></row><row><cell>Final exploration</cell><cell>0.1</cell><cell>Final value of in -greedy exploration</cell></row><row><cell></cell><cell></cell><cell>A random policy generates training samples to populate the replay memory before the</cell></row><row><cell></cell><cell></cell><cell>learning starts</cell></row><row><cell>Optimizer</cell><cell>Adam</cell><cell>Adam is an optimization algorithm used to update network weights</cell></row><row><cell>Max steps per episode</cell><cell>75</cell><cell>Number of steps before every episode is terminated</cell></row><row><cell cols="3">both types (X or Z) of rows and columns. Thus, the complete</cell></row><row><cell cols="3">expression for the MWPM asymptotic fail rate reads as (after</cell></row><row><cell>summation over N y )</cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4"><head>TABLE III .</head><label>III</label><figDesc>Network architecture for d = 5. Every convolutional layer has a kernel size of 3 and stride 1. Periodic padding is applied to the first convolutional layer. The other convolutional layers work with zero padding.</figDesc><table><row><cell></cell><cell></cell><cell></cell><cell cols="5">the total number of chains with d 2 errors:</cell></row><row><cell></cell><cell></cell><cell></cell><cell>f RL =</cell><cell cols="2">4d 1 + d 2 2d 2</cell><cell>d</cell><cell>3</cell><cell>d d 2</cell><cell>.</cell><cell>(A9)</cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell>d 2</cell><cell></cell><cell>2</cell></row><row><cell></cell><cell></cell><cell></cell><cell cols="2">Accordingly, for the MWPM,</cell><cell></cell><cell></cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="2">4d 2</cell><cell>d 2</cell><cell>d d</cell></row><row><cell></cell><cell></cell><cell></cell><cell cols="2">f MWPM =</cell><cell>2d 2 2 d</cell><cell></cell><cell>2 d</cell><cell>2 3</cell><cell>.</cell><cell>(A10)</cell></row><row><cell>No.</cell><cell>Type</cell><cell>Size</cell><cell>No. parameters</cell><cell></cell><cell></cell><cell></cell></row><row><cell>1</cell><cell>Conv2d</cell><cell>128</cell><cell>2432</cell><cell></cell><cell></cell><cell></cell></row><row><cell>2</cell><cell>Conv2d</cell><cell>128</cell><cell>147 584</cell><cell></cell><cell></cell><cell></cell></row><row><cell>3</cell><cell>Conv2d</cell><cell>120</cell><cell>138 360</cell><cell></cell><cell></cell><cell></cell></row><row><cell>4</cell><cell>Conv2d</cell><cell>111</cell><cell>119 991</cell><cell></cell><cell></cell><cell></cell></row><row><cell>5</cell><cell>Conv2d</cell><cell>104</cell><cell>104 000</cell><cell></cell><cell></cell><cell></cell></row><row><cell>6</cell><cell>Conv2d</cell><cell>103</cell><cell>96 511</cell><cell></cell><cell></cell><cell></cell></row><row><cell>7</cell><cell>Conv2d</cell><cell>90</cell><cell>83 520</cell><cell></cell><cell></cell><cell></cell></row><row><cell>8</cell><cell>Conv2d</cell><cell>80</cell><cell>64 880</cell><cell></cell><cell></cell><cell></cell></row><row><cell>9</cell><cell>Conv2d</cell><cell>73</cell><cell>52 633</cell><cell></cell><cell></cell><cell></cell></row><row><cell>10</cell><cell>Conv2d</cell><cell>71</cell><cell>46 718</cell><cell></cell><cell></cell><cell></cell></row><row><cell>11</cell><cell>Conv2d</cell><cell>64</cell><cell>40 960</cell><cell></cell><cell></cell><cell></cell></row><row><cell>12</cell><cell>Linear</cell><cell>3</cell><cell>1731</cell><cell></cell><cell></cell><cell></cell></row><row><cell></cell><cell></cell><cell></cell><cell>899 320</cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5"><head>TABLE IV .</head><label>IV</label><figDesc>Network architecture for d = 7. Every convolutional layer has a kernel size of 3 and stride 1. Periodic padding is applied to the first convolutional layer. The other convolutional layers work with zero padding.</figDesc><table><row><cell>No.</cell><cell>Type</cell><cell>Size</cell><cell>No. parameters</cell></row><row><cell>1</cell><cell>Conv2d</cell><cell>256</cell><cell>4864</cell></row><row><cell>2</cell><cell>Conv2d</cell><cell>256</cell><cell>590 080</cell></row><row><cell>3</cell><cell>Conv2d</cell><cell>251</cell><cell>578 555</cell></row><row><cell>4</cell><cell>Conv2d</cell><cell>250</cell><cell>565 000</cell></row><row><cell>5</cell><cell>Conv2d</cell><cell>240</cell><cell>540 240</cell></row><row><cell>6</cell><cell>Conv2d</cell><cell>240</cell><cell>518 640</cell></row><row><cell>7</cell><cell>Conv2d</cell><cell>235</cell><cell>507 835</cell></row><row><cell>8</cell><cell>Conv2d</cell><cell>233</cell><cell>493 028</cell></row><row><cell>9</cell><cell>Conv2d</cell><cell>233</cell><cell>488 834</cell></row><row><cell>10</cell><cell>Conv2d</cell><cell>229</cell><cell>480 442</cell></row><row><cell>11</cell><cell>Conv2d</cell><cell>225</cell><cell>463 950</cell></row><row><cell>12</cell><cell>Conv2d</cell><cell>223</cell><cell>451 798</cell></row><row><cell>13</cell><cell>Conv2d</cell><cell>220</cell><cell>441 760</cell></row><row><cell>14</cell><cell>Conv2d</cell><cell>220</cell><cell>435 820</cell></row><row><cell>15</cell><cell>Conv2d</cell><cell>220</cell><cell>435 820</cell></row><row><cell>16</cell><cell>Conv2d</cell><cell>215</cell><cell>425 915</cell></row><row><cell>17</cell><cell>Conv2d</cell><cell>214</cell><cell>414 304</cell></row><row><cell>18</cell><cell>Conv2d</cell><cell>205</cell><cell>395 035</cell></row><row><cell>19</cell><cell>Conv2d</cell><cell>204</cell><cell>376 584</cell></row><row><cell>20</cell><cell>Conv2d</cell><cell>200</cell><cell>367 400</cell></row><row><cell>21</cell><cell>Linear</cell><cell>3</cell><cell>15 003</cell></row><row><cell></cell><cell></cell><cell></cell><cell>8 990 907</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6"><head>TABLE V .</head><label>V</label><figDesc></figDesc><table /></figure>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Nielsen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">L</forename><surname>Chuang</surname></persName>
+		</author>
+		<title level="m">Quantum Computation and Quantum Information</title>
+		<meeting><address><addrLine>Cambridge</addrLine></address></meeting>
+		<imprint>
+			<publisher>Cambridge University Press</publisher>
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Fault-tolerant quantum computation by anyons</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">Y</forename><surname>Kitaev</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/S0003-4916(02)00018-0</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ann. Phys. (NY)</title>
+		<imprint>
+			<biblScope unit="volume">303</biblScope>
+			<biblScope unit="page">2</biblScope>
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Topological quantum memory</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Dennis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kitaev</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Landahl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Preskill</surname></persName>
+		</author>
+		<idno type="DOI">10.1063/1.1499754</idno>
+	</analytic>
+	<monogr>
+		<title level="j">J. Math. Phys</title>
+		<imprint>
+			<biblScope unit="volume">43</biblScope>
+			<biblScope unit="page">4452</biblScope>
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Surface codes: Towards practical large-scale quantum computation</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G</forename><surname>Fowler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mariantoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Martinis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">N</forename><surname>Cleland</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.86.032324</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">86</biblScope>
+			<biblScope unit="page">32324</biblScope>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Quantum error correction for quantum memories</title>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">M</forename></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.87.307</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Rev. Mod. Phys</title>
+		<imprint>
+			<biblScope unit="volume">87</biblScope>
+			<biblScope unit="page">307</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Realization of three-qubit quantum error correction with superconducting circuits</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">D</forename><surname>Reed</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Dicarlo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">E</forename><surname>Nigg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Frunzio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">M</forename><surname>Girvin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Schoelkopf</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature10786</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">482</biblScope>
+			<biblScope unit="page">382</biblScope>
+			<date type="published" when="2012">2012</date>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Autonomously stabilized entanglement between two superconducting quantum bits</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Shankar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hatridge</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Leghtas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">M</forename><surname>Sliwa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Narla</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">U</forename><surname>Vool</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">M</forename><surname>Girvin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Frunzio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mirrahimi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">H</forename><surname>Devoret</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature12802</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">504</biblScope>
+			<biblScope unit="page">419</biblScope>
+			<date type="published" when="2013">2013</date>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Detecting bit-flip errors in a logical qubit using stabilizer measurements</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Ristè</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Poletto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M.-Z</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Bruno</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Vesterinen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O.-P</forename><surname>Saira</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Dicarlo</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/ncomms7983</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nat. Commun</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page">6983</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">State preservation by repetitive error detection in a superconducting quantum circuit</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Kelly</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Barends</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G</forename><surname>Fowler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Megrant</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Jeffrey</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">C</forename><surname>White</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Sank</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">Y</forename><surname>Mutus</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Campbell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Chiaro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Dunsworth</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I.-C</forename><surname>Hoi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Neill</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">J J</forename><surname>O'malley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Quintana</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Roushan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Vainsencher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Wenner</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature14270</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">519</biblScope>
+			<biblScope unit="page">66</biblScope>
+			<date type="published" when="2015">2015</date>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Demonstration of a quantum error detection code using a square lattice of four superconducting qubits</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">D</forename><surname>Córcoles</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Magesan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">J</forename><surname>Srinivasan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">W</forename><surname>Cross</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Steffen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Gambetta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Chow</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/ncomms7979</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nat. Commun</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page">6979</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Extending the lifetime of a quantum bit with error correction in superconducting circuits</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Ofek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Petrenko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Heeres</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Reinhold</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Leghtas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Vlastakis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Frunzio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">M</forename><surname>Girvin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mirrahimi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">H</forename><surname>Devoret</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Schoelkopf</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature18949</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">536</biblScope>
+			<biblScope unit="page">441</biblScope>
+			<date type="published" when="2016">2016</date>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Experimental Demonstration of Fault-Tolerant State Preparation with Superconducting Qubits</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Takita</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">W</forename><surname>Cross</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">D</forename><surname>Córcoles</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Chow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Gambetta</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.119.180501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">119</biblScope>
+			<biblScope unit="page">180501</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Quantum Bits with Josephson Junctions</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">F</forename><surname>Kockum</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Nori</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Fundamentals and Frontiers of the Josephson Effect</title>
+		<editor>
+			<persName><forename type="first">F</forename><surname>Tafuri</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Berlin</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="703" to="741" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Yuan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Zha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Liang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Rong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">C</forename><surname>Benjamin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-Z</forename><surname>Peng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y.-A</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-W</forename><surname>Pan</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1907.04507</idno>
+		<title level="m">Experimental verification of five-qubit quantum error correction with superconducting qubits</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<monogr>
+		<author>
+			<persName><forename type="first">C</forename><surname>Kraglund Andersen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Remm</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Lazar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Krinner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Lacroix</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">J</forename><surname>Norris</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gabureac</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Eichler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Wallraff</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1912.09410</idno>
+		<title level="m">Repeated quantum error detection in a surface code</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<author>
+			<persName><forename type="first">J</forename><surname>Chiaverini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Leibfried</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Schaetz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">D</forename><surname>Barrett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">B</forename><surname>Blakestad</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Britton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">M</forename><surname>Itano</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Jost</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Knill</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Langer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Ozeri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">J</forename><surname>Wineland</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature03074</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Realization of quantum error correction</title>
+		<meeting><address><addrLine>London</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2004">2004</date>
+			<biblScope unit="volume">432</biblScope>
+			<biblScope unit="page">602</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Experimental repetitive quantum error correction</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Schindler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">T</forename><surname>Barreiro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Monz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Nebendahl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Nigg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Chwalla</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hennrich</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Blatt</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/science.1203329</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">332</biblScope>
+			<biblScope unit="page">1059</biblScope>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Measurement-Based Quantum Computation with Trapped Ions</title>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">P</forename><surname>Lanyon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Jurcevic</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Zwerger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Hempel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">A</forename><surname>Martinez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Dür</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">J</forename><surname>Briegel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Blatt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">F</forename><surname>Roos</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.111.210501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">111</biblScope>
+			<biblScope unit="page">210501</biblScope>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<author>
+			<persName><forename type="first">D</forename><surname>Nigg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Muller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">A</forename><surname>Martinez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Schindler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hennrich</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Monz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Martin-Delgado</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Blatt</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/science.1253742</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Quantum computations on a topologically encoded qubit</title>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="volume">345</biblScope>
+			<biblScope unit="page">302</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Fault-tolerant quantum error detection</title>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">M</forename><surname>Linke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gutierrez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">A</forename><surname>Landsman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Figgatt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Debnath</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">R</forename><surname>Brown</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Monroe</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/sciadv.1701074</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Sci. Adv</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">1701074</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Experimental demonstration of topological error correction</title>
+		<author>
+			<persName><forename type="first">X.-C</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T.-X</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H.-Z</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W.-B</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G</forename><surname>Fowler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Raussendorf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z.-B</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N.-L</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-Y</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y.-J</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y.-A</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-W</forename><surname>Pan</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature10770</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">482</biblScope>
+			<biblScope unit="page">489</biblScope>
+			<date type="published" when="2012">2012</date>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Experimental demonstration of a graph state quantum error-correction code</title>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">A</forename><surname>Bell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">A</forename><surname>Herrera-Martí</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">S</forename><surname>Tame</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Markham</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">J</forename><surname>Wadsworth</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">G</forename><surname>Rarity</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/ncomms4658</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nat. Commun</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">3658</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">High Threshold error Correction for the Surface Code</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Wootton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Loss</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.109.160503</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">109</biblScope>
+			<biblScope unit="page">160503</biblScope>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Efficient markov chain monte carlo algorithm for the surface code</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Hutter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Wootton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Loss</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.89.022326</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">89</biblScope>
+			<biblScope unit="page">22326</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<monogr>
+		<title level="m" type="main">Cellular-automaton decoders for topological quantum memories, npj Quantum Inf</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Herold</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">T</forename><surname>Campbell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Eisert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Kastoryano</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/npjqi.2015.10</idno>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page">15010</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Cellular-Automaton Decoders with Provable Thresholds for Topological Codes</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kubica</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Preskill</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.123.020501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">123</biblScope>
+			<biblScope unit="page">20501</biblScope>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Fast Decoders for Topological Quantum Codes</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Duclos-Cianci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Poulin</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.104.050504</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">104</biblScope>
+			<biblScope unit="page">50504</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Neural Decoder for Topological Codes</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Torlai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">G</forename><surname>Melko</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.119.030501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">119</biblScope>
+			<biblScope unit="page">30501</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Deep neural network probabilistic decoder for stabilizer codes</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Krastanov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Jiang</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41598-017-11266-1</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Sci. Rep</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page">11003</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Decoding small surface codes with feedforward neural networks</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Varsamopoulos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Criger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Bertels</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/2058-9565/aa955a</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum Sci. Technol</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">15004</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Machine-learning-assisted correction of correlated qubit errors in a topological code</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Baireuther</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">E</forename><surname>O'brien</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Tarasinski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">W</forename><surname>Beenakker</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2018-01-29-48</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page">48</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<monogr>
+		<title level="m" type="main">Scalable neural network decoders for higher dimensional quantum codes</title>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">P</forename><surname>Breuckmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Ni</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2018-05-24-68</idno>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page">68</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Deep neural decoders for near term fault-tolerant experiments</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Chamberland</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Ronagh</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/2058-9565/aad1f7</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum Sci. Technol</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">44002</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<monogr>
+		<author>
+			<persName><forename type="first">X</forename><surname>Ni</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1809.06640</idno>
+		<title level="m">Neural network decoders for large-distance 2d toric codes</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<monogr>
+		<author>
+			<persName><forename type="first">R</forename><surname>Sweke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">S</forename><surname>Kesselring</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">P</forename><surname>Van Nieuwenburg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Eisert</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1810.07207</idno>
+		<title level="m">Reinforcement learning decoders for fault-tolerant quantum computation</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<monogr>
+		<title level="m" type="main">Quantum error correction for the toric code using deep reinforcement learning</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Andreasson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Johansson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Liljestrand</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Granath</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2019-09-02-183</idno>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">183</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<monogr>
+		<title level="m" type="main">Optimizing quantum error correction codes with reinforcement learning</title>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">P</forename><surname>Nautrup</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Delfosse</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Dunjko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">J</forename><surname>Briegel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Friis</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2019-12-16-215</idno>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">215</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Advantages of versatile neural-network decoding for topological codes</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Maskara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kubica</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Jochym-O'connor</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.99.052351</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">99</biblScope>
+			<biblScope unit="page">52351</biblScope>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<monogr>
+		<author>
+			<persName><forename type="first">C</forename><surname>Chinni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kulkarni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">M</forename><surname>Pai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Mitra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">K</forename><surname>Sarvepalli</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1901.07535</idno>
+		<title level="m">Neural decoder for topological codes using pseudoinverse of parity check matrix</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Reinforcement learning for optimal error correction of toric codes</title>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">D</forename><surname>Colomer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Skotiniotis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Muñoz-Tapia</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.physleta.2020.126353</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Lett. A</title>
+		<imprint>
+			<biblScope unit="volume">384</biblScope>
+			<biblScope unit="page">126353</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Paths, trees, and flowers</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Edmonds</surname></persName>
+		</author>
+		<idno type="DOI">10.4153/CJM-1965-045-4</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Can. J. Math</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="page">449</biblScope>
+			<date type="published" when="1965">1965</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<monogr>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G</forename><surname>Fowler</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1310.0863</idno>
+		<title level="m">Optimal complexity correction of correlated errors in the surface code</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Minimum weight perfect matching of faulttolerant topological quantum error correction in average O(1) parallel time</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G</forename><surname>Fowler</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1307.1740</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum Inf. Comput</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Efficient algorithms for maximum likelihood decoding in the surface code</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bravyi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Suchara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Vargo</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.90.032326</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="page">32326</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Deep learning</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Lecun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Bengio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Hinton</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature14539</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature (London)</title>
+		<imprint>
+			<biblScope unit="volume">521</biblScope>
+			<biblScope unit="page">436</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<monogr>
+		<author>
+			<persName><forename type="first">I</forename><surname>Goodfellow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Bengio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Courville</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Bengio</surname></persName>
+		</author>
+		<title level="m">Deep Learning</title>
+		<meeting><address><addrLine>Cambridge, MA</addrLine></address></meeting>
+		<imprint>
+			<publisher>MIT Press</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="volume">1</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Solving the quantum many-body problem with artificial neural networks</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Carleo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Troyer</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/science.aag2302</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">355</biblScope>
+			<biblScope unit="page">602</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Machine learning phases of matter</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Carrasquilla</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">G</forename><surname>Melko</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nphys4035</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nat. Phys</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page">431</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Learning phase transitions by confusion</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">P</forename><surname>Van Nieuwenburg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y.-H</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">D</forename><surname>Huber</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nphys4037</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nat. Phys</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page">435</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<monogr>
+		<author>
+			<persName><forename type="first">J</forename><surname>Carrasquilla</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2003.11040</idno>
+		<title level="m">Machine learning for quantum matter</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<monogr>
+		<author>
+			<persName><forename type="first">V</forename><surname>Mnih</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Kavukcuoglu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Silver</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Graves</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Antonoglou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Wierstra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Riedmiller</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1312.5602</idno>
+		<title level="m">Playing atari with deep reinforcement learning</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<analytic>
+		<title level="a" type="main">Human-level control through deep reinforcement learning</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Mnih</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Kavukcuoglu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Silver</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">A</forename><surname>Rusu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Veness</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">G</forename><surname>Bellemare</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Graves</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Riedmiller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">K</forename><surname>Fidjeland</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Ostrovski</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature14236</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">518</biblScope>
+			<biblScope unit="page">529</biblScope>
+			<date type="published" when="2015">2015</date>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<analytic>
+		<title level="a" type="main">Reinforcement Learning in Different Phases of Quantum Control</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bukov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G R</forename><surname>Day</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Sels</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Weinberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Polkovnikov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Mehta</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevX.8.031086</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. X</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page">31086</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Reinforcement Learning with Neural Networks for Quantum Feedback</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Fösel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Tighineanu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Weiss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Marquardt</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevX.8.031084</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. X</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page">31084</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<monogr>
+		<title level="m" type="main">The full decoding sequence for this syndrome using the DRL decoder is</title>
+		<ptr target="https://github.com/mats-granath/toric-RL-decoder" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<monogr>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">S</forename><surname>Sutton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G</forename><surname>Barto</surname></persName>
+		</author>
+		<title level="m">Reinforcement Learning: An Introduction</title>
+		<meeting><address><addrLine>Cambridge, MA</addrLine></address></meeting>
+		<imprint>
+			<publisher>MIT Press</publisher>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b56">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">T</forename><surname>Schaul</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Quan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Antonoglou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Silver</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1511.05952</idno>
+		<imprint/>
+	</monogr>
+	<note>Prioritized experience replay</note>
+</biblStruct>
+
+<biblStruct xml:id="b57">
+	<analytic>
+		<title level="a" type="main">Strong Resilience of Topological Codes to Depolarization</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Bombin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">S</forename><surname>Andrist</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ohzeki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">G</forename><surname>Katzgraber</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Martin-Delgado</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevX.2.021004</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. X</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page">21004</biblScope>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b58">
+	<analytic>
+		<title level="a" type="main">Surface code with decoherence: An analysis of three superconducting architectures</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Ghosh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G</forename><surname>Fowler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">R</forename><surname>Geller</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.86.062318</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">86</biblScope>
+			<biblScope unit="page">62318</biblScope>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b59">
+	<analytic>
+		<author>
+			<persName><forename type="first">F</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Gustavsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kamal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Birenbaum</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">P</forename><surname>Sears</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Hover</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">J</forename><surname>Gudmundsen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Rosenberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Samach</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Weber</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">L</forename><surname>Yoder</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">P</forename><surname>Orlando</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Clarke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">J</forename><surname>Kerman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">D</forename><surname>Oliver</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/ncomms12964</idno>
+	</analytic>
+	<monogr>
+		<title level="m">The flux qubit revisited to enhance coherence and reproducibility</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page">12964</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b60">
+	<analytic>
+		<title level="a" type="main">Microwave photonics with superconducting quantum circuits</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Gu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">F</forename><surname>Kockum</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Miranowicz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y.-X</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Nori</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.physrep.2017.10.002</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rep</title>
+		<imprint>
+			<biblScope unit="volume">718</biblScope>
+			<biblScope unit="page">1</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b61">
+	<analytic>
+		<title level="a" type="main">Fluctuations of Energy-Relaxation Times in Superconducting Qubits</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">V</forename><surname>Klimov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Kelly</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Neeley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Megrant</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Burkett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Barends</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Arya</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Chiaro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Dunsworth</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Fowler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Foxen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Gidney</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Giustina</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Graff</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Jeffrey</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Lucero</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">Y</forename><surname>Mutus</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.121.090502</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">121</biblScope>
+			<biblScope unit="page">90502</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b62">
+	<monogr>
+		<title level="m" type="main">Decoherence benchmarking of superconducting qubits, npj Quantum Inf</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">J</forename><surname>Burnett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Bengtsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Scigliuzzo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Niepce</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kudra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Delsing</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Bylander</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41534-019-0168-5</idno>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">54</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b63">
+	<monogr>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Bengtsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">J</forename><surname>Burnett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Wiegand</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Suri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Krantz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">F</forename><surname>Roudsari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">F</forename><surname>Kockum</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Gasparinetti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Johansson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Delsing</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1912.02124</idno>
+		<title level="m">Characterizing decoherence rates of a superconducting qubit by direct microwave scattering</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b64">
+	<analytic>
+		<title level="a" type="main">Hamiltonian learning for quantum error correction</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Valenti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Van Nieuwenburg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Huber</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Greplova</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevResearch.1.033092</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Res</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page">33092</biblScope>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b65">
+	<analytic>
+		<title level="a" type="main">Distributed prioritized experience replay</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Horgan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Quan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Budden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Barth-Maron</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hessel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Van Hasselt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Silver</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1803.00933</idno>
+	</analytic>
+	<monogr>
+		<title level="m">6th International Conference on Learning Representations, ICLR 2018 Conference Track Proceedings</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b66">
+	<analytic>
+		<title level="a" type="main">Deep residual learning for image recognition</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ren</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Sun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</title>
+		<meeting>the IEEE Conference on Computer Vision and Pattern Recognition<address><addrLine>Piscataway, NJ</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="770" to="778" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b67">
+	<analytic>
+		<title level="a" type="main">Mastering the game of go without human knowledge</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Silver</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Schrittwieser</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Simonyan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Antonoglou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Guez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Hubert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Baker</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Bolton</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature24270</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">550</biblScope>
+			<biblScope unit="page">354</biblScope>
+			<date type="published" when="2017">2017</date>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b68">
+	<analytic>
+		<title level="a" type="main">A general reinforcement learning algorithm that masters chess, shogi, and Go through self-play</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Silver</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Hubert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Schrittwieser</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Antonoglou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Guez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lanctot</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Sifre</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Kumaran</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Graepel</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/science.aar6404</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">362</biblScope>
+			<biblScope unit="page">1140</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b69">
+	<analytic>
+		<title level="a" type="main">Global optimization of quantum dynamics with AlphaZero deep exploration</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dalgaard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Motzoi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">J</forename><surname>Sorensen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Sherson</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41534-019-0241-0</idno>
+	</analytic>
+	<monogr>
+		<title level="j">NPJ Quantum Info</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page">6</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b70">
+	<analytic>
+		<title level="a" type="main">Policy gradient methods for reinforcement learning with function approximation</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">S</forename><surname>Sutton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Mcallester</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Mansour</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+		<meeting><address><addrLine>Cambridge, MA</addrLine></address></meeting>
+		<imprint>
+			<publisher>MIT Press</publisher>
+			<date type="published" when="2000">2000</date>
+			<biblScope unit="page" from="1057" to="1063" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b71">
+	<analytic>
+		<title level="a" type="main">Natural actor-critic algorithms</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bhatnagar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">S</forename><surname>Sutton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ghavamzadeh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lee</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.automatica.2009.07.008</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Automatica</title>
+		<imprint>
+			<biblScope unit="volume">45</biblScope>
+			<biblScope unit="page">2471</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b72">
+	<monogr>
+		<author>
+			<persName><forename type="first">F</forename><surname>Zhuang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Qi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Duan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Xi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Xiong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>He</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1911.02685</idno>
+		<title level="m">A comprehensive survey on transfer learning</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>
