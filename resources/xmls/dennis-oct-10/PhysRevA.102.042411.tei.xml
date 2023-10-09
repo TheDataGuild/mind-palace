@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Symmetries for a high-level neural decoder on the toric code</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+				<date type="published" when="2020-10-26">26 October 2020</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Thomas</forename><surname>Wagner</surname></persName>
+							<idno type="ORCID">0000-0002-3889-528X</idno>
+							<affiliation key="aff0">
+								<orgName type="department">Institute of Theoretical Physics III</orgName>
+								<orgName type="institution">Heinrich-Heine-Universität Düsseldorf</orgName>
+								<address>
+									<postCode>D-40225</postCode>
+									<settlement>Düsseldorf</settlement>
+									<country key="DE">Germany</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Hermann</forename><surname>Kampermann</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Institute of Theoretical Physics III</orgName>
+								<orgName type="institution">Heinrich-Heine-Universität Düsseldorf</orgName>
+								<address>
+									<postCode>D-40225</postCode>
+									<settlement>Düsseldorf</settlement>
+									<country key="DE">Germany</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Dagmar</forename><surname>Bruß</surname></persName>
+							<idno type="ORCID">0000-0003-4661-2267</idno>
+							<affiliation key="aff0">
+								<orgName type="department">Institute of Theoretical Physics III</orgName>
+								<orgName type="institution">Heinrich-Heine-Universität Düsseldorf</orgName>
+								<address>
+									<postCode>D-40225</postCode>
+									<settlement>Düsseldorf</settlement>
+									<country key="DE">Germany</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Symmetries for a high-level neural decoder on the toric code</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2020-10-26">26 October 2020</date>
+						</imprint>
+					</monogr>
+					<idno type="DOI">10.1103/PhysRevA.102.042411</idno>
+					<note type="submission">Received 7 April 2020; accepted 25 September 2020;</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.3" ident="GROBID" when="2023-10-09T23:23+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Surface codes are a promising method of quantum error correction and the basis of many proposed quantum computation implementations. However, their efficient decoding is still not fully explored. Recently, approaches based on machine learning techniques have been proposed by Torlai and Melko [Phys. Rev. Lett. 119, 030501  (2017)] as well as Varsamopoulos et al. [Quantum Sci. Technol. 3, 015004 (2017)]. In these approaches, a socalled high-level decoder is used to post-correct an underlying decoder by correcting logical errors. A significant problem is that these methods require large amounts of training data even for relatively small code distances. The above-mentioned methods were tested on the rotated surface code which encodes one logical qubit. Here, we show that they are viable even for the toric surface code which encodes two logical qubits. Furthermore, we explain how symmetries of the toric code can be exploited to reduce the amount of training data that is required to obtain good decoding results. Finally, we compare different underlying decoders and show that the accuracy of high-level decoding noticeably depends on the quality of the underlying decoder in the realistic case of imperfect training.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>A great challenge in the practical realization of quantum computing is the presence of noise which spoils accurate control of physical systems. The effect of such noise can be mitigated by using quantum error correction. The physical state of a system is encoded into the logical state of a quantum code. Then, computations can be performed on the logical level of the code. As coding introduces redundancy in the data, many errors can be detected and corrected by a decoder. According to the threshold theorem <ref type="bibr" target="#b0">[1,</ref><ref type="bibr" target="#b1">2]</ref>, quantum error correction allows us to perform quantum computations with arbitrary accuracy as long as all single component error rates are below a certain threshold. A promising approach to quantum error correction is the use of topological quantum codes. The surface code by Bravyi and Kitaev <ref type="bibr" target="#b2">[3,</ref><ref type="bibr" target="#b3">4]</ref> possesses a high threshold error rate <ref type="bibr" target="#b4">[5]</ref> above some existing experimental error rates <ref type="bibr" target="#b5">[6]</ref>. Furthermore, it has the advantage of only requiring nearest neighbor interactions. However, a problem in the practical realization of surface codes is the need for decoders that are both fast and accurate. Fast decoding is crucial because the decoding procedure should be shorter than the coherence time of the qubits, which can be of order 1 μs for superconducting qubit architectures <ref type="bibr" target="#b5">[6]</ref>. While higher coherence times of order 10 s can be reached in ion trap qubits <ref type="bibr" target="#b6">[7]</ref>, superconducting qubits are currently the main candidate for experimental surface code realizations.</p><p>Several different decoders based on various approximations have been proposed <ref type="bibr" target="#b7">[8]</ref><ref type="bibr" target="#b8">[9]</ref><ref type="bibr" target="#b9">[10]</ref>. These decoders are generally based on the assumption of independent Pauli noise, and it is not always clear how they can be adapted to * thomas.wagner@uni-duesseldorf.de experimental noise. Recently, there has been an increasing interest in decoders based on machine learning techniques. These decoders are trained on a set of known errors and then learn to generalize to unknown errors. It is expected that such decoders can adapt to experimental noise; e.g., it has been demonstrated that they can adapt to different rates of stochastic Pauli errors <ref type="bibr" target="#b10">[11]</ref>. The first such decoder was developed by Torlai and Melko <ref type="bibr" target="#b11">[12]</ref> and is based on stochastic neural networks. It was introduced for the toric surface code with only phase-flip errors, but the techniques are generalizable to all stabilizer codes. Another approach, called high level decoder, based on more conventional feed forward neural networks was proposed by Varsamopoulos et al. <ref type="bibr" target="#b10">[11,</ref><ref type="bibr" target="#b12">13]</ref> and further explored by <ref type="bibr">Chamberland and Ronagh [14]</ref>. This approach was implemented on the so-called rotated surface code, which encodes one qubit, for different noise models including circuit noise. In <ref type="bibr" target="#b13">[14]</ref> it is concluded that, once the decoder is trained, the actual decoding procedure of feed forward neural network based decoders is fast enough to be scalable to larger codes. A high performance computing platform is still required. Furthermore, Maskara et al. <ref type="bibr" target="#b14">[15]</ref> demonstrated that the method is applicable to different architectures, such as color codes and toric codes on triangular lattices, and various noise models. However, it is also pointed out in <ref type="bibr" target="#b13">[14]</ref> that the training of decoders becomes increasingly difficult for larger codes. So far, the method could only be demonstrated for small codes with a distance less than seven. The amount of training data needed to train the networks for larger codes is infeasible. One way to approach this problem are decoders based on local regions of the code <ref type="bibr" target="#b15">[16,</ref><ref type="bibr" target="#b16">17]</ref>. This technique is inspired by the renormalization group decoder <ref type="bibr" target="#b8">[9]</ref>.</p><p>To supplement these approaches, in this paper, it will be shown how symmetries of the toric code can be explicitly incorporated into the training of (feed forward) neural-network-based decoders. This reduces the amount of training data needed substantially and improves the quality of training. Our approach will be demonstrated for the high-level decoder developed by Varsamopoulos et al. <ref type="bibr" target="#b10">[11,</ref><ref type="bibr" target="#b12">13]</ref>, but it is applicable to general machine-learning-based decoders. This decoder was chosen as an example because it is a relatively simple but still effective machine-learning-based decoder, and because it was well explored in previous work <ref type="bibr" target="#b10">[11,</ref><ref type="bibr" target="#b12">13,</ref><ref type="bibr" target="#b13">14]</ref>. Furthermore, it is demonstrated that it is possible to train good high-level decoders for the toric code encoding two logical qubits. Previous literature considered the rotated surface code which only encodes one logical qubit. The main difference here is in the number of possible logical errors, which is larger by a factor of four for the toric code.</p><p>This paper is structured as follows. First, a short introduction about the toric code is given, and standard decoders for the code are reviewed. Next, the high-level decoder scheme <ref type="bibr" target="#b12">[13]</ref> is described. Then, it will be explained how symmetries of the toric code can be exploited to improve this decoder. Finally, some numerical results will be presented which demonstrate the increase in performance provided by the inclusion of symmetries.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. THE TORIC CODE AND NOISE MODEL</head><p>Although the core ideas are applicable to a wider range of codes, the techniques in this paper will be constructed for the toric code developed by Bravyi and Kitaev <ref type="bibr" target="#b2">[3,</ref><ref type="bibr" target="#b3">4]</ref>. We give a short description of this code here. (See <ref type="bibr" target="#b17">[18]</ref> for an in-depth review.) For this, the concept of the Pauli operators will be needed.</p><p>Definition 1 (Pauli Group). The four Pauli operators acting on 1 qubit are given in the standard basis by</p><formula xml:id="formula_0">I = 1 0 0 1 X = 0 1 1 0 Y = 0 i -i 0 Z = 1 0 0 -1 .</formula><p>(1) The Pauli group on n qubits is the multiplicative group generated by all possible n-fold tensor products of Pauli operators and the imaginary unit i.</p><p>The toric code is a stabilizer code that is defined on an L × L square lattice embedded on a torus. The lattice consists of vertices, edges, and faces. Four edges are connected to each vertex, and each face is surrounded by four edges (Fig. <ref type="figure" target="#fig_0">1</ref>). Each edge of the lattice is associated with a physical qubit of the code. In the following we denote the Pauli X/Pauli Z operator acting on the qubit associated with edge e of the lattice by X e /Z e . The vertices and faces of the lattice are associated with stabilizer operators. Each vertex v represents a star operator:</p><formula xml:id="formula_1">X v = e∈∂ 0 v X e , (<label>2</label></formula><formula xml:id="formula_2">)</formula><p>where ∂ 0 v is the coboundary of v, i.e., the set of four edges connected to v. Similarly, each face f represents a plaquette operator: where ∂ 1 f is the boundary of f , i.e., the set of four edges adjacent to f . The stabilizer group S consists of all possible products of the stabilizer operators above. The toric code is then defined as the common eigenspace with eigenvalue +1 of all operators in S. The code encodes two logical qubits (i.e., the code space is four-dimensional), because S is generated by 2L 2 -2 independent generators and there are 2L 2 physical qubits in the code. Pauli operators acting on the code can be represented as chains of edges on the lattice, by marking which qubits are affected by a Pauli Z or Pauli X operator. We call a Pauli operator a logical operator if it maps states in the code space back into the code space. We consider two logical operators equivalent if they only differ by an element of the stabilizer group. Up to this equivalence, there are 16 logical operators, corresponding to the two-qubit Pauli group. These operators correspond to loops on the lattice, as illustrated in Fig. <ref type="figure" target="#fig_0">1</ref>. They will be denoted with a subscript to indicate which logical qubit they act on; e.g., the logical Z 1 operator is the logical Z operator that acts on the first logical qubit.</p><formula xml:id="formula_3">Z f = e∈∂ 1 f Z e ,<label>(3)</label></formula><p>We consider the effect of Pauli errors on the code. If no errors affect the code, the measurement of each stabilizer operator will result in a +1 outcome. If an error e affects the code, it might anticommute with some stabilizer operators. The stabilizers that anticommute with the error will flip their measurement outcome to -1. These are called detections, and together they form the syndrome of the error. As an example, in the case of a Z error chain, the detections are located at the vertices at the end points of the error chain on the lattice. For these errors the task of a decoder is to propose, based on the syndrome, a recovery chain r that eliminates the error. The recovery was successful if the product of the error and the recovery lies in the stabilizer group. As an example, for Z errors this means that the error and the recovery form the boundary of a region on the lattice. This also implies that all recoveries that only differ by stabilizer operators are logically equivalent. It is therefore not necessary to deduce the exact error that occurred, but only its equivalence class up to stabilizer applications.</p><p>We will consider the toric code subject to local depolarizing noise. In this model, errors occur independently on each physical qubit. Each physical qubit is either unaffected by noise with probability 1q or replaced by the completely mixed state with probability q. The action on the density operator ρ of one qubit is therefore expressed by the quantum channel:</p><formula xml:id="formula_4">ρ → (1 -q)ρ + q I 2 = 1 - 3 4 q ρ + q 4 (X ρX + Y ρY + ZρZ ).<label>(4)</label></formula><p>Thus, the channel can be simulated by leaving each qubit untouched with probability 1p, where p = 3 4 q, or applying exactly one of the three Pauli operators each with probability p 3 . The error rate p will also be referred to as depolarizing noise parameter. Note that while the stabilizer measurements are assumed to be perfect here for simplicity, the methods presented in this paper do not depend on this assumption. The pre-processing presented in Sec. V can also be used with imperfect syndrome measurements as long as the symmetries of the code are not broken, i.e., measurement errors must be equally likely for all stabilizers. The effect of imperfect syndrome measurements on standard high level decoders has been explored in <ref type="bibr" target="#b10">[11]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. SIMPLE DECODERS FOR THE TORIC CODE</head><p>Here, we will shortly describe two simple ways of decoding the toric code.</p><p>The first is minimum weight perfect matching (MWPM) based on the Edmonds Blossom algorithm <ref type="bibr" target="#b18">[19]</ref>. This decoder will be used as a benchmark throughout this paper. Here, Z and X errors are decoded independently. The Z/X recovery is found by proposing the shortest chain that matches the syndrome of the vertices/faces. This corresponds to finding the lowest weight error matching the syndrome, i.e., the error acting on as few physical qubits as possible. In our paper an implementation based on the NETWORKX python package <ref type="bibr" target="#b19">[20]</ref> is used. There are two problems with MWPM decoding. The first is that because Z and X errors are decoded independently, Y errors can lead to incorrect decoding. Essentially, a Y error is counted as two separate errors which is only correct if X and Z errors are independent. In the depolarizing noise model this assumption is not correct. An example of this problem can be found in <ref type="bibr" target="#b8">[9]</ref>. The second problem is that MWPM does not account properly for the effect of degeneracy. All errors that only differ by a stabilizer operator are logically equivalent. Therefore, it can happen that the most likely class of equivalent errors does not contain the most likely (shortest) error. This leads to suboptimal decoding. An example can again be found in <ref type="bibr" target="#b8">[9]</ref>. The runtime of (unoptimized) MWPM scales as O(L 6 ) <ref type="bibr" target="#b8">[9]</ref>, which is already a problem for larger codes.</p><p>Therefore, it will be useful to introduce a simpler decoder. This trivial decoder is designed to return a recovery as fast as possible. First, we enumerate the stabilizer operators in some way, say from top left to bottom right in the lattice picture. The trivial decoder then works by matching the detections in a syndrome iteratively according to the above enumeration, using the shortest chain for each matching. This means the first detection is connected with the second, the third with the fourth and so on. Because the measurements are assumed to be perfect the total number of detections will always be even, so no detections are left unmatched. Because the number of expected detections increases quadratically in L, the runtime of this algorithm will also be quadratic in L. The recovery proposed by this decoder is very inaccurate, but it will be useful as an initial decoding after which we apply a so-called high level decoder (HLD).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. HIGH-LEVEL NEURAL DECODER</head><p>In <ref type="bibr" target="#b12">[13]</ref> it was shown how decoding can be approached as a classification problem, which is standard in machine learning. Given a syndrome on the toric code, first some standard decoder is used which proposes a recovery chain that matches the measured syndrome. This will be referred to as the underlying decoder. Because the proposed recovery matches the syndrome, the product of the error and the recovery will form a logical operator. The classification task is then to predict the most likely logical operator based on the initial syndrome that was measured. Then, an additional recovery corresponding to the predicted logical operator can be applied. This essentially constitutes a post-correction of the underlying decoder. The basic problem is to correctly classify input vectors, corresponding to syndromes, into different classes, corresponding to logical operators. This decoding scheme is called a high level decoder (HLD). In <ref type="bibr" target="#b12">[13]</ref> a surface code which encodes one logical qubit, called the rotated surface code, was considered. Therefore there were four possible logical errors, corresponding to a classification problem with four classes. Here we will consider the toric code, which encodes two qubits. Therefore the classification problem has 16 classes, corresponding to the two-qubit Pauli group. The decoding process is illustrated schematically in Fig. <ref type="figure" target="#fig_1">2</ref>, using MWPM as the underlying decoder.</p><p>The classification task outlined above is approached with a simple and widely used machine learning model known as feed forward neural network (FFNN). An FFNN consists of several layers of real-valued units. The first layer corresponds to the input vector, and the last layer has one unit for each possible class label. Between them are several hidden layers. Each hidden layer applies a transformation of the form y = g(W x + b) to the values of the previous layer, where the matrix W and the vector b are free parameters that will be learned during training. They are called the weights and biases of the layer. The weights and biases of all layers together form the parameter vector θ of the network. The function g is called the activation function. In this work it is chosen to be the rectified linear unit:</p><formula xml:id="formula_5">g(x) = max(0, x), (<label>5</label></formula><formula xml:id="formula_6">)</formula><p>applied elementwise to the vector. This is a standard choice in machine learning, for example, suggested in <ref type="bibr" target="#b20">[21]</ref>. The output layer instead uses the softmax activation function:</p><formula xml:id="formula_7">softmax(x) i = exp(x i ) j exp(x j ) ,<label>(6)</label></formula><p>which is necessary for classification tasks. The parameters θ of the model are found by considering a training set T = {(e, )} of errors with known logical errors, generated according to the depolarizing noise model. This training set defines a crossentropy loss function:</p><formula xml:id="formula_8">E (θ) = (e, )∈T</formula><p>ln(y (x; θ)), <ref type="bibr" target="#b6">(7)</ref> where y is the component of the output layer corresponding to the logical error . This loss function can be further modified by adding a weight decay term λ θ 2 for some positive λ. This can help against overfitting issues by keeping the network parameters smaller <ref type="bibr" target="#b20">[21]</ref>. The parameters θ are found by minimizing this loss function with the adaptive moment estimation algorithm <ref type="bibr" target="#b21">[22]</ref>, which is a variant of stochastic gradient descent. Before the first iteration of stochastic gradient descent the parameters are initialized randomly from a normal distribution. After the training, the model can be evaluated on test sets that were generated independently from the training set. Sometimes, we will also consider the logical error rate of the high level decoder on the training set itself. We refer to this as the "training error." All these methods were implemented with the Shark machine learning library <ref type="bibr" target="#b22">[23]</ref>.</p><p>The model has a number of hyperparameters that need to be chosen in advance. These are the following: the number n it of iterations of stochastic gradient descent, the learning rate η used in stochastic gradient descent, the number n h of hidden layers, the numbers of units l i in the ith hidden layer, the strength λ of weight decay regularization, and the width of the distribution used for initialization. These parameters need to be chosen sensibly according to some heuristic, usually with some trial and error involved.</p><p>It should be stressed that the accuracy of the model strongly depends on the quality and size of the training set. If the training set is too small the model will be unable to learn the real distribution of logical errors. This usually manifests in overfitting, i.e., the accuracy on the training set is good but the accuracy on the test sets is bad. This is especially problematic for larger code distances, where a large amount of different syndromes should be represented in the training data. Finally, it should be noted that the best performance is reached if the training set is generated at the same physical error rate as the test set the model should be used for <ref type="bibr" target="#b10">[11]</ref>. However, the models can still generalize well to different error rates.</p><p>In this paper, we restrict ourselves to the simplest version of the high level decoder by using only feed forward neural networks. This version requires relatively little hyperparameter tuning, and is therefore well suited to exploring the effect of the techniques introduced in the next sections. It should, however, be noted that more sophisticated network architectures, like recurrent neural networks or convolutional neural networks, can yield better decoding accuracy, especially if one considers error models with imperfect syndrome measurements <ref type="bibr" target="#b10">[11,</ref><ref type="bibr" target="#b13">14]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. SYMMETRIES OF THE TORIC CODE</head><p>In order to learn the correct conditional distributions of logical errors given syndromes, the model needs to have a large selection of syndromes available in the training data. Preferably each syndrome should appear multiple times to make the prediction of the most likely logical error more accurate. For a 7 × 7 surface code the input space consists of 2 98 different possible syndromes so the amount of training data needed is already very large. Here, we will describe how symmetries of the code can be explicitly incorporated into the training of decoders in order to reduce the effective size of the input space. This reduces the amount of training data that is needed or, alternatively, allows for better results with the same amount of training data.</p><p>There are several symmetries on the toric code, including exchange, translation, and mirror symmetry. Here we will focus mainly on translation and exchange symmetry. Translation symmetry means that the code is invariant under a translation of the vertices, edges, and plaquettes, taking into account the periodic boundary conditions.</p><p>Definition 2 (Translation). The translation of an L × L lattice by a steps to the left and b steps to the top is obtained by mapping the vertex at position (x, y) in the lattice to the vertex at position (xa mod L, ya mod L) in the lattice, and analogously mapping edges and plaquettes.</p><p>As an example, the syndrome shown in Fig. <ref type="figure">4</ref>(b) is obtained by translating the syndrome shown in Fig. <ref type="figure">4</ref>(a) one step to the left and one step to the top.</p><p>Exchange symmetry means that the toric code is invariant under an exchange of the toroidal and poloidal directions on the torus, provided one chooses a lattice with the same number of edges in both directions. The exchange does, however, correspond to a relabeling of the logical operators. In the lattice surface codes that include holes or different boundary conditions, the symmetries mentioned above might be broken. Different symmetries will be applicable depending on the exact layout of the surface code.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Including translation symmetry by using centered data</head><p>We start by describing the concepts using the example of translation invariance. Later it will be described how to incorporate exchange invariance and other symmetries.</p><p>It is expected that two syndromes that only differ by a translation should have the same logical error. (Some care has to be taken here because it is implicitly assumed that the underlying decoder respects the translation invariance, more on this below.) With infinite training data an HLD can learn this invariance by "brute force." Because generating training data is experimentally expensive, it is better to explicitly include this invariance. We can define the translation class of a syndrome s as the set of all syndromes that differ from s only by a translation. To explicitly include translation invariance in the training of an HLD, one unique syndrome in each translation class of syndromes is defined as its translation representative. The training data is then pre-processed by mapping each syndrome to its translation representative. Of course, when decoding the syndromes they also need to be pre-processed. This costs some additional computational resources during decoding, that are estimated in Sec. V C. The pre-processing guarantees that the HLD includes the translation invariance, and thus reduces the amount of different syndromes the decoder needs to learn.</p><p>Explicitly, a pre-processing function can be constructed by using a lexicographic order of the syndromes. First, an arbitrary enumeration of the vertices and plaquettes is chosen. Here, we choose the convention to enumerate from top left to bottom right on the lattice, i.e., the top left vertex is the first, the vertex to its right is the second, and so on. Using this enumeration, syndromes can be represented as binary vectors. The ith entry of such a vector is 1 if the ith vertex has a detection, and 0 otherwise. Analogously one defines a vector for the plaquette detections. The vector representing the plaquette result is appended to the vector representing the vertex result. We can then define a total order on syndromes as follows.</p><p>Definition 4 (Lexicographic order of syndromes). For two syndromes s 1 , s 2 represented as binary vectors, define s 1 &lt; s 2 if the first nonzero entry of s 1s 2 is 1.</p><p>In other words, s 1 &lt; s 2 if the first nonzero entry of s 1 comes "before" the first nonzero entry of s 2 . The subtraction in the definition is NOT meant mod 2. Note that if s 1s 2 = 0, so no nonzero entries exist in s 1s 2 , then s 1 = s 2 . It is easy to verify that definition 4 defines a total order on syndromes. In the following, the minimum of a set of syndrome is always meant to be the minimum according to the order in definition 4.</p><p>Using this order of syndromes and the enumeration of vertices and plaquettes above, a "centering" algorithm that maps a syndrome to a well-defined translation representative can be defined as follows:</p><p>Algorithm 1 (Centering). Given a syndrome s, first compute all possible ways to translate it such that the stabilizer return empty syndrome measurement represented by the first vertex of the code detects an error. If there are no vertex detections in the syndrome, instead compute the ways to translate it such that the stabilizer measurement represented by the first plaquette of the code detects an error. Then, compare all the translated syndromes according to the order in definition 4 and choose the minimal one according to this order. Since definition 4 defines a total order, the minimum according to this order of a list of syndromes is unique. Therefore, algorithm 1 will result in a uniquely defined representative of each translation class. A scaling analysis and more details on the implementation of this algorithm can be found in Sec. V C. Of course, this algorithm straightforwardly generalizes to any other possible symmetry. In order to find a unique representant, one first computes all possible representatives and then chooses the minimal one according to the lexicographic order. Finally, it should be noted that the underlying decoder does not necessarily respect the translation invariance of the code. Given two syndromes that only differ by a translation, it is possible that the underlying decoder returns two recoveries that do not only differ by a translation, but by a translation and a logical operator. A simple example of this problem on a 2 × 2 code for MWPM is shown in Fig. <ref type="figure" target="#fig_2">3</ref>. Therefore it is important that all syndromes are centered before applying the underlying decoder to them. The recovery proposed by the underlying decoder then needs to be translated back to match the original syndrome. In this way it is guaranteed that the underlying decoder is compatible with translation invariance. The same principle applies to all other invariances one might want to incorporate.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Including exchange invariance by using aligned data</head><p>In addition to translation invariance, which has the largest effect, further symmetries can be included. Here, the case of exchange invariance is considered. The basic principle for preprocessing is the same as for translation invariance: One first computes the two possible antitranspositions of the syndrome, then chooses the one that is minimal according to the lexicographic order (definition 4). Again, pre-processing should take place before applying the underlying decoder, and the proposed recoveries need to be antitransposed back to match the original syndrome. Furthermore, as mentioned above, an antitransposition corresponds to a relabeling of the logical operators. The logical Z 1 and Z 2 operators are exchanged with each other, and the logical X 1 and X 2 operators are exchanged with each other. Therefore, here, the class labels of the training data need to be adapted if there were antitranspositions in the pre-processing. Similarly, the logical error proposed by the high-level decoder during online decoding needs to be corrected for the effect of antitranspositions. Note that no such correction was necessary in the case of translation invariance as the logical operators are invariant under translations.</p><p>In the following, we will use s t to denote the antitransposition representative of a syndrome s. When combining both translation and exchange invariance, the naive approach is to first compute the representative of the antitransposition class of a syndrome, and then center this representative. This approach does not work, as illustrated with an example on the 3 × 3 toric code in Fig. <ref type="figure">4</ref>. The syndrome (b) differs from the syndrome (a) by a translation one step to the left and one step to the top, taking into account the periodic boundary conditions. Therefore they belong to the same translation class and must be mapped to the same representative. However, if one first computes the antitransposition representative of the syndrome (a) and then centers it, one obtains the syndrome (d). If one does the same for the syndrome in (b), one obtains the syndrome in (b) itself. This illustrates that the naive approach assigns different representatives to different translations of the same syndrome. Therefore, a slightly more complicated algorithm has to be used to actually compute unique representatives for each class. This algorithm will be called "alignment" algorithm and is described in the following.</p><p>Algorithm 2 (Alignment). Given a syndrome s, it is first centered to obtain s c . Then, the antitransposition representative s t c of s c is computed and also centered to obtain (s t c ) c . The two syndromes s c and (s t c ) c are compared and the minimal of the two is chosen. This pre-processing will map syndromes that differ only by translations and antitranspositions to the same syndrome.</p><p>Again, the underlying decoder might not be compatible with the alignment by default. To rectify this issue, the same strategy as above is employed. Instead of decoding a syndrome s directly, the aligned syndrome s a is decoded. All transformations (both translations and antitranspositions) applied to s in order to obtain s a are tracked. The recovery proposed by the underlying decoder is then transformed back to match the original syndrome s. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Estimate scaling of the centering algorithm</head><p>The use of symmetries as described above introduces an additional overhead during the operation of the decoder, since each new syndrome has to be pre-processed, not only during training but also during the online decoding. To get an idea of how significant the overhead introduced by the centering algorithm is, an estimate of the runtime scaling with the code distance is given here. As the alignment algorithm mainly consists of multiple applications of centering, the scaling will be the same.</p><p>Because the centering algorithm makes use of the translation of syndromes, we first consider the cost of such an operation. It strongly depends on the data structure that is used to represent syndromes. If a syndrome is simply represented as a binary array and the translation is done by creating a new array with shifted entries it will take linear time in the number of elements, thus O(L 2 ). A more efficient representation for our purposes is possible by using two-dimensional instead of one-dimensional arrays as follows: A vector of vertex detections can be represented as a two-dimensional array. Each row of the array represents one row of the code (with the usual convention that an entry is 1 if the corresponding vertex has a detection and 0 otherwise). Iterating over a syndrome can then be done by iterating row-wise over the array, possibly taking into account periodic boundary conditions. Translating the vertex detections can then be done without copying by simply changing the starting index of the iteration. Of course, the same iteration method applies to the plaquette detections. Therefore translation of a syndrome is an O(1) operation in this representation.</p><p>The centering algorithm, as described in algorithm 1, then takes as input the measured syndrome as a vector of vertex and plaquette detections, each of length L 2 and represented as a two-dimensional array as described above. The first step of the algorithm is to find all nonzero entries in the vector of vertex detections. Then one translation is computed for each nonzero entry (each detection), corresponding to shifting this entry to the first place in the vector. Then, these different translations are compared according to the lexicographic order (definition 4) and the minimal one is returned. If there were no nonzero entries in the vector of vertex detections, the same procedure is done instead for the plaquette detections.</p><p>Finding all nonzero entries of the input vector takes time O(L 2 ). Computing one translation of the syndrome is O(1) as described above. The input vector has one nonzero entry for each detection in the syndrome. Because each single-qubit error on the toric code creates at most two detections (less if there are neighboring errors), the average amount of detections is at worst proportional to the average amount of errors, which is pL 2 if errors happen at rate p. Therefore, on average, O(L 2 ) different translations must be computed in the centering algorithm. Then, the minimal one of these according to definition 4 has to be found. Finding the minimum of a list with n elements can be done in n -1 comparisons. Each comparison will, in the worst case, take time proportional to the number of elements in the vector, thus O(L 2 ). This results in a scaling of O(L 4 ) in total. However, generally, the comparison will already terminate after comparing the first few elements of two different translations. More precisely, we consider the probability that the nth elements of the two different translations of the syndrome are equal, given that all previous elements were equal. Because only neighboring vertices are correlated, this probability can be upper bounded by some value p e &lt; 1 independent of the code size. The probability that the comparison terminates after n steps is then upper bounded by</p><formula xml:id="formula_9">p n = p n-1 e (1 -p e ).<label>(8)</label></formula><p>Therefore the comparison will terminate after an average amount of steps that is upper bounded by</p><formula xml:id="formula_10">n = L 2 n=0 np n-1 e (1 -p e ). (<label>9</label></formula><formula xml:id="formula_11">)</formula><p>This can be further upper bounded by a constant independent of L:</p><formula xml:id="formula_12">n = L 2 n=0 np n-1 e (1 -p e ) &lt; ∞ n=0 np n-1 e (1 -p e ) = 1 1 -p e . (<label>10</label></formula><formula xml:id="formula_13">)</formula><p>Therefore the comparison will be O(1) in the average case. This gives a total average case complexity of O(L 2 ).</p><p>As a point of reference, standard MWPM decoding has a scaling of O(L 6 ). It can be optimized to scale as O(L 2 ), and can be parallelized to achieve O(1) scaling <ref type="bibr" target="#b23">[24]</ref>. The trivial decoder described in Sec. III matches the detections iteratively, so it scales linearly in the number of detections and thus quadratically in L. Therefore, the average case scaling of centering matches the scaling of the trivial decoder. Actual values of the execution time will of course be strongly implementation and hardware dependent. On our setup, using an unoptimized Python implementation of the algorithms, the generation of a training data set of 10 4 errors for an HLD on a 5 × 5 toric code using MWPM as the underlying decoder took about 52 s. Aligning this data set as described in algorithm 2, both accounting for translation and transposition invariance, took about 11 s. Both operations were done on an Intel Core i5-8400 CPU. (Only a single core was used.) In conclusion, there is hope that the additional overhead during decoding that arises from the inclusion of symmetries is manageable.</p><p>Another important question is how much the centering will reduce the amount of training data that is needed to train good decoders. Unfortunately, it is difficult to give rigorous estimates here. In general, the number of different syndromes the decoder needs to classify correctly is exponential in the code size. Thus one might expect that the amount of training data needed is also exponential in the code size. For each syndrome, there are L 2 different translations of this syndrome. In the limit of small error rates, where there are few detections in each syndrome, only few translations are identical. Then the reduction in the amount of training data achieved by centering is at best of order L 2 . Therefore centering is not sufficient to combat the exponential scaling of the amount of training data. However, it does allow for very noticeable improvements if the amount of training data is not too small, as will be seen in Sec. VI. A short summary of the results presented there is as follows: On our setup, it was possible to train good decoders for toric codes of up to size 5 × 5 without using symmetries, but the inclusion of symmetries offered noticeable advantages in decoding accuracy. On the 7 × 7 training a good decoder was only possible when using symmetries. Training a good decoder for a 9 × 9 code was not possible even when using 10 8 training data points and exploiting symmetries.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. NUMERICAL RESULTS</head><p>The algorithms described above were tested on the 3 × 3, 5 × 5, and 7 × 7 toric code. Different FFNNs were trained for use in high level decoders. Networks were trained incorporating either no symmetries (uncentered data), only translation symmetry (centered data) or both translation and exchange symmetry (aligned data). As a shorthand, networks trained with uncentered/centered/aligned data are sometimes referred to as uncentered/centered/aligned networks. For simplicity, the training data was always generated at noise parameter p = 0.01. The weights of the networks were always initialized from a normal distribution with width 0.01. For stochastic gradient descent, a batch size of 1000 was used. No weight decay was employed unless otherwise specified. Following <ref type="bibr" target="#b12">[13]</ref>, two hidden layers with decreasing number of units were used. The input layer had the size 2L 2 , corresponding to the size of a syndrome, and the output layer had the size 16, corresponding to the 16 possible logical errors. Note that this is in contrast to the decoders tested in <ref type="bibr" target="#b12">[13,</ref><ref type="bibr" target="#b13">14,</ref><ref type="bibr" target="#b15">16]</ref> on the rotated surface code, where only four logical errors were possible. Therefore this work also shows that the high-level decoding scheme can be applied to surface codes with a larger number of logical qubits. During training, the performance of the decoder was monitored on a validation set that was generated independently from the training data. This was used to tune the hyperparameters of the network. Furthermore, comparing the training error (error on the training set) and the validation error (error on the validation set) can be used to see whether the network is overfitting. The trained decoders were tested for depolarizing noise parameters p = 0.01 to p = 0.18 in steps of 0.01, resulting in the test error. Unless otherwise specified a test set of size 10 6 was used for each noise parameter. The test sets were generated independently from both training and validation sets to avoid overestimating the performance of the decoder, since training and hyperpa- rameter selection tunes the decoder to the specific training and validation sets <ref type="bibr" target="#b20">[21,</ref><ref type="bibr">Chap. 5]</ref>. Error bars in the plots represent 95% confidence intervals. They were obtained by approximating the logarithm of the ratio of binomial proportions by a normal distribution as described in <ref type="bibr" target="#b24">[25]</ref>. It should be noted that it is also possible to use more layers to achieve slightly higher decoding accuracy at the cost of longer training and execution times. Using three layers, the relative improvement in decoding accuracy at p = 0.1 was of order 5% compared to two layers, both with and without the use of symmetries.</p><p>We start by considering HLDs on the 5 × 5 toric code using MWPM as the underlying decoder. Here, using a training set of size 9 × 10 6 was sufficient to obtain significant improvements over standard MWPM even when not accounting for symmetries. However, when accounting for symmetries, about another 20% relative improvement could be obtained. The error rates with and without symmetries, relative to MWPM, are compared in Fig. <ref type="figure" target="#fig_3">5(a)</ref>. Shown is the relative logical error rate p decoder /p MWPM for high-level decoders trained on the same data set, but either not accounting for symmetries (uncentered), accounting only for translation invariance (centered), or accounting for both translation and exchange invariance (aligned). The logical error rate is shown for different depolarizing noise parameters. It can be seen that using translation invariance allows for a large improvement over standard MWPM, and further accounting for exchange invariance leads to another small improvement. It is indeed expected that translation invariance leads to larger improvements than exchange invariance. The reasoning is that the translation class of a syndrome contains up to L 2 elements, while the antitransposition class of a syndrome contains only up to two elements. The difference between aligned and centered data becomes less pronounced for smaller error rates, as the decoder is more accurate for small syndromes by default. Considering the training of the decoders, one observes that including symmetries leads to improvements in both validation and training error [Fig. <ref type="figure" target="#fig_3">5(b)</ref>]. Therefore the pre-processing actually allows for a more accurate fit even to the training data, i.e., the data was presented in a form more suitable to the model.</p><p>To investigate by how much we can reduce the size of the training set, decoders with uncentered or aligned data were trained with training sets of size 4.5 × 10 6 , 2.7 × 10 6 , and 1.8 × 10 6 . The training for the smallest data size is compared in Fig. <ref type="figure" target="#fig_4">6</ref>. No improvement over MWPM could be reached without the use of symmetries. Aligning the data on the other hand does allow for improvements. Again, both validation and training error are improved. However, the validation error does increase again in later iterations of training. Therefore we expect that it is not possible to use even less training data and still obtain good results. The aligned network actually outperformed MWPM for all tested error rates up to the pseudothreshold of around 0.12. (The pseudothreshold is the noise parameter at which the logical error rate matches the error rate of two unencoded qubits.) Using 2.7 × 10 6 data points, the uncentered network started to outperform MWPM, but only for error rates p &lt; 0.05. Consistent improvements using uncentered data were only reached using 4.5 × 10 6 training data points. This clearly shows that the size of the training set can be noticeably reduced when employing symmetries. Furthermore, we can compare the validation errors (there was no significant difference between validation and test error here) in Fig. <ref type="figure" target="#fig_4">6</ref> (small training set) and Fig. <ref type="figure" target="#fig_3">5</ref></p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>(b) (large training set).</head><p>Stopping after about 10 000 iterations to avoid overfitting, the small training set with alignment could be used to achieve a validation error of about 0.135, while the training on the large set but without symmetries leads to a validation error slightly above 0.135. Thus, with symmetries significantly less data is required to achieve the same performance compared to the case without symmetries.</p><p>Similar effects could be observed on both the 3 × 3 and the 7 × 7 toric code. On the 3 × 3 code, the improvements gained by employing symmetries are much smaller (Fig. <ref type="figure" target="#fig_5">7</ref>). Here, a data set of size 10 6 was already sufficient to obtain large improvements over MWPM even without the use of symmetries. Two networks were trained, one with aligned data and one with uncentered data. Both networks used two hidden layers of sizes 500,250, a training duration of 10 5 iterations, and a constant learning rate of 0.001. The relative improvement of the aligned over the uncentered network at p = 0.1 was about 4%, and at p = 0.03 it was about 2%. We also considered the training error of the decoder (not shown in the figures). The training error of the aligned decoder was worse than the training error of the uncentered decoder, while the test error was improved as explained above. This is in contrast to the examples on the 5 × 5 toric code, where both training and test errors were improved. Therefore it seems that in this case, the inclusion of symmetries mainly helps with generalization and prevents overfitting to the training data. On the 5 × 5 toric code the symmetries were also useful in finding a good fit to the training data at all. The main reason why the explicit inclusion of symmetries is less important for the 3 × 3 code is that the training set is large enough to learn the invariances by "brute force." For the 3 × 3 toric code, there are 2 18 = 262 144 different syndromes, so one expects a large fraction of the possible syndrome to appear in a training set of size 10 6 . However, for the 5 × 5 toric code there are 2 50 ≈ 1.1 × 10 15 different syndromes, so even a training set of size 10 7 will never cover the whole syndrome space. Therefore, for the 5 × 5 code, it is more important to introduce the invariances.</p><p>On the 7 × 7 code decoders were trained using up to 5 × 10 7 training examples. Without the use of symmetries, it was not possible to reach any improvements over MWPM. However, by aligning the training data, some improvements could be reached. It was possible to slightly outperform normal MWPM at all tested error rates (Fig. <ref type="figure" target="#fig_6">8</ref>). The relative improvement was larger for smaller error rates. At large error rates the performance of the decoder was very close to MWPM. This is expected, as the larger error rates were close to the pseudothreshold of the code.</p><p>As mentioned above, it is also possible to train an HLD on top of a trivial decoder instead of MWPM. This has the advantage that the decoding will be faster, and also training data can be generated faster. Therefore, it was also tested how symmetries affect the performance of an HLD when using the trivial decoder explained in Sec. III as the underlying decoder. The trivial decoder itself has very bad error rates, worse than those of two unencoded qubits. However, the high-level decoders based on it still produce good results. From here on we refer to high-level decoders based on the trivial decoder as HLDT, and to high-level decoders based on MWPM as HLDM . Two HLDTs were trained on the 5 × 5 toric code based on the same 10 7 physical errors also used above for Fig. <ref type="figure" target="#fig_3">5(a)</ref>. For one decoder the data was aligned, and the other used uncentered data. These two decoders were compared to the two HLDMs presented in Fig. <ref type="figure" target="#fig_3">5</ref>(a). The same hyperparameters were used for training, with the exception of the training duration, which was longer for the HLDTs. Longer training was necessary for the error rates to converge. The HLDTs were trained for 10 6 iterations as opposed to 10 5 iterations for the HLDMs. The comparison of the logical error rates is shown in Fig. <ref type="figure" target="#fig_7">9</ref>. The logical error rates are again given relative to standard MWPM. It can be seen that the HLDTs perform worse than the corresponding HLDMs. However, the difference is noticeably smaller when employing symmetries. Furthermore, without symmetries, the HLDT outperforms MWPM only for small depolarizing noise parameters below 0.05, while for larger noise parameters it performs worse than MWPM. The performance of the HLDT is noticeably improved by the introduction of symmetries. It outperforms MWPM at all noise parameters. In fact, the aligned HLDT performs better than the uncentered HLDM. In conclusion, it is possible to use a fast but inaccurate underlying decoder to speed up the decoding process. The inclusion of symmetries is especially important in this case to minimize the decrease in accuracy.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VII. CONCLUSION</head><p>The main result of this paper is that the performance of neural-network-based decoders for surface codes can be significantly improved by taking into account the symmetries of the code. A pre-processing algorithm with manageable overhead was proposed. This method was tested numerically for the high-level neural-network-based decoder described in <ref type="bibr" target="#b12">[13]</ref>. Tests were done for lattice lengths L = 3, 5, and 7. Significant improvements were observed when accounting for symmetries. This allows for a reduced amount of training data, addressing one of the main problems pointed out in <ref type="bibr" target="#b13">[14]</ref>. It is therefore one step in the direction of scalable neuralnetwork-based decoders, although it does not seem sufficient by itself. For example, while the use of symmetries allowed for a decoder on the 7 × 7 code, a good decoder on the 9 × 9 code could not be trained with the simple feed forward architecture considered here, even when using symmetries. Our method of pre-processing should be used to supplement other approaches, such as the use of sophisticated network architectures proposed in <ref type="bibr" target="#b16">[17]</ref>. In previous work <ref type="bibr" target="#b10">[11,</ref><ref type="bibr" target="#b12">13,</ref><ref type="bibr" target="#b13">14]</ref> on high-level decoders, the underlying decoder was always chosen to be fast but inaccurate. Here, it was experimentally demonstrated that an accurate underlying decoder also leads to a more accurate high level decoder in practice, i.e., not assuming perfect training. However, it was also shown that an inaccurate underlying decoder can still lead to good results if the training is good enough. Therefore, the improvements reached by including symmetries were especially important in the case of a fast underlying decoder, which is also the most interesting case in practice. Additionally, it was shown that neural-network-based decoders can be applied to surface codes encoding more than one qubit. Although the inclusion of symmetries was demonstrated here for high-level decoders, the core ideas and the pre-processing algorithm can likely be applied to other decoders.</p><p>For future research, it would be interesting to further test the methods presented here on more realistic noise models, especially with imperfect syndrome extraction, and for different network architectures like convolutional and recurrent neural networks that have been shown to outperform simple feed forward neural networks <ref type="bibr" target="#b10">[11]</ref>. It would also be interesting to test these methods for low level decoders (e.g., <ref type="bibr" target="#b11">[12]</ref>). Furthermore, as mentioned above, the use of symmetries alone does not seem sufficient to allow for scalable neural-network-based decoders. Therefore it would be interesting to combine this approach with decoders based on local decompositions of the code (e.g., <ref type="bibr" target="#b16">[17]</ref> and <ref type="bibr" target="#b15">[16]</ref>).</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>FIG. 1 .</head><label>1</label><figDesc>FIG. 1. Representation of the 6 × 6 toric code. Note that the boundary of the lattice is periodic. The edges leaving at the left border wrap back around to the right and the edges leaving at the bottom wrap back around to the top. Examples of different error chains are shown. Marked with Z, a logical Z 2 operator is shown in dark blue in the middle and a detectable Z error chain is shown in bright blue at the top. Its syndrome is marked by the bright blue stars on the corresponding vertices. Similarly, marked with X , a logical X 1 operator is shown in dark green at the bottom and a detectable X error chain is shown in bright green at the top. Marked with M, a star operator is shown in dark purple on the left, and a plaquette operator is shown in bright pink on the right.</figDesc><graphic coords="2,332.51,70.92,204.00,207.79" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>FIG. 2 .</head><label>2</label><figDesc>FIG.2. The decoding process of the high level decoder. A syndrome s is decoded by the underlying decoder to obtain a physical recovery r, and by an feed forward neural network (FFNN) to obtain the logical error of the underlying decoder. The logical error is applied as post-correction to the physical recovery to obtain a combined recovery.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>FIG. 3 .</head><label>3</label><figDesc>FIG. 3. The red (light gray) dots show two syndromes (a) and (b) on a 2 × 2 toric code that differ by a one-step translation in the horizontal direction. In blue (dark gray), the recoveries proposed by MWPM decoding are shown. (c) The recovery proposed by normal MWPM in blue (dark gray). The recovery one obtains by applying MWPM to the centered syndrome (b) and then translating back is shown in bright blue (light gray). Notice that the proposed recoveries differ by a logical X operator.</figDesc><graphic coords="5,49.25,70.58,244.96,87.14" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>FIG. 5 .</head><label>5</label><figDesc>FIG.5. Comparison of decoders on the 5 × 5 toric code using aligned, centered, or uncentered training data The training data sets had a size of 9 × 10 6 and were generated at depolarizing noise parameter p = 0.1. The hyperparameters were the same for all networks: layer sizes = 500, 250, n it = 10 5 , η = 0.001. In (a), plotted is p decoder /p MWPM . The dotted lines are only to guide the eye and do not represent actual data points. For p 0.05, larger test sets of size 10 7 (5 × 10 7 for p = 0.01) were used to obtain more accurate values for the error rates, which explains the smaller error bar at p = 0.05 compared to p = 0.06. In (b) the training of the networks is compared.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>FIG. 6 .</head><label>6</label><figDesc>FIG. 6. Comparison of network training on the 5 × 5 toric code with aligned or uncentered data sets of size 1.8 × 10 6 , generated at depolarizing noise parameter p = 0.1. The small training set size was chosen to test the minimum amount of training data that is needed to obtain improvements in the logical error rate. Network parameters: layer sizes = 500, 250, n it = 10 5 , η = 0.001.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>FIG. 7 .</head><label>7</label><figDesc>FIG. 7. Performance of a high-level decoder on the 3 × 3 toric code using an aligned or uncentered training data set of size 9 × 10 5 generated at depolarizing noise parameter p = 0.1. Plotted is p decoder /p MWPM . Network parameters: layer sizes = 500, 250, n it = 10 5 , η = 0.001.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>FIG. 8 .</head><label>8</label><figDesc>FIG.8. Performance of a high-level decoder on the 7 × 7 toric code using an aligned training data set of size 4.5 × 10 7 generated at depolarizing noise parameter p = 0.1. Plotted is p decoder /p MWPM . p = 0.01 is not plotted as both the decoder and MWPM performed perfectly on the test set. The large error bars at low p are due to the very low number of logical errors made by both MWPM and the HLD. Network parameters: layer sizes = 500, 250, n it = 10 6 , η = 0.001.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>FIG. 9 .</head><label>9</label><figDesc>FIG. 9. Comparison of different high-level decoders on the 5 × 5 toric code relative to MWPM. Plotted is p decoder /p MWPM for different decoders. Shown are high-level decoders based on MWPM and highlevel decoders based on a trivial underlying decoder. In both cases both aligned and uncentered training sets of size 9 × 10 6 were used. For p 0.05 larger test sets of size 10 7 were used for increased accuracy.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head>Algorithm 1 :</head><label>1</label><figDesc>Centering algorithm used to obtain a unique translation representative for each syndrome.</figDesc><table><row><cell cols="2">Input : Syndrome s as binary vector of length</cell></row><row><cell>2L 2</cell><cell></cell></row><row><cell cols="2">Output: Translation representative s c of the</cell></row><row><cell cols="2">syndrome as binary vector</cell></row><row><cell cols="2">T ← {Translation(s) | first element of</cell></row><row><cell cols="2">Translation(s) is 1}</cell></row><row><cell>if T not empty:</cell><cell></cell></row><row><cell>s c ← min(T )</cell><cell>// Minimum over syndromes</cell></row><row><cell cols="2">according to def. 4</cell></row><row><cell>return s c else:</cell><cell></cell></row><row><cell cols="2">T ← {Translation(s) | element L 2 + 1 of</cell></row><row><cell cols="2">Translation(s) is 1}</cell></row><row><cell>if T not empty:</cell><cell></cell></row><row><cell>s c ← min(T )</cell><cell>// Minimum over</cell></row><row><cell cols="2">syndromes according to def. 4</cell></row><row><cell>return s c else:</cell><cell></cell></row></table></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ACKNOWLEDGMENTS</head><p>We thank Kai Meinerz for interesting discussions about surface code decoding with neural networks. This project was funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany's Excellence Strategy -Cluster of Excellence Matter and Light for Quantum Computing (ML4Q) EXC 2004/1 -390534769.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<author>
+			<persName><forename type="first">E</forename><surname>Knill</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Laflamme</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Zurek</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:quant-ph/9610011</idno>
+		<title level="m">Threshold accuracy for quantum computation</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<monogr>
+		<author>
+			<persName><forename type="first">D</forename><surname>Aharonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ben-Or</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:quant-ph/9611025</idno>
+		<title level="m">Fault tolerant quantum computation with constant error</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<monogr>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">B</forename><surname>Bravyi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">Y</forename><surname>Kitaev</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:quant-ph/9811052</idno>
+		<title level="m">Quantum codes on a lattice with boundary</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Fault-tolerant quantum computation by anyons</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">Y</forename><surname>Kitaev</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/S0003-4916(02)00018-0</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Ann. Phys</title>
+		<imprint>
+			<biblScope unit="volume">303</biblScope>
+			<biblScope unit="page">2</biblScope>
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Fault-Tolerant Quantum Computation with High Threshold in Two Dimensions</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Raussendorf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Harrington</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.98.190504</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">98</biblScope>
+			<biblScope unit="page">190504</biblScope>
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Demonstration of two-qubit algorithms with a superconducting quantum processor</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Dicarlo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Chow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Gambetta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">S</forename><surname>Bishop</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">R</forename><surname>Johnson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">I</forename><surname>Schuster</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Majer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Blais</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Frunzio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">M</forename><surname>Girvin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Schoelkopf</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature08121</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">460</biblScope>
+			<biblScope unit="page">240</biblScope>
+			<date type="published" when="2009">2009</date>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">High-Fidelity Preparation, Gates, Memory, and Readout of a Trapped-Ion Quantum Bit</title>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">P</forename><surname>Harty</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">T C</forename><surname>Allcock</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">J</forename><surname>Ballance</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Guidoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">A</forename><surname>Janacek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">M</forename><surname>Linke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">N</forename><surname>Stacey</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">M</forename><surname>Lucas</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.113.220501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">113</biblScope>
+			<biblScope unit="page">220501</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Efficient algorithms for maximum likelihood decoding in the surface code</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bravyi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Suchara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Vargo</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.90.032326</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="page">32326</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Fast Decoders for Topological Quantum Codes</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Duclos-Cianci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Poulin</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.104.050504</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">104</biblScope>
+			<biblScope unit="page">50504</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Efficient Markov chain Monte Carlo algorithm for the surface code</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Hutter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Wootton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Loss</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.89.022326</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">89</biblScope>
+			<biblScope unit="page">22326</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<title level="m" type="main">Designing neural network based decoders for surface codes</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Varsamopoulos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Bertels</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">G</forename><surname>Almudever</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Neural Decoder for Topological Codes</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Torlai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">G</forename><surname>Melko</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.119.030501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">119</biblScope>
+			<biblScope unit="page">30501</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Decoding small surface codes with feedforward neural networks</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Varsamopoulos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Criger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Bertels</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/2058-9565/aa955a</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum Sci. Technol</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">15004</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Deep neural decoders for near term fault-tolerant experiments</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Chamberland</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Ronagh</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/2058-9565/aad1f7</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum Sci. Technol</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">44002</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Advantages of versatile neural-network decoding for topological codes</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Maskara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kubica</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Jochym-O'connor</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.99.052351</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">99</biblScope>
+			<biblScope unit="page">52351</biblScope>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<monogr>
+		<title level="m" type="main">Decoding surface code with a distributed neural network based decoder</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Varsamopoulos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Bertels</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">G</forename><surname>Almudever</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1901.10847</idno>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<author>
+			<persName><forename type="first">X</forename><surname>Ni</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2020-08-24-310</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Neural network decoders for large-distance 2D toric codes</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page">310</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Surface codes: Towards practical large-scale quantum computation</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G</forename><surname>Fowler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mariantoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Martinis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">N</forename><surname>Cleland</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.86.032324</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">86</biblScope>
+			<biblScope unit="page">32324</biblScope>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Paths, trees, and flowers</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Edmonds</surname></persName>
+		</author>
+		<idno type="DOI">10.4153/CJM-1965-045-4</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Can. J. Math</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="page">449</biblScope>
+			<date type="published" when="1965">1965</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Exploring network structure, dynamics, and function using NetworkX</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">A</forename><surname>Hagberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">A</forename><surname>Schult</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">J</forename><surname>Swart</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 7th Python in Science Conference</title>
+		<editor>
+			<persName><forename type="first">G</forename><surname>Varoquaux</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">T</forename><surname>Vaught</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">J</forename><surname>Millman</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Scipy</surname></persName>
+		</editor>
+		<meeting>the 7th Python in Science Conference<address><addrLine>Pasadena</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="page" from="11" to="15" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">I</forename><surname>Goodfellow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Bengio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Courville</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Deep</forename><surname>Learning</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<publisher>The MIT Press</publisher>
+			<pubPlace>Cambridge</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Adam: A method for stochastic optimization</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">P</forename><surname>Kingma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Ba</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Conference Track Proceedings (International Conference on Representation Learning</title>
+		<meeting><address><addrLine>San Diego, CA, USA; La Jolla</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2015">May 7-9, 2015. 2015</date>
+		</imprint>
+	</monogr>
+	<note>3rd International Conference on Learning Representations, ICLR 2015</note>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">C</forename><surname>Igel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Heidrich-Meisner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Glasmachers</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Shark</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Mach. Learn. Res</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page">993</biblScope>
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Towards Practical Classical Processing for the Surface Code</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G</forename><surname>Fowler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">C</forename><surname>Whiteside</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">C L</forename><surname>Hollenberg</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.108.180501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">108</biblScope>
+			<biblScope unit="page">180501</biblScope>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Obtaining confidence intervals for the risk ratio in cohort studies</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Katz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Baptista</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">P</forename><surname>Azen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">C</forename><surname>Pike</surname></persName>
+		</author>
+		<idno type="DOI">10.2307/2530610</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Biometrics</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="page">469</biblScope>
+			<date type="published" when="1978">1978</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

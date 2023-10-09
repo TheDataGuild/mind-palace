@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">The END: An Equivariant Neural Decoder for Quantum Error Correction</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Evgenii</forename><surname>Egorov</surname></persName>
+							<email>&lt;egorov.evgenyy@ya.ru&gt;</email>
+							<affiliation key="aff0">
+								<orgName type="institution">University of Amsterdam</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Roberto</forename><surname>Bondesan</surname></persName>
+							<email>&lt;r.bondesan@gmail.com&gt;</email>
+							<affiliation key="aff1">
+								<orgName type="institution">Qualcomm AI Research</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Max</forename><surname>Welling</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">University of Amsterdam</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">The END: An Equivariant Neural Decoder for Quantum Error Correction</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.3" ident="GROBID" when="2023-10-09T23:23+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Quantum error correction is a critical component for scaling up quantum computing. Given a quantum code, an optimal decoder maps the measured code violations to the most likely error that occurred, but its cost scales exponentially with the system size. Neural network decoders are an appealing solution since they can learn from data an efficient approximation to such a mapping and can automatically adapt to the noise distribution. In this work, we introduce a data efficient neural decoder that exploits the symmetries of the problem. To this end, we characterize the symmetries of the optimal decoder for the toric code and propose a novel equivariant architecture that achieves state of the art reconstruction accuracy compared to previous neural decoders.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Introduction</head><p>Quantum computers have exponential advantage compared to classical computers for quantum physics simulations and for breaking certain cryptosystems. They can also provide speed ups for optimization and searching problems. However, these quantum advantages are guaranteed only for fault tolerant architectures and quantum error correction is a critical component to build a fault tolerant quantum computer.</p><p>The prototypical example of a quantum code is the toric code <ref type="bibr" target="#b11">(Kitaev, 2003)</ref>, where qubits are placed on the edges of a torus and the logical qubits are associated with operations along the non-contractible loops of the torus. This model (or rather its variant with open boundaries) has been implemented in current hardware <ref type="bibr" target="#b13">(Krinner et al., 2022;</ref><ref type="bibr" target="#b26">Zhao et al., 2022;</ref><ref type="bibr">Google Quantum AI, 2022)</ref> and is a standard benchmark for developing new decoders. Recently, alternative quantum LPDC codes have been explored which have better rate at the expense of complicated hardware imple-mentations <ref type="bibr" target="#b20">(Panteleev &amp; Kalachev, 2021)</ref>.</p><p>The decoding problem aims at correcting the errors that occurred in a given time cycle. Exact optimal decoding is computationally intractable <ref type="bibr" target="#b10">(Iyer &amp; Poulin, 2013)</ref>, and a standard approach in the literature is to devise handcrafted heuristics <ref type="bibr" target="#b5">(Dennis et al., 2002;</ref><ref type="bibr" target="#b4">Delfosse &amp; Nickerson, 2021)</ref> that give a good tradeoff between time and accuracy. The downside of these is however that they are tailored to a specific code or noise model. Neural decoders have been proposed to overcome these limitations, by learning from data how to adapt to experimental setups. Neural network decoders also benefit from quantization and dedicated hardware that allow them to meet the time requirements for decoders to be useful when deployed <ref type="bibr" target="#b19">(Overwater et al., 2022)</ref>. Several works therefore studied neural decoders for the toric code. Pure neural solutions are however limited to small system sizes <ref type="bibr" target="#b12">(Krastanov &amp; Jiang, 2017;</ref><ref type="bibr" target="#b23">Wagner et al., 2020)</ref> or low accuracy <ref type="bibr" target="#b17">(Ni, 2020)</ref>. Solutions that combine neural networks with classical heuristics can reach large systems but are limited in their accuracy by the underlying heuristics <ref type="bibr" target="#b16">(Meinerz et al., 2021)</ref>.</p><p>Incorporating the right inductive bias in the neural network architecture is an important design principle in machine learning, exemplified by convolutional neural networks, and their generalization, G-equivariant neural networks <ref type="bibr" target="#b3">(Cohen &amp; Welling, 2016;</ref><ref type="bibr" target="#b24">Weiler &amp; Cesa, 2021)</ref> In this work, we show how to improve the performance of neural decoders by designing an equivariant neural network that approximates the optimal decoder for the toric code. Our contributions are as follows:</p><p>• We characterize the geometric symmetries of the optimal decoder for the toric code.</p><p>• We propose an equivariant neural decoder architecture.</p><p>The key innovation is a novel twisted version of the global average pooling over the symmetry group.</p><p>• We benchmark a translation equivariant model against neural and non-neural decoders. We show that our model achieves state of the art accuracy compared to previous neural decoders.</p><p>arXiv:2304.07362v1 <ref type="bibr">[quant-ph]</ref> 14 Apr 2023</p><p>The END: An Equivariant Neural Decoder for Quantum Error Correction</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Related work</head><p>Popular handcrafted decoders for the toric code are the minimum weight perfect matching (MWPM) decoder <ref type="bibr" target="#b5">(Dennis et al., 2002)</ref> and the union find decoder <ref type="bibr" target="#b4">(Delfosse &amp; Nickerson, 2021)</ref>. These decoders however treat independently bit and phase flip errors, and they do not count correctly degenerate errors. For these reasons they are practically fast but have limited accuracy. Not dealing with degenerate errors impacts also their equivariance as discussed in details in Appendix A. Decoders based on tensor network contraction <ref type="bibr" target="#b0">(Bravyi et al., 2010;</ref><ref type="bibr" target="#b2">Chubb, 2021)</ref> achieve the highest threshold for the toric code. Their runtime however increases quickly with the bond dimension that controls the accuracy of the approximation and they are difficult to parallelize compared to neural networks. Also, contrary to ML methods, they cannot adapt automatically to different noise models.</p><p>Several papers have investigated neural networks for quantum error correction, however none of them studies the problem from an equivariance lens. <ref type="bibr" target="#b12">(Krastanov &amp; Jiang, 2017)</ref> uses a fully connected architecture; <ref type="bibr" target="#b23">(Wagner et al., 2020)</ref> imposes translation invariance by to zero-centering the syndrome and uses a fully connected layer on top; <ref type="bibr" target="#b17">(Ni, 2020</ref>) uses a convolutional neural network which does not represent the right equivariance properties of the optimal decoder. Appendix A contains details of these architectures and the results obtained in these papers. <ref type="bibr" target="#b16">(Meinerz et al., 2021)</ref> obtains the largest system size and threshold among neural decoders by combining a convolutional neural network backbone with a union find decoder. In our work we show that our model, which does not rely on a handcrafted decoder, achieves higher accuracy.</p><p>From the perspective of equivariant architectures <ref type="bibr" target="#b3">(Cohen &amp; Welling, 2016;</ref><ref type="bibr" target="#b24">Weiler &amp; Cesa, 2021)</ref>, our work studies a generalized form of equivariance, where the output representation depends on the values of the inputs to the neural network. To the best of our knowledge, this type of symmetry properties for a neural network have not been considered before.</p><p>Finally, neural decoders for classical error correction were discussed as a form of generalized belief propagation in <ref type="bibr" target="#b21">(Satorras &amp; Welling, 2021)</ref>. However classical and quantum error correction are fundamentally different <ref type="bibr" target="#b10">(Iyer &amp; Poulin, 2013)</ref>, and these results do not directly translate to the quantum case. See <ref type="bibr" target="#b14">(Liu &amp; Poulin, 2019)</ref> for an attempt which however does not achieve good accuracy for the toric code.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">The toric code</head><p>In this section we review the necessary background on the toric code. Recall that a qubit |ψ is a superposition of 0 and 1 bits, which are denoted by |0 and</p><formula xml:id="formula_0">|1 : |ψ = α |0 +β |1 .</formula><p>A quantum error correction code aims at correcting two types of errors on qubits: bit flip errors X, and phase flip errors Z, which act as:</p><formula xml:id="formula_1">X(α |0 + β |1 ) = β |0 + α |1 and Z(α |0 + β |1 ) = α |0 -β |1 .</formula><p>We also recall that the space of n qubits is that of superpositions of the 2 n possible bit strings of n bits. We denote by E i an error that acts only on the i-th qubit. E i can take four values: 1, X, Z, XZ, corresponding to no-error, bit-flip, phase-flip, or combined phase and bit flip. It turns out that the ability to correct these discrete set of errors is enough to correct general errors. We refer the reader to <ref type="bibr" target="#b18">(Nielsen &amp; Chuang, 2000)</ref> for details on quantum error correction.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>0</head><p>-1 </p><formula xml:id="formula_2">1 0 1 -1 C 1 Z1 C 2 ( Z2 ) C * 1 ( X1 ) C * 2 X2 a b d c</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1.">Error paths</head><p>The toric code protects against errors by encoding logical qubits in topological degrees of freedom related to the noncontractible cycles of a torus <ref type="bibr" target="#b11">(Kitaev, 2003)</ref>. This is done as follows. We start by placing physical qubits on the edges of a L × L square lattice embedded on a torus. Errors are then associated with paths that traverse the edges corresponding to the qubits affected by errors. For reasons that will become clear later, we associate Z errors to paths on the lattice, and X errors to paths on the dual lattice. This is illustrated in figure <ref type="figure" target="#fig_0">1</ref>. Here a represents a Z error on the edges traversed by the paths, while b represents a X errors on the edges traversed by the dual path.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.">Stabilizers and code space</head><p>We now consider certain combinations of bit and phase flips called Xand Z-stabilizers. For each plaquette of the lattice, we define a Z-stabilizers as the product of phase flips on the edges around the plaquette. Similarly, for each vertex of the lattice, a X-stabilizer is defined as the product of bit flips around a vertex. This is illustrated in figure <ref type="figure" target="#fig_0">1</ref> by the cycles c and d. Note that Z-stabilizers are not all independent. In fact if we take the product of two neighbouring plaquettes, the error on the shared edge disappears, since flipping twice is identical to no flipping: Z 2 = 1. If we take the product of Z-stabilizers over all the plaquettes, each edge is counted twice and so all errors disappear. This means that out of the L 2 Z-stabilizers, only L 2 -1 are independent. Similarly, for X-stabilizers. The toric code is then defined as the subspace of the 2L 2 qubits that is preserved by the stabilizer operators. Concreately, if |ψ is a vector in the 2 2L 2 -dimensional space of the physical qubits and S i a stabilizer, the code subspace is defined by S i |ψ = |ψ for all i. Note that S 2 i = 1 for each stabilizer, so S i has ±1 eigenvalues, and imposing the constraint S i |ψ = |ψ reduces the dimension of the space of the qubits by half. Since we have 2(L 2 -1) independent stabilizers, the logical space has dimension 2 2L 2 /2 2(L 2 -1) = 2 2 , which means that the toric code encodes two logical qubits for any L. We thus see that an error-free code vector lives in a 4 dimensional vector space. If errors are introduced, this code vector will develop components in the complement of this code space. The goal of error correction is to find the most likely projection back onto the code subspace.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3.">Logical operators</head><p>We denote logical X and Z operators acting on the logical qubits by X1 , X2 , Z1 , Z2 . These operators are defined by the paths denoted by C * 1 , C * 2 , C 1 , C 2 respectively in figure 1. To verify this statement, we need to check the commutation relations of these operators. First, we note that X and Z errors commute if they act on different qubits and anti-commute if they act on the same qubit: XZ = -ZX. Thus if we have a Z error string a and a X error string b, they commute if they cross an even number of times (so that we have an even number of -1's) and anti-commute if they cross an odd number of times (so that we have an odd number of -1's). For example, the errors represented by the paths a, b in figure <ref type="figure" target="#fig_0">1</ref> anticommute. We can then check that a X-stabilizer always commutes with a Z-stabilizer, since they always cross at either 0 or 2 edges. Similarly, we can check that logical operators commute with stabilizers for a similar reason, but are independent of themi.e. they cannot be written as products of stabilizers -and thus preserve the logical space but act non-trivially on it, as required to logical operators. Also, we can check that Xi anti-commutes with Zi for i = 1, 2 since they cross on a single edge. We introduce the notation ω(E, E ) to denote whether two errors E, E anti-commute (ω(E, E ) = 1) or commute (ω(E, E ) = 0).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">Symmetries of the toric code decoder</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1.">Maximum likelihood decoding</head><p>Let us denote by p(E) the probability for an error E to occur, and assume that p is known. To correct an (unknown) error E we first measure its syndrome σ. This is a binary vector of size 2L 2 , whose i-th entry is 1 if E anticommutes with the i-th stabilizer and zero otherwise. The decoding problem is then to reconstruct the error given the syndrome. It is rather easy to produce an error that is compatible with a syndrome. In fact, note that syndromes always come in pairs at the end of the error paths, as shown in figure <ref type="figure" target="#fig_1">2</ref> by looking at the error paths a or c. Note that all operators on an error path, except the ones on the endpoints, intersect twice or zero times a stabilizer, and thus commute with it. Thus a simple decoding strategy is to return error paths that join syndromes in pairs. Any such paths will produce an error which has the correct syndrome. However, there are many possible errors compatible with a syndrome since both stabilizer and logical operators have trivial syndrome since they commute with all stabilizers. For example, the error c, d or a, b have the same syndromes in figure <ref type="figure" target="#fig_1">2</ref>. To understand what constitutes an optimal reconstruction we argue as follows. First, we note that stabilizer errors do not need to be corrected since by definition they act trivially on the logical qubits, and so two errors E and E are equivalent if they differ by a stabilizer operator. However, logical operators do change the logical state, and the optimal decoding strategy is then to choose the most likely logical operator. The likelihood of a logical operator is to be computed by taking into account that any of the possible errors that are compatible with the syndrome and the logical operator content but differ by a stabilizer could have occurred.</p><p>Formally, let us define the vector L = ( X1 , X2 , Z1 , Z2 ). There are 16 possible logical operators corresponding to the 4 binary choices of acting or not with L a , for a = 1, . . . , 4.</p><p>Similarly to the syndrome, we define the logical content of an error E as the four-dimensional binary vector ω(E, L), L = ( X1 , X2 , Z1 , Z2 ). This allows us to detect whether any of the logical operators are part of E. (Note that one needs to swap the first two entries of γ with the last two entries to reconstruct the logical operator content of E due to the commutation relations. For example, E = X1 , has ω(E, L) = (0, 0, 1, 0).) Then we consider the probability mass of all errors compatible with σ and γ:</p><formula xml:id="formula_3">p(γ, σ) = E∈P p(E)δ(ω(E, S), σ)δ(ω(E, L), γ), (<label>1</label></formula><formula xml:id="formula_4">)</formula><p>where P is the set of possible errors and S is a vector with all Z and X stabilizers. From the discussion above, the sum is effectively over all possible 2 2L 2 stabilizer operators -all the possible products of plaquette and vertex operators. The most likely γ will then allow us to obtain the optimal reconstruction, so maximum likelihood decoding amounts to solving the following optimization problem:</p><formula xml:id="formula_5">max γ∈{0,1} 4 p(γ|σ) .</formula><p>(2)</p><p>In the following we shall consider the i.i.d. noise called depolarizing noise, which is a standard choice for benchmarking quantum error correction codes <ref type="bibr" target="#b18">(Nielsen &amp; Chuang, 2000)</ref>:</p><formula xml:id="formula_6">p(E) = e∈E π(E e ) , π(E) = 1 -p E = 1 p/3 E ∈ {X, Z, XZ} .<label>(3)</label></formula><p>with E the set of edges of the lattice. The number p is in [0, 1] and we give the same probability p/3 to the events corresponding to the errors X, Z, XZ, while the case of no error has probability 1 -3 × p/3 = 1 -p.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.">Equivariance properties</head><p>The goal of this section is to derive the equivariance properties of the toric code maximum likelihood decoder. To start, we define a symmetry of the code as the a transformation g that preserve the group of stabilizers, namely that acts as a permutation of the stabilizers. Since the logical subspace is defined by S i |ψ = |ψ , ∀i, this definition is natural since the logical subspace does not change if we permute the stabilizers. We call the set of all code symmetries the automorphism group of the code.</p><p>If we denote with prime the transformed quantities, we have</p><formula xml:id="formula_7">S i = S gi .<label>(4)</label></formula><p>For example, if g is the horizontal translations of the lattice by one unit to the right, it acts on the Z stabilizers S Z 's as:</p><formula xml:id="formula_8">S Z p = p -→ (S Z ) p = gp ,<label>(5)</label></formula><p>and similarly for the X stabilizers S X . We call the set of all code symmetries the automorphism group of the code.</p><p>The automorphism group of the toric code is generated by the symmetries of the square lattice, namely horizontal and vertical translations, 90 • rotations and horizontal flips, together with the duality map which switches primal to dual lattice as well as X with Z. The left column of figure <ref type="figure" target="#fig_3">3</ref> shows the action of each of these symmetries on the vertices and plaquettes, defining the permutation of the associated stabilizers. Logical operators also need to be permuted among themselves up to stabilizers:</p><formula xml:id="formula_9">L a = L ga p∈α g a S Z p v∈β g a S X v ,<label>(6)</label></formula><p>where as above L = ( X1 , X2 , Z1 , Z2 ), ga is a permutation of the four elements, and α g a and β g a are some g-dependent paths on the primal and dual lattice respectively. The right column of figure <ref type="figure" target="#fig_3">3</ref> shows the non-trivial action of the generators of the automorphism group of the toric code on the logical operators. For example, focusing on the rotation by 90 • row, we see that ga acts as the permutation (1234) → (2143).</p><p>After discussing the symmetries of the toric code, we now consider the noise distribution. We call a transformation g a symmetry of the noise model if it leaves the noise distribution invariant: p(E ) = p(E). To present the equivariance result, we find it notationally convenient to see the probability p(γ|σ) as the σ-dependent tensor p(σ) with 4 indices, p(σ) γ1,γ2,γ3,γ4 = p(γ 1 , γ 2 , γ 3 , γ 4 |σ). The permutation part a → ga for a = 1, 2, 3, 4 of equation 6 acts on a tensor t γ1,γ2,γ3,γ4 as the operator P g :</p><formula xml:id="formula_10">(P g t) γ1,γ2,γ3,γ4 = t γg1,γg2,γg3,γg4 .<label>(7)</label></formula><p>With α g a and β g a as in equation 6 we define the following quantity:</p><formula xml:id="formula_11">(∆ g σ) a = p∈α g a σ Z p + v∈β g a σ X v ,<label>(8)</label></formula><p>with σ Z (σ X ) the syndrome of S Z (S X ). With these definitions, we are ready to enunciate the equivariance properties of the maximum likelihood decoder.  then the logical probability tensor is invariant under the following action</p><formula xml:id="formula_12">¹ Z 0 1 = ¹ Z 1 Y p2® S Z p ¹ X 0 2 = ¹ X 2 Y v2¯S X v ¹ Z 0 2 = ¹ Z 2 Y p2® S Z p ¹ X 0 1 = ¹ X 1 Y v2¯S X v ¹ Z 0 1 = ¹ Z 2 ¹ Z 0 2 = ¹ Z 1 ¹ X 0 1 = ¹ X 2 Y v2¯S X v ¹ X 0 2 = ¹ X 1 ¹ X 0 2 = ¹ X 2 Y v2¯S X v ¹ X 0 1 = ¹ Z 2 Y p2® S Z p ¹ Z 0 2 = ¹ X 1 ¹ Z 0 1 = ¹ X 2 ¹ X 0 2 = ¹ Z 1 Y p2® S Z</formula><formula xml:id="formula_13">(ρ g p)(σ) = M g (σ)p(g -1 • σ) ,<label>(9)</label></formula><formula xml:id="formula_14">(g • σ) i = σ gi , M g (σ) = P -1 g R g 1 (σ)R g 2 (σ)R g 3 (σ)R g 4 (σ) , (<label>10</label></formula><formula xml:id="formula_15">)</formula><p>where R g a (σ) acts as identity if ∆ g (g -1 • σ) a = 0 mod 2 and as the flip t</p><formula xml:id="formula_16">•••γa••• → t •••(1-γa)••• if ∆ g (g -1 • σ) a =</formula><p>1 mod 2. P g and ∆ g (σ) are defined in equation 7 and equation 8.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Proof. See Appendix B</head><p>As a corollary of theorem 4.1, we see that the symmetries of the toric code discussed above (translations, rotations, mirrors and duality) are also symmetries of the maximum likelihood decoder when we have the depolarizing noise of equation 3. Example 4.1. For concreteness, we here give the explicit formulas for the transformation M g (σ) in the case of translations. Referring then to figure 3, if g is the horizontal translation by one unit to the right, then P g , R g 1 , R g 4 act as identity -recall that R g 1 , R g 4 are associated to X1 , Z2 which do not change. Let us now introduce coordinates on the lattice such that v = (0, 0) is the middle vertex (assuming L odd for simplicity), and label other vertices with numbers increasing to the right and bottom, as in figure <ref type="figure" target="#fig_0">1</ref>. We also label the plaquette neighboring a vertex (i, j) to its bottom-right as (i + 1 2 , j + 1 2 ). Then we have explicitly,</p><formula xml:id="formula_17">∆ g (g -1 • σ) = 0, L-1 i=0 σ X i,0 , L-1 i=0 σ Z i+ 1 2 ,-1 2 , 0 . (<label>11</label></formula><formula xml:id="formula_18">)</formula><p>where the coordinates are understood modulo L. Then R g a acts as t</p><formula xml:id="formula_19">•••γa••• → t •••(1-γa)••• if ∆ g (g -1 • σ) a = 1 mod 2</formula><p>and as identity ∆ g (g -1 • σ) a = 0 mod 2. Similarly, if g is the vertical translation by one unit to the bottom, we have that P g is identity and the action of R g a is read off from:</p><formula xml:id="formula_20">∆ g (g -1 • σ) = L-1 j=0 σ X 0,j , 0, 0, L-1 j=0 σ Z -1 2 ,j+ 1 2 . (<label>12</label></formula><formula xml:id="formula_21">)</formula><p>Still referring to figure <ref type="figure" target="#fig_3">3</ref>, it is also clear that translations by more than one unit will involve sums over syndromes associated to more than one row or column. For example, if g is the vertical translation by two units to the bottom,</p><formula xml:id="formula_22">∆ g (g -1 • σ) = 0 i=-1 L-1 j=0 σ X i,j , 0, 0, 0 i=-1 L-1 j=0 σ Z i-1 2 ,j+ 1 2 . (<label>13</label></formula><formula xml:id="formula_23">)</formula><p>Translating by L units to the bottom or to the right is the same as no translations. In our formalism this follows from the fact that there exists an error E such that:</p><formula xml:id="formula_24">L-1 i,j=0 σ X ij = L-1 i,j=0 ω(E, S X ij ) = ω E, ij S X ij = 0 . (14)</formula><p>The first equality is the definition of syndrome, the second uses the fact that ω(E, F G) = ω(E, F )+ω(E, G) mod 2, and the third uses that the product of X stabilizers across all vertices is the identity, as remarked in section 3.2. The same argument applies to σ Z and Z stabilizers.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">Machine learning approach</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1.">Data generation and loss function</head><p>We now set up the task of learning the logical error probabilities p(γ|σ) introduced in section 4.1. The goal is to amortize the cost of maximum likelihood decoding via training a low complexity neural network.</p><p>We prepare data as follows. We are given a noise model p(E) from which we can sample errors E 1 , E 2 , . . . Concretely, we shall use below the depolarizing noise of equation 3, but the arguments of this section hold for any choice of p(E). We then compute syndrome and logical components associated to each error E as discussed above:</p><formula xml:id="formula_25">σ = ω(E, S) , γ = ω(E, L) .<label>(15)</label></formula><p>The pairs (γ, σ)'s are distributed according to equation 1 and taken to be inputs and outputs of a supervised learning task.</p><p>We thus aim at learning a map p that maps a syndrome σ ∈ {0, 1} 2L 2 to a probability distribution over 4 binary random variables -one for each γ a ∈ {0, 1}, a ∈ {1, 2, 3, 4} -or alternatively over a categorical variable with 2 4 = 16 values. We learn this map by minimizing the cross entropy loss:</p><formula xml:id="formula_26">E σ∼p(σ) E γ∼p(γ|σ) (-log p(σ) γ ) . (<label>16</label></formula><formula xml:id="formula_27">)</formula><p>The minimizer of this loss function satisfies p(σ) γ = p(γ|σ). Therefore, we can perform approximate maximum likelihood decoding by taking the maximum over the learnt probabilities.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2.">General theory of equivariant architectures</head><p>Before delving into the neural architecture, we discuss the symmetry action introduced in theorem 4.1. Let us suppose that as in the theorem 4.1 we have a vector-valued function f (σ) and a symmetry action</p><formula xml:id="formula_28">(ρ g f )(σ) = M g (σ)f (g -1 •σ).</formula><p>For ρ to be a well defined symmetry action (group homorphism) we need ρ g ρ h = ρ gh for any g, h in the symmetry group G. As shown in App. C, this leads to the following relations:</p><formula xml:id="formula_29">M gh (σ) = M g (σ)M h (g -1 • σ) . (<label>17</label></formula><formula xml:id="formula_30">)</formula><p>The dependency of M on σ, the input to the function on which M acts on, makes the problem more complicated than those typically considered in the machine learning literature on equivariance <ref type="bibr" target="#b24">(Weiler &amp; Cesa, 2021)</ref>. In fact, typically one considers functions f : V in → V out , with V in , V out input and output linear representations of G. For example, for image classification, V in is typically the regular representation of the discrete translations group and V out is the trivial representation.</p><p>In our case instead, the output representation matrix M g (σ) depends on the input σ, and therefore we cannot immediately use the standard theory of equivariant neural networks <ref type="bibr" target="#b24">(Weiler &amp; Cesa, 2021)</ref>, which prescribes an alternation of layers with different linear representations of the group. Instead, we solve the problem of parametrizing the invariant function p of theorem 4.1 by projecting a general function onto the G-invariant subspace by symmetrizing over the group action. In fact, we use a refinement of this idea that combines it with the standard theory of equivariant neural networks as follows.</p><p>Proposition 5.1. Consider the group action</p><formula xml:id="formula_31">(ρ g f )(σ) = M g (σ)f (g -1 • σ) on a function f : R d → R . If φ : R d → R |G| ⊗R is G-equivariant, φ h,γ (g -1 •σ) = φ gh,γ (σ)</formula><p>, then the following is invariant:</p><formula xml:id="formula_32">f (σ) = 1 |G| h∈G M h (σ)φ h (σ) .<label>(18)</label></formula><p>Proof. Using equation 17 and the equivariance hypothesis,</p><formula xml:id="formula_33">(ρ g f )(σ) = M g (σ) 1 |G| h∈G M h (g -1 • σ)φ h (g -1 • σ) (19) = 1 |G| h∈G M gh (σ)φ gh (σ) = f (σ) .<label>(20)</label></formula><p>We note that the average over the group is the basic principle behind the popular global average pooling layer used at the head of convolutional neural networks. The key innovation of our construction is to twist the sum by the matrix M g (σ) which ensures the right equivariance.</p><p>We summarize here the recipe to build an equivariant neural network for p(σ) in the case of the translation group. In this case, G is the product of two cyclic groups of length L, G = Z ×2 L . Then, elements of the group are indexed by coordinates of the lattice, g = (i, j), and φ is a standard translation-equivariant convolutional neural network with input the syndrome of size L × L × 2 and output of size L × L × 16. Appendix D contains details of the implementation of M g (σ) for the translation group, and shows that we can compute the function f defined in proposition 5.1 efficiently in O(L 2 ) time.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.">Experiments</head><p>Setup We benchmark decoders for toric code in the presence of depolarising noise. We compare the performance of our decoder END to the most commonly used non-trainable decoder MWPM <ref type="bibr" target="#b5">(Dennis et al., 2002)</ref> and the highestperforming neural decoder UFML <ref type="bibr" target="#b16">(Meinerz et al., 2021)</ref>.</p><p>The performance of decoders for lattice size L and physical noise probability p can be measured by the logical accuracy p acc , which is the fraction of successfully decoded syndromes over the total number of syndromes. As probability of physical noise increases, logical accuracy decreases for a constant lattice size. Conversely, for a fixed noise level, a bigger lattice produces more accurate results. We can expect that logical accuracy can be expressed as function of lattice size and threshold probability of noise p th :</p><formula xml:id="formula_34">p acc = f (L • (p -p th )). (<label>21</label></formula><formula xml:id="formula_35">)</formula><p>Hence, we should compare performance of decoder across several lattice sizes and physical noise probability values. We take the lowest noise probability to be threshold of MWPM decoder (p MWPM th = 0.155), as we would like to compare with it. As the highest noise probability we take the highest number from UFML results 0.18, which is also near theoretical upper bound on threshold 0.188. We take other two points to be 0.166 and 0.178 to be near threshold of the UFML decoder (p UFML th = 0.167).</p><p>Our decoder needs further clarification since it is trainable. We consider as a decoder a trained model on the particular lattice size and noise level. We then evaluate its performance under various physical noise probabilities and lattice sizes. While bigger lattice size leads to more robust code, for training the number of possible inputs to decoder increases exponentially with lattice size. We test than on lattices sizes 17, 19, 21 as a lattice big enough and practical for code implementation with physical qubits. We take neural network with the same (up to 10% difference) number of parameters as UFML.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Results</head><p>In Table <ref type="table" target="#tab_0">1</ref> we provide logical accuracy for decoders. We aim to compare END with UFML and MWPM. In the first row we provide upper bound for UFML results, as in original paper they are presented as a figure. For all lattice sizes in range (7; 63) we provide an upper bound for logical accuracy for each noise level. END decoder performers better for each physical noise probability on smaller lattices. Since implementing physical qubits is the challenge, this is significant: one can more robust logical qubit with fewer (17 2 instead of 63 2 ) by using END as decoder.</p><p>In other blocks of table we provide logical accuracy of the MWPM and END decoder over lattices 17, 19, 21 (each block is sorted in ascending order). All END decoders were trained with noise probability 0.17 and denoted in the table by (L, ch): training lattice size and the number of channels in the first block of CNN body.</p><p>For all size of models END decoder outperforms MWPM and UFML decoders. We can speculate about the reasons. Comparing with MWPM both UFML and END decoders can learn correlation between X and Z errors, so this can be a reason of outperforming. Comparing UFML and END decoder we can note that END solves the problem globally: mapping the whole syndrome to the logical state. In contrast, UFML solves problem locally, i.e. given a patch of syndrome provide estimation of the noise realisation per qubit in patch. While this approach scalable in nature it provides worse performance. Following <ref type="bibr" target="#b2">(Chubb, 2021)</ref> we estimated the threshold p EN D th by evaluation decoder for several lattices on regular grid [0.145; 0.18] of 21 noise probability values and fit cubic polynomial f over (p acc ; L • (p -p th ) pairs from 21. Estimated threshold of the END is 0.17, which is better than UFML (0.167) and MWPM (0.155), see App. E for plot.</p><p>Ablation In Table <ref type="table" target="#tab_1">2</ref> we show ablation studies where we change the twisted global average pooling of section 5.2 for a simple global average pooling or fully connected layer. We found that performance degrades considerably in those cases. Since CNN with average pooling (AP) cannot learn for lattice size 7 and noise level 0.155, it is impossible it will be successful for larger lattices and higher levels of noise. CNN with fully connected head (FC) for lattice size 7 shown performance better than MWPM (and still worse than END), hence we tried to train it on larger lattice and a bigger noise level, where it failed. The following paragraphs report more technical details about the experiments.</p><p>Architecture We adapt the wide-resnet (WR) architecture <ref type="bibr" target="#b25">(Zagoruyko &amp; Komodakis, 2016)</ref>: each convolution is defined to have periodic boundaries. WR consists of 3 blocks, where the depth of each block was 3 and fixed across all experiments. We vary the number of channels in the blocks: (ch, 64, 64), ch ∈ {32, 64, 128}. Inside each block we used the GeLU <ref type="bibr" target="#b8">(Hendrycks &amp; Gimpel, 2016)</ref>  or Average pooling (AP) projection from feature to the space of logits instead of the equivariant pooling introduced in section 5.2.</p><p>generated on the fly.</p><p>Training hyperparameters We used AdamW optimiser <ref type="bibr">(Loshchilov &amp; Hutter)</ref> for all experiments. In order to avoid manual tuning of schedule and learning rate, we used "1cycle" approach <ref type="bibr" target="#b22">(Smith &amp; Topin, 2019)</ref>. Typical maximal learning rate was 0.01 for batch 512 and 0.03 for batch 2048.</p><p>For the ablation studies we also tried reduce on plateau and cosine annealing, however this doesn't produce consistent effects for lattice size bigger than 7.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.">Conclusions and outlook</head><p>In conclusion, in this work we have shown for the first time how to build neural decoders that respect the symmetries of the optimal decoder for the toric code. We have also benchmarked our novel translation equivariant architecture against other approaches in the literature, finding that our method achieves state of the art reconstruction accuracy compared to previous neural decoders.</p><p>Future work will explore implementing other symmetries, scaling up to larger lattices, and deploy the model to interface with a quantum computer. Our methods can also be extended to other quantum LDPC codes -where the set of vertices, edges and faces of the square lattice is replaced by more general chain complexes -and we envision applying equivariant neural decoders to these other codes as well.</p><p>A. Equivariance property of toric code decoders in the literature</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.1. Classical decoders</head><p>We first discuss classical, i.e. non-neural, decoders.</p><p>The maximum weight perfect matching decoder (MWPM) is the standard decoder for the toric code <ref type="bibr" target="#b5">(Dennis et al., 2002)</ref>. It treats X and Z syndromes independently and returns the minimum (Hamming) weight error consistent with the syndrome, a problem which can be solved using the Blossom algorithm in O(n 3 ) time, but on average, it takes O(n) time <ref type="bibr" target="#b7">(Fowler et al., 2012)</ref>. This decoder is popular because of its simplicity, but it has two main drawbacks: first, it treats X and Z error independently; second, it does not account for the degeneracy of errors due to the trivial action of the stabilizer <ref type="bibr" target="#b6">(Duclos-Cianci &amp; Poulin, 2010)</ref>. Here we also show that it does not respect the equivariance properties of the maximum likelihood decoder under translations, see also <ref type="bibr" target="#b23">(Wagner et al., 2020)</ref> where the authors point out that MWPM is not translation invariant. We note that the root cause for this failure is the ambiguity of minimum weight decoding for a string of syndromes, which is translation invariant, while the error string returned by the MWPM decoder is not, since it is obtained by breaking the ambiguity by an arbitrary choice, which is not modified after a translation. Note that degeneracy also can lead to a breaking of the symmetry in the maximum likelihood decoder. In fact, if two logical classes γ, γ are such that p(γ|σ) = p(γ |σ) are this value is the largest logical probability, then it does not matter which one we return. This ambiguity can also lead to a non-translation equivariant result of the maximum likelihood decoder.</p><p>Now we discuss the union find decoder <ref type="bibr" target="#b4">(Delfosse &amp; Nickerson, 2021)</ref>. Like MWPM, union find also treats X and Z independently -which leads to suboptimal decisions -and is a based on a two-stage process: first, during the syndrom validation step errors are mapped onto erasure errors, namely losses that occur for example when a qubit is reinitialized into a maximally mixed state; then, one applies the erasure decoder. The latter simply grows a spanning forest to cover the erased edges starting from the leaves, and flips qubits if it encounters a vertex with a syndrome. The syndrome validation step creates a list of all odd clusters, namely clusters with an odd number of non-trivial syndromes. This is done by growing odd clusters until two meet so that their parity will be even. We note that the syndrome validation step respects the symmetries of the square lattice as does the erasure decoder. The union find decoder d thus returns a recovery E for a syndrome σ so that d(T σ) = T d(σ) for a translation T , leading to the right equivariance expected from a maximum likelihood decoder. This decoder is also very fast, practically O(L 2 ), but the heuristics used leads to a suboptimal performance w.r.t. the MWPM decoder.</p><p>The tensor network decoder achieves state of the art results for the threshold probability of the toric code <ref type="bibr" target="#b1">(Bravyi et al., 2014;</ref><ref type="bibr" target="#b2">Chubb, 2021)</ref>. It does so by approximating directly the intractable sum over the stabilizer group that is involved in computing the logical class probabilities. The runtime is O(n log n + nχ 3 ) where n = L 2 and χ is the so-called bond dimension, which is the number of singular values kept when doing an approximate contraction of tensors. Near the threshold we expect this to grow with the system size, but in practice modest values (e.g. χ = 6 for the surface code in <ref type="bibr" target="#b1">(Bravyi et al., 2014)</ref> with L = 25) give good results over a range of noise probabilities. The symmetries of the decoder will depend on the approximate contraction procedure. Those used in <ref type="bibr" target="#b1">(Bravyi et al., 2014;</ref><ref type="bibr" target="#b2">Chubb, 2021)</ref> create a one dimensional matrix product state along a sweep line on a planar embedding of the Tanner graph of the code. This procedure breaks the translational invariance of the decoder due to the finite χ, and in these works it was applied only to the surface code, namely the code with boundaries. We believe that an equivariant contraction procedure might lead to an even more efficient tensor network decoder.</p><p>A.2. Neural decoders <ref type="bibr" target="#b12">(Krastanov &amp; Jiang, 2017)</ref> introduces the machine learning problem of predicting the error given a syndrome with a neural network for the toric code. The architecture used is a fully connected network that does not model any symmetries of the toric code. It obtains threshold 16.4 and studies lattices up to L = 9. <ref type="bibr" target="#b23">(Wagner et al., 2020)</ref> explicitly investigates the role of symmetries for neural decoders. It uses a high level decoder architecture, where an input syndrome σ is first passed to a low level decoder which is not learnable and returns a guess for the error, f (σ), which will correspond to a given logical class. The syndrome is also passed to a neural decoder that as in our setting predicts the logical probability. This is then combined with the underlying decoder to make a prediction for the error. In formulas, called the neural prediction p(γ|σ), the logical probabilities returned by the high level decoder is</p><formula xml:id="formula_36">γ(σ) = arg max γ p(γ|σ) + ω(L, f (σ)) .<label>(22)</label></formula><p>To take into account symmetries, the authors modify this setup by introduce a preprocessing step to deal with translations and mirror symmetries. For translations for example they define equivalence classes of syndromes related by translations.</p><p>For each class they define an algorithm that centers the syndrome σ to pick a representative, say [σ] and pass that as input to both the low level decoder and neural network. </p><p>While the pipeline proposed in this paper is manifestly equivariant under translations, it requires additional computational cost to preprocess the data, and uses a fully connected network. Further, the authors could only show improvements w. r. t. MWPM decoder for L = 3, 5, 7, when using as underlying decoder MWPM itself, which adds additional runtime. <ref type="bibr" target="#b17">(Ni, 2020)</ref> implements a neural decoder for large distance toric codes L = 16, 64. The decoder is only tested for bit flip noise, where it performs on par, or lower, to MWPM. Large distance is achieved by using convolutional layers to downscale the lattice, in a similar fashion to a renormalization group decoder. The architecture is a a stack of CNN blocks each downsampling by half the lattice size, till the system has size 2 × 2. Downsampling is done by a convolutional layer with filter size [2, 2] and stride [2, 2]. The output marginal probabilities for logical classes are then produced by a dense layer on the outputs the CNN blocks: p(γ 0 |σ), p(γ 1 |σ) where γ i ∈ F 2 corresponds to acting with Xi or not. Note that the marginal probabilities will have a transformation law inherited by that of the joint, namely for translations ρ logi (T ) = 1, we have p(γ i + ρ stab (T ) i: σ|σT ) = p(γ i |σ). The authors did not discuss whether the architecture they propose has this symmetry property. We conjecture that the architecture in this paper does not have the right symmetry under translations. In fact, we expect that a CNN -the architecture proposed is a CNN apart from the periodic boundary conditions in the convolutionscan approximate only a translation invariant function, in our case p(γ i |σT ) = p(γ i |σ), and a function with the equivariance properties required by the actual logical probabilities. <ref type="bibr" target="#b16">(Meinerz et al., 2021)</ref> uses a CNN backbone which processes patches of the lattice to produce the probability that the central qubit of the patch has an error, and then adds on top a union find decoder to deal with correlations beyond the size of the patch that the neural network sees. Using a CNN (and assuming periodic padding), the system is equivariant under translations, and so is the union find decoder, so the whole procedure amounts to a decoder d(T σ) = T d(σ) for a translation T , leading to the right equivariance expected from a maximum likelihood decoder. While relying on the union find decoder for long range correlations allows one to scale to large lattices (up to L = 255), it also limits its accuracy, which leads to a threshold probability of 0.167.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Proof of theorem 4.1</head><p>To prove theorem 4.1, we shall first establish the following proposition which shows the transformation of the components of the maximum likelihood decoder. Proposition B.1. If g is a symmetry of the code and noise model, then for all γ ∈ F 2k 2 , σ ∈ F n-k 2 , we have p(γ|σ) = p(γ |σ ), with σ = g -1 • σ (28)</p><formula xml:id="formula_38">γ = ρ -1 logi (g)(γ + ∆ g (σ ) mod 2) ,<label>(29)</label></formula></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 1 .</head><label>1</label><figDesc>Figure 1. Toric code square lattice with periodic boundary conditions. Blue paths are Z errors, red paths on the dual lattice are X errors. c, d are Xand Z-stabilizers, while Ci, C * i are logical operators corresponding to non-contracbtle loops around the torus.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 2 .</head><label>2</label><figDesc>Figure 2. a and b are two possible errors (phase flip paths) that give rise to the same syndrome, here represented by blue dots. Similarly, c, d are two possible errors (bit flip paths) with the same syndrome, represented by red dots.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head></head><label></label><figDesc>Theorem 4.1. If g is a symmetry of the code and of the noise model, with action as in equation 4 and equation 6,</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>pFigure 3 .</head><label>3</label><figDesc>Figure 3. Left column: the list of symmetries of the toric code decoder and their action on the vertices and plaquettes. Right column: non-trivial action of those symmetries on the logical operators. Purple dots indicate the paths α, β in the formulas below the pictures. We assume odd L and rotations are performed around the center vertex of the lattice, while horizontal flips are done around the vertical middle line.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head></head><label></label><figDesc>By construction, denoted by T the translation operator, one has [σT ] = [σ]. Then the output of the low level decoder is obtained by undoing the translation on the output of the low level decoder on [σ]. Let us call this modified low level decoder f (σ) and the translation applied to produce the representative T σ : [σ] = σT σ . Then f (σ) = f ([σ])T -1 σ and this means that f (σ) is translationally equivariant by construction: f(σT ) = f ([σ])T -1 σT = f ([σ])(T -1 T σ ) -1 = f (σ)T .The neural network has input [σ] and the modified high level decoder used in this paper is:γ(σ) = arg max γ p(γ|[σ]) + ω(L, f (σ)) .(23)Note that we get the correct behavior under translations, see B.1: (Note that T -1 appears w.r.t. equation 28 since we are considering the equation written as p(γ|σ ) = p(γ |σ)) [σ]) + ω(L, f (σ)) + ρ stab (T -1 )ω(H, f (σ)) (26) = γ(σT ) + ρ stab (T -1 )σ .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><head></head><label></label><figDesc></figDesc><graphic coords="14,169.95,325.65,252.00,252.00" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head>Table 1 .</head><label>1</label><figDesc>activation function and standard batch-norm. As initialization we used kaiming for leaky ReLU. Sampling noise channel For performance tests of neural decoders we used standard NumPy random generator. During training we used Quasi-Monte Carlo generator based on Sobolev Sequence. This does not provide any gain in terms of performance overall, but we found it to stabilise training. Both for training and performance evaluation batches were Logical accuracy (larger is better) of decoders over depolarising noise for L : 17, 19, 21 and noise levels around thresholds of competitive decoders. All END decoders were trained with noise probability 0.17 and (L, ch) denotes training lattice size and the number of channels in the first block of CNN body. All St.d. ≤ 0.002, sample size 10 6 . Here UFML is the method of (Meinerzet al., 2021)  and MPWM the minimum weight perfect matching decoder<ref type="bibr" target="#b5">(Dennis et al., 2002)</ref>.</figDesc><table><row><cell>Decoder</cell><cell>L</cell><cell cols="2">p : 0.155 0.166</cell><cell>0.178</cell><cell>0.18</cell></row><row><cell>UFML</cell><cell cols="5">(7; 63) (0.5; 0.6) &lt; 0.6 &lt; 0.45 &lt; 0.2</cell></row><row><cell>MWPM</cell><cell>17</cell><cell>0.55</cell><cell>0.43</cell><cell>0.31</cell><cell>0.29</cell></row><row><cell>END(17, 32)</cell><cell>17</cell><cell>0.77</cell><cell>0.66</cell><cell>0.52</cell><cell>0.49</cell></row><row><cell>END(17, 64)</cell><cell>17</cell><cell>0.82</cell><cell>0.72</cell><cell>0.57</cell><cell>0.55</cell></row><row><cell cols="2">END(19, 128) 17</cell><cell>0.82</cell><cell>0.72</cell><cell>0.58</cell><cell>0.55</cell></row><row><cell cols="2">END(17, 128) 17</cell><cell>0.85</cell><cell>0.75</cell><cell>0.61</cell><cell>0.59</cell></row><row><cell>MWPM</cell><cell>19</cell><cell>0.55</cell><cell>0.42</cell><cell>0.29</cell><cell>0.28</cell></row><row><cell>END(17, 32)</cell><cell>19</cell><cell>0.75</cell><cell>0.63</cell><cell>0.47</cell><cell>0.45</cell></row><row><cell>END(17, 64)</cell><cell>19</cell><cell>0.82</cell><cell>0.70</cell><cell>0.54</cell><cell>0.52</cell></row><row><cell cols="2">END(19, 128) 19</cell><cell>0.84</cell><cell>0.72</cell><cell>0.57</cell><cell>0.55</cell></row><row><cell cols="2">END(17, 128) 19</cell><cell>0.85</cell><cell>0.74</cell><cell>0.59</cell><cell>0.57</cell></row><row><cell>MWPM</cell><cell>21</cell><cell>0.55</cell><cell>0.41</cell><cell>0.28</cell><cell>0.26</cell></row><row><cell>END(17, 32)</cell><cell>21</cell><cell>0.70</cell><cell>0.56</cell><cell>0.40</cell><cell>0.38</cell></row><row><cell>END(17, 64)</cell><cell>21</cell><cell>0.77</cell><cell>0.63</cell><cell>0.46</cell><cell>0.44</cell></row><row><cell cols="2">END(17, 128) 21</cell><cell>0.83</cell><cell>0.70</cell><cell>0.53</cell><cell>0.51</cell></row><row><cell cols="2">END(19, 128) 21</cell><cell>0.83</cell><cell>0.71</cell><cell>0.55</cell><cell>0.53</cell></row><row><cell>Ablation</cell><cell>L</cell><cell>p : 0.155</cell><cell>0.166</cell><cell></cell><cell></cell></row><row><cell>(7,32,AP)</cell><cell>7</cell><cell>0.13(0.01)</cell><cell>-</cell><cell></cell><cell></cell></row><row><cell>(7,32,FC)</cell><cell>7</cell><cell cols="2">0.62(0.05) 0.51(0.05)</cell><cell></cell><cell></cell></row><row><cell cols="2">(15,64,FC) 15</cell><cell cols="2">-0.21(0.02)</cell><cell></cell><cell></cell></row><row><cell cols="2">(17,64,FC) 17</cell><cell cols="2">-0.06(0.02)</cell><cell></cell><cell></cell></row><row><cell cols="2">(19,64,FC) 17</cell><cell>-</cell><cell>0.1(0.03)</cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1"><head>Table 2 .</head><label>2</label><figDesc>Ablation study for END decoder. We used same body architecture and training procedure, but the Fully Connected (FC)</figDesc><table /></figure>
+		</body>
+		<back>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>where ρ logi is the permutation representation of the logical operators in equation 6 and ∆ g is defined in equation 8.</p><p>Proof. If we denote by π(g) the action of a symmetry on the error E, since ω(E, F G) = ω(E, F ) + ω(E, G) mod 2, and p(E) = p(π(g)E) by assumption, we have ω(π(g)E, π(g)F ) = ω(E, F ), so:</p><p>In the third to last equality we relabeled π(g)E with E since π(g) is an invertible transformation on the set of Pauli operators and thus acts as a permutation of the Pauli errors. In the second to last equality we used the transformation laws of S and L, equation 4 and equation 6.</p><p>The probability p(γ|σ) has the same symmetry since p(γ|σ) = p(γ, σ)/p(σ) and the denominator p(σ) is invariant:</p><p>The theorem 4.1 follows by noting that the map p(γ, σ) → p(γ , σ ) can be written as the operator</p><p>) can be written as P g acting on the tensor p, with P g explicitly in Dirac notation:</p><p>This is the same object introduced in equation 7. It is a representation of the symmetric group of 4 elements: P g P h = P gh . The map p(γ) → p(γ + ∆ g (σ) mod 2) can be written as the following operator acting on tensor p:</p><p>with X the Pauli X. This proves the form of the operator</p><p>C. Group homorphism property of the representation ρ</p><p>, the condition ρ g ρ h = ρ gh , means that we have:</p><p>which needs to equal M gh (σ)f ((gh</p><p>This is a necessary condition for ρ to be a well defined action.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Implementation details for the translation group</head><p>We shall now discuss some details of the construction of proposition 5.1 for the translation group. We index elements of the translation group Z ×2 L as g = (i, j) indicating a translation to the right by i and to the bottom by j. φ is then a standard translation-equivariant convolutional neural network:</p><p>The END: An Equivariant Neural Decoder for Quantum Error Correction</p><p>From equation 17 with g = (i, 0), h = (0, j), we have</p><p>where the second equality follows from the fact that M (0,j) (σ) depends on σ only through sums along rows which are invariant under horizontal translations. We can then consider the horizontal and vertical translations separately. Setting g = (i -1, 0) and h = (1, 0) in equation 17 we get a recursion relation</p><p>We discussed explicitly M (1,0) (σ) in example 4.1. M (1,0) ((i, 0) • σ) involves the sum of the syndrome over the i + 1-th column of vertices or plaquettes -when starting counting from the middle, as in figure <ref type="figure">1</ref> -and can be precomputed for all i by summing along the columns of the matrices σ X and σ Z . Therefore we can compute M (i,0) (σ) from M (i-1,0) (σ) in O(1) time. A similar procedure allows us to compute M (0,j) (σ) so that the summation in equation 18 can be computed efficiently in O(L 2 ).</p><p>Since our experiments focus on the translation symmetry, we refrain from discussing here details of the implementation of the other symmetries of section 4.2. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>E. Threshold plot</head></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Majorana fermion codes</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bravyi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">M</forename><surname>Terhal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Leemhuis</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/12/8/083039</idno>
+		<ptr target="http://dx.doi.org/10.1088/1367-2630/12/8/083039" />
+	</analytic>
+	<monogr>
+		<title level="j">New Journal of Physics</title>
+		<idno type="ISSN">1367-2630</idno>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<biblScope unit="page">83039</biblScope>
+			<date type="published" when="2010-08">Aug 2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Efficient algorithms for maximum likelihood decoding in the surface code</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bravyi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Suchara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Vargo</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.90.032326</idno>
+		<ptr target="http://dx.doi.org/10.1103/PhysRevA.90.032326" />
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<idno type="ISSN">1094-1622</idno>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<date type="published" when="2014-09">Sep 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<monogr>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">T</forename><surname>Chubb</surname></persName>
+		</author>
+		<title level="m">General tensor network decoding of 2d pauli codes</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<monogr>
+		<title level="m" type="main">Group equivariant convolutional networks</title>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">S</forename><surname>Cohen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Welling</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/ARXIV.1602.07576</idno>
+		<ptr target="https://arxiv.org/abs/1602.07576" />
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Almost-linear time decoding algorithm for topological codes</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Delfosse</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">H</forename><surname>Nickerson</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2021-12-02-595</idno>
+		<ptr target="http://dx.doi.org/10.22331/q-2021-12-02-595" />
+	</analytic>
+	<monogr>
+		<title level="j">Quantum</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">595</biblScope>
+			<date type="published" when="2021-12">Dec 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Topological quantum memory</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Dennis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kitaev</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Landahl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Preskill</surname></persName>
+		</author>
+		<idno type="DOI">10.1063/1.1499754</idno>
+		<ptr target="http://dx.doi.org/10.1063/1.1499754" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Mathematical Physics</title>
+		<idno type="ISSN">1089-7658</idno>
+		<imprint>
+			<biblScope unit="volume">43</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="4452" to="4505" />
+			<date type="published" when="2002-09">Sep 2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Fast decoders for topological quantum codes</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Duclos-Cianci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Poulin</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.104.050504</idno>
+		<ptr target="http://dx.doi.org/10.1103/PhysRevLett.104.050504" />
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review Letters</title>
+		<idno type="ISSN">1079-7114</idno>
+		<imprint>
+			<biblScope unit="volume">104</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<date type="published" when="2010-02">Feb 2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Google Quantum AI. Suppressing quantum errors by scaling a surface code logical qubit</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G</forename><surname>Fowler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mariantoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Martinis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Cleland</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">N</forename></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.86.032324</idno>
+		<ptr target="https://arxiv.org/abs/2207.06431" />
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<idno type="ISSN">1094-1622</idno>
+		<imprint>
+			<biblScope unit="volume">86</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<date type="published" when="2012-09">Sep 2012. 2022</date>
+		</imprint>
+	</monogr>
+	<note>Surface codes: Towards practical largescale quantum computation</note>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<author>
+			<persName><forename type="first">D</forename><surname>Hendrycks</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Gimpel</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1606.08415</idno>
+		<title level="m">Gaussian error linear units (gelus)</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<title level="m" type="main">PyMatching: A python package for decoding quantum codes with minimum-weight perfect matching</title>
+		<author>
+			<persName><forename type="first">O</forename><surname>Higgott</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2105.13082</idno>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<title level="m" type="main">Hardness of decoding quantum stabilizer codes</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Iyer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Poulin</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Fault-tolerant quantum computation by anyons</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kitaev</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/S0003-4916(02)00018-0</idno>
+		<idno>1016/ S0003-4916(02)00018-0</idno>
+		<ptr target="http://dx.doi.org/10" />
+	</analytic>
+	<monogr>
+		<title level="j">Annals of Physics</title>
+		<idno type="ISSN">0003-4916</idno>
+		<imprint>
+			<biblScope unit="volume">303</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="2" to="30" />
+			<date type="published" when="2003-01">Jan 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Deep neural network probabilistic decoder for stabilizer codes</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Krastanov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Jiang</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41598-017-11266-1</idno>
+		<idno>1038%2Fs41598-017-11266-1</idno>
+		<ptr target="https://doi.org/10" />
+	</analytic>
+	<monogr>
+		<title level="j">Scientific Reports</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<date type="published" when="2017-09">sep 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Realizing repeated quantum error correction in a distance-three surface code</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Krinner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Lacroix</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Remm</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Di Paolo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Genois</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Leroux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Hellings</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Lazar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Swiadek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Herrmann</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="issue">7911</biblScope>
+			<biblScope unit="page" from="669" to="674" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Neural belief-propagation decoders for quantum error-correcting codes</title>
+		<author>
+			<persName><forename type="first">Y.-H</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Poulin</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.122.200501</idno>
+		<ptr target="http://dx.doi.org/10.1103/PhysRevLett.122.200501" />
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review Letters</title>
+		<idno type="ISSN">1079- 7114</idno>
+		<imprint>
+			<biblScope unit="volume">122</biblScope>
+			<biblScope unit="issue">20</biblScope>
+			<date type="published" when="2019-05">May 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Decoupled weight decay regularization</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Loshchilov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Hutter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<monogr>
+		<title level="m" type="main">Scalable neural decoder for topological surface codes</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Meinerz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-Y</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Trebst</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<monogr>
+		<author>
+			<persName><forename type="first">X</forename><surname>Ni</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2020-08-24-310</idno>
+		<ptr target="https://doi.org/10.22331/q-2020-08-24-310" />
+		<title level="m">Neural Network Decoders for Large-Distance 2D Toric Codes. Quantum</title>
+		<imprint>
+			<date type="published" when="2020-08">August 2020</date>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page">310</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><surname>Nielsen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Chuang</surname></persName>
+		</author>
+		<ptr target="https://books.google.co.in/books?id=65FqEKQOfP8C" />
+		<title level="m">Quantum Computation and Quantum Information. Cambridge Series on Information and the Natural Sciences</title>
+		<imprint>
+			<publisher>Cambridge University Press</publisher>
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Neural-network decoders for quantum error correction using surface codes: A space exploration of the hardware cost-performance tradeoffs</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">W J</forename><surname>Overwater</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Babaie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sebastiano</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename></persName>
+		</author>
+		<idno type="DOI">10.1109/tqe.2022.3174017</idno>
+		<ptr target="https://doi.org/10.1109%2Ftqe.2022.3174017" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Quantum Engineering</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="1" to="19" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title level="m" type="main">Asymptotically good quantum and locally testable classical ldpc codes</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Panteleev</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Kalachev</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/2111.03654" />
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Neural enhanced belief propagation on factor graphs</title>
+		<author>
+			<persName><forename type="first">V</forename><forename type="middle">G</forename><surname>Satorras</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Welling</surname></persName>
+		</author>
+		<idno>PMLR</idno>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Artificial Intelligence and Statistics</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="685" to="693" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<monogr>
+		<title level="m" type="main">Super-convergence: Very fast training of neural networks using large learning rates. In Artificial intelligence and machine learning for multidomain operations applications</title>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">N</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Topin</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<publisher>SPIE</publisher>
+			<biblScope unit="volume">11006</biblScope>
+			<biblScope unit="page" from="369" to="386" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Symmetries for a high-level neural decoder on the toric code</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Wagner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Kampermann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bruß</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<imprint>
+			<biblScope unit="volume">102</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page">42411</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<monogr>
+		<title level="m" type="main">General e(2)-equivariant steerable cnns</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Weiler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Cesa</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Wide residual networks</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Zagoruyko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Komodakis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">British Machine Vision Conference 2016. British Machine Vision Association</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Realization of an error-correcting surface code with superconducting qubits</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Ye</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H.-L</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Guan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T.-H</forename><surname>Chung</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Liang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Qian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Rong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Ying</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Zha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y.-H</forename><surname>Huo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-Y</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-Z</forename><surname>Peng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-W</forename><surname>Pan</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.129.030501</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevLett.129.030501" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">129</biblScope>
+			<biblScope unit="page">30501</biblScope>
+			<date type="published" when="2022-07">Jul 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>
