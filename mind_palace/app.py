@@ -6,11 +6,11 @@ import welcome
 from llama_index.query_engine import CitationQueryEngine
 
 openai.api_key = st.secrets.openai_key
-xml_dir = "./resources/xmls/12-pdfs-from-steve-aug-22/"
+xml_dir = "./resources/xmls/dennis-oct-10/"
 gpt_model = "gpt-3.5-turbo"
 
-st.set_page_config(page_title="Q&A with Steve's PDFs")
-st.title("Q&A with Steve's PDFs 💬")
+st.set_page_config(page_title="Q&A with Dennis's PDFs")
+st.title("Q&A with Dennis's PDFs 💬")
 
 with st.sidebar:
     st.markdown("Conversation History")
