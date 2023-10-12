@@ -54,19 +54,21 @@ def get_welcome_message(abstracts):
 if "messages" not in st.session_state.keys():  # Initialize the chat messages history
     st.session_state.messages = [
         {
-            "role": "ai",
+            "role": "assistant",
             "content": get_welcome_message(welcome.parse_abstracts(nodes)),
         },
         {
-            "role": "ai",
+            "role": "assistant",
             "content": "Ask me a question about these papers.",
         },
     ]
-# If the last message is from the assistant, clear the chat history to reset the conversation
-elif st.session_state.messages[-1]["role"] == "assistant":
+# if this refresh is not triggered by user button press, reset the chat messages
+elif not st.session_state.rating_button_press:
     print("clearing chat messages!")
     st.session_state.messages = []
 
+# this needs to be reset after checking if the messaages should be cleared
+st.session_state.rating_button_press = False
 
 if prompt := st.chat_input(
     "Your question"
@@ -82,12 +84,14 @@ for message in st.session_state.messages:  # Display the prior chat messages
 def user_clicked_thumbs_up():
     print("user thumbs up")
     itune.register_outcome(True)
+    st.session_state.rating_button_press = True
     # itune.save()
 
 
 def user_clicked_thumbs_down():
     print("user thumbs down")
     itune.register_outcome(False)
+    st.session_state.rating_button_press = True
     # itune.save()
 
 
