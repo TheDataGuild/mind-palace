@@ -3,11 +3,15 @@ import index
 import openai
 import streamlit as st
 import welcome
+from itune import MultiArmedBandit, Tune
 from llama_index.query_engine import CitationQueryEngine
 
 openai.api_key = st.secrets.openai_key
 xml_dir = "./resources/xmls/dennis-oct-10/"
 gpt_model = "gpt-3.5-turbo"
+itune = Tune(strategy=MultiArmedBandit())
+
+itune.load()
 
 st.set_page_config(page_title="Q&A with Dennis's PDFs")
 st.title("Q&A with Dennis's PDFs 💬")
@@ -28,7 +32,11 @@ def load_nodes_and_index(xml_dir, model):
 
 
 nodes, vector_index = load_nodes_and_index(xml_dir, gpt_model)
-query_engine = CitationQueryEngine.from_args(index=vector_index, verbose=True)
+query_engine = CitationQueryEngine.from_args(
+    index=vector_index,
+    similarity_top_k=itune.choose(similarity_top_k=[3, 5]),
+    verbose=True,
+)
 
 
 @st.cache_data(
@@ -86,3 +94,5 @@ if st.session_state.messages[-1]["role"] != "assistant":
                         )
                     st.write("original text:")
                     st.write(source_node.node.get_text().split(":", 1)[1])
+
+itune.save()
