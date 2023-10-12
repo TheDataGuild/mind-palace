@@ -63,12 +63,12 @@ if "messages" not in st.session_state.keys():  # Initialize the chat messages hi
         },
     ]
 # if this refresh is not triggered by user button press, reset the chat messages
-elif not st.session_state.rating_button_press:
+elif not st.session_state.rating_button_pressed:
     print("clearing chat messages!")
     st.session_state.messages = []
 
 # this needs to be reset after checking if the messaages should be cleared
-st.session_state.rating_button_press = False
+st.session_state.rating_button_pressed = False
 
 if prompt := st.chat_input(
     "Your question"
@@ -81,18 +81,11 @@ for message in st.session_state.messages:  # Display the prior chat messages
         st.write(message["content"])
 
 
-def user_clicked_thumbs_up():
-    print("user thumbs up")
-    itune.register_outcome(True)
-    st.session_state.rating_button_press = True
-    # itune.save()
-
-
-def user_clicked_thumbs_down():
-    print("user thumbs down")
-    itune.register_outcome(False)
-    st.session_state.rating_button_press = True
-    # itune.save()
+def user_clicked_rating(is_good_response):
+    print(f"user thumbs {'up' if is_good_response else 'down'}")
+    itune.register_outcome(is_good_response)
+    itune.save()
+    st.session_state.rating_button_pressed = True
 
 
 # If last message is from user, generate a new response
@@ -108,14 +101,16 @@ if st.session_state.messages[-1]["role"] == "user":
             _, col1, col2 = st.columns([7, 1, 1], gap="small")
             col1.button(
                 "👍",
-                on_click=user_clicked_thumbs_up,
+                on_click=user_clicked_rating,
+                args=[True],
                 help="Good response",
                 key="good_response",
                 use_container_width=True,
             )
             col2.button(
                 "👎",
-                on_click=user_clicked_thumbs_down,
+                on_click=user_clicked_rating,
+                args=[False],
                 help="Bad response",
                 key="bad_response",
                 use_container_width=True,
