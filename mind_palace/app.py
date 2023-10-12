@@ -54,15 +54,17 @@ def get_welcome_message(abstracts):
 if "messages" not in st.session_state.keys():  # Initialize the chat messages history
     st.session_state.messages = [
         {
-            "role": "assistant",
+            "role": "ai",
             "content": get_welcome_message(welcome.parse_abstracts(nodes)),
         },
         {
-            "role": "assistant",
+            "role": "ai",
             "content": "Ask me a question about these papers.",
         },
     ]
-else:
+# If the last message is from the assistant, clear the chat history to reset the conversation
+elif st.session_state.messages[-1]["role"] == "assistant":
+    print("clearing chat messages!")
     st.session_state.messages = []
 
 
@@ -71,12 +73,26 @@ if prompt := st.chat_input(
 ):  # Prompt for user input and save to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
 
+
 for message in st.session_state.messages:  # Display the prior chat messages
     with st.chat_message(message["role"]):
         st.write(message["content"])
 
-# If last message is not from assistant, generate a new response
-if st.session_state.messages[-1]["role"] != "assistant":
+
+def user_clicked_thumbs_up():
+    print("user thumbs up")
+    itune.register_outcome(True)
+    # itune.save()
+
+
+def user_clicked_thumbs_down():
+    print("user thumbs down")
+    itune.register_outcome(False)
+    # itune.save()
+
+
+# If last message is from user, generate a new response
+if st.session_state.messages[-1]["role"] == "user":
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             response = query_engine.query(prompt)
@@ -84,6 +100,22 @@ if st.session_state.messages[-1]["role"] != "assistant":
 
             message = {"role": "assistant", "content": response.response}
             st.session_state.messages.append(message)  # Add response to message history
+
+            _, col1, col2 = st.columns([7, 1, 1], gap="small")
+            col1.button(
+                "👍",
+                on_click=user_clicked_thumbs_up,
+                help="Good response",
+                key="good_response",
+                use_container_width=True,
+            )
+            col2.button(
+                "👎",
+                on_click=user_clicked_thumbs_down,
+                help="Bad response",
+                key="bad_response",
+                use_container_width=True,
+            )
 
             st.markdown("### Sources")
             for i, source_node in enumerate(response.source_nodes):
@@ -94,5 +126,3 @@ if st.session_state.messages[-1]["role"] != "assistant":
                         )
                     st.write("original text:")
                     st.write(source_node.node.get_text().split(":", 1)[1])
-
-itune.save()
