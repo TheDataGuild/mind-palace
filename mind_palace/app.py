@@ -9,7 +9,16 @@ from llama_index.query_engine import CitationQueryEngine
 openai.api_key = st.secrets.openai_key
 xml_dir = "./resources/xmls/dennis-oct-10/"
 gpt_model = "gpt-3.5-turbo"
-itune = Tune(strategy=MultiArmedBandit())
+
+
+def is_production_env():
+    return "app_env" in st.secrets.keys() and st.secrets.app_env == "production"
+
+
+itune = Tune(
+    strategy=MultiArmedBandit(),
+    only_choose_winning_params=is_production_env(),
+)
 
 itune.load()
 
