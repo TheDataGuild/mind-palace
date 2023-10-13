@@ -1,3 +1,5 @@
+import logging
+
 import extract
 import index
 import openai
@@ -14,6 +16,9 @@ gpt_model = "gpt-3.5-turbo"
 def is_production_env():
     return "app_env" in st.secrets.keys() and st.secrets.app_env == "production"
 
+
+if not is_production_env():
+    logging.basicConfig(level=logging.INFO)
 
 itune = Tune(
     strategy=MultiArmedBandit(),
