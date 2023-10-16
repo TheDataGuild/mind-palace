@@ -25,8 +25,6 @@ itune = Tune(
     only_choose_winning_params=is_production_env(),
 )
 
-itune.load()
-
 st.set_page_config(page_title="Q&A with Dennis's PDFs")
 st.title("Q&A with Dennis's PDFs 💬")
 
@@ -98,7 +96,6 @@ for message in st.session_state.messages:  # Display the prior chat messages
 def user_clicked_rating(is_good_response):
     print(f"user thumbs {'up' if is_good_response else 'down'}")
     itune.register_outcome(is_good_response)
-    itune.save()
     st.session_state.rating_button_pressed = True
 
 
