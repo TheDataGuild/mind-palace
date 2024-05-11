@@ -9,7 +9,7 @@ from itune import MultiArmedBandit, Tune
 from llama_index.query_engine import CitationQueryEngine
 
 openai.api_key = st.secrets.openai_key
-xml_dir = "./resources/xmls/dennis-oct-10/"
+xml_dir = "./resources/xmls/12-pdfs-from-steve-aug-22/"
 gpt_model = "gpt-3.5-turbo"
 
 
