@@ -1,5 +1,9 @@
 # Mind Palace
 
+Mind Palace is an early experiment aimed at enhancing how we learn from academic papers. As consultants, we often struggle with long onboarding times when entering new, complex science fields. Our goal with Mind Palace is to streamline this process through an interactive Q&A tool focused on academic papers.
+
+![screenshot](resources/images/screenshot.png)
+
 ## Getting Started
 
 To spin up the web app, run:
